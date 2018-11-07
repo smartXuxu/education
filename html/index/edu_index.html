@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <title>机构学校的个人主页</title>
+    <link rel="stylesheet" href="../../css/mui.min.css"/>
+    <link rel="stylesheet" href="../../css/icons-extra.css"/>
+    <link rel="stylesheet" href="../../css/base.css"/>
+    <link rel="stylesheet" href="../../css/sweetalert2.css"/>
+    <link rel="stylesheet" href="../../css/iconfont.css"/>
+    <link rel="stylesheet" href="../../css/header.css"/>
+    <link rel="stylesheet" href="../../css/index/index.css"/>
+    <link rel="stylesheet" href="../../css/index/teacher_index.css"/>
+
+</head>
+<body style="background-color:#fff;">
+<div class="layer">
+    <header id="header" class="mui-bar mui-bar-nav">
+        <i class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></i>
+        <h1 class="mui-title">主页</h1>
+        <em class="mui-icon mui-icon-more"></em>
+    </header>
+    <div class="main">
+        <div class="message_info clearfix">
+            <img src="../../img/focus-img1.png" alt=""/>
+            <div class="info_center">
+                <em>华南师范大学附属中学</em>
+                <span><i>高中</i><i>初中</i></span>
+                <p>广州市天河区中山市天河区中山市天河区中山市天河区中山大道西1号</p>
+            </div>
+            <div class="teacher_Attention">
+                <ul class="clearfix">
+                    <li>
+                        <a href="javascript:;">
+                            <em>114</em>
+                            <span>学生</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;">
+                            <em>114</em>
+                            <span>粉丝</span>
+                        </a>
+
+                    </li>
+                    <li>
+                        <a href="javascript:;">
+                            <em>114</em>
+                            <span>获赞</span>
+                        </a>
+
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="slider" class="mui-slider find_request">
+            <div style="padding: 10px 10px;">
+                <div id="segmentedControl" class="mui-segmented-control">
+                    <a class="mui-control-item mui-active" href="#item1">
+                        <span>课程(2)</span>
+                    </a>
+                    <a class="mui-control-item" href="#item2">
+                        <span>教师(2)</span>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+        <div class="main_center mine_request edu_center">
+            <div>
+                <div id="item1" class="mui-control-content mui-active">
+                   <!--课程-->
+                    <div class="course_lists">
+                        <div class="course_list">
+                            <img src="../../img/index_edu.png" alt=""/>
+                            <div class="course_list_center ">
+                                <p class="clearfix">
+                                    <del class="f_left">更新第10课时更新第10课时更新第10课时</del>
+                                    <i class="f_right">2017.12.15</i></p>
+                                <div class="icons">
+                                    <em class="iconfont icon-wode1">120</em>
+                                    <em class="iconfont icon-wujiaoxingkong">120</em>
+                                    <em class="mui-icon-extra mui-icon-extra-heart">120</em>
+                                </div>
+                                <span>华南师范大学附属中学</span>
+                            </div>
+                        </div>
+                        <div class="course_list">
+                            <img src="../../img/index_edu.png" alt=""/>
+                            <div class="course_list_center ">
+                                <p class="clearfix">
+                                    <del class="f_left">更新第10课时更新第10课时更新第10课时</del>
+                                    <i class="f_right">2017.12.15</i></p>
+                                <div class="icons">
+                                    <em class="iconfont icon-wode1">120</em>
+                                    <em class="iconfont icon-wujiaoxingkong">120</em>
+                                    <em class="mui-icon-extra mui-icon-extra-heart">120</em>
+                                </div>
+                                <span>华南师范大学附属中学</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="item2" class="mui-control-content">
+                    <div class="teacher_lists">
+                        <div class="list">
+                            <img src="../../img/focus-img1.png" alt=""/>
+                            <div class="lst_center">
+                                <!-- 判断男女-->
+                                <span>傅娟 <em class="iconfont icon-nv" ></em></span>
+                                <p>2课程 || 40课时 &nbsp;&nbsp;&nbsp;&nbsp;3w 学生 | 5.2w 获赞</p>
+                                <div class="lst_footer">
+                                    <i>数学</i>
+                                    <i>初二</i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list">
+                            <img src="../../img/focus-img1.png" alt=""/>
+                            <div class="lst_center">
+                                <span>傅娟 <em class="iconfont icon-82" ></em></span>
+                                <p>2课程 || 40课时 &nbsp;&nbsp;&nbsp;&nbsp;3w 学生 | 5.2w 获赞</p>
+                                <div class="lst_footer">
+                                    <i>数学</i>
+                                    <i>初二</i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--操作-->
+            <div class="replay">
+                <button class="attention"> +  关注</button>
+                <button class="hand"><em class="mui-icon-extra mui-icon-extra-heart"></em> 点赞</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+<script src="../../js/mui.min.js"></script>
+<script src="../../js/x_rem.js"></script>
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/base.js"></script>
+<script src="../../js/back.js"></script>
+<script src="../../js/sweetalert2.js"></script>
+<script>
+    $(function () {
+        mui('body').on('tap','a',function(){document.location.href=this.href;});
+
+        $('#scroll').scroll({
+            indicators: true //是否显示滚动条
+        });
+        $(".near_header>em").click(function () {
+            alert( 1);
+        })
+        var segmentedControl = document.getElementById('segmentedControl');
+        $('.mui-input-group').on('change', 'input', function() {
+            if (this.checked) {
+                var styleEl = document.querySelector('input[name="style"]:checked');
+                var colorEl = document.querySelector('input[name="color"]:checked');
+                if (styleEl && colorEl) {
+                    var style = styleEl.value;
+                    var color = colorEl.value;
+                    segmentedControl.className = 'mui-segmented-control' + (style ? (' mui-segmented-control-' + style) : '') + ' mui-segmented-control-' + color;
+                }
+            }
+        });
+
+    })
+</script>
+</html>

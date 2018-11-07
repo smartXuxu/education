@@ -1,0 +1,274 @@
+.baseColor {
+  color: #f01414;
+}
+.layer > header {
+  height: 1.6rem;
+  padding-top: 0.5rem;
+  position: fixed;
+  z-index: 5;
+  top: 0;
+    -webkit-transform: translateZ(0);
+}
+.layer > header > span {
+  width: 60%;
+  left: 5%;
+  top: 10%;
+  position: absolute;
+}
+.layer > header > span > a {
+  width: 39%;
+  color: #fcd0d0;
+  position: relative;
+  display: inline-block;
+}
+header > span > a > del {
+  background-color: #fcd0d0;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  position: relative;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-right: 0.3rem;
+  display: inline-block;
+}
+header > span > a.active s {
+  color: #fff;
+  border-bottom: 2px solid #fff;
+  padding-bottom: 0.2rem;
+}
+header > span > a.active > del {
+  background-color: #fff;
+}
+header > span > a > del > em {
+  position: absolute;
+  z-index: 6;
+  left: 50%;
+  top: 50%;
+  color: #f01414;
+  vertical-align: middle;
+  transform: translate(-50%, -50%);
+}
+header > span > a > s {
+  position: absolute;
+  top: -8%;
+  height: 1.2rem;
+  width: 0.8rem;
+  font-size: 0.34rem;
+}
+header > span > a:last-of-type em {
+  font-size: 0.6rem;
+}
+.layer > .header_list > em {
+  font-size: 0.6rem;
+  position: absolute;
+  right: 3%;
+  top: 31%;
+}
+.main {
+  padding-top: 1.5rem;
+  padding-bottom: 1.2rem;
+}
+.mui-segmented-control {
+  padding: 0 1.5rem;
+}
+.mui-segmented-control .mui-control-item.mui-active {
+  background-color: rgba(0, 0, 0, 0);
+  color: #333;
+}
+.mui-segmented-control .mui-control-item {
+  color: #333;
+  border-color: #fff;
+  border-left: none;
+}
+.mui-segmented-control {
+  border: none;
+}
+.mui-segmented-control .mui-control-item:first-child {
+  text-align: right;
+}
+.mui-segmented-control .mui-control-item:last-child {
+  text-align: center;
+}
+.mui-control-item.mui-active > span {
+  border-bottom: 3px solid #f01414;
+  font-size: 0.3rem;
+}
+/*发现问题*/
+.mui-slider.find_request {
+  border-bottom: 0.1rem solid #eee;
+}
+.mui-slider.find_request .mui-segmented-control .mui-control-item {
+  width: 33%;
+  text-align: center;
+}
+.mui-slider.find_request .mui-segmented-control {
+  padding: 0 0.3rem;
+}
+.mui-slider.find_request .mui-control-item.mui-active > span {
+  font-size: 0.32rem;
+}
+/*发现问题结束*/
+.main_center {
+  padding: 0.3rem;
+}
+/*所有的、样式i 重置*/
+/* 固定的 发送*/
+.submit{
+    position: fixed;
+    right: 2%;
+    bottom: 18%;
+    width: 1rem;
+    height: 1rem;
+    z-index: 3;
+    background-color: #f01414;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+}
+.submit>em{
+    width: 0.8rem;
+    height: 0.8rem;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform:translate(-50%,-50%);
+    background:url("../../img/submit.png") no-repeat center;
+    -webkit-background-size: 80%;
+    background-size: 80%;
+}
+.request_submit>em{
+    background-image: url("../../img/request.png");
+}
+.mui-slider{
+    background-color: #fff;
+    z-index: 2;
+}
+/*发现动态的全部页面 */
+.All_lists{
+    width: 100%;
+}
+.All_lists>.All_list{
+    width: 100%;
+    position: relative;
+    padding-bottom: 0.2rem;
+    padding-top: 0.2rem;
+    border-bottom: 1px solid #eeeeee;
+}
+.All_lists>.All_list:first-of-type{
+    padding-top: 0;
+}
+.All_list>.list_top{
+    position: relative;
+}
+.All_list>.list_top>img{
+    width: 1rem;
+    height: 1rem;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+
+}
+.All_list>.list_top>.list_top_center{
+    position: absolute;
+    margin-left: 1.35rem;
+    top: 2%;
+}
+.list_top>.list_top_center>em{
+    font-size: 0.3rem;
+}
+.list_top_center>em>del,.list_top_center>em>s{
+    font-size: 0.22rem;
+    color: #666;
+}
+.list_top>.list_top_center>p{
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    word-break: break-all;
+}
+.All_list>.list_content{
+    width: 100%;
+    margin-top: 0.1rem;
+}
+.All_list>.list_content>.tit{
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    word-break: break-all;
+    font-size: 0.32rem;
+    color:#666;
+    margin-bottom: 0.1rem;
+}
+.All_list>.list_content>.imgs{
+    width: 100%;
+    position: relative;
+}
+.list_content>.imgs>.img_box{
+    width: 38%;
+    height: 2.3rem;
+    overflow: hidden;
+    position: relative;
+    background-color: #333333;
+    display: inline-block;
+    margin-left: 0.1rem;
+    margin-bottom: 0.1rem;
+}
+.list_content>.imgs>.img_box>img{
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform:translate(-50%,-50%);
+}
+.list_content_footer{
+    height:auto ;
+}
+.list_content_footer>ul{
+    width: 100% ;
+    height: 100%;
+    padding-bottom: 0.2rem;
+    border-bottom: 1px solid #eeeeee;
+}
+.list_content_footer>ul>li{
+    float: left;
+
+}
+.list_content_footer>ul>li:nth-of-type(n+2){
+     width: 20%;
+ }
+.list_content_footer>ul>li:first-of-type{
+    width: 40%;
+}
+.list_content_footer>.comment_box{
+    width: 100%;
+    padding-top: 0.2rem;
+}
+.list_content_footer>.comment_box>p{
+    font-size: 0.24rem;
+}
+.list_content_footer>.comment_box>p>i,.list_content_footer>.comment_box>p>s{
+    color:#00204c
+}
+.list_content_footer>.comment_box>.more{
+    margin: 0.05REM 0;
+    font-size: 0.28rem;
+    color:#00204c;
+}
+/*动态关注页面*/
+.focus_center{
+    padding: 0;
+}
+.focus_lists>.focus_list .list_top_center>em>i{
+    width: 1rem;
+    height: 0.5rem;
+    line-height: 0.5rem;
+    text-align: center;
+    border:1px solid #f01414;
+    color:#f01414;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}

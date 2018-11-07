@@ -1,0 +1,126 @@
+/*�ı�placeholder��������ɫ*/
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #999; opacity:1;
+}
+
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #999;opacity:1;
+}
+
+input:-ms-input-placeholder{
+    color: #999;opacity:1;
+}
+
+input::-webkit-input-placeholder{
+    color: #999;
+    opacity:1;
+}
+
+html{
+    height: 100%;
+    width: 100%;
+   /* background: url("../img/register.jpg") no-repeat;
+    -webkit-background-size: 100%;
+    background-size: 100%;*/
+}
+.layer{
+    height: 100%;
+    width:100%;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+.box{
+   /* margin-top: 52%;*/
+    width: 100%;
+    text-align: center;
+}
+.box input{
+    background-color: rgba(0,0,0,0);
+    padding-bottom: 0.1rem;
+    border-bottom:1px solid #dedede;
+    font-size: 0.3rem;
+    width: 90%;
+    height: 0.8rem;
+    display: block;
+    text-indent: 3.5em;
+    position: relative;
+    left: 10%;
+    color: #999;
+}
+.username,.Verification,.password{
+    line-height: 1rem;
+    height:1.2rem;
+    position: relative;
+    width: 90%;
+}
+.Verification span{
+    position: absolute;
+    right: 0%;
+    top: 0%;
+    height: 0.58rem;
+    line-height: 0.58rem;
+    font-size: 0.14rem;
+    padding:0rem 0.2rem;
+    color:#999;
+    border-left: 1px solid #d3d3d3;
+}
+.register{
+    margin-top: 0.5rem;
+    display: block;
+    width: 80%;
+    position: relative;
+    left:10%;
+    height: 0.8rem;
+    line-height: 0.8rem;
+    background-color: #bdbdbd;
+    color:#fff;
+    font-size: 0.36rem;
+    border:0;
+    border-radius: 5px;
+}
+.box>h2{
+    padding-top: 0.6rem;
+    padding-bottom: 0.8rem;
+    font-size: 0.4rem;
+}
+.password{
+    position: relative;
+}
+.password em{
+    position: absolute;
+    display: inline-block;
+    height: 100%;
+    right: 0%;
+    top: -34%;
+}
+.password em i{
+    background: url("../img/eye.png") no-repeat center;
+    -webkit-background-size: 100%;
+    background-size: 100%;
+    position: absolute;
+    right: 0%;
+    width: 0.5rem;
+    height: 100%;
+}
+.login_Button{
+    display: block;
+    margin-top: 0.3rem;
+    width: 80%;
+    height: 0.8rem;
+    line-height:0.28rem;
+    position: relative;
+    left:10%;
+    padding:0.2rem 0;
+    background-color: rgba(0, 0, 0, 0);
+    border-radius:15px;
+    color:#333;
+    font-size: 0.30rem;
+}
+.username>i,.Verification>i,.password>i{
+    position: absolute;
+    top: -10%;
+    left: 9%;
+    height: 0.8rem;
+    font-size:0.3rem ;
+    background-size: 90%;
+}

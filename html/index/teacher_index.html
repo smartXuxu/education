@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <title>教师的个人主页</title>
+    <link rel="stylesheet" href="../../css/mui.min.css"/>
+    <link rel="stylesheet" href="../../css/mui_img.css"/>
+    <link rel="stylesheet" href="../../css/base.css"/>
+    <link rel="stylesheet" href="../../css/sweetalert2.css"/>
+    <link rel="stylesheet" href="../../css/iconfont.css"/>
+    <link rel="stylesheet" href="../../css/header.css"/>
+    <link rel="stylesheet" href="../../css/icons-extra.css"/>
+    <link rel="stylesheet" href="../../css/index/index.css"/>
+    <link rel="stylesheet" href="../../css/index/teacher_index.css"/>
+</head>
+<body style="background-color:#fff; overflow-x: hidden">
+<div class="layer">
+    <header id="header" class="mui-bar mui-bar-nav">
+        <i class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" onclick="back()"></i>
+        <h1 class="mui-title">个人主页</h1>
+        <em class="mui-icon mui-icon-more"></em>
+    </header>
+    <div class="main">
+            <div class="message_info clearfix">
+                <div id="triangle-topright">
+
+                </div>
+                <span class="report">举报</span>
+                <img src="../../img/focus-img1.png" alt=""/>
+                <div class="info_center teacher_info_center">
+                    <!--判断男女 -->
+                    <em>傅娟 <i class="iconfont icon-nv"></i> <del class="iconfont icon-mingpian "></del></em>
+                  <!--  <em>傅娟 <i class="iconfont icon-82"></i> <del class="iconfont icon-mingpian "></del></em>-->
+                    <p>华南师范大学附属中学数学教师</p>
+                    <!-- 向下的三角形 -->
+
+                </div>
+                <div class="teacher_Attention">
+                    <ul class="clearfix">
+                        <li>
+                            <a href="javascript:;">
+                                <em>114</em>
+                                <span>学生</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                <em>114</em>
+                                <span>粉丝</span>
+                            </a>
+
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                <em>114</em>
+                                <span>获赞</span>
+                            </a>
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        <div id="slider" class="mui-slider find_request">
+            <div style="padding: 10px 10px;">
+                <div id="segmentedControl" class="mui-segmented-control">
+                    <a class="mui-control-item mui-active" href="#item1">
+                        <span>主讲课程</span>
+                    </a>
+                    <a class="mui-control-item" href="#item2">
+                        <span>课堂问答</span>
+                    </a>
+                    <a class="mui-control-item" href="#item3">
+                        <span>学生评价</span>
+                    </a>
+                    <a class="mui-control-item" href="./teacher_dynamic.html">
+                        <span>动态</span>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+        <div class="main_center mine_request teacher_center">
+            <!--操作-->
+            <div class="replay">
+                <button class="attention"> +  关注</button>
+                <button class="hand"><em class="mui-icon-extra mui-icon-extra-heart"></em> 点赞</button>
+            </div>
+            <div>
+                <div id="item1" class="mui-control-content mui-active">
+                   <!--主讲课程-->
+                    <div class="course_lists">
+                        <div class="course_list">
+                            <img src="../../img/index_edu.png" alt="">
+                            <div class="course_list_center ">
+                                <p class="clearfix">
+                                    <del class="f_left">更新第10课时更新第10课时更新第10课时</del>
+                                    <i class="f_right">2017.12.15</i></p>
+                                <div class="icons">
+                                    <em class="iconfont icon-wode1">120</em>
+                                    <em class="iconfont icon-wujiaoxingkong">120</em>
+                                    <em class="mui-icon-extra mui-icon-extra-heart">120</em>
+                                </div>
+                                <span>华南师范大学附属中学</span>
+                            </div>
+                        </div>
+                        <div class="course_list">
+                            <img src="../../img/index_edu.png" alt="">
+                            <div class="course_list_center ">
+                                <p class="clearfix">
+                                    <del class="f_left">更新第10课时更新第10课时更新第10课时</del>
+                                    <i class="f_right">2017.12.15</i></p>
+                                <div class="icons">
+                                    <em class="iconfont icon-wode1">120</em>
+                                    <em class="iconfont icon-wujiaoxingkong">120</em>
+                                    <em class="mui-icon-extra mui-icon-extra-heart">120</em>
+                                </div>
+                                <span>华南师范大学附属中学</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="item2" class="mui-control-content">
+                    <!--课堂问答-->
+                    <div class="request">
+                        <div class="qu_list">
+                            <div class="tit">
+                                6的平方等于多少？
+                            </div>
+                            <div class="qu_bottom clearfix">
+                                <div class="bo_left">
+                                    <em class="iconfont icon-wode1"></em>赵英俊
+                                    <i class="iconfont icon-huangguan"></i>悬赏：15积分
+                                    <del class="iconfont icon-xiaoxi"></del>99+
+                                </div>
+                                <div class="bo_right f_right" onclick="location.href='./my_want_request.html'">
+                                    <s class="iconfont icon-weibiaoti1"></s>
+                                    我要回答
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="qu_list">
+                            <div class="tit">
+                                6的平方等于多少？
+                            </div>
+                            <div class="qu_bottom clearfix">
+                                <div class="bo_left">
+                                    <em class="iconfont icon-wode1"></em>赵英俊
+                                    <i class="iconfont icon-huangguan"></i>悬赏：15积分
+                                    <del class="iconfont icon-xiaoxi"></del>99+
+                                </div>
+                                <div class="bo_right f_right" onclick="location.href='./my_want_request.html'">
+                                    <s class="iconfont icon-weibiaoti1"></s>
+                                    我要回答
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="item3" class="mui-control-content">
+
+                    <!--学生评价-->
+                   <div class="student_evaluate">
+                       <div class="write_submit" onclick="location.href='./write_submit.html'">
+                           <em></em>
+                       </div>
+                       <h2>评价 <em>（121条）</em></h2>
+                       <div class="evaluate_list">
+                           <div class="eva_top">
+                               <img src="../../img/focus-img1.png" alt=""/>
+                              <div class="eva_top_center clearfix">
+                                  <em>熊宝宝</em>
+                                  <i class="f_right">2018-03-14 08:30</i>
+                              </div>
+                           </div>
+                           <div class="eva_content">
+                              <p>很喜欢老师讲的课，上课幽默又非常的认真， 又不懂的老师会很耐心的帮助解答。非常好！ 很喜欢老师讲的课，上课幽默又非常的认真， 又不懂的老师会很耐心的帮助解答。非常好！</p>
+                               <div class="comment_imgs">
+                                   <div class="comment_img_box">
+                                       <img src="../../img/focus-img1.png" alt="" data-preview-src="" data-preview-group="1"/>
+                                   </div>
+                                   <div class="comment_img_box">
+                                       <img src="../../img/focus-img1.png" alt="" data-preview-src="" data-preview-group="1"/>
+                                   </div>
+                                   <div class="comment_img_box">
+                                       <img src="../../img/focus-img1.png" alt="" data-preview-src="" data-preview-group="1"/>
+                                   </div>
+                                   <div class="comment_img_box">
+                                       <img src="../../img/focus-img1.png" alt="" data-preview-src="" data-preview-group="1"/>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+<script src="../../js/mui.min.js"></script>
+<script src="../../js/mui.zoom.js"></script>
+<script src="../../js/mui.preview.js"></script>
+<script src="../../js/x_rem.js"></script>
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/base.js"></script>
+<script src="../../js/back.js"></script>
+<script src="../../js/sweetalert2.js"></script>
+<script>
+    $(function () {
+        mui.previewImage();
+        mui('body').on('tap','a',function(){document.location.href=this.href;});
+
+        $('#scroll').scroll({
+            indicators: true //是否显示滚动条
+        });
+        $(".near_header>em").click(function () {
+            alert( 1);
+        })
+        var segmentedControl = document.getElementById('segmentedControl');
+        $('.mui-input-group').on('change', 'input', function() {
+            if (this.checked) {
+                var styleEl = document.querySelector('input[name="style"]:checked');
+                var colorEl = document.querySelector('input[name="color"]:checked');
+                if (styleEl && colorEl) {
+                    var style = styleEl.value;
+                    var color = colorEl.value;
+                    segmentedControl.className = 'mui-segmented-control' + (style ? (' mui-segmented-control-' + style) : '') + ' mui-segmented-control-' + color;
+                }
+            }
+        });
+        /* 点击举报*/
+        $("#triangle-topright").click(function () {
+            alert("举报了");
+        })
+        $(".report").click(function () {
+            alert("举报了");
+        })
+    })
+</script>
+</html>

@@ -1,0 +1,128 @@
+.layer>header{
+    position: fixed;
+    top: 0%;
+    height: 1.6rem;
+    line-height: 1.8rem;
+    padding-top: 0.4rem;
+    background-color: #f01414;
+    width: 100%;
+    z-index: 3;
+    -webkit-transform: translateZ(0);
+}
+.layer>header>i{
+    position: absolute;
+    left: 3%;
+    top: 0%;
+    width: 0.8rem;
+    height: 0.9rem;
+
+
+}
+.layer>header>h3{
+    text-align: center;
+    font-size: 0.4rem;
+    color: #ffffff;
+
+}
+.layer>header>em{
+    position: absolute;
+    right: 3%;
+    top: 13%;
+    font-size: 0.30rem;
+    color:#fff;
+}
+/*底部*/
+.mui-tab-item.mui-active>span{
+    color:#f01414;
+}
+.mui-tab-item>span{
+    display: block;
+}
+.mui-bar-tab>a:first-of-type>span:first-of-type{
+    font-size: 0.4rem;
+}
+.mui-bar-tab>a:nth-of-type(2)>span:first-of-type{
+    font-size: 30px;
+    line-height: 0.6rem;
+}.mui-bar-tab>a:nth-of-type(3)>span:first-of-type{
+     line-height: 0.65rem;
+    font-size: 26px;
+}
+.mui-bar.mui-bar-tab{
+    background-color: #fff;
+}
+/*底部*/
+/*mui 普通头部*/
+header .mui-title,header .mui-pull-left{
+    color:#fff;
+    font-size: 0.36rem;
+}
+/*带 首页 inout 搜索框的头部*/
+.header{
+    background-color: #f01414;
+    color:#fff;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 1.5rem;
+    padding-top: 0.5rem;
+    z-index: 4;
+}
+.header>.h_left,.header>.h_right{
+    color:#FFF;
+    position: absolute;
+    top: 40%;
+    font-size: 0.34rem;
+}
+.header>.h_left>i{
+    height: 100%;
+    width: 0.6rem;
+    display: inline-block;
+    position: absolute;
+    top: -30%;
+}
+.header>.h_left>i>img{
+    width: 100%;
+    height: 0.4rem;
+    vertical-align: middle;
+}
+.header>.h_left>i>em{
+    font-size: 0.28rem;
+}
+.header del{
+    font-size: 0.4rem;
+}
+.header>em{
+    left: 2%;
+}
+.header>span{
+    right: 3%;
+}
+.header>.h_center>input{
+    position: absolute;
+    top: 35%;
+    left: 26%;
+    width: 55%;
+    font-size: 0.3rem;
+    border-radius: 5px;
+    height: 0.8rem;
+    text-indent: 2em;
+}
+
+.header>.h_center>del{
+    position: absolute;
+    left: 28%;
+    top: 43%;
+    z-index: 5;
+    font-size: 0.5rem;
+    width: 0.6rem;
+    height: 100%;
+    color:#c9c9c9;
+}
+.header>.h_left>s{
+    padding-left: 0.65rem;
+}
+/*、附近  header*/
+.near_header{
+
+}

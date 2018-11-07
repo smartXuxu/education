@@ -1,0 +1,396 @@
+.baseColor{
+  color:#f01414;
+}
+.tapmode_style{
+  background-color: #f4f4f4;
+}
+/*主体部分*/
+.main{
+  padding-top: 1.8rem ;
+  padding-bottom: 50px ;
+  .swiper{
+  padding:0 0.3rem;
+  #swiper {
+    width: 100%;
+    height: 3rem;
+    box-sizing: border-box;
+    border-radius: 10px;
+    overflow-x: hidden;
+
+    .swiper-slide{
+      overflow: hidden;
+      width: 100%;
+      height: 100%;
+      position: relative;
+      >.taxt{
+        position: absolute;
+        left: 50%;
+        top: 15%;
+        transform: translateX(-50%);
+        width: 90%;
+        background-color: rgba(0, 0, 0, 0);
+        .chinese{
+          color:#333;
+          font-size: 0.34rem;
+        }
+        .eng{
+          color:#a29f90;
+          font-size: 0.2rem;
+        }
+      }
+      img{
+        width: 100%;
+        border-radius: 5px;
+      }
+    }
+  }
+}
+
+  .swiper-pagination-bullet-active{
+    background-color: #fff;
+  }
+  .famous{
+    width: 100%;
+    height:auto;
+    padding: 0.3rem;
+    h3{
+      height: 0.72rem;
+      width: 100%;
+      em{
+        font-size: 0.36rem;
+      }
+      i{
+        font-size: 0.24rem;
+        color:#666;
+        del{
+          font-size: 0.34rem;
+        }
+      }
+    }
+    ul{
+      width: 100%;
+      li{
+        width: 49%;
+        float: left;
+        &:first-of-type{
+          margin-right: 2%;
+        }
+        .box{
+          width: 100%;
+          height: 2rem;
+          overflow: hidden;
+          position: relative;
+          background-color: #333333;
+          img{
+            width: 100%;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+          }
+        }
+        .info{
+          padding-top: 0.2rem;
+          width: 100%;
+
+          .info_top{
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            word-break: break-all;
+            margin-bottom: 0.05rem;
+            em{
+              font-size: 0.34rem;
+              margin-right: 0.05rem;
+            }
+            i{
+              font-size: 0.3rem;
+            }
+          }
+          .info_center,.info_footer{
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            word-break: break-all;
+            font-size: 0.24rem;
+            margin-bottom: 0.05rem;
+          }
+          .info_center>del{
+            .baseColor;
+            font-size: 0.26rem;
+          }
+        }
+      }
+    }
+    .lists{
+      width: 100%;
+      margin-top: 0.3rem;
+      .list{
+        width: 100%;
+        position: relative;
+        margin-bottom: 0.3rem;
+        height: 1.68rem;
+        .img_box{
+          width: 2.2rem;
+          height: 100%;
+          img{
+            width: 100%;
+            vertical-align:middle;
+          }
+        }
+        .right{
+          position: absolute;
+          padding-left: 2.4rem;
+          top: 0%;
+          width: 100%;
+          >em{
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            word-break: break-all;
+            font-size: 0.3rem;
+            del{
+              float: right;
+            }
+          }
+          .right_center{
+            margin-top: 0.1rem;
+            em{
+              display:inline-block;
+              background:url("../../img/cat.png") no-repeat center;
+              -webkit-background-size: 100%;
+              background-size: 100%;
+              width: 0.5rem;
+              height: 0.6rem;
+              vertical-align: bottom;
+            }
+            >del{
+              border:1px solid #f01414;
+              .baseColor;
+              border-radius: 5px;
+              padding:0.05rem 0.2rem;
+              font-size: 0.24rem;
+            }
+          }
+          .right_footer{
+            width: 100%;
+            position: relative;
+            margin-top: 0.05rem;
+            i{
+              width: 0.6rem;
+              height: 0.6rem;
+              display: inline-block;
+              color:#999999;
+            }
+            span{
+              padding-left: 0.6rem;
+              position: absolute;
+              top: 10%;
+              overflow: hidden;
+              display: -webkit-box;
+              -webkit-line-clamp: 1;
+              -webkit-box-orient: vertical;
+              word-break: break-all;
+            }
+          }
+        }
+      }
+    }
+  }
+  .show{
+    height: 2.1rem;
+    width: 100%;
+    padding:0 0.3rem;
+    overflow: hidden;
+    img{
+      width: 100%;
+      border-radius: 3px;
+    }
+  }
+  .hot_lesson{
+    margin: 0.2rem 0;
+    padding: 0 0.3rem;
+    h3{
+      height: 0.72rem;
+      width: 100%;
+      em{
+        font-size: 0.36rem;
+      }
+      i{
+        font-size: 0.24rem;
+        color:#666;
+        del{
+          font-size: 0.34rem;
+        }
+      }
+    }
+    ul{
+      width: 100%;
+      >li{
+        float: left;
+        width: 45%;
+        margin-top: 0.2rem;
+        &:nth-of-type(2n-1){
+          margin-right: 10%;
+        }
+       >a{
+         display: block;
+         >img{
+           display: block;
+           width: 100%;
+         }
+         em,span{
+           overflow: hidden;
+           display: -webkit-box;
+           -webkit-line-clamp: 1;
+           -webkit-box-orient: vertical;
+           word-break: break-all;
+           display: block;
+           text-align: center;
+
+         }
+         em{
+           font-size: 0.3rem;
+           margin: 0.1rem 0;
+         }
+         span{
+           font-size: 0.24rem;
+           del{
+             .baseColor
+           }
+         }
+        }
+      }
+    }
+  }
+  .excent_lesson{
+    width: 100%;
+    padding: 0.3rem;
+    border-top: 0.1rem solid #eee;
+    border-bottom: 0.1rem solid #eee;
+    h3{
+      height: 0.72rem;
+      width: 100%;
+      em{
+        font-size: 0.36rem;
+      }
+      i{
+        font-size: 0.24rem;
+        color:#666;
+        del{
+          font-size: 0.34rem;
+        }
+      }
+    }
+   ul{
+     width: 100%;
+     >li{
+       width: 100%;
+       margin-bottom: 0.4rem;
+       a{
+         display: block;
+         position: relative;
+         >img{
+           width: 2.9rem;
+           height: 1.8rem;
+           overflow: hidden;
+           vertical-align: middle;
+         }
+         >.ex_right{
+           width: 100%;
+           position: absolute;
+           padding-left: 3.2rem;
+           top: 0%;
+           .ex_top{
+             width: 100%;
+             >span{
+               font-size: 0.32rem;
+             }
+             >em{
+               font-size: 0.26rem;
+               del{
+                 .baseColor;
+               }
+             }
+           }
+           .ex_center,.ex_footer{
+             height: 0.7rem;
+             line-height: 0.7rem;
+             font-size: 0.24rem;
+             color:#666;
+             overflow: hidden;
+             display: -webkit-box;
+             -webkit-line-clamp: 1;
+             -webkit-box-orient: vertical;
+             word-break: break-all;
+           }
+
+         }
+       }
+     }
+   }
+  }
+  .request{
+    width: 100%;
+    padding: 0.3rem;
+    h3{
+      height: 0.72rem;
+      width: 100%;
+      em{
+        font-size: 0.36rem;
+      }
+      i{
+        font-size: 0.24rem;
+        color:#666;
+        del{
+          font-size: 0.34rem;
+        }
+      }
+    }
+    .qu_list{
+      width: 100%;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 0.3rem;
+      .tit{
+        width: 100%;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        word-break: break-all;
+        font-size: 0.32rem;
+        height: 0.8rem;
+        line-height: 0.8rem;
+      }
+      .qu_bottom{
+        .bo_left{
+          font-size: 0.24rem;
+          display: inline-block;
+          color:#8c8c8c;
+          >em,>i,>del{
+            vertical-align: top;
+            margin-right: 0.1rem;
+          }
+
+        }
+        .bo_right{
+          color:#666;
+          font-size: 0.26rem;
+          padding: 0.05rem 0.1rem 0.05rem 0.05rem ;
+          border:1px solid #999;
+          -webkit-border-radius: 5px;
+          -moz-border-radius: 5px;
+          border-radius: 5px;
+          >s{
+            vertical-align: middle;
+          }
+        }
+      }
+    }
+  }
+}
+
+

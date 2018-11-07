@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+
+    <title>设置我的年级</title>
+    <link rel="stylesheet" href="../../css/mui.min.css"/>
+    <link rel="stylesheet" href="../../css/base.css"/>
+    <link rel="stylesheet" href="../../css/header.css"/>
+    <style>
+        body,html{
+            background-color: #f4f4f4;!important;
+        }
+        .main{
+
+            background-color: #fff;
+            padding: 0.3rem;
+            padding-top: 1.3rem;
+        }
+        .main>h3{
+            height: 0.8rem;
+            line-height: 0.8rem;
+            font-size: 0.32rem;
+        }
+        .main>.content{
+            height: auto ;
+        }
+        .main>.content>span{
+            display: block;
+            float: left;
+            text-align: center;
+            width: 1.7rem;
+            height: 0.7rem;
+            line-height: 0.7rem;
+            font-size: 0.28rem;
+            border:1px solid #dddddd;
+            border-radius: 10px;
+            margin-right: 12%;
+        }
+        .main>.content>span:nth-of-type(3n){
+            margin-right: 0rem;
+        }
+        .main>.content:first-of-type>span{
+            margin-bottom: 0.2rem;
+        }
+
+        .main>.content>span.active{
+            background: #f01414;
+            border: none;
+            color:#fff;
+        }
+
+    </style>
+</head>
+<body>
+<div class="layer">
+    <header id="header" class="mui-bar mui-bar-nav">
+        <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+        <h1 class="mui-title">设置我的年级</h1>
+        <em class="finish">完成</em>
+    </header>
+    <div class="main">
+        <h3>小学</h3>
+        <div class="content mui-clearfix">
+            <span class="active">一年级</span>
+            <span>二年级</span>
+            <span>三年级</span>
+            <span>四年级</span>
+            <span>五年级</span>
+            <span>六年级</span>
+        </div>
+        <h3>中学</h3>
+        <div class="content mui-clearfix">
+            <span>初一</span>
+            <span>初二</span>
+            <span>初三</span>
+        </div>
+        <h3>高中</h3>
+        <div class="content mui-clearfix">
+            <span>高一</span>
+            <span>高二</span>
+            <span>高三</span>
+        </div>
+    </div>
+</div>
+
+</body>
+<script src="../../js/x_rem.js"></script>
+<script src="../../js/mui.min.js"></script>
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/x_rem.js"></script>
+<script>
+    $(function () {
+        $(".content>span").click(function () {
+            //$(this).siblings().removeClass("active");
+            $("span").removeClass("active");
+            $(this).addClass("active");
+            //console.log($(this).text());
+        })
+        $(".finish").click(function () {
+            console.log($("span.active").text());
+        })
+    })
+</script>
+</html>

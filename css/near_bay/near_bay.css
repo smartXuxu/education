@@ -1,0 +1,110 @@
+.baseColor {
+  color: #f01414;
+}
+.layer > .near_header {
+  width: 100%;
+  position: fixed;
+  z-index: 5;
+  top: 0;
+  padding-top: 0.5rem;
+  height: 1.6rem;
+}
+.layer > .near_header i {
+  position: absolute;
+  color: #fff;
+  left: 3%;
+  top: -2%;
+  font-size: 0.34rem;
+}
+.layer > .near_header i del {
+  position: absolute;
+  top: 75%;
+}
+.layer > .near_header .header_center {
+  color: #fff;
+  position: absolute;
+  left: 20%;
+  top: 10%;
+  width: 70%;
+}
+.layer > .near_header em {
+  font-size: 0.6rem;
+  position: absolute;
+  top: 36%;
+  right: 3%;
+}
+.mui-segmented-control .mui-control-item.mui-active {
+  color: #fff;
+  background-color: #f01414;
+}
+.mui-segmented-control .mui-control-item {
+  color: #fff;
+  border-color: #f01414;
+  border-left: 1px solid #f01414;
+}
+.mui-segmented-control {
+  border: none;
+  width: 100%;
+  font-size: 0.34rem;
+}
+.mui-slider {
+  width: 100%;
+}
+.mui-segmented-control .mui-control-item.mui-active {
+  border-bottom: 2px solid #fff;
+}
+.main {
+  padding-top: 1.3rem;
+  padding-bottom: 1.3rem;
+}
+.main .excent_lesson {
+  border: none;
+  margin-top: 0.2rem;
+}
+.main .teacher_lists {
+  width: 100%;
+  padding: 0.3rem;
+  margin-top: 0.2rem;
+}
+.main .teacher_lists .list_teacher {
+  width: 100%;
+  position: relative;
+  padding-bottom: 0.6rem;
+  padding-top: 0.2rem;
+  border-bottom: 1px solid #eeeeee;
+}
+.main .teacher_lists .list_teacher > img {
+  width: 1rem;
+  height: 1rem;
+  vertical-align: middle;
+  border-radius: 50%  ;
+}
+.main .teacher_lists .list_teacher .list_center {
+  width: 100%;
+  top: 5%;
+  position: absolute;
+  padding-left: 1.5rem;
+}
+.main .teacher_lists .list_teacher .list_center .list_center_top {
+  height: 0.6rem;
+}
+.main .teacher_lists .list_teacher .list_center .list_center_top span {
+  font-size: 0.34rem;
+}
+.main .teacher_lists .list_teacher .list_center .list_center_top i {
+  color: #666;
+}
+.main .teacher_lists .list_teacher .list_center .list_center_center {
+  color: #6cb628;
+}
+.main .teacher_lists .list_teacher .list_center .list_center_center > em {
+  font-size: 0.2rem;
+  color: #6cb628;
+  border-radius: 3px;
+  padding: 0.01rem 0.1rem;
+  border: 1px solid #6cb628;
+}
+.main .teacher_lists .list_teacher .list_center .list_bottom {
+  font-size: 0.24rem;
+  margin-top: 0.1rem;
+}

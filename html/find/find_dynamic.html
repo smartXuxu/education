@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+
+    <title>发现页面</title>
+    <link rel="stylesheet" href="../../css/mui.min.css"/>
+    <link rel="stylesheet" href="../../css/mui_img.css"/>
+    <link rel="stylesheet" href="../../css/base.css"/>
+    <link rel="stylesheet" href="../../css/sweetalert2.css"/>
+    <link rel="stylesheet" href="../../css/iconfont.css"/>
+    <link rel="stylesheet" href="../../css/find/find_dynamic.css"/>
+
+</head>
+<body style="background-color:#fff;">
+<div class="layer">
+    <header class="header_list">
+        <span>
+            <a href="javascript:;" class="active f_left">
+                <del> <em class="iconfont icon-dongtaixuanzhong" ></em></del>
+                <s>动态</s>
+            </a>
+            <a href="./find_request.html" class="f_left">
+                <del><em class="iconfont icon-9" ></em></del>
+                <s>问答</s>
+            </a>
+        </span>
+        <em class="mui-icon mui-icon-search"></em>
+    </header>
+    <div class="main">
+        <div id="slider" class="mui-slider ">
+            <div style="padding: 0px 10px;">
+                <div id="segmentedControl" class="mui-segmented-control">
+                    <a class="mui-control-item mui-active" href="#item1">
+                       <span>全部</span>
+                    </a>
+                    <a class="mui-control-item" href="#item2">
+                        <span>关注</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="main_center">
+            <div class="submit" id="submit" onclick="location.href='../publish/publish_dynamic.html'">
+                <em></em>
+            </div>
+            <div>
+                <!--全部-->
+                <div id="item1" class="mui-control-content mui-active">
+                  <div class="All_lists">
+                      <div class="All_list">
+                          <div class="list_top">
+                              <img src="../../img/focus-img1.png" alt=""/>
+                              <div class="list_top_center clearfix">
+                                  <em>傅娟 <del>已关注</del> <s class="f_right">1小时前</s></em>
+                                  <p>华南师范大学附属中学华南师范大学附属中学华南师范大学附属中学数学教师</p>
+                              </div>
+                          </div>
+                          <div class="list_content clearfix" >
+                              <div class="tit">
+                                  明天开始新的一章数学学习，同学们做好预习哦
+                              </div>
+                              <div class="imgs">
+                                  <!--注意类名 可能会与关注页面 重复-->
+                                  <div class="img_box">
+                                      <img src="../../img/focus-img1.png" alt="" data-preview-src="" data-preview-group="1"/>
+                                  </div>
+                                  <div class="img_box">
+                                      <img src="../../img/focus-img1.png" alt="" data-preview-src="" data-preview-group="1"/>
+                                  </div>
+                                  <div class="img_box">
+                                      <img src="../../img/focus-img1.png" alt="" data-preview-src="" data-preview-group="1"/>
+                                  </div>
+                                  <div class="img_box">
+                                      <img src="../../img/focus-img1.png" alt="" data-preview-src="" data-preview-group="1"/>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="list_content_footer clearfix">
+                              <ul class="clearfix">
+                                  <li>浏览123次</li>
+                                  <li><em class="iconfont icon-zhuanfa">120</em></li>
+                                  <li><em class="iconfont icon-xiaoxi">20</em></li>
+                                  <li><em class="iconfont icon-like">150</em></li>
+                              </ul>
+                              <div class="comment_box">
+                                  <!--判断有没有回复人 渲染出来两句回复就可以了-->
+                                  <p>
+                                      <i>魏雨</i>&nbsp;:&nbsp;&nbsp;
+                                      真是一个真实一个爱学习的孩子啊！真实一个爱学习的孩子啊！  真是一个真实一个爱学习的孩子啊！真实一个爱学习的孩子啊！
+                                  </p>
+                                  <p>
+                                  <i>亚楠</i>&nbsp;&nbsp;回复
+                                  <s>傅娟</s>&nbsp;&nbsp;:&nbsp;&nbsp;哈哈，谢谢夸奖
+                                 </p>
+                                  <div class="more">查看更多回复>></div>
+                              </div>
+                          </div>
+                      </div>
+
+                  </div>
+                </div>
+                <div id="item2" class="mui-control-content">
+                    <div class="main_center focus_center">
+
+                        <div class="focus_lists All_lists">
+                            <div class="focus_list All_list">
+                                <div class="list_top">
+                                    <img src="../../img/focus-img1.png" alt=""/>
+                                    <div class="list_top_center clearfix">
+                                        <em>傅娟  <i class="f_right">+关注</i></em>
+                                        <p>华南师范大学附属中学华南师范大学附属中学华南师范大学附属中学数学教师</p>
+                                    </div>
+                                </div>
+                                <div class="list_content clearfix" >
+                                    <div class="tit">
+                                        明天开始新的一章数学学习，同学们做好预习哦
+                                    </div>
+                                    <div class="imgs">
+                                        <div class="img_box">
+                                            <img src="../../img/focus-img1.png" alt="" data-preview-src="" data-preview-group="1"/>
+                                        </div>
+                                        <div class="img_box">
+                                            <img src="../../img/focus-img1.png" alt="" data-preview-src="" data-preview-group="1"/>
+                                        </div>
+                                        <div class="img_box">
+                                            <img src="../../img/focus-img1.png" alt="" data-preview-src="" data-preview-group="1"/>
+                                        </div>
+                                        <div class="img_box">
+                                            <img src="../../img/focus-img1.png" alt="" data-preview-src="" data-preview-group="1"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list_content_footer clearfix">
+                                    <ul class="clearfix">
+                                        <li>浏览123次</li>
+                                        <li><em class="iconfont icon-zhuanfa"></em>120</li>
+                                        <li><em class="iconfont icon-xiaoxi"></em>20</li>
+                                        <li><em class="iconfont icon-like"></em>150</li>
+                                    </ul>
+                                    <div class="comment_box">
+                                        <!--判断有没有回复人-->
+                                        <p>
+                                            <i>魏雨</i>&nbsp;:&nbsp;&nbsp;
+                                            真是一个真实一个爱学习的孩子啊！真实一个爱学习的孩子啊！  真是一个真实一个爱学习的孩子啊！真实一个爱学习的孩子啊！
+                                        </p>
+                                        <p>
+                                            <i>亚楠</i>&nbsp;&nbsp;回复
+                                            <s>傅娟</s>&nbsp;&nbsp;:&nbsp;&nbsp;哈哈，谢谢夸奖
+                                        </p>
+                                        <div class="more">查看更多回复>></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--页脚-->
+    <div id="footer">
+    </div>
+</div>
+</body>
+<script src="../../js/mui.min.js"></script>
+<script src="../../js/mui.zoom.js"></script>
+<script src="../../js/mui.preview.js"></script>
+<script src="../../js/x_rem.js"></script>
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/base.js"></script>
+<script src="../../js/sweetalert2.js"></script>
+<script>
+    $(function () {
+        mui.previewImage();
+        mui('body').on('tap','a',function(){document.location.href=this.href;});
+        $('#footer').load('../common/footer.html');
+        setTimeout(function () {
+            $(".mui-bar-tab>a:nth-of-type(3)").addClass("mui-active");
+        },100);
+        $(".near_header>em").click(function () {
+            alert( 1);
+        })
+        $('#scroll').scroll({
+            indicators: true //是否显示滚动条
+        });
+
+        var segmentedControl = document.getElementById('segmentedControl');
+        $('.mui-input-group').on('change', 'input', function() {
+            if (this.checked) {
+                var styleEl = document.querySelector('input[name="style"]:checked');
+                var colorEl = document.querySelector('input[name="color"]:checked');
+                if (styleEl && colorEl) {
+                    var style = styleEl.value;
+                    var color = colorEl.value;
+                    segmentedControl.className = 'mui-segmented-control' + (style ? (' mui-segmented-control-' + style) : '') + ' mui-segmented-control-' + color;
+                }
+            }
+        });
+
+    })
+</script>
+</html>

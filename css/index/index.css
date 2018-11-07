@@ -1,0 +1,391 @@
+.baseColor {
+  color: #f01414;
+}
+.tapmode_style {
+  background-color: #f4f4f4;
+}
+/*主体部分*/
+.main {
+  padding-top: 1.8rem ;
+  padding-bottom: 50px ;
+}
+.main .swiper {
+  padding: 0 0.3rem;
+}
+.main .swiper #swiper {
+  width: 100%;
+  height: 3rem;
+  box-sizing: border-box;
+  border-radius: 10px;
+  overflow-x: hidden;
+}
+.main .swiper #swiper .swiper-slide {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.main .swiper #swiper .swiper-slide > .taxt {
+  position: absolute;
+  left: 50%;
+  top: 15%;
+  transform: translateX(-50%);
+  width: 90%;
+  background-color: rgba(0, 0, 0, 0);
+}
+.main .swiper #swiper .swiper-slide > .taxt .chinese {
+  color: #333;
+  font-size: 0.34rem;
+}
+.main .swiper #swiper .swiper-slide > .taxt .eng {
+  color: #a29f90;
+  font-size: 0.2rem;
+}
+.main .swiper #swiper .swiper-slide img {
+  width: 100%;
+  border-radius: 5px;
+}
+.main .swiper-pagination-bullet-active {
+  background-color: #fff;
+}
+.main .famous {
+  width: 100%;
+  height: auto;
+  padding: 0.3rem;
+}
+.main .famous h3 {
+  height: 0.72rem;
+  width: 100%;
+}
+.main .famous h3 em {
+  font-size: 0.36rem;
+}
+.main .famous h3 i {
+  font-size: 0.24rem;
+  color: #666;
+}
+.main .famous h3 i del {
+  font-size: 0.34rem;
+}
+.main .famous ul {
+  width: 100%;
+}
+.main .famous ul li {
+  width: 49%;
+  float: left;
+}
+.main .famous ul li:first-of-type {
+  margin-right: 2%;
+}
+.main .famous ul li .box {
+  width: 100%;
+  height: 2rem;
+  overflow: hidden;
+  position: relative;
+  background-color: #333333;
+}
+.main .famous ul li .box img {
+  width: 100%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.main .famous ul li .info {
+  padding-top: 0.2rem;
+  width: 100%;
+}
+.main .famous ul li .info .info_top {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+  margin-bottom: 0.05rem;
+}
+.main .famous ul li .info .info_top em {
+  font-size: 0.34rem;
+  margin-right: 0.05rem;
+}
+.main .famous ul li .info .info_top i {
+  font-size: 0.3rem;
+}
+.main .famous ul li .info .info_center,
+.main .famous ul li .info .info_footer {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+  font-size: 0.24rem;
+  margin-bottom: 0.05rem;
+}
+.main .famous ul li .info .info_center > del {
+  color: #f01414;
+  font-size: 0.26rem;
+}
+.main .famous .lists {
+  width: 100%;
+  margin-top: 0.3rem;
+}
+.main .famous .lists .list {
+  width: 100%;
+  position: relative;
+  margin-bottom: 0.3rem;
+  height: 1.68rem;
+}
+.main .famous .lists .list .img_box {
+  width: 2.2rem;
+  height: 100%;
+}
+.main .famous .lists .list .img_box img {
+  width: 100%;
+  vertical-align: middle;
+}
+.main .famous .lists .list .right {
+  position: absolute;
+  padding-left: 2.4rem;
+  top: 0%;
+  width: 100%;
+}
+.main .famous .lists .list .right > em {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+  font-size: 0.3rem;
+}
+.main .famous .lists .list .right > em del {
+  float: right;
+}
+.main .famous .lists .list .right .right_center {
+  margin-top: 0.1rem;
+}
+.main .famous .lists .list .right .right_center em {
+  display: inline-block;
+  background: url("../../img/cat.png") no-repeat center;
+  -webkit-background-size: 100%;
+  background-size: 100%;
+  width: 0.5rem;
+  height: 0.6rem;
+  vertical-align: bottom;
+}
+.main .famous .lists .list .right .right_center > del {
+  border: 1px solid #f01414;
+  color: #f01414;
+  border-radius: 5px;
+  padding: 0.05rem 0.2rem;
+  font-size: 0.24rem;
+}
+.main .famous .lists .list .right .right_footer {
+  width: 100%;
+  position: relative;
+  margin-top: 0.05rem;
+}
+.main .famous .lists .list .right .right_footer i {
+  width: 0.6rem;
+  height: 0.6rem;
+  display: inline-block;
+  color: #999999;
+}
+.main .famous .lists .list .right .right_footer span {
+  padding-left: 0.6rem;
+  position: absolute;
+  top: 10%;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+}
+.main .show {
+  height: 2.1rem;
+  width: 100%;
+  padding: 0 0.3rem;
+  overflow: hidden;
+}
+.main .show img {
+  width: 100%;
+  border-radius: 3px;
+}
+.main .hot_lesson {
+  margin: 0.2rem 0;
+  padding: 0 0.3rem;
+}
+.main .hot_lesson h3 {
+  height: 0.72rem;
+  width: 100%;
+}
+.main .hot_lesson h3 em {
+  font-size: 0.36rem;
+}
+.main .hot_lesson h3 i {
+  font-size: 0.24rem;
+  color: #666;
+}
+.main .hot_lesson h3 i del {
+  font-size: 0.34rem;
+}
+.main .hot_lesson ul {
+  width: 100%;
+}
+.main .hot_lesson ul > li {
+  float: left;
+  width: 45%;
+  margin-top: 0.2rem;
+}
+.main .hot_lesson ul > li:nth-of-type(2n-1) {
+  margin-right: 10%;
+}
+.main .hot_lesson ul > li > a {
+  display: block;
+}
+.main .hot_lesson ul > li > a > img {
+  display: block;
+  width: 100%;
+}
+.main .hot_lesson ul > li > a em,
+.main .hot_lesson ul > li > a span {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+  display: block;
+  text-align: center;
+}
+.main .hot_lesson ul > li > a em {
+  font-size: 0.3rem;
+  margin: 0.1rem 0;
+}
+.main .hot_lesson ul > li > a span {
+  font-size: 0.24rem;
+}
+.main .hot_lesson ul > li > a span del {
+  color: #f01414;
+}
+.main .excent_lesson {
+  width: 100%;
+  padding: 0.3rem;
+  border-top: 0.1rem solid #eee;
+  border-bottom: 0.1rem solid #eee;
+}
+.main .excent_lesson h3 {
+  height: 0.72rem;
+  width: 100%;
+}
+.main .excent_lesson h3 em {
+  font-size: 0.36rem;
+}
+.main .excent_lesson h3 i {
+  font-size: 0.24rem;
+  color: #666;
+}
+.main .excent_lesson h3 i del {
+  font-size: 0.34rem;
+}
+.main .excent_lesson ul {
+  width: 100%;
+}
+.main .excent_lesson ul > li {
+  width: 100%;
+  margin-bottom: 0.4rem;
+}
+.main .excent_lesson ul > li a {
+  display: block;
+  position: relative;
+}
+.main .excent_lesson ul > li a > img {
+  width: 2.9rem;
+  height: 1.8rem;
+  overflow: hidden;
+  vertical-align: middle;
+}
+.main .excent_lesson ul > li a > .ex_right {
+  width: 100%;
+  position: absolute;
+  padding-left: 3.2rem;
+  top: 0%;
+}
+.main .excent_lesson ul > li a > .ex_right .ex_top {
+  width: 100%;
+}
+.main .excent_lesson ul > li a > .ex_right .ex_top > span {
+  font-size: 0.32rem;
+}
+.main .excent_lesson ul > li a > .ex_right .ex_top > em {
+  font-size: 0.26rem;
+}
+.main .excent_lesson ul > li a > .ex_right .ex_top > em del {
+  color: #f01414;
+}
+.main .excent_lesson ul > li a > .ex_right .ex_center,
+.main .excent_lesson ul > li a > .ex_right .ex_footer {
+  height: 0.7rem;
+  line-height: 0.7rem;
+  font-size: 0.24rem;
+  color: #666;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+}
+.main .request {
+  width: 100%;
+  padding: 0.3rem;
+}
+.main .request h3 {
+  height: 0.72rem;
+  width: 100%;
+}
+.main .request h3 em {
+  font-size: 0.36rem;
+}
+.main .request h3 i {
+  font-size: 0.24rem;
+  color: #666;
+}
+.main .request h3 i del {
+  font-size: 0.34rem;
+}
+.main .request .qu_list {
+  width: 100%;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.3rem;
+}
+.main .request .qu_list .tit {
+  width: 100%;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+  font-size: 0.32rem;
+  height: 0.8rem;
+  line-height: 0.8rem;
+}
+.main .request .qu_list .qu_bottom .bo_left {
+  font-size: 0.24rem;
+  display: inline-block;
+  color: #8c8c8c;
+}
+.main .request .qu_list .qu_bottom .bo_left > em,
+.main .request .qu_list .qu_bottom .bo_left > i,
+.main .request .qu_list .qu_bottom .bo_left > del {
+  vertical-align: top;
+  margin-right: 0.1rem;
+}
+.main .request .qu_list .qu_bottom .bo_right {
+  color: #666;
+  font-size: 0.26rem;
+  padding: 0.05rem 0.1rem 0.05rem 0.05rem ;
+  border: 1px solid #999;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+.main .request .qu_list .qu_bottom .bo_right > s {
+  vertical-align: middle;
+}

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+
+    <title>附近的学校</title>
+    <link rel="stylesheet" href="../../css/mui.min.css"/>
+    <link rel="stylesheet" href="../../css/base.css"/>
+    <link rel="stylesheet" href="../../css/sweetalert2.css"/>
+    <link rel="stylesheet" href="../../css/iconfont.css"/>
+
+    <link rel="stylesheet" href="../../css/index/index.css"/>
+    <link rel="stylesheet" href="../../css/near_bay/near_bay.css"/>
+
+</head>
+<body style="background-color:#fff;">
+<div class="layer">
+    <!--header-->
+    <header class="near_header">
+        <i>
+            <s>郑州</s><del class="mui-icon mui-icon-arrowdown" ></del>
+        </i>
+        <div class="header_center">
+            <div id="slider" class="mui-slider">
+                <div style="padding: 10px 10px;">
+                    <div id="segmentedControl" class="mui-segmented-control">
+                        <a class="mui-control-item mui-active" href="#item1">
+                           学校
+                        </a>
+                        <a class="mui-control-item" href="#item2">
+                           教师
+                        </a>
+                        <a class="mui-control-item" href="#item3">
+                          课堂
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <em class="mui-icon mui-icon-search"></em>
+    </header>
+    <div class="main">
+        <div>
+        <div id="item1" class="mui-control-content mui-active">
+            <div class="famous">
+                <div class="lists">
+                    <div class="list">
+                        <div class="img_box">
+                            <img src="../../img/index_school.png" alt="">
+
+                        </div>
+                        <div class="right">
+                            <em class="clearfix">华南师范大学 <del>1.2km</del></em>
+
+                            <div class="right_center">
+                                <em></em> 1<!--这是什么？-->
+                                &nbsp;&nbsp;&nbsp;&nbsp;<del>高中</del>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<del>初中</del>
+                            </div>
+                            <div class="right_footer">
+                                <i class="iconfont icon-zuobiao"></i>
+                                <span>广州市天河区中山广州市天河区中山大道西1路</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list">
+                        <div class="img_box">
+                            <img src="../../img/index_school.png" alt="">
+
+                        </div>
+                        <div class="right">
+                            <em class="clearfix">华南师范大学 <del>1.2km</del></em>
+
+                            <div class="right_center">
+                                <em></em> 1<!--这是什么？-->
+                                &nbsp;&nbsp;&nbsp;&nbsp;<del>高中</del>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<del>初中</del>
+                            </div>
+                            <div class="right_footer">
+                                <i class="iconfont icon-zuobiao"></i>
+                                <span>广州市天河区中山广州市天河区中山大道西1路</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list">
+                        <div class="img_box">
+                            <img src="../../img/index_school.png" alt="">
+
+                        </div>
+                        <div class="right">
+                            <em class="clearfix">华南师范大学 <del>1.2km</del></em>
+
+                            <div class="right_center">
+                                <em></em> 1<!--这是什么？-->
+                                &nbsp;&nbsp;&nbsp;&nbsp;<del>高中</del>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<del>初中</del>
+                            </div>
+                            <div class="right_footer">
+                                <i class="iconfont icon-zuobiao"></i>
+                                <span>广州市天河区中山广州市天河区中山大道西1路</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="item2" class="mui-control-content">
+            <div class="teacher_lists">
+                <div class="list_teacher">
+                    <img src="../../img/focus-img1.png" alt=""/>
+                    <div class="list_center">
+                        <div class="list_center_top clearfix">
+                            <span>傅娟 </span><i class="f_right">1.2km</i>
+                        </div>
+                        <div class="list_center_center clearfix">
+                            <em>数学</em>
+                            <em>初二</em>
+                            <s class="f_right">在线</s>
+                        </div>
+                        <div class="list_bottom">
+                            华南师范大学附属中学
+                        </div>
+                    </div>
+                </div>
+                <div class="list_teacher">
+                    <img src="../../img/focus-img1.png" alt=""/>
+                    <div class="list_center">
+                        <div class="list_center_top clearfix">
+                            <span>傅娟 </span><i class="f_right">1.2km</i>
+                        </div>
+                        <div class="list_center_center clearfix">
+                            <em>数学</em>
+                            <em>初二</em>
+                            <s class="f_right">在线</s>
+                        </div>
+                        <div class="list_bottom">
+                            华南师范大学附属中学
+                        </div>
+                    </div>
+                </div>
+                <div class="list_teacher">
+                    <img src="../../img/focus-img1.png" alt=""/>
+                    <div class="list_center">
+                        <div class="list_center_top clearfix">
+                            <span>傅娟 </span><i class="f_right">1.2km</i>
+                        </div>
+                        <div class="list_center_center clearfix">
+                            <em>数学</em>
+                            <em>初二</em>
+                            <s class="f_right">在线</s>
+                        </div>
+                        <div class="list_bottom">
+                            华南师范大学附属中学
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="item3" class="mui-control-content">
+            <div class="excent_lesson">
+                <ul>
+                    <li>
+                        <a href="javascript:;">
+                            <img src="../../img/index_edu.png" alt="">
+                            <div class="ex_right">
+                                <div class="ex_top clearfix">
+                                    <span>主讲：傅娟</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <em class="f_right"><del>11023</del>人学习</em>
+                                </div>
+                                <div class="ex_center">
+                                    2018-07-15  更新第10课时更新第10课时
+                                </div>
+                                <div class="ex_footer">
+                                    华南师范大学附属中学师范大学附属中学
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;">
+                            <img src="../../img/index_edu.png" alt="">
+                            <div class="ex_right">
+                                <div class="ex_top clearfix">
+                                    <span>主讲：傅娟</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <em class="f_right"><del>11023</del>人学习</em>
+                                </div>
+                                <div class="ex_center">
+                                    2018-07-15  更新第10课时更新第10课时
+                                </div>
+                                <div class="ex_footer">
+                                    华南师范大学附属中学师范大学附属中学
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;">
+                            <img src="../../img/index_edu.png" alt="">
+                            <div class="ex_right">
+                                <div class="ex_top clearfix">
+                                    <span>主讲：傅娟</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <em class="f_right"><del>11023</del>人学习</em>
+                                </div>
+                                <div class="ex_center">
+                                    2018-07-15  更新第10课时更新第10课时
+                                </div>
+                                <div class="ex_footer">
+                                    华南师范大学附属中学师范大学附属中学
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </div>
+    <!--页脚-->
+    <div id="footer">
+    </div>
+</div>
+</body>
+<script src="../../js/mui.min.js"></script>
+<script src="../../js/x_rem.js"></script>
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/base.js"></script>
+<script src="../../js/sweetalert2.js"></script>
+<script>
+
+    $(function () {
+        mui('body').on('tap','a',function(){document.location.href=this.href;});
+        $('#footer').load('../common/footer.html');
+        setTimeout(function () {
+            $(".mui-bar-tab>a:nth-of-type(2)").addClass("mui-active");
+        },100);
+        $('#scroll').scroll({
+            indicators: true //是否显示滚动条
+        });
+        $(".near_header>em").click(function () {
+            alert( 1);
+        })
+        var segmentedControl = document.getElementById('segmentedControl');
+        $('.mui-input-group').on('change', 'input', function() {
+            if (this.checked) {
+                var styleEl = document.querySelector('input[name="style"]:checked');
+                var colorEl = document.querySelector('input[name="color"]:checked');
+                if (styleEl && colorEl) {
+                    var style = styleEl.value;
+                    var color = colorEl.value;
+                    segmentedControl.className = 'mui-segmented-control' + (style ? (' mui-segmented-control-' + style) : '') + ' mui-segmented-control-' + color;
+                }
+            }
+        });
+
+
+    })
+</script>
+</html>

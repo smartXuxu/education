@@ -1,0 +1,62 @@
+.main{
+  padding-top: 1.6rem;
+  .z_photo{
+    border-bottom: 0.2rem solid #eeeeee;
+  }
+  >.score, >.origin{
+    height: 1rem;
+    line-height: 1rem;
+    position: relative;
+    border-bottom: 1px solid #eeeeee;
+  }
+  >.score{
+    em{
+      position: absolute;
+      right: 5%;
+      top: 10%;
+    }
+  }
+  input[type=color], input[type=date], input[type=datetime-local], input[type=datetime], input[type=email], input[type=month], input[type=number], input[type=password], input[type=search], input[type=tel], input[type=text], input[type=time], input[type=url], input[type=week], select, textarea{
+    border:none;
+    text-indent: 1em;
+  }
+}
+#mask{
+  width: 100%;
+  height: 100%;
+  opacity: 0.4; /*°ëÍ¸Ã÷*/
+  filter: alpha(opacity=40); /*ie 6°ëÍ¸Ã÷*/
+  background-color: black;
+  position: fixed;
+  z-index:999;
+  top: 0;
+  left: 0;
+
+  /*display: none;*/
+  overflow: hidden;
+}
+#role_share{
+  padding: 0.3rem;
+  width: 90%;
+  height: auto;
+  background-color: #fff;
+  position: fixed;
+  z-index: 10000;
+  top: 50%;
+  left: 5%;
+  display: none;
+  transform: translateY(-50%);
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  >h3{
+    font-size: 0.32rem;
+    text-align: center;
+    height: 1rem;
+    line-height: 1rem;
+
+  }
+  >p{
+    font-size: 0.24rem;
+  }
+}

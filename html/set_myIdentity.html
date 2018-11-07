@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+
+    <title>设置我的身份</title>
+    <link rel="stylesheet" href="../css/mui.min.css"/>
+    <link rel="stylesheet" href="../css/base.css"/>
+    <link rel="stylesheet" href="../css/header.css"/>
+    <style>
+        .main{
+            padding-top: 1.3rem;
+        }
+        body,html{
+            background-color: #f4f4f4;!important;
+        }
+        .sure{
+            width: 50%;
+            display: block;
+            margin: 0.5rem auto;
+            background-color: #f01414;
+            text-align: center;
+            height: 0.6rem;
+            line-height: 0.6rem;
+            color:#fff;
+            border-radius: 10px;
+        }
+        .mui-checkbox input[type=checkbox]:checked:before, .mui-radio input[type=radio]:checked:before{
+            color: #666666;
+        }
+        .mui-checkbox input[type=checkbox]:before, .mui-radio input[type=radio]:before{
+            font-size: 20px;
+            line-height: 0.6rem;
+        }
+        .mui-input-row.mui-radio.mui-left{
+            display: inline-block;
+            width: 30%;
+            border-bottom: none;
+        }
+        .mui-input-group .mui-input-row:after{
+            height: 0;
+        }
+        .mui-input-row label{
+            line-height: 0.45rem;
+        }
+        .mui-checkbox.mui-left input[type=checkbox], .mui-radio.mui-left input[type=radio]{
+            left: 30px;
+        }
+        .mui-checkbox input[type=checkbox], .mui-radio input[type=radio]{
+            top: 7px;
+        }
+        .main>h3{
+            height: 0.8rem;
+            line-height: 0.8rem;
+            font-size: 0.32rem;
+            color:#666;
+            padding-left: 0.3rem;
+        }
+    </style>
+</head>
+<body>
+<div class="layer">
+    <header id="header" class="mui-bar mui-bar-nav">
+        <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+        <h1 class="mui-title">设置我的身份</h1>
+    </header>
+    <div class="main">
+        <h3>我的身份是</h3>
+        <!--单选-->
+        <div class="mui-card">
+            <form class="mui-input-group">
+                <div class="mui-input-row mui-radio mui-left" data-value="0">
+                    <label>学生</label>
+                    <input name="radio1" class="radio" type="radio" checked>
+                </div>
+                <div class="mui-input-row mui-radio mui-left" data-value="1">
+                    <label>家长</label>
+                    <input name="radio1" class="radio" type="radio" >
+                </div>
+                <div class="mui-input-row mui-radio mui-left" data-value="2">
+                    <label>老师</label>
+                    <input name="radio1" class="radio" type="radio" >
+                </div>
+            </form>
+        </div>
+        <div class="sure">确定</div>
+    </div>
+</div>
+</body>
+<script src="../js/x_rem.js"></script>
+<script src="../js/mui.min.js"></script>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/x_rem.js"></script>
+<script>
+    $(function () {
+
+        function getVals(){
+            var res = getRadioRes('radio');
+            console.log(res);
+            /* if(res == null){mui.toast('请选择'); return;}
+            mui.toast(res);*/
+        }
+        function getRadioRes(className){
+            var rdsObj = document.getElementsByClassName(className);
+            var checkVal = null;
+            for(i = 0; i < rdsObj.length; i++){
+                //if(rdsObj[i].checked){checkVal = rdsObj[i].parentNode.firstChild.parentNode.children[0].innerText;}
+                if(rdsObj[i].checked){checkVal = rdsObj[i].parentNode.firstChild.parentNode.getAttribute("data-value");}
+            }
+            return checkVal;
+        }
+    $(".sure").click(function () {
+        getVals();
+        location.href='set_mySchool.html'
+
+    })
+    })
+</script>
+</html>

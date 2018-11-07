@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+
+    <title>我的页面</title>
+    <link rel="stylesheet" href="../../css/mui.min.css"/>
+    <link rel="stylesheet" href="../../css/base.css"/>
+    <link rel="stylesheet" href="../../css/sweetalert2.css"/>
+    <link rel="stylesheet" href="../../css/iconfont.css"/>
+    <link rel="stylesheet" href="../../css/header.css"/>
+    <link rel="stylesheet" href="../../css/mine/mine.css"/>
+</head>
+<body style="background-color:#fff;">
+<div class="layer">
+    <header>
+        <h3>个人中心</h3>
+        <span class="iconfont icon-richscan_icon"></span>
+    </header>
+    <div class="mian">
+        <div class="mine_login">
+            <!--判断有没有登录-->
+            <!--未登录-->
+            <!--<div class="no_login" onclick="location.href='../login.html'">
+                <div class="head_img">
+                </div>
+                <span>点击登录</span>
+            </div>-->
+            <!--登录过了-->
+            <div class="has_login">
+               <div class="login_content">
+                   <img src="../../img/focus-img1.png" alt=""/>
+                   <div class="has_center">
+                       <em>Msay</em>
+                       <del>洛浦中学&nbsp;&nbsp;初二上&nbsp;&nbsp;学生</del>
+                   </div>
+                   <div class="has_right">
+                       编辑 <i class="mui-icon mui-icon-arrowright"></i>
+                   </div>
+               </div>
+                <div class="my_Attention">
+                    <ul class="clearfix">
+                        <li>
+                            <a href="javascript:;">
+                                <em>114</em>
+                                <span>关注</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                <em>114</em>
+                                <span>粉丝</span>
+                            </a>
+
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                <em>114</em>
+                                <span>积分</span>
+                            </a>
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <ul class="mui-table-view mine_center">
+            <li class="mui-table-view-cell">
+                <a class="mui-navigate-right my_save" href="javascript:;">
+                    <em class="iconfont icon-wujiaoxingkong"></em>
+                    我的收藏
+                </a>
+            </li>
+            <li class="mui-table-view-cell">
+                <a class="mui-navigate-right my_learn" href="javascript:;">
+                    <em class="iconfont icon-clock"></em>
+                   学习中心
+                </a>
+            </li>
+            <li class="mui-table-view-cell">
+                <a class="mui-navigate-right my_request" href="javascript:;">
+                    <em class="iconfont icon-wenda"></em>
+                   我的问答
+                </a>
+            </li>
+            <li class="mui-table-view-cell">
+                <a class="mui-navigate-right my_dynamic" href="javascript:;">
+                    <em class="iconfont icon-fasong"></em>
+                   我的动态
+                </a>
+            </li>
+            <li class="mui-table-view-cell">
+                <a class="mui-navigate-right message" href="javascript:;">
+                    <em class="iconfont icon-wodexiaoxi"></em>
+                   我的消息
+                </a>
+            </li>
+            <li class="mui-table-view-cell">
+                <a class="mui-navigate-right download" href="javascript:;">
+                    <em class="iconfont icon-xiazai"></em>
+                   我的下载
+                </a>
+            </li>
+            <li class="mui-table-view-cell">
+                <a class="mui-navigate-right manage" href="javascript:;">
+                    <em class="iconfont icon-bijibendiannao"></em>
+                   教务管理
+                </a>
+            </li>
+            <li class="mui-table-view-cell">
+                <a class="mui-navigate-right save" href="javascript:;">
+                    <em class="iconfont icon-anquan"></em>
+                   账号安全
+                </a>
+            </li>
+            <li class="mui-table-view-cell">
+                <a class="mui-navigate-right setting" href="javascript:;">
+                    <em class="iconfont icon-shezhi"></em>
+                   设置
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!--页脚-->
+    <div id="footer">
+    </div>
+</div>
+</body>
+<script src="../../js/mui.min.js"></script>
+<script src="../../js/x_rem.js"></script>
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/base.js"></script>
+
+<script src="../../js/sweetalert2.js"></script>
+<script>
+    $(function () {
+        mui('body').on('tap','a',function(){document.location.href=this.href;});
+        $('#footer').load('../common/footer.html');
+        setTimeout(function () {
+            $(".mui-bar-tab>a:nth-of-type(4)").addClass("mui-active");
+        },100);
+    })
+</script>
+</html>

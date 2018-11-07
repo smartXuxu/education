@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <title>讲课 页面</title>
+    <link rel="stylesheet" href="../../css/mui.min.css"/>
+    <link rel="stylesheet" href="../../css/base.css"/>
+    <link rel="stylesheet" href="../../css/sweetalert2.css"/>
+    <link rel="stylesheet" href="../../css/iconfont.css"/>
+    <link rel="stylesheet" href="../../css/swiper.min.css"/>
+    <link rel="stylesheet" href="../../css/index/index.css"/>
+    <link rel="stylesheet" href="../../css/index/index_video.css"/>
+</head>
+<body style="background-color:#fff;">
+<div class="layer">
+    <div class="video_header">
+        <i onclick="back()" class="mui-icon mui-icon-back"></i>
+        <div class="video_play">
+            <img src="../../img/index_video.jpg" alt=""/>
+        </div>
+    </div>
+    <div class="main">
+        <div id="slider" class="mui-slider index_video ">
+            <div style="padding: 0px 10px;">
+                <div id="segmentedControl" class="mui-segmented-control">
+                    <a class="mui-control-item mui-active" href="#item1">
+                        <span>目录</span>
+                    </a>
+                    <a class="mui-control-item" href="#item2">
+                        <span>详情</span>
+                    </a>
+                    <a class="mui-control-item" href="#item3">
+                        <span>评论</span>
+                    </a>
+                    <a class="mui-control-item" href="#item4">
+                        <span>问答</span>
+                    </a>
+                </div>
+
+            </div>
+            <del class="mui-icon mui-icon-more fix_more"></del>
+        </div>
+        <div class="main_content">
+            <div id="fix_share">
+                <div class="hand">
+                    <em class="iconfont icon-xin"></em>
+                    <span>5100</span>
+                </div>
+                <div class="star">
+                    <em class="iconfont icon-star"></em>
+                    <span>收藏</span>
+                </div>
+                <div class="share">
+                    <em class="iconfont icon-tubiaozhizuo-"></em>
+                    <span>分享</span>
+                </div>
+                <div class="download">
+                    <em class="iconfont icon-xiazai1"></em>
+                    <span>下载</span>
+                </div>
+            </div>
+            <div>
+                <!--全部-->
+                <div id="item1" class="mui-control-content mui-active">
+                dewafsda
+                </div>
+                <div id="item2" class="mui-control-content ">
+                2
+                </div>
+                <div id="item3" class="mui-control-content ">
+                3
+                </div>
+                <div id="item4" class="mui-control-content ">
+                    <div class="request">
+                        <div class="qu_list">
+                            <div class="tit">
+                                6的平方等于多少？
+                            </div>
+                            <div class="qu_bottom clearfix">
+                                <div class="bo_left">
+                                    <em class="iconfont icon-wode1"></em>赵英俊
+                                    <i class="iconfont icon-huangguan"></i>悬赏：15积分
+                                    <del class="iconfont icon-xiaoxi"></del>99+
+                                </div>
+                                <div class="bo_right f_right" onclick="location.href='./my_want_request.html'">
+                                    <s class="iconfont icon-weibiaoti1"></s>
+                                    我要回答
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="qu_list">
+                            <div class="tit">
+                                6的平方等于多少？
+                            </div>
+                            <div class="qu_bottom clearfix">
+                                <div class="bo_left">
+                                    <em class="iconfont icon-wode1"></em>赵英俊
+                                    <i class="iconfont icon-huangguan"></i>悬赏：15积分
+                                    <del class="iconfont icon-xiaoxi"></del>99+
+                                </div>
+                                <div class="bo_right f_right" onclick="location.href='./my_want_request.html'">
+                                    <s class="iconfont icon-weibiaoti1"></s>
+                                    我要回答
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+       </div>
+    </div>
+
+
+</div>
+</body>
+<script src="../../js/mui.min.js"></script>
+<script src="../../js/x_rem.js"></script>
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/base.js"></script>
+<script src="../../js/swiper.min.js"></script>
+<script src="../../js/sweetalert2.js"></script>
+<script>
+    $(function () {
+        mui('body').on('tap','a',function(){document.location.href=this.href;});
+        $('#scroll').scroll({
+            indicators: true //是否显示滚动条
+        });
+
+        var segmentedControl = document.getElementById('segmentedControl');
+        $('.mui-input-group').on('change', 'input', function() {
+            if (this.checked) {
+                var styleEl = document.querySelector('input[name="style"]:checked');
+                var colorEl = document.querySelector('input[name="color"]:checked');
+                if (styleEl && colorEl) {
+                    var style = styleEl.value;
+                    var color = colorEl.value;
+                    segmentedControl.className = 'mui-segmented-control' + (style ? (' mui-segmented-control-' + style) : '') + ' mui-segmented-control-' + color;
+                }
+            }
+        });
+        /*点击 出现点赞 */
+        var flag=true;
+        $(".fix_more").click(function () {
+            if(flag){
+                $("#fix_share").show();
+                flag=false;
+
+            }else{
+                $("#fix_share").hide();
+                flag=true;
+
+            }
+        })
+
+
+
+    })
+</script>
+</html>

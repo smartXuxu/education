@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <title>猴姆教育界面</title>
+    <link rel="stylesheet" href="../css/base.css"/>
+    <link rel="stylesheet" href="../css/register.css"/>
+    <link rel="stylesheet" href="../css/sweetalert2.css"/>
+    <style>
+
+    </style>
+</head>
+<body>
+<div class="layer">
+    <div class="box">
+        <h2>注册</h2>
+        <div class="username">
+            <i>+86</i>
+            <input type="text"  id="phone" placeholder="请输入手机号"/>
+        </div>
+        <div class="Verification">
+            <i>验证码</i>
+            <input type="text" placeholder="验证码" id="phone_num"/> <span class="gain" onclick="getcode()">发送验证码</span></div>
+        <div class="password">
+            <i>密码</i>
+            <input type="password" id="pwd" placeholder="请设置6-16位密码"/><em><i class="eye"></i></em> </div>
+        <button class="register" onclick="register()">
+            注册
+        </button>
+        <button class="login_Button" onclick="window.location.href='login.html'">已有账户？立即登录</button>
+    </div>
+</div>
+<script src="../js/x_rem.js"></script>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/base.js"></script>
+<script src="../js/back.js"></script>
+<script src="../js/sweetalert2.js"></script>
+<script>
+    //添加小眼睛 和 叉号
+    //点击小眼睛 改变input的状态
+    var flag=true;
+    $(".eye").click(function(){
+        if(flag){
+            $(".password input[type='password']").attr("type","text");
+            $(this).css("background-image","url(../img/close_eyes.png)");
+            flag=false;
+        }else{
+            $(".password input[type='text']").attr("type","password");
+            $(this).css("background-image","url(../img/eye.png)");
+            flag=true;
+        }
+    });
+    var falg = true;
+    function getcode(){
+        if(!falg){
+            return;
+        }
+        var mobile = $('#phone').val();
+        if(!checkTelNum(mobile)){
+            alert('手机号码不正确');
+            $('#phone').val("");
+            return false;
+        }
+       // var uuid=Math.random().toString(36).substr(2);
+        //var obj = {mobile:mobile,uuid:uuid,type:1};
+        falg = false;
+        $.ajax({
+            xhrFields: {
+                withCredentials: true
+            },
+            type: "post",
+            url: baseUrl+"/api/getCode",
+            data: {
+                mobilePhone:mobile
+            },
+            datType: 'json',
+            success: function (data){
+                //alert(data);
+                console.log(data);
+               console.log(data.data.result);
+                window.localStorage.setItem("code",JSON.stringify(data.data.result));
+            }
+        })
+    }
+    function register(){
+        var phonenum = $('#phone').val();
+        var pwd = $('#pwd').val();
+        var safecode = $('#phone_num').val();
+        var parms = {};
+
+        if(isNotBlank(phonenum)){
+            if  (!checkTelNum(phonenum)) {
+                alert('手机号码格式不正确，请您重新输入！');
+                $("input").val("");
+                return false;
+            }
+            else {
+                parms.mobilePhone = phonenum;
+            }
+        }
+        else{
+            alert('手机号/用户名不能为空');
+            $("input").val("");
+            return false
+        }
+
+        if (isNotBlank(pwd)) {
+            parms.password = pwd;
+        } else {
+            alert('密码不能为空');
+            return false;
+        }
+
+        if (!isNotBlank(safecode)) {
+            sweetAlert(
+                    'sorry',
+                    '短信验证码不能为空！',
+                    'error'
+            ).then(function () {
+                        $("#phone_num").val("");
+                    })
+            return false;
+
+        }
+        //验证短信验证码是否正确；
+
+        if(safecode!==localStorage.getItem("code").replace(/\"/g,"")){
+            sweetAlert(
+                    'sorry',
+                    '短信验证码不正确！',
+                    'error'
+            ).then(function () {
+                        $("#phone_num").val("");
+                    })
+            return false;
+           /* alert("短信验证码不正确");
+            $(".gain").val("");
+            return false;*/
+        }
+        //parms.uuid=localStorage.getItem("uuid").replace(/\"/g,"");
+        // console.log(JSON.stringify(parms));
+        $.ajax({
+            xhrFields: {
+                withCredentials: true
+            },
+            type: "post",
+            //contentType:'application/json;charset=UTF-8',
+            url: baseUrl+"/user/register",
+            data: parms,
+            dataType: 'json',
+            success: function (data){
+                console.log(data);
+                if(data.code=="200"){
+                    sweetAlert(
+                            '恭喜您',
+                            '注册成功！',
+                            'success'
+                    ).then(function () {
+                                localStorage.removeItem("code");
+                                window.location.href="./login.html";
+                            })
+                }
+                else if(data.code=="500"){
+                    alert(data.msg);
+                    $("input").val("");
+                    return false;
+                }else{
+                    sweetAlert(
+                            'sorry',
+                            '网络发生错误，请您稍后重试！',
+                            'error'
+                    )
+                }
+            }
+        })
+    }
+    //验证手机号
+    function checkTelNum(telNum){
+        if(!/^1[0-9]{10}$/.test(telNum)){
+            return false;
+        }
+        return true;
+    }
+    //验证不为空
+    function isNotBlank(data) {
+        return (data == "" || typeof(data)  == "undefined"|| data == null ) ? false : true;
+    }
+    //倒计时效果
+    $(".gain").click(function(){
+        var time=60;
+        $(this).text(time+ "S");
+        var timer= setInterval(function(){
+            time--;
+            $(".gain").text(time+ "S");
+            if(time<0){
+                clearInterval(timer);
+                $(".gain").text("重新发送");
+                $(".Verification input").val("");
+                time=60;
+            }
+        },1000)
+    })
+
+    $(".register").click(function(){
+        //register();
+    })
+
+</script>
+</body>
+</html>
