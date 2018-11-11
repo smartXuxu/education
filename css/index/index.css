@@ -366,6 +366,9 @@
   height: 0.8rem;
   line-height: 0.8rem;
 }
+.main .request .qu_list .qu_bottom {
+  position: relative;
+}
 .main .request .qu_list .qu_bottom .bo_left {
   font-size: 0.24rem;
   display: inline-block;
@@ -385,6 +388,10 @@
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
+  position: absolute;
+  right: 3%;
+  z-index: 2;
+  top: 5%;
 }
 .main .request .qu_list .qu_bottom .bo_right > s {
   vertical-align: middle;

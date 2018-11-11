@@ -5,7 +5,7 @@
   height: 1.6rem;
 }
 .layer header > h3 {
-  line-height: 0.8rem;
+  line-height: 1.2rem;
 }
 .layer header span {
   position: absolute;
@@ -78,7 +78,8 @@
   font-size: 0.24rem;
 }
 .layer .mian .mine_login .has_login > .login_content > .has_right > i {
-  font-size: 0.5rem;
+  vertical-align: middle;
+  font-size: 0.4rem;
 }
 .layer .mian .mine_login .has_login > .my_Attention {
   width: 100%;
@@ -106,7 +107,7 @@
 }
 .layer .mian .mine_center.mui-table-view a {
   color: #696969;
-  font-size: 0.32rem;
+  font-size: 0.32rem ;
 }
 .layer .mian .mine_center.mui-table-view a em {
   margin: 0.2rem;
@@ -133,4 +134,7 @@
 }
 .mui-table-view:before {
   height: 0;
+}
+.educational a {
+  border-bottom: 1px solid #eeeeee;
 }

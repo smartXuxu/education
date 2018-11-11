@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+
+    <title>我的问答</title>
+    <link rel="stylesheet" href="../../css/mui.min.css"/>
+    <link rel="stylesheet" href="../../css/base.css"/>
+    <link rel="stylesheet" href="../../css/sweetalert2.css"/>
+    <link rel="stylesheet" href="../../css/iconfont.css"/>
+    <link rel="stylesheet" href="../../css/header.css"/>
+    <link rel="stylesheet" href="../../css/mine/mine_request.css"/>
+
+</head>
+<body style="background-color:#fff;">
+<div class="layer">
+    <header id="header" class="mui-bar mui-bar-nav">
+        <i class="mui-icon mui-icon-left-nav mui-pull-left" onclick="back()"></i>
+        <h1 class="mui-title">我的问答</h1>
+    </header>
+    <div class="main">
+        <div id="slider" class="mui-slider ">
+            <div>
+                <div id="segmentedControl" class="mui-segmented-control">
+                    <a class="mui-control-item mui-active" href="#ask">
+                        <span>提问</span>
+                    </a>
+                    <a class="mui-control-item" href="#response">
+                        <span>回答</span>
+                    </a>
+                    <a class="mui-control-item" href="#attention">
+                        <span>关注</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="main_content">
+                <!--提问-->
+                <div id="ask" class="mui-control-content mui-active">
+                   <div class="ask">
+                       <div class="qu_list" onclick="location.href='../index/quest_detail.html'">
+                           <div class="tit">
+                               <p>6的平方等于多少？</p>
+                               <em>2018/7/1 15:30:56</em>
+                           </div>
+
+                           <div class="qu_bottom clearfix">
+                               <div class="bo_left">
+                                   <i class="iconfont icon-huangguan"></i>悬赏：15积分
+                                   <del>已采纳2个回答 </del>
+                               </div>
+                               <div class="bo_right f_right">
+                                   <s class="iconfont icon-xiaoxi"></s>
+                                   99+
+                               </div>
+                           </div>
+                       </div>
+                       <div class="qu_list" onclick="location.href='../index/quest_detail.html'">
+                           <div class="tit">
+                               <p>6的平方等于多少？</p>
+                               <em>2018/7/1 15:30:56</em>
+                           </div>
+
+                           <div class="qu_bottom clearfix">
+                               <div class="bo_left">
+                                   <i class="iconfont icon-huangguan"></i>悬赏：15积分
+                                   <del>已采纳2个回答 </del>
+                               </div>
+                               <div class="bo_right f_right">
+                                   <s class="iconfont icon-xiaoxi"></s>
+                                   99+
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+                </div>
+                <!--回答 -->
+                <div id="response" class="mui-control-content ">
+                    <div class="response">
+                        <div class="qu_list" onclick="location.href='../index/quest_detail.html'">
+                            <div class="tit">
+                                6的平方等于多少？
+                            </div>
+                            <div class="qu_bottom clearfix">
+                                <div class="bo_left">
+                                    <i class="iconfont icon-huangguan"></i>悬赏：15积分
+                                    <del>已采纳2个回答 </del>
+                                </div>
+                                <div class="bo_right f_right" >
+                                    <s class="iconfont icon-xiaoxi"></s>
+                                    99+
+                                </div>
+                            </div>
+                            <div class="my_response">
+                               <div class="my_res_top ">
+                                   <em>2018/7/1 </em>&nbsp;&nbsp;&nbsp;&nbsp;
+                                   <del>我的回答：</del>
+                               </div>
+                                <div class="my_res_bot clearfix">
+                                    <p>这么简单，等于1啊！这么简单，等于1啊！这么简单等于1啊！这么简单么简单</p>
+                                    <!--判断有没有被采纳-->
+                                    <span>已被采纳</span>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="qu_list" onclick="location.href='../index/quest_detail.html'">
+                            <div class="tit">
+                                6的平方等于多少？
+                            </div>
+                            <div class="qu_bottom clearfix">
+                                <div class="bo_left">
+                                    <i class="iconfont icon-huangguan"></i>悬赏：15积分
+                                    <del>已采纳2个回答 </del>
+                                </div>
+                                <div class="bo_right f_right">
+                                    <s class="iconfont icon-xiaoxi"></s>
+                                    99+
+                                </div>
+                            </div>
+                            <div class="my_response">
+                               <div class="my_res_top ">
+                                   <em>2018/7/1 </em>&nbsp;&nbsp;&nbsp;&nbsp;
+                                   <del>我的回答：</del>
+                               </div>
+                                <div class="my_res_bot clearfix">
+                                    <p>这么简单，等于1啊！这么简单，等于1啊！这么简单等于1啊！这么简单么简单</p>
+                                    <!--判断有没有被采纳-->
+                                    <span>已被采纳</span>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--关注-->
+                <div id="attention" class="mui-control-content ">
+                    <div class="attention">
+                        <div class="qu_list" >
+                            <div class="tit" onclick="location.href='../index/quest_detail.html'">
+                                6的平方等于多少？
+                            </div>
+                            <div class="qu_bottom clearfix">
+                                <div class="bo_left" onclick="location.href='../index/quest_detail.html'">
+                                    <em class="iconfont icon-wode1"></em>赵英俊
+                                    <i class="iconfont icon-huangguan"></i>悬赏：15积分
+                                    <del class="iconfont icon-xiaoxi"></del>99+
+                                </div>
+                                <div class="bo_right f_right" onclick="location.href='../index/my_want_request.html'">
+                                    <s class="iconfont icon-weibiaoti1"></s>
+                                    我要回答
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="qu_list" >
+                            <div class="tit" onclick="location.href='../index/quest_detail.html'">
+                                6的平方等于多少？
+                            </div>
+                            <div class="qu_bottom clearfix">
+                                <div class="bo_left" onclick="location.href='../index/quest_detail.html'">
+                                    <em class="iconfont icon-wode1"></em>赵英俊
+                                    <i class="iconfont icon-huangguan"></i>悬赏：15积分
+                                    <del class="iconfont icon-xiaoxi"></del>99+
+                                </div>
+                                <div class="bo_right f_right" onclick="location.href='../index/my_want_request.html'">
+                                    <s class="iconfont icon-weibiaoti1"></s>
+                                    我要回答
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="../../js/mui.min.js"></script>
+<script src="../../js/x_rem.js"></script>
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/base.js"></script>
+<script src="../../js/back.js"></script>
+<script src="../../js/sweetalert2.js"></script>
+<script>
+    $(function () {
+        $('#scroll').scroll({
+            indicators: true //是否显示滚动条
+        });
+
+        var segmentedControl = document.getElementById('segmentedControl');
+        $('.mui-input-group').on('change', 'input', function() {
+            if (this.checked) {
+                var styleEl = document.querySelector('input[name="style"]:checked');
+                var colorEl = document.querySelector('input[name="color"]:checked');
+                if (styleEl && colorEl) {
+                    var style = styleEl.value;
+                    var color = colorEl.value;
+                    segmentedControl.className = 'mui-segmented-control' + (style ? (' mui-segmented-control-' + style) : '') + ' mui-segmented-control-' + color;
+                }
+            }
+        });
+    })
+</script>
+</html>

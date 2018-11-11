@@ -183,6 +183,9 @@ a{
 a:hover{
    /* text-decoration: underline;*/
 }
+a:active{
+    color:#666;
+}
 /* 清理浮动 */
 .clearfix:before,.clearfix:after{
     display: block;

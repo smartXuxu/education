@@ -1,0 +1,184 @@
+.main {
+  padding-top: 1.6rem;
+  padding-bottom: 0;
+}
+.main > .near_study {
+  width: 100%;
+  border-bottom: 0.2rem solid #eeeeee;
+}
+.main > .near_study > p {
+  margin-top: 0.3rem;
+  text-align: center;
+  font-size: 0.24rem;
+}
+.main > .near_study > p > em {
+  color: #f01414;
+  font-size: 0.6rem;
+  vertical-align: middle;
+}
+.main > .near_study ul {
+  width: 100%;
+  margin-top: 0.6rem;
+}
+.main > .near_study ul li {
+  float: left;
+  width: 25%;
+  position: relative;
+  text-align: center;
+}
+.main > .near_study ul li > p {
+  font-size: 0.24rem;
+  color: #333;
+}
+.main > .near_study ul li > em {
+  font-size: 0.24rem;
+}
+.main > .near_study ul li > em i {
+  font-size: 0.3rem;
+}
+.main > .near_study ul li:after {
+  position: absolute;
+  content: "";
+  height: 0.4rem;
+  width: 1px;
+  color: #999;
+  background-color: #999;
+  top: 20%;
+  display: block;
+  right: 5%;
+}
+.main > .near_study ul li:last-of-type:after {
+  width: 0;
+  height: 0;
+}
+.main > .learn {
+  padding: 0.3rem;
+}
+.main > .learn > h3 {
+  font-size: 0.3rem;
+}
+.main > .learn > h3 > i {
+  font-size: 0.32rem;
+  color: #f01414;
+}
+.main > .learn > span {
+  width: 2.2rem;
+  height: 0.4rem;
+  line-height: 0.4rem;
+  text-align: center;
+  color: #f01414;
+  border-radius: 10px;
+  border: 1px solid #999999;
+}
+.main > .recently_learn {
+  margin-top: 0.6rem;
+  border-bottom: 0;
+  border-top: 0.2rem solid #eeeeee;
+}
+.main > .recently_learn > h2 {
+  height: 0.8rem;
+  line-height: 0.8rem;
+  font-size: 0.3rem;
+  padding: 0 0.3rem;
+}
+.main > .recently_learn > h2 > em {
+  color: #666666;
+}
+.main > .recently_learn > ul > li {
+  width: 100%;
+  padding-bottom: 0.2rem;
+  border-bottom: 1px solid #eeeeee;
+  margin-bottom: 0.4rem;
+}
+.main > .recently_learn > ul > li a {
+  display: block;
+  position: relative;
+}
+.main > .recently_learn > ul > li a > img {
+  width: 2.9rem;
+  height: 1.8rem;
+  overflow: hidden;
+  vertical-align: middle;
+}
+.main > .recently_learn > ul > li a .ex_right {
+  width: 100%;
+  position: absolute;
+  padding-left: 3.2rem;
+  top: 0%;
+}
+.main > .recently_learn > ul > li a .ex_right > .ex_top {
+  width: 100%;
+}
+.main > .recently_learn > ul > li a .ex_right > .ex_center {
+  height: 0.7rem;
+  line-height: 0.7rem;
+  font-size: 0.24rem;
+  color: #666;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+}
+.main > .recently_learn > ul > li a .ex_right > .ex_footer ul {
+  height: 0.6rem;
+  width: 100%;
+}
+.main > .recently_learn > ul > li a .ex_right > .ex_footer ul li {
+  float: left;
+  width: 33%;
+  height: 0.6rem;
+  line-height: 0.6rem;
+  text-align: center;
+}
+.main > .recently_learn > ul > li a .ex_right > .ex_footer ul li > em {
+  font-size: 0.38rem;
+}
+.main > .recently_learn > ul > li a .ex_right > .ex_footer ul li:first-of-type > em {
+  font-size: 0.42rem;
+}
+.main > .recently_learn > ul > li a .ex_right > .ex_footer ul li:last-of-type {
+  margin-top: 0.05rem;
+}
+.main > .recently_learn > ul > li a .ex_right > .ex_footer ul li:last-of-type > em {
+  font-size: 0.4rem;
+}
+/*������*/
+.loader-container {
+  height: 100%;
+  width: 100%;
+  background: -webkit-linear-gradient(left, #f8dc4b, #d95a3d);
+  background: -moz-linear-gradient(left, #f8dc4b, #d95a3d);
+  background: -o-linear-gradient(left, #f8dc4b, #d95a3d);
+  background: -ms-linear-gradient(left, #f8dc4b, #d95a3d);
+  background: linear-gradient(left, #f8dc4b, #d95a3d);
+  border-radius: 7px;
+  box-shadow: inset 0 -2px 2px rgba(0, 0, 0, 0.2);
+  animation: loader 1s linear;
+}
+.progress {
+  width: 90%;
+  height: 10px;
+  border-radius: 7px;
+  margin-left: 5%;
+  margin-top: 0.6rem;
+  background: -webkit-linear-gradient(left, #e4e3e4, #e4e5e4);
+  background: -moz-linear-gradient(left, #e4e3e4, #e4e5e4);
+  background: -o-linear-gradient(left, #e4e3e4, #e4e5e4);
+  background: -ms-linear-gradient(left, #e4e3e4, #e4e5e4);
+  background: linear-gradient(left, #e4e3e4, #e4e5e4);
+}
+.progress > em,
+.progress > i {
+  margin-top: 0.2rem;
+  font-size: 0.28rem;
+  color: #666666;
+}
+@keyframes loader {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}

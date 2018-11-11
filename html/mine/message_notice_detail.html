@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+
+    <title>信息详情</title>
+    <link rel="stylesheet" href="../../css/mui.min.css"/>
+    <link rel="stylesheet" href="../../css/base.css"/>
+    <link rel="stylesheet" href="../../css/header.css"/>
+    <style>
+        .tit{
+            height: 1rem;
+            line-height: 1rem;
+            text-align: center;
+            font-size: 0.3rem;
+            color:#999;
+        }
+        .main{
+            padding: 0 0.3rem;
+            padding-top: 1.5rem;
+        }
+        .main h2{
+            text-align: center;
+            font-size: 0.36rem;
+            line-height: 1rem;
+            color:#333;
+        }
+        .main>p{
+            color:#666;
+            font-size: 0.26rem;
+            text-indent: 2em;
+            line-height: 0.4rem;
+        }
+    </style>
+</head>
+<body style="background-color:#fff;">
+<div class="layer">
+    <header id="header" class="mui-bar mui-bar-nav">
+        <i class="mui-icon mui-icon-left-nav mui-pull-left" onclick="back()"></i>
+        <h1 class="mui-title">消息通知</h1>
+    </header>
+    <div class="main">
+        <div class="tit">
+           123
+        </div>
+        <h2>2323</h2>
+        <p>
+            fsdafdsafdsaf
+        </p>
+
+    </div>
+</div>
+
+</body>
+<script src="../../js/x_rem.js"></script>
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/base.js"></script>
+<script src="../../js/back.js"></script>
+<script src="../../js/template-web.js"></script>
+<script src="../../js/template.js"></script>
+<script id="detail" type="text/html">
+    <div class="tit">
+        {{time1(time)}}
+    </div>
+    <h2>{{title}}</h2>
+    <p>
+        {{body}}
+    </p>
+</script>
+<script>
+    $(function () {
+        var noticId=location.href.split("=")[1];
+        console.log(noticId);
+        //render();
+        function render(){
+            $.ajax({
+//处理session每次不唯一问题
+                xhrFields: {
+                    withCredentials: true
+                },
+
+                //headers:{
+                //    'Content-Type':'application/json',
+                //},
+                async:false,
+                type: "post",
+                url: baseUrl+"/notice/findOne",
+                //url: "http://192.168.1.126:8080/notice/findOne",
+                data:{
+                    noticeId:noticId
+                },
+                dataType: 'json',
+                success:function(data) {
+                    template.helper("time1",function(date){
+                        var time1=new Date(date).toLocaleString().replace(/:\d{1,2}$/,' ').replace(/\//g,"-");
+                        return time1;
+                        /* return new Date(parseInt(date) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ');*/
+                    });
+                    console.log(data);
+                    $(".main").html(template("detail",data));
+                }
+            })
+        }
+    })
+</script>
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <title>实名认证</title>
+
+    <link rel="stylesheet" href="../../css/mui.min.css"/>
+    <link rel="stylesheet" href="../../css/base.css"/>
+    <link rel="stylesheet" href="../../css/sweetalert2.css"/>
+    <link rel="stylesheet" href="../../css/iconfont.css"/>
+    <link rel="stylesheet" href="../../css/header.css"/>
+    <style>
+        html{
+            background-color: #f4f4f4;
+        }
+        input[type=color], input[type=date], input[type=datetime-local], input[type=datetime], input[type=email], input[type=month], input[type=number], input[type=password], input[type=search], input[type=tel], input[type=text], input[type=time], input[type=url], input[type=week], select, textarea{
+            border:none;
+            text-indent: 25%;
+            margin-bottom: 0;
+            font-size: 0.28rem;
+        }
+        .main{
+            padding-top: 1.8rem;
+        }
+        .realName,.idCard{
+            position: relative;
+            height: 1rem;
+            background-color: #fff;
+        }
+        .realName>em,.idCard>em{
+            position: absolute;
+            left: 3%;
+            top: 20%;
+            font-size: 0.32rem;
+        }
+        .Id_photo{
+            background-color: #fff;
+            margin-top: 0.2rem;
+        }
+        .Id_photo>h2{
+            height: 1rem;
+            line-height: 1rem;
+            font-size: 0.32rem;
+            color:#333;
+            padding-left: 0.2rem;
+        }
+        .against>.against_box,.open>.open_box{
+            background: url("../../img/against.png") no-repeat center;
+            -webkit-background-size: 100%;
+            background-size: 100%;
+            width: 4rem;
+            height: 2.8rem;
+            margin:0 auto;
+            margin-top: 0.2rem;
+            overflow: hidden;
+        }
+        .open>.open_box{
+            background-image: url("../../img/just.png");
+        }
+        .against_box>input,.open_box>input{
+            opacity: 0;
+            display: block;
+            width: 4rem;
+            height: 2.8rem;
+        }
+        .notice{
+            padding: 0.3rem;
+            padding-bottom: 1rem;
+        }
+        .notice>h3{
+            font-size: 0.32rem;
+            height: 1rem;
+            line-height: 1rem;
+        }
+        .notice>p{
+            font-size: 0.26rem;
+            line-height: 0.4rem;
+        }
+        .submit{
+            width: 100%;
+            height: 0.8rem;
+            line-height: 0.8rem;
+            position: fixed;
+            z-index: 1;
+            bottom: 0;
+            background: #f01414;
+            color:#fff;
+            font-size: 0.32rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="layer">
+    <header id="header" class="mui-bar mui-bar-nav">
+        <i class="mui-icon mui-icon-left-nav mui-pull-left" onclick="back()"></i>
+        <h1 class="mui-title">实名认证</h1>
+    </header>
+    <div class="main">
+            <div class="realName">
+                <em>真实姓名：</em>
+                <input type="text" placeholder="请填写身份证上的姓名"/>
+            </div>
+            <div class="idCard">
+                <em>身份证号：</em>
+                <input type="text" placeholder="请填写您的身份证号" id="Idcard"/>
+            </div>
+        <div class="Id_photo clearfix">
+            <h2 >上传身份证：</h2>
+            <div class="against">
+                <div class="against_box">
+                    <input type="file" id="against" accept="image/*" capture="camera" />
+                </div>
+            </div>
+            <div class="open">
+                <div class="open_box">
+                    <input type="file" id="just" accept="image/*" capture="camera"/>
+                </div>
+            </div>
+        </div>
+        <div class="notice">
+            <h3>认证须知</h3>
+            <div class="notice_content">
+                <p>1、 实名认证可以提升您在猴姆的个人信息及虚拟财产的安全等级，同时也能够更好的享受猴姆的各项服务;</p>
+                <p>2、 我们将在您提交认证信息后的5个工作日(不包含节假日)内完成审核，审核结果将会以短信和系统通知的形式发送给您;</p>
+                <p>3、实名认证审核后，将无法修改和删除，请谨慎填写;</p>
+                <p>4、实名认证审核完成后,系统将自动发放10个积分作为奖励;</p>
+                <p>5、我们会确保您所提供的信息均处于严格的保密状态，不会泄露;</p>
+                <p>6、如存在恶意乱填写姓名、身份证号码、及拍摄上传与身份证证件无关</p>
+            </div>
+        </div>
+        <button class="submit">提交</button>
+    </div>
+</div>
+</body>
+<script src="../../js/mui.min.js"></script>
+<script src="../../js/x_rem.js"></script>
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/base.js"></script>
+<script src="../../js/back.js"></script>
+<script src="../../js/sweetalert2.js"></script>
+<script>
+
+/* 单个上传图片*/
+document.querySelector("#against").onchange=function () {
+    var file=document.querySelector("#against").files;
+    html5Reader(file,".against_box")
+
+}
+document.querySelector("#just").onchange=function () {
+    var file=document.querySelector("#just").files;
+    html5Reader(file,".open_box")
+
+}
+
+function html5Reader(file,ele){
+    //var file = file.files[0];
+    var reader = new FileReader();
+    // reader.readAsDataURL(file);
+    reader.readAsDataURL(file[0]);
+    reader.onload = function(e){
+        var pic = document.querySelector(ele);
+       // console.log(reader.result);
+        pic.style.backgroundImage="url("+reader.result+")";
+    }
+}
+    $(function () {
+       $(".submit").click(function () {
+           var idCardNumber=$("#Idcard").val();
+           //身份证
+           isCardNo(idCardNumber);
+           //验证 身份证号
+           function isCardNo(card)
+           {
+               // 身份证号码为15位或者18位，15位时全为数字，18位前17位为数字，最后一位是校验位，可能为数字或字符X
+               var reg = /(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+               if(reg.test(card) === false)
+               {
+                   sweetAlert(
+                           "sorry",
+                           "您的身份证输入不合法",
+                           "error"
+                   ).then(function () {
+                               $("#Idcard").val("");
+                           })
+                   return false;
+               }
+           }
+           var base64IdCardBack=$(".against_box").css('backgroundImage').replace('url(','').replace(')','');
+           //console.log(base64IdCardBack);
+           if(base64IdCardBack.replace(/\"/g,"").match("img/against.png")){
+               //if(base64IdCardBack.replace(/\"/g,"") =="http://localhost:63342/MU/img/against.png"){
+               base64IdCardBack="";
+           }else{
+               base64IdCardBack=base64IdCardBack.replace(/"/g,"");
+           }
+       })
+    })
+</script>
+</html>

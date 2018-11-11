@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+
+    <title>我的收藏</title>
+    <link rel="stylesheet" href="../../css/mui.min.css"/>
+    <link rel="stylesheet" href="../../css/base.css"/>
+    <link rel="stylesheet" href="../../css/sweetalert2.css"/>
+    <link rel="stylesheet" href="../../css/iconfont.css"/>
+    <link rel="stylesheet" href="../../css/header.css"/>
+    <style>
+        .main{
+            padding-top: 1.6rem;
+        }
+        .save_lesson>.lesson>.mui-table-cell>a{
+            display: block;
+            position: relative;
+        }
+        .lesson>.mui-table-cell img{
+            width: 3rem;
+            height: 2rem;
+        }
+        .lesson>.mui-table-cell .ex_right{
+            width: 100%;
+            position: absolute;
+            padding-left: 3.2rem;
+            top: 5%;
+        }
+        .lesson>.mui-table-cell .ex_right .ex_center{
+            height: 0.7rem;
+            line-height: 0.7rem;
+            font-size: 0.24rem;
+            color: #666;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            word-break: break-all;
+        }
+        .lesson>.mui-table-cell .ex_right .ex_top {
+            width: 100%;
+        }
+
+        .lesson>.mui-table-cell .ex_right .ex_footer {
+            height: 0.7rem;
+            line-height: 0.7rem;
+            font-size: 0.24rem;
+            color: #666;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            word-break: break-all;
+        }
+        .ex_right .ex_top > em del {
+            color: #f01414;
+        }
+    </style>
+</head>
+<body style="background-color:#fff;">
+<div class="layer">
+    <header id="header" class="mui-bar mui-bar-nav">
+        <i class="mui-icon mui-icon-left-nav mui-pull-left" onclick="back()"></i>
+        <h1 class="mui-title">我的收藏</h1>
+    </header>
+    <div class="main">
+        <ul id="OA_task_4" class="mui-table-view" >
+            <li class="mui-table-view-cell save_lesson " data-id="111" >
+                <div class="mui-slider-right mui-disabled">
+                    <a class="mui-btn mui-btn-red" >删除</a>
+                </div>
+                <div class="mui-slider-handle mui-table lesson">
+                    <div class="mui-table-cell">
+                        <a href="../index/index_video.html">
+                            <img src="../../img/index_edu.png" alt="">
+                            <div class="ex_right">
+                                <div class="ex_top clearfix">
+                                    <span>主讲：傅娟</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <em class="f_right"><del>11023</del>人学习</em>
+                                </div>
+                                <div class="ex_center">
+                                    2018-07-15  更新第10课时更新第10课时
+                                </div>
+                                <div class="ex_footer">
+                                    华南师范大学附属中学师范大学附属中学
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+</body>
+<script src="../../js/mui.min.js"></script>
+<script src="../../js/x_rem.js"></script>
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/base.js"></script>
+<script src="../../js/back.js"></script>
+<script src="../../js/sweetalert2.js"></script>
+<script>
+        mui.init();
+        (function($) {
+            var btnArray = ['确认', '取消'];
+            //第二个demo，向左拖拽后显示操作图标，释放后自动触发的业务逻辑
+            $('#OA_task_4').on('slideleft', '.mui-table-view-cell', function(event) {
+                var elem = this;
+                mui.confirm('确认删除该条记录？', '温馨提示', btnArray, function(e) {
+                    if (e.index == 0) {
+                        elem.parentNode.removeChild(elem);
+
+                        /*删除成功了 获取自定义的 id*/
+                        var id = elem.getAttribute("data-id");
+                        console.log(id);
+                    } else {
+                        setTimeout(function() {
+                            $.swipeoutClose(elem);
+                        }, 0);
+                    }
+                });
+            });
+
+        })(mui);
+</script>
+
+
+</html>

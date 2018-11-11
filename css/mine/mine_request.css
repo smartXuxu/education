@@ -1,0 +1,111 @@
+.main {
+  padding-top: 1.6rem;
+  /* tab */
+}
+.main .mui-control-item {
+  border-bottom: 1px solid #eeeeee;
+}
+.main .mui-control-item > span {
+  font-size: 0.36rem;
+}
+.main .main_content {
+  padding: 0 0.3rem;
+  /*����*/
+  /*�ش�*/
+  /*��ע*/
+}
+.main .main_content .qu_list {
+  width: 100%;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.3rem;
+}
+.main .main_content .qu_list > .tit {
+  width: 100%;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+  font-size: 0.32rem;
+  height: 0.8rem;
+  line-height: 0.8rem;
+}
+.main .main_content .qu_list .qu_bottom > .bo_left {
+  font-size: 0.24rem;
+  display: inline-block;
+  color: #8c8c8c;
+}
+.main .main_content .qu_list .qu_bottom > .bo_left > em,
+.main .main_content .qu_list .qu_bottom > .bo_left > i,
+.main .main_content .qu_list .qu_bottom > .bo_left > del {
+  margin-right: 0.1rem;
+}
+.main .main_content .qu_list .qu_bottom > .bo_right {
+  color: #666;
+  font-size: 0.26rem;
+  padding: 0.05rem 0.1rem 0.05rem 0.05rem;
+  border: 1px solid #999;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+.main .main_content #ask > .ask > .qu_list .tit {
+  position: relative;
+}
+.main .main_content #ask > .ask > .qu_list .tit p {
+  width: 60%;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+  font-size: 0.22rem;
+}
+.main .main_content #ask > .ask > .qu_list .tit em {
+  position: absolute;
+  top: 5%;
+  right: 3%;
+  font-size: 0.22rem;
+  color: #666666;
+}
+.main .main_content #ask > .ask > .qu_list .bo_right {
+  border: none;
+}
+.main .main_content #response > .response .my_response > .my_res_top > em,
+.main .main_content #response > .response .my_response > .my_res_top > del {
+  font-size: 0.22rem;
+  color: #666;
+}
+.main .main_content #response > .response .my_response > .my_res_top {
+  margin-bottom: 0.05rem;
+}
+.main .main_content #response > .response .my_response > .my_res_bot {
+  position: relative;
+  height: 0.5rem;
+  line-height: 0.5rem;
+}
+.main .main_content #response > .response .my_response > .my_res_bot > p {
+  width: 75%;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+  font-size: 0.22rem;
+}
+.main .main_content #response > .response .my_response > .my_res_bot > span {
+  position: absolute;
+  right: 3%;
+  top: 5%;
+  color: #f01414;
+  font-size: 0.22rem;
+}
+.main .main_content #response > .response .bo_right {
+  border: none;
+}
+.main .main_content #response > .response .bo_right > s {
+  vertical-align: middle;
+}
+.main .main_content #attention {
+  /*������ index��ҳ������*/
+}

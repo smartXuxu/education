@@ -44,7 +44,7 @@
   top: 3%;
   z-index: -1;
   color: #fff;
-  font-size: 0.2rem;
+  font-size: 0.20rem;
   transform: rotate(45deg);
 }
 .layer .main .message_info > img {
@@ -163,7 +163,7 @@
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
-  top: 1%;
+  top: 10%;
   height: 90%;
 }
 .main_center > .replay > button.attention {
@@ -197,7 +197,7 @@
   top: 5%;
 }
 .main_center .teacher_lists .list > .lst_center > span {
-  font-size: 0.32rem;
+  font-size: 0.32rem ;
   display: block;
 }
 .main_center .teacher_lists .list > .lst_center > span > .icon-nv {
@@ -239,7 +239,7 @@
   top: 15%;
 }
 .main_center .course_lists .course_list > .course_list_center > p {
-  font-size: 0.3rem;
+  font-size: 0.3rem ;
 }
 .main_center .course_lists .course_list > .course_list_center > p > del {
   width: 55%;

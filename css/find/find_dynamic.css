@@ -272,3 +272,7 @@ header > span > a:last-of-type em {
     -moz-border-radius: 3px;
     border-radius: 3px;
 }
+/*问答页面*/
+.mine_request{
+    padding: 0;
+}

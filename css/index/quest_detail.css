@@ -1,0 +1,183 @@
+.baseColor {
+  color: #f01414;
+}
+.layer {
+  /*�ı�placeholder��������ɫ*/
+}
+.layer > header em {
+  top: 5%;
+}
+.layer .main {
+  padding-top: 1.6rem;
+}
+.layer .main > .request_detail {
+  border-bottom: 0.1rem solid #eeeeee;
+}
+.layer .main > .request_detail > .request_tit > h3 {
+  padding: 0 0.3rem;
+  height: 0.88rem;
+  line-height: 0.88rem;
+  font-size: 0.32rem;
+}
+.layer .main > .request_detail > .request_tit > .qu_bottom {
+  padding: 0 0.3rem;
+  position: relative;
+}
+.layer .main > .request_detail > .request_tit > .qu_bottom > .bo_left {
+  font-size: 0.24rem;
+  display: inline-block;
+  color: #8c8c8c;
+}
+.layer .main > .request_detail > .request_tit > .qu_bottom > .bo_left > span {
+  position: absolute;
+  right: 2%;
+  top: 20%;
+  font-size: 0.24rem;
+}
+.layer .main > .request_detail > .request_tit > .qu_bottom > .bo_left > span > s {
+  color: #008aff;
+  font-size: 0.24rem;
+}
+.layer .main > .request_detail > .pretty_request {
+  padding: 0.2rem 0.3rem;
+  color: #666;
+  font-size: 0.28rem;
+  text-indent: 2em;
+  border-bottom: 1px solid #eeeeee;
+}
+.layer .main > .request_detail > .pretty_result {
+  height: 0.9rem;
+  padding: 0 0.3rem;
+  line-height: 0.9rem;
+  font-size: 0.24rem;
+  position: relative;
+}
+.layer .main > .request_detail > .pretty_result > em {
+  position: absolute;
+  right: 3%;
+  top: 20%;
+  width: 2rem;
+  height: 0.5rem;
+  text-align: center;
+  line-height: 0.5rem;
+  border: 1px solid #008aff;
+  color: #008aff;
+  border-radius: 5px;
+}
+.layer .main > .request_lists > .list_quest {
+  padding: 0 0.3rem;
+}
+.layer .main > .request_lists > .list_quest > .quest_tit {
+  margin-top: 0.2rem;
+  position: relative;
+}
+.layer .main > .request_lists > .list_quest > .quest_tit > img {
+  width: 0.8rem;
+  height: 0.8rem;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+.layer .main > .request_lists > .list_quest > .quest_tit > .quest_tit_center {
+  top: 5%;
+  width: 100%;
+  font-size: 0.24rem;
+  margin-left: 1.2rem;
+  position: absolute;
+}
+.layer .main > .request_lists > .list_quest > .quest_tit > .quest_tit_center > em {
+  display: block;
+}
+.layer .main > .request_lists > .list_quest > .quest_tit > .quest_tit_center > del {
+  top: 10%;
+  position: absolute;
+  right: 20%;
+  text-align: center;
+  width: 1.2rem;
+  height: 0.5rem;
+  color: #f01414;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  border: 1px solid #f01414;
+}
+.layer .main > .request_lists > .list_quest > .quest_center {
+  font-size: 0.28rem;
+  border-bottom: 1px solid #eeeeee;
+  padding: 0.2rem 0;
+}
+.layer .main > .request_lists > .list_quest > .quest_center_footer {
+  margin-top: 0.2rem;
+  font-size: 0.24rem;
+  padding-bottom: 0.2rem;
+  border-bottom: 0.12rem solid #eeeeee;
+}
+.layer .main > .request_lists > .list_quest > .quest_center_footer > del,
+.layer .main > .request_lists > .list_quest > .quest_center_footer > em,
+.layer .main > .request_lists > .list_quest > .quest_center_footer > s {
+  color: #999;
+  vertical-align: middle;
+  margin-right: 0.1rem;
+}
+.layer .main > .request_lists > .list_quest > .quest_center_footer > span {
+  width: 1.2rem;
+  height: 0.5rem;
+  text-align: center;
+  line-height: 0.5rem;
+  border: 1px solid #f01414;
+  color: #f01414;
+  border-radius: 3px;
+}
+.layer .main > .response {
+  height: 1rem;
+  width: 100%;
+  line-height: 1rem;
+  background-color: #f01414;
+  position: fixed;
+  bottom: 0;
+  z-index: 1;
+}
+.layer .main > .response:before {
+  width: 0.5rem;
+  height: 0.5rem;
+  content: '';
+  position: absolute;
+  left: 9%;
+  top: 30%;
+  background: url("../../img/edit.png") no-repeat center;
+  -webkit-background-size: 100%;
+  background-size: 100%;
+}
+.layer .main > .response > input {
+  width: 45%;
+  height: 0.9rem;
+  background-color: #aa1211;
+  margin-left: 0.5rem;
+  text-indent: 2em;
+}
+.layer .main > .response > span {
+  margin-left: 0.5rem;
+  color: #fff;
+}
+.layer .main > .response > span > em {
+  margin-right: 0.1rem;
+}
+.layer :-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #fff;
+  opacity: 1;
+}
+.layer ::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #fff;
+  opacity: 1;
+}
+.layer input:-ms-input-placeholder {
+  color: #fff;
+  opacity: 1;
+}
+.layer input::-webkit-input-placeholder {
+  color: #fff;
+  opacity: 1;
+}

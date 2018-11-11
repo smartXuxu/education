@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+
+    <title>任教学科</title>
+    <link rel="stylesheet" href="../../css/mui.min.css"/>
+    <link rel="stylesheet" href="../../css/base.css"/>
+    <link rel="stylesheet" href="../../css/header.css"/>
+    <style>
+        body,html{
+            background-color: #f4f4f4;!important;
+        }
+        .main{
+            margin-top: 1.6rem;
+        }
+        .main>.class{
+            background-color: #fff;
+            padding: 0.3rem;
+        }
+        .main>.class>h3,.main>.school>h3{
+            height: 0.8rem;
+            line-height: 0.8rem;
+            font-size: 0.32rem;
+        }
+        .main>.class>.content{
+            height: auto ;
+        }
+
+        .main>.class>.content>span{
+            display: block;
+            float: left;
+            text-align: center;
+            width: 1.7rem;
+            height: 0.7rem;
+            line-height: 0.7rem;
+            font-size: 0.28rem;
+            border:1px solid #dddddd;
+            border-radius: 10px;
+            margin-right: 12%;
+            margin-bottom: 0.3rem;
+        }
+        .main>.class>.content>span:nth-of-type(3n){
+            margin-right: 0rem;
+        }
+        .main>.class>.content:nth-of-type(2)>span{
+            margin-bottom: 0.2rem;
+        }
+        .main>.class>.content>span.active{
+            background: #f01414;
+            border: none;
+            color:#fff;
+        }
+        .main>.school{
+            height: 1rem;
+            line-height: 1rem;
+            background-color: #fff;
+            padding:0 0.3rem ;
+            margin-top: 0.3rem;
+        }
+        .main>.school>h3{
+            display: inline-block;
+        }
+        .main>.school>input{
+            width: 80%;
+            text-align: right;
+            border: none;
+        }
+
+        .finish{
+            display: block;
+            width: 100%;
+            height: 0.8rem;
+            line-height: 0.8rem;
+            background-color: #f01414;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            color: #ffffff;
+            font-size: 0.3rem;
+        }
+    </style>
+</head>
+<body>
+<div class="layer">
+    <header id="header" class="mui-bar mui-bar-nav">
+        <i class="mui-icon mui-icon-left-nav mui-pull-left" onclick="back()"></i>
+        <h1 class="mui-title">设置任教年级</h1>
+    </header>
+    <div class="main">
+        <div class="class">
+
+            <div class="content mui-clearfix">
+                <span class="active">语文 </span>
+                <span>数学 </span>
+                <span>英语 </span>
+                <span>政治 </span>
+                <span>历史 </span>
+                <span>地理 </span>
+                <span>物理 </span>
+                <span>化学 </span>
+                <span>生物 </span>
+                <span>科学 </span>
+                <span>品德 </span>
+                <span>美术 </span>
+                <span>音乐 </span>
+                <span>体育 </span>
+            </div>
+        </div>
+        <button class="finish">确定</button>
+    </div>
+</div>
+
+</body>
+<script src="../../js/x_rem.js"></script>
+<script src="../../js/base.js"></script>
+<script src="../../js/mui.min.js"></script>
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/back.js"></script>
+<script>
+    $(function () {
+        var flag=true;
+        $(".content>span").click(function () {
+            if(flag){
+                //$(this).siblings().removeClass("active");
+                $(this).addClass("active");
+                //console.log($(this).text());
+                flag=false;
+            }else{
+                $(this).removeClass("active");
+                //console.log($(this).text());
+                flag=true;
+            }
+
+        })
+        $(".finish").click(function () {
+            console.log($("span.active").text());
+           localStorage.setItem("teach_subject",$("span.active").text());
+        })
+    })
+</script>
+</html>

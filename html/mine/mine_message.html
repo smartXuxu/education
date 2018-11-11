@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+
+    <title>我的消息</title>
+    <link rel="stylesheet" href="../../css/mui.min.css"/>
+    <link rel="stylesheet" href="../../css/base.css"/>
+    <link rel="stylesheet" href="../../css/sweetalert2.css"/>
+    <link rel="stylesheet" href="../../css/iconfont.css"/>
+    <link rel="stylesheet" href="../../css/header.css"/>
+    <style>
+            .main{
+                padding-top: 1.5rem;
+            }
+            .no_notice{
+                text-align: center;
+                height: 1rem;
+                line-height: 1rem;
+                color:#999;
+                margin-top: 0.38rem;
+                font-size: 0.3rem;
+            }
+            .main>ul{
+                width: 100%;
+            }
+            .main>ul>li{
+                position: relative;
+                padding:0.2rem 0.3rem;
+                border-bottom: 1px solid #eeeeee;
+            }
+            .main>ul>li>img{
+                width: 1rem;
+                height: 1rem;
+                border-radius: 50%;
+                vertical-align: middle;
+            }
+            .main>ul>li>.center{
+                position: absolute;
+                display: inline-block;
+                width:63%;
+
+                margin-left: 0.3rem;
+            }
+            .main>ul>li>.center>em{
+                font-size: 0.32rem;
+            }
+            .main>ul>li>.center>p{
+                overflow: hidden;
+                display: -webkit-box;
+                margin-top: 0.1rem;
+                -webkit-line-clamp: 1;
+                -webkit-box-orient: vertical;
+                word-break: break-all;
+            }
+            .main>ul>li>.right{
+                position: absolute;
+                right: 3%;
+                top:20%;
+                color: #999999;
+            }
+            .main>ul>li>del{
+                width: 0.2rem;
+                height: 0.2rem;
+                border-radius: 50%;
+                background-color: red;
+                position: absolute;
+                left: 16%;
+                top:10%;
+            }
+    </style>
+
+</head>
+<body style="background-color:#fff;">
+<div class="layer">
+    <header id="header" class="mui-bar mui-bar-nav">
+        <i class="mui-icon mui-icon-left-nav mui-pull-left" onclick="back()"></i>
+        <h1 class="mui-title">消息</h1>
+    </header>
+    <div class="main">
+        <ul class=" message_lists">
+
+                 <li class="no_notice"> 暂时没有消息</li>
+                 <li  data-id="1" onclick="location.href='./message_notice_detail.html'">
+                     <!--onclick="location.href='./message_notice_detail.html'"-->
+                     <img src="../../img/logo.png" alt=""/>
+                     <del></del>
+                     <div class="center">
+                         <em>系统消息</em>
+                         <p>恭喜您，已经完成实名认证啦已经完成实名认证啦已经完成实名认证啦</p>
+                     </div>
+                     <div class="right">
+                         07-21
+                     </div>
+                 </li>
+                 <li  data-id="2" onclick="location.href='./message_notice_detail.html'">
+                    <!-- onclick="location.href='./message_notice_detail.html'"-->
+                     <img src="../../img/logo.png" alt=""/>
+                     <del></del>
+                     <div class="center">
+                         <em>系统消息</em>
+                         <p>恭喜您，已经完成实名认证啦已经完成实名认证啦已经完成实名认证啦</p>
+                     </div>
+                     <div class="right">
+                         07-21
+                     </div>
+                 </li>
+
+        </ul>
+    </div>
+</div>
+</body>
+<script src="../../js/mui.min.js"></script>
+<script src="../../js/x_rem.js"></script>
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/base.js"></script>
+<script src="../../js/back.js"></script>
+<script src="../../js/sweetalert2.js"></script>
+</html>

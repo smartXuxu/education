@@ -1,0 +1,79 @@
+.main{
+    padding-top: 1.6rem;
+}
+.main>p{
+    height: 0.88rem;
+    line-height: 0.88rem;
+    font-size: 0.22rem;
+    padding-left: 0.3rem;
+}
+.main>p>em{
+    color:#f01414;
+}
+textarea{
+    height: 2.1rem;
+    width: 94%;
+    position: relative;
+    left: 3%;
+    padding: 0.3rem;
+}
+.mui-card{
+    padding: 0;
+    box-shadow: none;
+    margin: 0;
+}
+.mui-checkbox input[type=checkbox]:checked:before, .mui-radio input[type=radio]:checked:before{
+    color:#f01414;
+}
+.mui-input-group .mui-input-row{
+    display: inline-block;
+    /* width: 32%;*/
+}
+.mui-input-group .mui-input-row:after{
+    height: 0;
+}
+.mui-checkbox label, .mui-radio label{
+    padding-right: 0;
+}
+.mui-checkbox input[type=checkbox]:before, .mui-radio input[type=radio]:before{
+    font-size: 0.5rem;
+    padding-left: 0;
+}
+.mui-checkbox.mui-left label, .mui-radio.mui-left label{
+    width: 100%;
+    padding-left: 0.8rem;
+    font-size: 0.3rem;
+}
+.mui-checkbox.mui-left label, .mui-radio.mui-left label{
+    padding-right: 0;
+}
+.mui-checkbox.mui-left input[type=checkbox], .mui-radio.mui-left input[type=radio]{
+    left: 11px;
+}
+.z_photo{
+    margin-top: 0.2rem;
+}
+.mui-card{
+    margin-top: 0.3rem;
+}
+input[type=text]{
+    width: 95%;
+    left: 3%;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    font-size: 0.24rem;
+    border:1px solid rgba(0,0,0,.2);
+}
+.submit{
+    width: 100%;
+    text-align: center;
+    position: fixed;
+    height: 1rem;
+    line-height: 1rem;
+    color:#fff;
+    background-color: #f01414;
+    font-size: 0.32rem;
+    bottom: 0;
+    z-index: 1;
+}

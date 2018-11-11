@@ -1,0 +1,125 @@
+.main{
+  padding-top: 1.6rem;
+  /* tab */
+  .mui-control-item{
+    border-bottom: 1px solid #eeeeee;
+    >span{
+      font-size: 0.36rem;
+    }
+  }
+  .main_content{
+    padding: 0 0.3rem;
+    .qu_list {
+      width: 100%;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 0.3rem;
+      > .tit {
+        width: 100%;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        word-break: break-all;
+        font-size: 0.32rem;
+        height: 0.8rem;
+        line-height: 0.8rem;
+      }
+      .qu_bottom {
+        > .bo_left {
+          font-size: 0.24rem;
+          display: inline-block;
+          color: #8c8c8c;
+          >em,>i,>del{
+            margin-right: 0.1rem;
+          }
+        }
+        >.bo_right {
+          color: #666;
+          font-size: 0.26rem;
+          padding: 0.05rem 0.1rem 0.05rem 0.05rem;
+          border: 1px solid #999;
+          -webkit-border-radius: 5px;
+          -moz-border-radius: 5px;
+          border-radius: 5px;
+        }
+      }
+    }
+
+    /*提问*/
+      #ask{
+        >.ask{
+          >.qu_list{
+            .tit{
+              position: relative;
+              p{
+                width: 60%;
+                overflow: hidden;
+                display: -webkit-box;
+                -webkit-line-clamp: 1;
+                -webkit-box-orient: vertical;
+                word-break: break-all;
+                font-size: 0.22rem;
+              }
+              em{
+                position: absolute;
+                top: 5%;
+                right: 3%;
+                font-size: 0.22rem;
+                color:#666666;
+              }
+            }
+            .bo_right{
+              border:none;
+            }
+          }
+        }
+      }
+    /*回答*/
+    #response{
+      >.response{
+        .my_response{
+          >.my_res_top{
+            >em,>del{
+              font-size: 0.22rem;
+              color:#666;
+            }
+          }
+          >.my_res_top{
+            margin-bottom: 0.05rem;
+          }
+          >.my_res_bot{
+            position: relative;
+            height: 0.5rem;
+            line-height: 0.5rem;
+            >p{
+              width: 75%;
+              overflow: hidden;
+              display: -webkit-box;
+              -webkit-line-clamp: 1;
+              -webkit-box-orient: vertical;
+              word-break: break-all;
+              font-size: 0.22rem;
+            }
+            >span{
+              position: absolute;
+              right: 3%;
+              top:5%;
+              color:#f01414;
+              font-size: 0.22rem;
+            }
+          }
+        }
+        .bo_right{
+          border:none;
+          >s{
+            vertical-align: middle;
+          }
+        }
+      }
+    }
+    /*关注*/
+    #attention{
+  /*借用了 index的页面设置*/
+    }
+  }
+}

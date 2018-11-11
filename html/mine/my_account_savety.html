@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <title>账户管理</title>
+    <link rel="stylesheet" href="../../css/mui.min.css"/>
+    <link rel="stylesheet" href="../../css/base.css"/>
+    <link rel="stylesheet" href="../../css/header.css"/>
+    <style>
+        html{
+            background-color: #f4f4f4;
+        }
+        .account_content{
+            width: 100%;
+            margin-top: 1.6rem;
+        }
+        .account_content li{
+            font-size: 0.3rem;
+            height: 1.02rem;
+            line-height: 1.02rem;
+            background-color: #fff;
+            padding-left: 0.3rem;
+        }
+        .account_content li a{
+            color: #5a5a5a;
+            display: block;
+            width: 100%;
+            position: relative;
+            font-size: 0.34rem;
+        }
+        .account_content li:nth-of-type(3){
+            margin-bottom: 0.2rem;
+        }
+        .account_content li a em{
+            position: absolute;
+            right: 10%;
+            top: 0%;
+            font-size: 0.3rem ;
+            color: #666;
+        }
+        .account_content li a i{
+            position: absolute;
+            width: 0.64rem;
+            height: 0.6rem;
+            right: 2%;
+            top: 25%;
+            -webkit-background-size: 80%;
+            background-size: 80%;
+            color:#666;
+
+        }
+        .account_content li:first-of-type i{
+            background: none;
+            color:#f01414;
+            right:0%;
+            font-size: 0.36rem;
+            transform: none;
+        }
+    </style>
+</head>
+<body style="background-color:#eee;">
+<div class="layer account_save_layer">
+    <header id="header" class="mui-bar mui-bar-nav">
+        <i class="mui-icon mui-icon-left-nav mui-pull-left" onclick="back()"></i>
+        <h1 class="mui-title">账户安全</h1>
+    </header>
+    <ul class="account_content">
+        <li>
+            <a href="javascript:;">在线状态 <i>√</i></a>
+        </li>
+        <li>
+            <a href="./link_email.html">绑定邮箱 <em>未绑定</em><i class="mui-icon mui-icon-arrowright"></i></a>
+        </li>
+        <li>
+            <a href="./change_password_login.html">修改登录密码 <i class="mui-icon mui-icon-arrowright"></i></a>
+        </li>
+        <li>
+            <a href="./person_authentication.html">实名认证 <em>未认证</em><i class="mui-icon mui-icon-arrowright"></i></a>
+        </li>
+        <li>
+            <a href="./teacher_authentication.html">教师认证 <em>未认证</em><i class="mui-icon mui-icon-arrowright"></i></a>
+        </li>
+    </ul>
+
+</div>
+<script src="../../js/x_rem.js"></script>
+<script src="../../js/back.js"></script>
+<script src="../../js/jquery.min.js"></script>
+<script>
+
+</script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+
+    <title>设置</title>
+    <link rel="stylesheet" href="../../css/mui.min.css"/>
+    <link rel="stylesheet" href="../../css/base.css"/>
+    <link rel="stylesheet" href="../../css/sweetalert2.css"/>
+    <link rel="stylesheet" href="../../css/iconfont.css"/>
+    <link rel="stylesheet" href="../../css/header.css"/>
+    <style>
+        html{
+            background-color: #f4f4f4;
+
+        }
+        .main{
+            padding-top: 1.8rem;
+        }
+        .mui-table-view{
+            height:auto;
+        }
+        .mui-table-view-cell{
+            padding:0 0.3rem;
+        }
+        .mui-table-view:before,.mui-table-view:after{
+            height: 0;
+        }
+        .mui-table-view-cell>a:not(.mui-btn){
+            margin: 0;
+        }
+        .mui-ios .mui-table-view-cell{
+            height: 1rem;
+            line-height: 1rem;
+            border-bottom: 1px solid #eeeeee;
+        }
+        .mui-table-view-cell:after{
+            height: 0;
+        }
+        .mui-navigate-right:after, .mui-push-left:after, .mui-push-right:after{
+            font-size: 0.5rem;
+        }
+        .mui-table-view-cell>a{
+            font-size: 0.3rem;
+        }
+        .quit_login{
+            margin-top: 0.2rem;
+            font-size: 0.3rem;
+            height: 1rem;
+            line-height: 1rem;
+            color:#f01414;
+            background-color: #fff;
+            text-align: center;
+        }
+        .mui-table-view-cell>a:not(.mui-btn).mui-active{
+            background-color: #fff;
+        }
+    </style>
+</head>
+<body>
+<div class="layer">
+
+    <header id="header" class="mui-bar mui-bar-nav">
+        <i class="mui-icon mui-icon-left-nav mui-pull-left" onclick="back()"></i>
+        <h1 class="mui-title">设置</h1>
+    </header>
+        <div class="main">
+            <ul class="mui-table-view">
+                <li class="mui-table-view-cell">
+                    <a>
+                        视频自动播放
+                        <div class="mui-switch mui-switch-mini">
+                            <div class="mui-switch-handle"></div>
+                        </div>
+                    </a>
+                </li>
+                <li class="mui-table-view-cell">
+                    <a class="mui-navigate-right" href="./feedback.html">
+                        反馈与帮助
+                    </a>
+                </li>
+                <li class="mui-table-view-cell">
+                    <a class="mui-navigate-right" href="./about.html">
+                        关于猴姆
+                    </a>
+                </li>
+            </ul>
+            <div class="quit_login">退出登录</div>
+        </div>
+
+
+</div>
+</body>
+<script src="../../js/mui.min.js"></script>
+<script src="../../js/x_rem.js"></script>
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/base.js"></script>
+<script src="../../js/back.js"></script>
+<script src="../../js/sweetalert2.js"></script>
+<script>
+    $(function () {
+        mui.init({
+            swipeBack:true //启用右滑关闭功能
+        });
+        mui('.mui-switch').each(function() { //循环所有toggle
+           /**
+             * toggle 事件监听
+             */
+            this.addEventListener('toggle', function(event) {
+                //console.log(event.detail.isActive); //可直接获取当前状态
+                if(event.detail.isActive==false){
+                    console.log("视频不自动播放");
+                    localStorage.setItem("autoPlay",true);
+                }else{
+                    console.log("视频自动播放了")
+                    localStorage.removeItem("autoPlay");
+                }
+
+            });
+        });
+
+        $(".quit_login").click(function () {
+            localStorage.removeItem("pwd");
+            location.href='../login.html';
+        })
+    })
+</script>
+</html>

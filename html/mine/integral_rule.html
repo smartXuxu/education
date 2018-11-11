@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+
+    <title>积分规则</title>
+    <link rel="stylesheet" href="../../css/mui.min.css"/>
+    <link rel="stylesheet" href="../../css/base.css"/>
+    <link rel="stylesheet" href="../../css/sweetalert2.css"/>
+    <link rel="stylesheet" href="../../css/iconfont.css"/>
+    <link rel="stylesheet" href="../../css/header.css"/>
+    <style>
+    .main{
+        padding-top: 1.6rem;
+        background-color: #fff;
+    }
+    .main>.my_integral{
+        position: relative;
+        height: 1rem;
+        line-height: 1rem;
+        font-size: 0.3rem;
+        color:#666;
+        border-bottom: 0.2rem solid #eeeeee;
+        width: 100%;
+    }
+    .my_integral>span{
+        position: absolute;
+        left: 3%;
+    }
+    .my_integral>span>em{
+        color:#f01414;
+    }
+    .my_integral>button{
+        position: absolute;
+        right: 3%;
+        top: 24%;
+        width:35%;
+        border-radius: 10px;
+        color:#f01414;
+        border:1px solid #999;
+    }
+        .content{
+            padding: 0.3rem;
+        }
+    .content>h3{
+        height: 1rem;
+        line-height: 1rem;
+        font-size: 0.32rem;
+    }
+    .content>p{
+        font-size: 0.28rem;
+    }
+    </style>
+</head>
+<body>
+<div class="layer">
+    <header id="header" class="mui-bar mui-bar-nav">
+        <i class="mui-icon mui-icon-left-nav mui-pull-left" onclick="back()"></i>
+        <h1 class="mui-title">积分明细</h1>
+    </header>
+    <div class="main">
+            <div class="my_integral">
+                <span>当前积分：<em>50</em></span>
+                <button onclick="location.href='./integral_rule_detail.html'">我的积分明细</button>
+            </div>
+        <div class="content">
+            <h3>什么是积分？</h3>
+            <p>所有猴姆登录用户在猴姆活动(回答问题、认证、分享内容等)过程中均有机会获得积分，积分是一种荣誉的体现。积分可以用来兑换各种奖励(虚拟道具、实物礼品等)或发起活动进行消费(提问悬赏、打赏捐赠等)，猴姆将会在未来逐步实现和推出各类积分的兑换内容，请随时关注关于猴姆积分的消息。</p>
+            <h3>获取积分？</h3>
+             <p>
+                1、 今日听课当日总时长，按每40分钟兑换10积分的计算规则，系统在24时进行统一发放;<br/>
+                2、回答悬赏积分的问题时，如果您的回答被采纳了，即会获得问题悬赏的积分;<br/>
+                3、课程评分和老师评价每次可获得1积分;4、发布的动态如有99个赞以上可获得1积分;5、首次绑定邮箱可获得1积分;<br/>
+                5、 进行实名等认证，可获得其认证奖励的积分;
+            </p>
+            <h3>积分惩罚</h3>
+             <p>
+                 如果您在猴姆捣乱，如发表无意提问，回答或自问自答(含马甲)，发布广告、政治、恶意等内，您不仅将会失去已从该途径获得的积分， 还将额外受到积分扣除惩罚。<br/>
+                 如果用，户利用系统漏洞作弊等违规方式获得积分，经查证后，猴姆有权自由裁定，追缴相关积分，甚至查封账号， 并保留追究相应法律责任的权利。
+            </p>
+            <h3>最终解释权</h3>
+             <p>
+                 猴姆保留对相关细则中条款的最终解释权，并有权根据需要取消细则或增删、修订细则的权利(包括但不限于用户资格、积分计算及兑换标准)。
+            </p>
+        </div>
+    </div>
+</div>
+</body>
+<script src="../../js/mui.min.js"></script>
+<script src="../../js/x_rem.js"></script>
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/base.js"></script>
+<script src="../../js/back.js"></script>
+<script src="../../js/sweetalert2.js"></script>
+</html>

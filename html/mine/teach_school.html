@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+
+    <title>任教学校</title>
+    <link rel="stylesheet" href="../../css/mui.min.css"/>
+    <link rel="stylesheet" href="../../css/base.css"/>
+    <link rel="stylesheet" href="../../css/sweetalert2.css"/>
+    <link rel="stylesheet" href="../../css/iconfont.css"/>
+    <link rel="stylesheet" href="../../css/header.css"/>
+    <style>
+        html{
+            background-color: #f4f4f4;
+        }
+        .main{
+            padding-top: 1.6rem;
+        }
+        .main>h3{
+            height: 1rem;
+            line-height: 1rem;
+            padding:0 0.3rem;
+        }
+        .main>h3>em{
+            width: 0.8rem;
+            height: 1rem;
+        }
+        .layer>header>em{
+            top: 5%;
+        }
+        .main>.lists{
+            background-color: #fff;
+            padding: 0.3rem;
+        }
+        .main>.lists>.list{
+
+            border-bottom: 1px solid #eeeeee;
+        }
+        .lists>.list>p{
+            padding-top: 0.1rem;
+            font-size: 0.3rem;
+            margin-bottom: 0.1rem;
+        }
+        .lists>.list>h3{
+            font-size: 0.24rem ;
+            padding-bottom: 0.2rem;
+            color:#666666;
+        }
+    </style>
+</head>
+<body>
+<div class="layer">
+    <header id="header" class="mui-bar mui-bar-nav">
+        <i class="mui-icon mui-icon-left-nav mui-pull-left" onclick="back()"></i>
+        <h1 class="mui-title">选择学校</h1>
+        <em onclick="location.href='../index/select_city.html'"><s>郑州</s><del class="mui-icon mui-icon-arrowdown" ></em>
+    </header>
+    <div class="main">
+        <h3 class="clearfix">附近学校
+           <!-- <em class="iconfont icon-fangdajing f_right"></em>-->
+        </h3>
+        <ul class="lists">
+            <li class="list">
+                <p>天河区嘉福学校</p>
+                <h3>
+                    <i class="iconfont icon-zuobiao"></i>
+                    广州市天河区白沙水路166
+                </h3>
+            </li>
+            <li class="list">
+                <p>天河区嘉福学校</p>
+                <h3>
+                    <i class="iconfont icon-zuobiao"></i>
+                    广州市天河区白沙水路166
+                </h3>
+            </li>
+        </ul>
+
+    </div>
+</div>
+</body>
+<script src="../../js/mui.min.js"></script>
+<script src="../../js/x_rem.js"></script>
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/base.js"></script>
+<script src="../../js/back.js"></script>
+<script src="../../js/sweetalert2.js"></script>
+<!--定位 获取 经纬度-->
+<script>
+    $(function () {
+
+    })
+</script>
+</html>

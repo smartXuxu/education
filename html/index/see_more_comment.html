@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+
+    <title>查看评论详情</title>
+    <link rel="stylesheet" href="../../css/mui.min.css"/>
+    <link rel="stylesheet" href="../../css/mui_img.css"/>
+    <link rel="stylesheet" href="../../css/base.css"/>
+    <link rel="stylesheet" href="../../css/sweetalert2.css"/>
+    <link rel="stylesheet" href="../../css/iconfont.css"/>
+    <link rel="stylesheet" href="../../css/header.css"/>
+    <link rel="stylesheet" href="../../css/icons-extra.css"/>
+    <link rel="stylesheet" href="../../css/find/find_dynamic.css"/>
+    <style>
+        .layer>header>i{
+            top: 40%;
+            color:#fff;
+        }
+        .layer>header>h3{
+            line-height: 1rem;
+        }
+        .main{
+
+            padding-top: 1.8rem;
+        }
+        .All_lists{
+            padding: 0 0.3rem;
+        }
+        .All_lists>.All_list{
+            border-bottom: none;
+        }
+        .layer .main > .response {
+            height: 1rem;
+            width: 100%;
+            line-height: 1rem;
+            background-color: #f01414;
+            position: fixed;
+            bottom: 0;
+            z-index: 1;
+        }
+        .layer .main > .response > input {
+            width: 70%;
+            height: 0.9rem;
+            background-color: #aa1211;
+            margin-left: 0.2rem;
+            text-indent: 1em;
+            color:#fff;
+        }
+        .layer .main > .response:before {
+            width: 0.5rem;
+            height: 0.5rem;
+            content: '';
+            position: absolute;
+            left: 3%;
+            top: 30%;
+            background: url("../../img/edit.png") no-repeat center;
+            -webkit-background-size: 100%;
+            background-size: 100%;
+        }
+        .layer .main > .response > span {
+            margin-left: 0.5rem;
+            color: #fff;
+        }
+        .All_list>.list_content>.tit{
+            display: block;
+        }
+    </style>
+</head>
+<body style="background-color:#fff;">
+<div class="layer">
+    <header>
+        <i onclick="back()" class="mui-icon mui-icon-back"></i>
+        <h3>动态详情</h3>
+    </header>
+    <div class="main">
+        <div class="All_lists">
+            <div class="All_list">
+                <div class="list_top">
+                    <img src="../../img/focus-img1.png" alt="">
+                    <div class="list_top_center clearfix">
+                        <em>傅娟
+                            <s class="f_right">1小时前</s>
+                        </em>
+                        <p>华南师范大学附属中学华南师范大学附属中学华南师范大学附属中学数学教师华南师范大学附属中学华南师范大学附属中学华南师范大学附属中学数学教师华南师范大学附属中学华南师范大学附属中学华南师范大学附属中学数学教师华南师范大学附属中学华南师范大学附属中学华南师范大学附属中学数学教师</p>
+                    </div>
+                </div>
+                <div class="list_content clearfix">
+                    <div class="tit">
+                        明天开始新的一章数学学习，同学们做好预习哦明天开始新的一章数学学习，同学们做好预习哦明天开始新的一章数学学习，同学们做好预习哦明天开始新的一章数学学习，同学们做好预习哦明天开始新的一章数学学习，同学们做好预习哦明天开始新的一章数学学习，同学们做好预习哦明天开始新的一章数学学习，同学们做好预习哦明天开始新的一章数学学习，同学们做好预习哦明天开始新的一章数学学习，同学们做好预习哦明天开始新的一章数学学习，同学们做好预习哦明天开始新的一章数学学习，同学们做好预习哦
+                    </div>
+                    <div class="imgs">
+                        <!--注意类名 可能会与关注页面 重复-->
+                        <div class="img_box">
+                            <img src="../../img/focus-img1.png" alt="" data-preview-src="" data-preview-group="1">
+                        </div>
+                        <div class="img_box">
+                            <img src="../../img/focus-img1.png" alt="" data-preview-src="" data-preview-group="1">
+                        </div>
+                        <div class="img_box">
+                            <img src="../../img/focus-img1.png" alt="" data-preview-src="" data-preview-group="1">
+                        </div>
+                        <div class="img_box">
+                            <img src="../../img/focus-img1.png" alt="" data-preview-src="" data-preview-group="1">
+                        </div>
+                    </div>
+                </div>
+                <div class="list_content_footer clearfix">
+                    <ul class="clearfix">
+                        <li>浏览123次</li>
+                        <li><em class="iconfont icon-zhuanfa">120</em></li>
+                        <li><em class="iconfont icon-xiaoxi">20</em></li>
+                        <li><em class="iconfont icon-like">150</em></li>
+                    </ul>
+                    <div class="comment_box">
+                        <!--判断有没有回复人 渲染出来两句回复就可以了-->
+                        <p>
+                            <i>魏雨</i>&nbsp;:&nbsp;&nbsp;
+                            真是一个真实一个爱学习的孩子啊！真实一个爱学习的孩子啊！  真是一个真实一个爱学习的孩子啊！真实一个爱学习的孩子啊！
+                        </p>
+                        <p>
+                            <i>亚楠</i>&nbsp;&nbsp;回复
+                            <s>傅娟</s>&nbsp;&nbsp;:&nbsp;&nbsp;哈哈，谢谢夸奖
+                        </p>
+                       </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="response">
+            <input type="text" placeholder="我要回复"/>
+            <span>
+                完成
+            </span>
+        </div>
+    </div>
+</div>
+</body>
+<script src="../../js/mui.min.js"></script>
+<script src="../../js/mui.zoom.js"></script>
+<script src="../../js/mui.preview.js"></script>
+<script src="../../js/x_rem.js"></script>
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/base.js"></script>
+<script src="../../js/back.js"></script>
+<script src="../../js/sweetalert2.js"></script>
+<script>
+    $(function () {
+        mui.previewImage();
+        mui('body').on('tap','a',function(){document.location.href=this.href;});
+    })
+</script>
+</html>

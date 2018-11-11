@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <title>关于</title>
+    <link rel="stylesheet" href="../../css/mui.min.css"/>
+    <link rel="stylesheet" href="../../css/base.css"/>
+    <link rel="stylesheet" href="../../css/header.css"/>
+    <style>
+        html{
+            background-color: #fff;
+        }
+        .account_layer{
+            width: 100%;
+            height: 100%;
+        }
+        .main{
+            margin-top: 1.6rem;
+            background-color: #fff;
+            padding-top: 0.6rem;
+        }
+        .logo,.qrcode {
+            width: 100%;
+        }
+        .logo span,.qrcode span{
+            width: 1.6rem;
+            height: 1.6rem;
+            background: url("../../img/logo.png");
+            -webkit-background-size: 100%;
+            background-size: 100%;
+            border-radius: 50%;
+            display: block;
+            text-align: center;
+            position: relative;
+            left: 50%;
+            transform:translateX(-50%);
+            /*   position: absolute;
+               left: 50%;
+            */
+        }
+        .qrcode span{
+            margin-top: 0.5rem;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+            background-image: url("../../img/logo.png");
+            background-color: #333333;
+        }
+        .logo p,.qrcode p{
+            text-align: center;
+            margin-top: 0.2rem;
+            font-size: 0.3rem;
+            color:#464646;
+        }
+        .main>p{
+            font-size: 0.2rem;
+            color:#666666;
+            position: fixed;
+            bottom: 3%;
+            left: 50%;
+            width: 100%;
+            text-align: center;
+            transform: translateX(-50%);
+        }
+    </style>
+</head>
+<body>
+<div class="account_layer layer"  style="overflow-x: hidden">
+
+    <header id="header" class="mui-bar mui-bar-nav">
+        <i class="mui-icon mui-icon-left-nav mui-pull-left" onclick="back()"></i>
+        <h1 class="mui-title">关于猴姆</h1>
+    </header>
+   <div class="main">
+       <div class="logo clearfix">
+           <span></span>
+           <p>版本号：v3.1.2</p>
+       </div>
+       <div class="qrcode clearfix">
+           <span></span>
+           <p>微信公众号：猴姆教学</p>
+       </div>
+       <p>Copyright&copy;2018 houmu.com AII rights reserved.</p>
+   </div>
+
+</div>
+<script src="../../js/x_rem.js"></script>
+<script src="../../js/base.js"></script>
+<script src="../../js/back.js"></script>
+<script>
+    function back(){
+        history.go(-1);
+    }
+</script>
+</body>
+</html>

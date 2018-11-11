@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+
+    <title>问题解答</title>
+    <link rel="stylesheet" href="../../css/mui.min.css"/>
+    <link rel="stylesheet" href="../../css/base.css"/>
+    <link rel="stylesheet" href="../../css/header.css"/>
+    <style>
+        .main{
+            padding: 0.3rem;
+            padding-top: 1.6rem;
+            background-color: #fff;
+
+        }
+        .main>h2{
+            height: 1rem;
+            line-height: 1rem;
+            font-size:0.32rem ;
+            text-align: center;
+        }
+        .main>.content>p{
+            color:#666;
+            font-size: 0.24rem;
+        }
+        .flow{
+            margin-top: 0.2rem;
+        }
+        .main>.content>p>i{
+            font-size: 0.4rem;
+        }
+        .go_in{
+            margin:0 auto;
+            margin-top: 0.5rem;
+            color:#f01414;
+            display: block;
+            text-align: center;
+            width: 30%;
+            height: 0.6rem;
+            line-height: 0.6rem;
+            border: 1px solid #999;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+
+        }
+    </style>
+</head>
+<body>
+<div class="layer">
+    <header id="header" class="mui-bar mui-bar-nav">
+        <i class="mui-icon mui-icon-left-nav mui-pull-left" onclick="back()"></i>
+        <h1 class="mui-title">猴姆问题解答</h1>
+    </header>
+    <div class="main">
+        <h2>怎么获得上传视频权限？</h2>
+        <div class="content">
+           <p>1、视频上传权限目前只对具备教师身份的用户进行开放，即需在猴姆进行教师认证后才能开启.上传视频的权限。</p>
+            <p>2、 如果您已猴姆认证了教师身份,那么您可以在我的(个人中心)模块中的教务管理中进行视频上传操作。</p>
+            <p>3、如果您还未在猴姆认证教师身份,那么您需先进行教师认证,认证流程(路径)如下:</p>
+            <p class="flow">①账号安全 <i class="mui-icon mui-icon-arrowthinright"></i>②实名认证         <i class="mui-icon mui-icon-arrowthinright"></i>③教师认证 <i class="mui-icon mui-icon-arrowthinright"></i>④完成</p>
+            <button class="go_in" onclick="location.href='./teacher_authentication.html'">立即前往</button>
+        </div>
+    </div>
+</div>
+</body>
+<script src="../../js/mui.min.js"></script>
+<script src="../../js/x_rem.js"></script>
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/base.js"></script>
+<script src="../../js/back.js"></script>
+<script src="../../js/template-web.js"></script>
+</html>

@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="../css/header.css"/>
     <style>
         .main{
-            padding-top: 1.3rem;
+            padding-top: 1.6rem;
         }
         body,html{
             background-color: #f4f4f4;!important;
@@ -42,11 +42,15 @@
         .mui-input-group .mui-input-row:after{
             height: 0;
         }
+        .mui-checkbox.mui-left label, .mui-radio.mui-left label{
+            padding-left: 45px;
+        }
         .mui-input-row label{
             line-height: 0.45rem;
+            padding-left: 45px;
         }
         .mui-checkbox.mui-left input[type=checkbox], .mui-radio.mui-left input[type=radio]{
-            left: 30px;
+            left: 11px;
         }
         .mui-checkbox input[type=checkbox], .mui-radio input[type=radio]{
             top: 7px;
@@ -63,7 +67,7 @@
 <body>
 <div class="layer">
     <header id="header" class="mui-bar mui-bar-nav">
-        <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+        <i class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" onclick="back()"></i>
         <h1 class="mui-title">设置我的身份</h1>
     </header>
     <div class="main">
@@ -90,9 +94,10 @@
 </div>
 </body>
 <script src="../js/x_rem.js"></script>
+<script src="../js/base.js"></script>
 <script src="../js/mui.min.js"></script>
 <script src="../js/jquery.min.js"></script>
-<script src="../js/x_rem.js"></script>
+<script src="../js/back.js"></script>
 <script>
     $(function () {
 
@@ -107,7 +112,8 @@
             var checkVal = null;
             for(i = 0; i < rdsObj.length; i++){
                 //if(rdsObj[i].checked){checkVal = rdsObj[i].parentNode.firstChild.parentNode.children[0].innerText;}
-                if(rdsObj[i].checked){checkVal = rdsObj[i].parentNode.firstChild.parentNode.getAttribute("data-value");}
+                if(rdsObj[i].checked){
+                    checkVal = rdsObj[i].parentNode.firstChild.parentNode.getAttribute("data-value");}
             }
             return checkVal;
         }

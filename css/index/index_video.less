@@ -30,6 +30,7 @@
       position: fixed;
       right: 0%;
       bottom: 15%;
+      z-index:2;
       width: 1.2rem;
       height: 6rem;
       background-color: rgba(0, 0, 0, .4);
@@ -55,17 +56,16 @@
     }
     >.index_video{
       width: 100%;
-      >div{
-        height: 0.88rem;
-        line-height: 0.88rem;
-        font-size: 0.3rem;
-        width: 80%;
-        display: inline-block;
+      border-bottom: 1px solid #eeeeee;
         >.mui-segmented-control{
+          height: 0.88rem;
+          line-height: 0.88rem;
+          font-size: 0.3rem;
+          width: 80%;
+          display: inline-block;
           >a{
             height: 100%;
             line-height: 0.88rem;
-            width: 100%;
             &.mui-active{
               >span{
                  border-bottom: 2px solid #f01414;
@@ -73,8 +73,6 @@
             }
 
           }
-        }
-
       }
       >.fix_more{
         position: absolute;
@@ -82,12 +80,240 @@
         font-size: 0.5rem;
         height: 0.6rem;
         width: 0.6rem;
+        margin-left: 0.3rem;
         border:1px solid #999;
         -webkit-border-radius: 50%;
         -moz-border-radius: 50%;
         border-radius: 50%;
       }
     }
+    >.main_content{
+      >.content{
+        .submit_comment,.ask_request{
+          position: fixed;
+          right: 2%;
+          bottom: 7%;
+          width: 1rem;
+          height: 1rem;
+          z-index: 3;
+          background-color: #f01414;
+          -webkit-border-radius: 50%;
+          -moz-border-radius: 50%;
+          border-radius: 50%;
+          >i{
+            width: 0.8rem;
+            height: 0.8rem;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+            background: url("../../img/request.png") no-repeat center;
+            -webkit-background-size: 80%;
+            background-size: 80%;
+          }
 
+        }
+          .submit_comment{
+            >i{
+              background-image: url("../../img/submit_comment.png");
+            }
+          }
+        /*Ä¿Â¼*/
+        #item1{
+          >h3{
+            font-size: 0.3rem;
+            height: 1rem;
+            line-height: 1rem;
+            border-bottom: 1px solid #eeeeee;
+          }
+          >ul{
+            width: 100%;
+            >li{
+              width: 100%;
+              height: 0.88rem;
+              line-height: 0.88rem;
+              border-bottom: 1px solid #eeeeee;
+              >a{
+                display: block;
+                width: 100%;
+                height: 100%;
+                >.f_left{
+
+                  >em{
+                    margin-right: 0.2rem;
+                  }
+                  >span{
+                    font-size: 0.28rem;
+                  }
+
+                }
+                >.f_right{
+                  font-size: 0.24rem;
+                  >em{
+                    margin-right: 0.3rem;
+                    color:#f01414;
+                  }
+                }
+              }
+            }
+          }
+        }
+        /*ÏêÇé*/
+        .detail_speak{
+         >.detail{
+           padding-bottom: 0.2rem;
+           border-bottom: 0.1rem solid #eeeeee;
+           >h3{
+             height: 1rem;
+             line-height: 1rem;
+             font-size: 0.3rem;
+           }
+           >p{
+             color:#666;
+             font-size: 0.24rem;
+             text-align: center;
+           }
+           .detail_detail_text{
+             font-size: 0.28rem;
+             color:#666;
+             text-indent: 2em;
+             line-height: 0.4rem;
+           }
+         }
+          .teacher_message{
+            margin-top: 0.2rem;
+            position: relative;
+            padding-bottom: 0.2REM;
+            border-bottom: 0.1REM SOLID #eeeeee;
+            >a{
+              position: absolute;
+              right: 3%;
+              top: 22%;
+              width: 0.8rem;
+              height: 0.8rem;
+            }
+            >img{
+              width: 1rem;
+              height: 1rem;
+              -webkit-border-radius: 50%;
+              -moz-border-radius: 50%;
+              border-radius: 50%;
+              vertical-align: middle;
+            }
+              >.message_center{
+                position: absolute;
+                margin-left: 1.2rem;
+                top: 5%;
+                >p{
+                  font-size: 0.32rem;
+                  color:#333;
+                  >em{
+                    margin-left: 0.3rem;
+                    >i{
+                      color: #f01414;
+                      font-size: 0.28rem;
+                    }
+                    font-size: 0.2rem;
+                  }
+                }
+                >span{
+                  font-size: 0.24rem;
+                }
+
+              }
+          }
+          .recomment_course{
+            >h4{
+              height: 1rem;
+              line-height: 0.6rem ;
+              font-size: 0.3rem;
+              color:#666;
+            }
+            >.excent_lesson{
+              border-top: none;
+              padding:0;
+            }
+          }
+        }
+        /*ÆÀÂÛ*/
+       .video_comment{
+         .evaluate_lists{
+           margin-top: 0.2rem;
+           >.evaluate_list{
+             border-bottom: 1px solid #eee;
+             >.eva_top{
+               position: relative;
+               padding-bottom: 0.2rem;
+               >img{
+                 width: 0.8rem;
+                 height: 0.8rem;
+                 -webkit-border-radius: 50%;
+                 -moz-border-radius: 50%;
+                 border-radius: 50%;
+               }
+               >.eva_top_center{
+                 width: 100%;
+                 position: absolute;
+                 margin-left: 1.2rem;
+                 top: 10%;
+                 >em{
+                   font-size: 0.34rem;
+                   color:#666;
+                   display: block;
+                 }
+                 >del{
+                   color:#666;
+                   display: block;
+                   font-size: 0.2rem;
+                 }
+                 >i{
+                   position: absolute;
+                   right: 3%;
+                   top: 10%;
+                   color:#666;
+                   padding-right: 1.5rem;
+                 }
+               }
+             }
+             >.eva_content{
+               >p{
+                 font-size: 0.28rem;
+                 color:#32373b;
+                 overflow: hidden;
+                 display: -webkit-box;
+                 -webkit-line-clamp: 2;
+                 -webkit-box-orient: vertical;
+                 word-break: break-all;
+               }
+               >.comment_imgs{
+                 width: 100%;
+                 margin-top: 0.2rem;
+                 >.comment_img_box{
+                   width: 45%;
+                   height: 1.8rem;
+                   display: inline-block;
+                   margin-left: 0.1rem;
+                   margin-bottom: 0.1rem;
+                   overflow: hidden;
+                   position: relative;
+                   background-color: #333333;
+                   >img{
+                     width: 100%;
+                     position: absolute;
+                     top: 50%;
+                     left:50%;
+                     transform:translate(-50%,-50%);
+                   }
+                 }
+               }
+
+             }
+           }
+         }
+
+       }
+
+      }
+    }
   }
 }

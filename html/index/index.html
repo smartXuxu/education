@@ -64,7 +64,7 @@
         <div class="famous">
             <h3 class="clearfix">
                 <em class="f_left">名师名校</em>
-                <i class="f_right"> 查看更多<del class="mui-icon mui-icon-arrowright" onclick="location.href='../nearBay/near_bay_school.html#item2'"></del></i>
+                <i class="f_right" onclick="location.href='../nearBay/near_bay_school.html#item2'"> 查看更多<del class="mui-icon mui-icon-arrowright"></del></i>
             </h3>
             <ul class="clearfix">
                 <li onclick="location.href='./teacher_index.html'" tapmode="tapmode_style">
@@ -170,7 +170,7 @@
         <div class="hot_lesson">
             <h3 class="clearfix">
                 <em class="f_left">热门好课</em>
-                <i class="f_right"> 查看更多<del class="mui-icon mui-icon-arrowright" onclick="location.href='../nearBay/near_bay_school.html#item2'"></del></i>
+                <i class="f_right" onclick="location.href='../nearBay/near_bay_school.html#item2'"> 查看更多<del class="mui-icon mui-icon-arrowright" ></del></i>
             </h3>
             <ul class="clearfix">
                 <li>
@@ -207,7 +207,7 @@
         <div class="excent_lesson">
             <h3 class="clearfix">
                 <em class="f_left">名师讲堂</em>
-                <i class="f_right"> 查看更多<del class="mui-icon mui-icon-arrowright" onclick="location.href='../nearBay/near_bay_school.html#item2'"></del></i>
+                <i class="f_right"onclick="location.href='../nearBay/near_bay_school.html#item2'"> 查看更多<del class="mui-icon mui-icon-arrowright" ></del></i>
             </h3>
             <ul>
                 <li>
@@ -267,31 +267,32 @@
         <div class="request">
             <h3 class="clearfix">
                 <em class="f_left">猴姆问答</em>
-                <i class="f_right"> 查看更多<del class="mui-icon mui-icon-arrowright" onclick="location.href='../find/find_request.html'"></del></i>
+                <i class="f_right" onclick="location.href='../find/find_request.html'"> 查看更多<del class="mui-icon mui-icon-arrowright" ></del></i>
             </h3>
-            <div class="qu_list">
-                <div class="tit">
+
+            <div class="qu_list" >
+                <div class="tit" onclick="location.href='./quest_detail.html'">
                     6的平方等于多少？
                 </div>
                 <div class="qu_bottom clearfix">
-                    <div class="bo_left">
+                    <div class="bo_left" onclick="location.href='./quest_detail.html'">
                         <em class="iconfont icon-wode1"></em>赵英俊
                         <i class="iconfont icon-huangguan"></i>悬赏：15积分
                         <del class="iconfont icon-xiaoxi"></del>99+
                     </div>
-                    <div class="bo_right f_right" onclick="location.href='./my_want_request.html'" >
+                    <div class="bo_right f_right" onclick="location.href='./my_want_request.html'">
                         <s class="iconfont icon-weibiaoti1"></s>
                         我要回答
                     </div>
 
                 </div>
             </div>
-            <div class="qu_list">
-                <div class="tit">
+            <div class="qu_list" >
+                <div class="tit" onclick="location.href='./quest_detail.html'">
                     6的平方等于多少？
                 </div>
                 <div class="qu_bottom clearfix">
-                    <div class="bo_left">
+                    <div class="bo_left" onclick="location.href='./quest_detail.html'">
                         <em class="iconfont icon-wode1"></em>赵英俊
                         <i class="iconfont icon-huangguan"></i>悬赏：15积分
                         <del class="iconfont icon-xiaoxi"></del>99+
@@ -323,6 +324,15 @@ $(function () {
     $('#footer').load('../common/footer.html');
     setTimeout(function () {
         $(".mui-bar-tab>a:first-of-type").addClass("mui-active");
+        /*城市选择*/
+        if(localStorage.getItem("city")){
+            console.log(1);
+            $(".header>.h_left>s").html(localStorage.getItem("city"));
+        }
+        /*调到搜索框 */
+        $(".h_center input").focus(function () {
+            location.href='./search.html';
+        })
     },100);
     var mySwiper = new Swiper ('.swiper-container', {
         direction: 'horizontal', // 垂直切换选项
@@ -333,6 +343,7 @@ $(function () {
             el: '.swiper-pagination',
         },
     })
+
 })
 </script>
 </html>

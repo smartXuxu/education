@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+
+    <title>反馈与帮助</title>
+    <link rel="stylesheet" href="../../css/mui.min.css"/>
+    <link rel="stylesheet" href="../../css/base.css"/>
+    <link rel="stylesheet" href="../../css/sweetalert2.css"/>
+    <link rel="stylesheet" href="../../css/iconfont.css"/>
+    <link rel="stylesheet" href="../../css/header.css"/>
+    <link rel="stylesheet" href="../../css/publish/publish_activity.css">
+    <link rel="stylesheet" href="../../css/index/report.css">
+    <link rel="stylesheet" href="../../css/mine/feedback.css"/>
+</head>
+<body style="background-color:#fff;">
+<div class="layer">
+    <header id="header" class="mui-bar mui-bar-nav">
+        <i class="mui-icon mui-icon-left-nav mui-pull-left" onclick="back()"></i>
+        <h1 class="mui-title">反馈与帮助</h1>
+    </header>
+    <div class="main">
+        <div id="slider" class="mui-slider ">
+            <div style="padding: 0px 10px;">
+                <div id="segmentedControl" class="mui-segmented-control">
+                    <a class="mui-control-item mui-active" href="#item1">
+                        <span>意见反馈</span>
+                    </a>
+                    <a class="mui-control-item" href="#item2">
+                        <span>常见问题</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="main_content">
+            <!--//把外层的div 去掉就能正常的跳转了-->
+            <!--全部-->
+            <div id="item1" class="mui-control-content mui-active">
+               <div class="feedback">
+                   <div class="mui-card">
+                       <form class="mui-input-group">
+                           <div class="mui-input-row mui-checkbox mui-left">
+                               <label>内容意见</label>
+                               <input name="checkbox" value="Item 1" type="checkbox" checked="">
+                           </div>
+                           <div class="mui-input-row mui-checkbox mui-left">
+                               <label>产品意见</label>
+                               <input name="checkbox" value="Item 2" type="checkbox">
+                           </div>
+                           <div class="mui-input-row mui-checkbox mui-left">
+                               <label>BUG问题</label>
+                               <input name="checkbox" value="Item 2" type="checkbox">
+                           </div>
+                           <div class="mui-input-row mui-checkbox mui-left">
+                               <label>其他</label>
+                               <input name="checkbox" value="Item 2" type="checkbox">
+                           </div>
+                       </form>
+                   </div>
+                   <textarea name="" placeholder="请详细填写您想反馈的内容"></textarea>
+                   <div class="z_photo">
+                       <div class="z_file">
+                           <!--   <img src="../img/publish_common.png" alt="" class="userImg"/>-->
+                           <!--<span class="add_pic">点击添加图片</span>-->
+                           <input type="file" capture="camera" name="file" id="file" value="" accept="image/*" multiple="" onchange="imgChange('z_photo','z_file');">
+                       </div>
+                   </div>
+                   <div class="z_mask">
+
+                       <div class="z_alert">
+                           <p>确定要删除这张图片吗？</p>
+                           <p>
+                               <span class="z_cancel">取消</span>
+                               <span class="z_sure">确定</span>
+                           </p>
+                       </div>
+                   </div>
+                   <p><em>注意：</em>每张图片不要超过<em>2</em>M</p>
+                   <input type="text" placeholder="留下您的联系方式(邮箱、手机等)吧,咱们后期联系">
+                   <div class="submit">提交</div>
+               </div>
+            </div>
+            <div id="item2" class="mui-control-content ">
+               <ul class="common_question">
+                  <li>
+                      <a href="question_detail.html">
+                          怎么获得上传视频权限？
+                      </a>
+                  </li>
+                   <li>
+                      <a href="question_detail.html">
+                          怎么获得上传视频权限？
+                      </a>
+                  </li>
+               </ul>
+
+            </div>
+    </div>
+</div>
+</body>
+<script src="../../js/mui.min.js"></script>
+<script src="../../js/x_rem.js"></script>
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/base.js"></script>
+<script src="../../js/back.js"></script>
+<script src="../../js/sweetalert2.js"></script>
+<script>
+    /*上传图片
+     * */
+    function imgChange(obj1, obj2) {
+        //获取点击的文本框
+        var file = document.getElementById("file");
+        //存放图片的父级元素
+        var imgContainer = document.getElementsByClassName(obj1)[0];
+        //获取的图片文件
+        var fileList = file.files;
+        //文本框的父级元素
+        var input = document.getElementsByClassName(obj2)[0];
+        var imgArr = [];
+        //遍历获取到得图片文件
+        for (var i = 0; i < fileList.length; i++) {
+            //判断上传的图片大小
+            if(file.files && file.files[i]){
+                var fileData = file.files[i];
+                var size = fileData.size;   //注意，这里读到的是字节数
+                var isAllow = false;
+                if(!size) isAllow = false;
+                var maxSize = 2048;
+                maxSize = maxSize * 1024;   //转化为字节
+                isAllow = size <= maxSize;
+                if(!isAllow){
+                    alert("大小超过2 M，请重新上传");
+                    return false;
+                }
+            }
+            //结束
+            var imgUrl = window.URL.createObjectURL(file.files[i]);
+            imgArr.push(imgUrl);
+            var img = document.createElement("img");
+            img.setAttribute("src", imgArr[i]);
+            var imgAdd = document.createElement("div");
+            imgAdd.setAttribute("class", "z_addImg");
+            imgAdd.appendChild(img);
+            imgContainer.appendChild(imgAdd);
+            //getBase64Image(img,imgArr[i]);
+        };
+        //'console.log(imgArr);这个是图片的本地地址
+        for(let i=0;i<imgArr.length;i++){
+            (function(image, x, y,index){
+                drawing(image, x, y,index)
+            })(imgArr[i],0,0,i)
+        }
+        imgRemove();
+    };
+    function imgRemove() {
+        var imgList = document.getElementsByClassName("z_addImg");
+        var mask = document.getElementsByClassName("z_mask")[0];
+        var cancel = document.getElementsByClassName("z_cancel")[0];
+        var sure = document.getElementsByClassName("z_sure")[0];
+        for (var j = 0; j < imgList.length; j++) {
+            imgList[j].index = j;
+            imgList[j].onclick = function() {
+                var t = this;
+                mask.style.display = "block";
+                cancel.onclick = function() {
+                    mask.style.display = "none";
+                };
+                sure.onclick = function() {
+                    mask.style.display = "none";
+                    t.style.display = "none";
+                };
+            }
+        };
+    };
+    var container=document.querySelector(".z_photo");
+    var images=[];
+    function drawing(image, x, y,index) {
+        var img = new Image();
+        img.crossOrigin = 'anonymous';
+        img.src = image;
+        img.onload = function () {
+            let id='canvas'+index;
+            createCanvas(id,img.width,img.height);
+            var cs = document.getElementById(id);
+            var ctx = cs.getContext("2d");
+            ctx.drawImage(img, x, y);
+            var imageUrl=cs.toDataURL('', 1);
+            images.push(imageUrl);
+            //转换成功
+            // console.log(images);
+            removeDom(id);
+        } ;
+    }
+    function createCanvas(id,width,height){
+        var canvas=document.createElement("canvas");
+        canvas.setAttribute('id',id);
+        canvas.setAttribute('width',width);
+        canvas.setAttribute('height',height);
+        canvas.style.display="none";
+        container.appendChild(canvas);
+    }
+    function removeDom(id){
+        document.getElementById(id).outerHTML='';
+    }
+
+    $(function () {
+        $('#scroll').scroll({
+            indicators: true //是否显示滚动条
+        });
+
+        var segmentedControl = document.getElementById('segmentedControl');
+        $('.mui-input-group').on('change', 'input', function() {
+            if (this.checked) {
+                var styleEl = document.querySelector('input[name="style"]:checked');
+                var colorEl = document.querySelector('input[name="color"]:checked');
+                if (styleEl && colorEl) {
+                    var style = styleEl.value;
+                    var color = colorEl.value;
+                    segmentedControl.className = 'mui-segmented-control' + (style ? (' mui-segmented-control-' + style) : '') + ' mui-segmented-control-' + color;
+                }
+            }
+        });
+
+    })
+</script>
+</html>

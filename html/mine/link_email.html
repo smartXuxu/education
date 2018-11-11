@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+
+    <title>绑定邮箱</title>
+    <link rel="stylesheet" href="../../css/mui.min.css"/>
+    <link rel="stylesheet" href="../../css/base.css"/>
+    <link rel="stylesheet" href="../../css/sweetalert2.css"/>
+    <link rel="stylesheet" href="../../css/iconfont.css"/>
+    <link rel="stylesheet" href="../../css/header.css"/>
+    <style>
+            html{
+                background-color: #f4f4f4;
+            }
+            .main{
+                padding-top: 1.8rem;
+            }
+            input[type=color], input[type=date], input[type=datetime-local], input[type=datetime], input[type=email], input[type=month], input[type=number], input[type=password], input[type=search], input[type=tel], input[type=text], input[type=time], input[type=url], input[type=week], select, textarea{
+                border:none;
+            }
+            .code{
+                position: relative;
+            }
+        .getCode{
+            position: absolute;
+            right: 3%;
+            top: 23%;
+            color:#008aff;
+            font-size: 0.24rem;
+        }
+        .finish{
+            height: 1rem;
+            line-height: 1rem;
+            font-size: 0.3rem;
+            color:#fff;
+            text-align: center;
+            width: 90%;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+            position: relative;
+            left: 5%;
+            background-color: #f01414;
+            margin-top: 0.2rem;
+        }
+    </style>
+</head>
+<body>
+<div class="layer">
+    <header id="header" class="mui-bar mui-bar-nav">
+        <i class="mui-icon mui-icon-left-nav mui-pull-left" onclick="back()"></i>
+        <h1 class="mui-title">绑定邮箱</h1>
+    </header>
+    <div class="main">
+        <div class="email">
+            <input type="email" placeholder="请输入要绑定的邮箱"/>
+        </div>
+
+        <div class="code">
+            <input type="text" placeholder="请填写验证码"/>
+            <em class="getCode">获取邮箱验证码</em>
+        </div>
+        <button class="finish">完成</button>
+    </div>
+</div>
+</body>
+<script src="../../js/mui.min.js"></script>
+<script src="../../js/x_rem.js"></script>
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/base.js"></script>
+<script src="../../js/back.js"></script>
+<script src="../../js/sweetalert2.js"></script>
+<script>
+    $(function () {
+        $(".getCode").click(function () {
+            getCode("1527196854@qq.com");
+        })
+
+        function getCode(str){
+            // 先验证 用户输入的邮箱 不正确 阻断 返回
+            var re = /^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/;
+            if(!re.test(str)){
+
+                sweetAlert(
+                        "sorry",
+                        "对不起，请您输入正确的邮箱",
+                        "error"
+                ).then(function () {
+                            $("input").val("");
+                        })
+                return false;
+            }else{
+                sweetAlert(
+                        "恭喜您",
+                        "成功验证",
+                        "success"
+                )
+            }
+        }
+        /*function checkEmail(str){
+            var re = /^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/
+            if(re.test(str)){
+                alert("正确");
+            }else{
+                alert("错误");
+            }
+        }
+        checkEmail("contact@cnblogs.com");//调用*/
+    })
+</script>
+</html>

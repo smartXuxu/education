@@ -18,7 +18,7 @@
 <body style="background-color:#fff;">
 <div class="layer">
     <header id="header" class="mui-bar mui-bar-nav">
-        <i class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></i>
+        <i class="mui-icon mui-icon-left-nav mui-pull-left" onclick="location.href='./index.html'"></i>
         <h1 class="mui-title">主页</h1>
         <em class="mui-icon mui-icon-more"></em>
     </header>
@@ -58,10 +58,10 @@
         <div id="slider" class="mui-slider find_request">
             <div style="padding: 10px 10px;">
                 <div id="segmentedControl" class="mui-segmented-control">
-                    <a class="mui-control-item mui-active" href="#item1">
+                    <a class="mui-control-item mui-active" href="#course">
                         <span>课程(2)</span>
                     </a>
-                    <a class="mui-control-item" href="#item2">
+                    <a class="mui-control-item" href="#teacher">
                         <span>教师(2)</span>
                     </a>
 
@@ -69,11 +69,11 @@
             </div>
         </div>
         <div class="main_center mine_request edu_center">
-            <div>
-                <div id="item1" class="mui-control-content mui-active">
+
+                <div id="course" class="mui-control-content mui-active">
                    <!--课程-->
                     <div class="course_lists">
-                        <div class="course_list">
+                        <div class="course_list" onclick="location.href='./index_video.html'" >
                             <img src="../../img/index_edu.png" alt=""/>
                             <div class="course_list_center ">
                                 <p class="clearfix">
@@ -87,7 +87,7 @@
                                 <span>华南师范大学附属中学</span>
                             </div>
                         </div>
-                        <div class="course_list">
+                        <div class="course_list" onclick="location.href='./index_video.html'">
                             <img src="../../img/index_edu.png" alt=""/>
                             <div class="course_list_center ">
                                 <p class="clearfix">
@@ -103,9 +103,9 @@
                         </div>
                     </div>
                 </div>
-                <div id="item2" class="mui-control-content">
+                <div id="teacher" class="mui-control-content">
                     <div class="teacher_lists">
-                        <div class="list">
+                        <div class="list" onclick="location.href='./teacher_index.html'">
                             <img src="../../img/focus-img1.png" alt=""/>
                             <div class="lst_center">
                                 <!-- 判断男女-->
@@ -117,7 +117,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="list">
+                        <div class="list" onclick="location.href='./teacher_index.html'">
                             <img src="../../img/focus-img1.png" alt=""/>
                             <div class="lst_center">
                                 <span>傅娟 <em class="iconfont icon-82" ></em></span>
@@ -130,7 +130,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+
             <!--操作-->
             <div class="replay">
                 <button class="attention"> +  关注</button>

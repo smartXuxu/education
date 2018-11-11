@@ -1,0 +1,30 @@
+.main {
+  padding-top: 1.6rem;
+}
+.main .mui-slider {
+  border-bottom: 0.2rem solid #eeeeee;
+}
+.main .feedback > p {
+  height: 0.88rem;
+  line-height: 0.88rem;
+  font-size: 0.22rem;
+  padding-left: 0.3rem;
+}
+.main .feedback > p > em {
+  color: #f01414;
+}
+.main .common_question {
+  padding: 0.3rem;
+}
+.main .common_question > li > a {
+  height: 1rem;
+  font-size: 0.3rem;
+  line-height: 1rem;
+  border-bottom: 1px solid #eeeeee;
+  width: 100%;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+}

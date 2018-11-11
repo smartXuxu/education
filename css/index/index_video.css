@@ -29,6 +29,7 @@
   position: fixed;
   right: 0%;
   bottom: 15%;
+  z-index: 2;
   width: 1.2rem;
   height: 6rem;
   background-color: rgba(0, 0, 0, 0.4);
@@ -52,20 +53,20 @@
 }
 .layer .main > .index_video {
   width: 100%;
+  border-bottom: 1px solid #eeeeee;
 }
-.layer .main > .index_video > div {
+.layer .main > .index_video > .mui-segmented-control {
   height: 0.88rem;
   line-height: 0.88rem;
   font-size: 0.3rem;
   width: 80%;
   display: inline-block;
 }
-.layer .main > .index_video > div > .mui-segmented-control > a {
+.layer .main > .index_video > .mui-segmented-control > a {
   height: 100%;
   line-height: 0.88rem;
-  width: 100%;
 }
-.layer .main > .index_video > div > .mui-segmented-control > a.mui-active > span {
+.layer .main > .index_video > .mui-segmented-control > a.mui-active > span {
   border-bottom: 2px solid #f01414;
 }
 .layer .main > .index_video > .fix_more {
@@ -74,8 +75,216 @@
   font-size: 0.5rem;
   height: 0.6rem;
   width: 0.6rem;
+  margin-left: 0.3rem;
   border: 1px solid #999;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   border-radius: 50%;
+}
+.layer .main > .main_content > .content {
+  /*Ŀ¼*/
+  /*����*/
+  /*����*/
+}
+.layer .main > .main_content > .content .submit_comment,
+.layer .main > .main_content > .content .ask_request {
+  position: fixed;
+  right: 2%;
+  bottom: 7%;
+  width: 1rem;
+  height: 1rem;
+  z-index: 3;
+  background-color: #f01414;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+.layer .main > .main_content > .content .submit_comment > i,
+.layer .main > .main_content > .content .ask_request > i {
+  width: 0.8rem;
+  height: 0.8rem;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: url("../../img/request.png") no-repeat center;
+  -webkit-background-size: 80%;
+  background-size: 80%;
+}
+.layer .main > .main_content > .content .submit_comment > i {
+  background-image: url("../../img/submit_comment.png");
+}
+.layer .main > .main_content > .content #item1 > h3 {
+  font-size: 0.3rem;
+  height: 1rem;
+  line-height: 1rem;
+  border-bottom: 1px solid #eeeeee;
+}
+.layer .main > .main_content > .content #item1 > ul {
+  width: 100%;
+}
+.layer .main > .main_content > .content #item1 > ul > li {
+  width: 100%;
+  height: 0.88rem;
+  line-height: 0.88rem;
+  border-bottom: 1px solid #eeeeee;
+}
+.layer .main > .main_content > .content #item1 > ul > li > a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.layer .main > .main_content > .content #item1 > ul > li > a > .f_left > em {
+  margin-right: 0.2rem;
+}
+.layer .main > .main_content > .content #item1 > ul > li > a > .f_left > span {
+  font-size: 0.28rem;
+}
+.layer .main > .main_content > .content #item1 > ul > li > a > .f_right {
+  font-size: 0.24rem;
+}
+.layer .main > .main_content > .content #item1 > ul > li > a > .f_right > em {
+  margin-right: 0.3rem;
+  color: #f01414;
+}
+.layer .main > .main_content > .content .detail_speak > .detail {
+  padding-bottom: 0.2rem;
+  border-bottom: 0.1rem solid #eeeeee;
+}
+.layer .main > .main_content > .content .detail_speak > .detail > h3 {
+  height: 1rem;
+  line-height: 1rem;
+  font-size: 0.3rem;
+}
+.layer .main > .main_content > .content .detail_speak > .detail > p {
+  color: #666;
+  font-size: 0.24rem;
+  text-align: center;
+}
+.layer .main > .main_content > .content .detail_speak > .detail .detail_detail_text {
+  font-size: 0.28rem;
+  color: #666;
+  text-indent: 2em;
+  line-height: 0.4rem;
+}
+.layer .main > .main_content > .content .detail_speak .teacher_message {
+  margin-top: 0.2rem;
+  position: relative;
+  padding-bottom: 0.2REM;
+  border-bottom: 0.1REM SOLID #eeeeee;
+}
+.layer .main > .main_content > .content .detail_speak .teacher_message > a {
+  position: absolute;
+  right: 3%;
+  top: 22%;
+  width: 0.8rem;
+  height: 0.8rem;
+}
+.layer .main > .main_content > .content .detail_speak .teacher_message > img {
+  width: 1rem;
+  height: 1rem;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+.layer .main > .main_content > .content .detail_speak .teacher_message > .message_center {
+  position: absolute;
+  margin-left: 1.2rem;
+  top: 5%;
+}
+.layer .main > .main_content > .content .detail_speak .teacher_message > .message_center > p {
+  font-size: 0.32rem;
+  color: #333;
+}
+.layer .main > .main_content > .content .detail_speak .teacher_message > .message_center > p > em {
+  margin-left: 0.3rem;
+  font-size: 0.2rem;
+}
+.layer .main > .main_content > .content .detail_speak .teacher_message > .message_center > p > em > i {
+  color: #f01414;
+  font-size: 0.28rem;
+}
+.layer .main > .main_content > .content .detail_speak .teacher_message > .message_center > span {
+  font-size: 0.24rem;
+}
+.layer .main > .main_content > .content .detail_speak .recomment_course > h4 {
+  height: 1rem;
+  line-height: 0.6rem ;
+  font-size: 0.3rem;
+  color: #666;
+}
+.layer .main > .main_content > .content .detail_speak .recomment_course > .excent_lesson {
+  border-top: none;
+  padding: 0;
+}
+.layer .main > .main_content > .content .video_comment .evaluate_lists {
+  margin-top: 0.2rem;
+}
+.layer .main > .main_content > .content .video_comment .evaluate_lists > .evaluate_list {
+  border-bottom: 1px solid #eee;
+}
+.layer .main > .main_content > .content .video_comment .evaluate_lists > .evaluate_list > .eva_top {
+  position: relative;
+  padding-bottom: 0.2rem;
+}
+.layer .main > .main_content > .content .video_comment .evaluate_lists > .evaluate_list > .eva_top > img {
+  width: 0.8rem;
+  height: 0.8rem;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+.layer .main > .main_content > .content .video_comment .evaluate_lists > .evaluate_list > .eva_top > .eva_top_center {
+  width: 100%;
+  position: absolute;
+  margin-left: 1.2rem;
+  top: 10%;
+}
+.layer .main > .main_content > .content .video_comment .evaluate_lists > .evaluate_list > .eva_top > .eva_top_center > em {
+  font-size: 0.34rem;
+  color: #666;
+  display: block;
+}
+.layer .main > .main_content > .content .video_comment .evaluate_lists > .evaluate_list > .eva_top > .eva_top_center > del {
+  color: #666;
+  display: block;
+  font-size: 0.2rem;
+}
+.layer .main > .main_content > .content .video_comment .evaluate_lists > .evaluate_list > .eva_top > .eva_top_center > i {
+  position: absolute;
+  right: 3%;
+  top: 10%;
+  color: #666;
+  padding-right: 1.5rem;
+}
+.layer .main > .main_content > .content .video_comment .evaluate_lists > .evaluate_list > .eva_content > p {
+  font-size: 0.28rem;
+  color: #32373b;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+}
+.layer .main > .main_content > .content .video_comment .evaluate_lists > .evaluate_list > .eva_content > .comment_imgs {
+  width: 100%;
+  margin-top: 0.2rem;
+}
+.layer .main > .main_content > .content .video_comment .evaluate_lists > .evaluate_list > .eva_content > .comment_imgs > .comment_img_box {
+  width: 45%;
+  height: 1.8rem;
+  display: inline-block;
+  margin-left: 0.1rem;
+  margin-bottom: 0.1rem;
+  overflow: hidden;
+  position: relative;
+  background-color: #333333;
+}
+.layer .main > .main_content > .content .video_comment .evaluate_lists > .evaluate_list > .eva_content > .comment_imgs > .comment_img_box > img {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
