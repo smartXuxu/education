@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+
+    <title></title>
+    <style>
+        a{
+            width: 100%;
+            height: 200px;
+            display: block;
+        }
+        video{
+            width: 100%;
+            height: 200px;
+           /* transform: rotate(90deg);*/
+        }
+    </style>
+</head>
+<body>
+<!--<a href="../img/视频1.mp4" download="视频1.mp4">-->
+    <video  id="media" controls='' width='100%'  name='media'>
+        <source src="../img/视频1.mp4" type='video/mp4'/>
+        <source src="../img/视频1.mp4" type='video/ogg'/>
+        <source src="../img/视频1.mp4" type='video/webm'/>
+    </video>
+<!--</a>-->
+</body>
+<script src="../js/jquery.min.js"></script>
+<script>
+    var media= document.getElementById("media");
+    media.addEventListener("webkitfullscreenchange", function(e)  {
+        if (!document.webkitIsFullScreen) {
+            //退出全屏关闭视频
+            //alert(1);
+            media.style.width=100+"%";
+            media.style.height=200+"px";
+            // media.style.height=document.body.offsetWidth+"px";
+            document.getElementById("media").style.transform='rotate(0deg)'
+        }else{
+            //进入全屏视频
+            //alert(2);
+            console.log(document.documentElement.clientWidth);
+            console.log(document.documentElement.clientHeight);
+            //console.log(document.documentElement.offsetWidth );
+            //console.log(document.documentElement.offsetHeight);
+            var v_width=document.documentElement.clientWidth;
+            var v_height=document.documentElement.clientHeight;
+            media.style.height=v_width+"px";
+            media.style.width=v_height+"px";
+            console.log(media.style.height);
+            console.log(media.style.width);
+            media.style.transform='rotate(90deg)';
+            // media.style.height=media.style.width+"px";
+            //console.log(media.style.width);
+            //console.log(media.style.height);
+            //media.style.transform='rotate(90deg)';
+         /*   document.getElementById("media").style.transform='rotate(90deg)'*/
+        }
+    })
+    function resizeBody() {
+        var bodyHeight = document.documentElement.clientHeight;
+        var bodyWidth = document.documentElement.clientWidth;
+        $("#media").width((bodyHeight) + "px");
+        $("#media").height((bodyWidth) + "px");
+        media.style.transform='rotateY(90deg)';
+        //media.play();
+    }
+    /*
+    * function resizeBody() {
+     var bodyHeight = document.documentElement.clientHeight;
+     var bodyWidth = document.documentElement.clientWidth;
+     $("#video").width((bodyHeight) + "px");
+     $("#video").height((bodyWidth) + "px");
+     var video = document.getElementById("video");
+     video.play();
+     }
+     window.onload = function(){
+     $("html").css("width","100%").css("height","100%");
+     $("body").css("width","100%").css("height","100%");
+     resizeBody();
+     }*/
+    $(function () {
+
+        /*$("#media").on('playing',function(){
+            FullScreen();
+            // exitFullscreen();
+        });*/
+        //进入全屏
+        function FullScreen() {
+            var ele = document.documentElement;
+            if (ele .requestFullscreen) {
+                ele .requestFullscreen();
+                console.log(1);
+            } else if (ele .mozRequestFullScreen) {
+                ele .mozRequestFullScreen();
+                console.log(2);
+            } else if (ele .webkitRequestFullScreen) {
+                ele .webkitRequestFullScreen();
+                console.log(3);
+            }
+        }
+//退出全屏
+        function exitFullscreen() {
+            var de = document;
+            if (de.exitFullscreen) {
+                de.exitFullscreen();
+                console.log(4);
+            } else if (de.mozCancelFullScreen) {
+                de.mozCancelFullScreen();
+                console.log(5);
+            } else if (de.webkitCancelFullScreen) {
+                de.webkitCancelFullScreen();
+                console.log(6);
+            }
+        }
+
+    })
+</script>
+</html>

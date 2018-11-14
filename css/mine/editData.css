@@ -89,3 +89,10 @@
 .style_choose > span > i.active {
   background-color: #f01414;
 }
+.mui-btn-blue,
+.mui-btn-primary,
+input[type=submit] {
+  color: #fff;
+  border: 1px solid #f01414;
+  background-color: #f01414;
+}

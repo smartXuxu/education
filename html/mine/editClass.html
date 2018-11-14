@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+
+    <title>编入课程</title>
+    <link rel="stylesheet" href="../../css/mui.min.css"/>
+    <link rel="stylesheet" href="../../css/base.css"/>
+    <link rel="stylesheet" href="../../css/sweetalert2.css"/>
+    <link rel="stylesheet" href="../../css/iconfont.css"/>
+    <link rel="stylesheet" href="../../css/header.css"/>
+    <link rel="stylesheet" href="../../css/mine/editClass.css"/>
+</head>
+<body>
+<div class="layer">
+    <header id="header" class="mui-bar mui-bar-nav">
+        <i class="mui-icon mui-icon-left-nav mui-pull-left" onclick="back()"></i>
+
+        <h1 class="mui-title">视频编辑</h1>
+    </header>
+    <div class="main">
+        <div class="name">
+            <span>课时名称</span>
+            <input type="text" placeholder="请为视频命名课时名称，最多20字"/>
+        </div>
+        <div class="choose">
+            <span>选择课程</span>
+
+            <p>
+                <em>2016年高三数学下期16年高三数学下期 </em>
+                <i class="mui-icon mui-icon-arrowdown"></i>
+            </p>
+
+            <div id="mask"></div>
+            <div id="choose_share">
+                <h3>请您选择视频所属课程</h3>
+                <ul>
+                    <!--内容从后台获取-->
+                    <li>
+                        <em></em>
+                        <span>2018年高三数学上期2018年高三数学上期</span>
+                    </li>
+                    <li>
+                        <em></em>
+                        <span>2017年高三数学上期</span>
+                    </li>
+                </ul>
+            </div>
+            <del onclick="location.href='create_lesson.html'">创建新课程</del>
+        </div>
+        <div class="read_more">
+            <span class="f_left">查看详细</span>
+            <em class="f_right">展开 <i class="iconfont icon-zhankai"></i></em>
+        </div>
+        <div class="content" style="display: none;">
+            <p>创建日期：2018年2月23日</p>
+
+            <p>所属院校: 华南师范大学附属中学</p>
+
+            <p>所属院校: 华南师范大学附属中学</p>
+
+            <p>所属年级：高三</p>
+
+            <p>所属科目：数学</p>
+
+            <p>所属学期：上期</p>
+
+            <p>发布状态：未发布</p>
+
+            <div class="period">
+                <h2 class="clearfix">已上架 <i>10</i>个课时 <em class="f_right">上架日期</em></h2>
+
+                <p class="clearfix"><i></i>第1课 相交线 <em class="f_right">2018.10.02 10:32</em></p>
+
+                <p class="clearfix"><i></i>第1课 相交线 <em class="f_right">2018.10.02 10:32</em></p>
+
+                <p class="clearfix"><i></i>第1课 相交线 <em class="f_right">2018.10.02 10:32</em></p>
+
+                <p class="clearfix"><i></i>第1课 相交线 <em class="f_right">2018.10.02 10:32</em></p>
+
+                <p class="clearfix"><i></i>第1课 相交线 <em class="f_right">2018.10.02 10:32</em></p>
+            </div>
+        </div>
+        <button class="publish">发布</button>
+    </div>
+</div>
+</body>
+<script src="../../js/mui.min.js"></script>
+<script src="../../js/x_rem.js"></script>
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/base.js"></script>
+<script src="../../js/back.js"></script>
+<script src="../../js/sweetalert2.js"></script>
+<script>
+    $(function () {
+        /*选择课程的 下拉列表*/
+        $(".choose>p>i").click(function () {
+            $("#mask").show();
+            $("#choose_share").show();
+        });
+        /*选择视频 所属课程 单选*/
+        $("#choose_share li").click(function () {
+            $(".choose>p>em").text($(this).children("span").text());
+            $("#mask").hide();
+            $("#choose_share").hide();
+        })
+        var flag = true;
+        $(".read_more>em").click(function () {
+            if (flag) {
+                $(".content").show();
+                flag = false;
+                $(".read_more>em>i").removeClass("iconfont icon-zhankai").addClass("iconfont icon-bofangqizhankai")
+            } else {
+                $(".content").hide();
+                flag = true;
+                $(".read_more>em>i").removeClass("iconfont icon-bofangqizhankai").addClass("iconfont icon-zhankai")
+
+            }
+        })
+    })
+</script>
+</html>

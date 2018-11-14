@@ -22,7 +22,8 @@
       -moz-border-radius: 5px;
       border-radius: 5px;
       -webkit-transform: translateZ(0);
-      -moz-box-shadow:1px 2px 3px #E3E3E3;        -webkit-box-shadow:1px 2px 3px #e3e3e3;
+      -moz-box-shadow:1px 2px 3px #E3E3E3;
+      -webkit-box-shadow:1px 2px 3px #e3e3e3;
       box-shadow:1px 2px 3px #E3E3E3;
       #triangle-topright {
         position: absolute;
@@ -61,9 +62,10 @@
           .icon-82{
             color: #1c89db;
           }
-          del{
+          del,s{
             color:#f01414;
           }
+
         }
       }
       >.info_center{
@@ -278,6 +280,11 @@
       }
   }
 }
+#item2{
+  .request{
+    padding: 0;
+  }
+}
 /*½ÌÊ¦Ö÷Ò³*/
 .teacher_center{
   .student_evaluate{
@@ -290,6 +297,12 @@
         font-size: 0.24rem;
         color:#666;
       }
+    }
+    > .see_more{
+      text-align: center;
+      height: 0.88rem;
+      line-height: 0.88rem;
+      color:#0086b3;
     }
     >.evaluate_list{
       border-bottom: 1px solid #eee;
@@ -306,10 +319,15 @@
           width: 100%;
           position: absolute;
           margin-left: 1.2rem;
-          top: 10%;
+          top: 3%;
           >em{
             font-size: 0.34rem;
             color:#666;
+            display: block;
+          }
+          >del{
+            font-size: 0.4rem;
+            color:#f01414;
           }
           >i{
             padding-right: 1.5rem;
@@ -318,6 +336,7 @@
       }
       >.eva_content{
         >p{
+          margin: 0.2rem 0;
           font-size: 0.28rem;
           color:#32373b;
           overflow: hidden;

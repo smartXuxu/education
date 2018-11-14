@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+
+    <title>我的视频 课程编辑</title>
+    <link rel="stylesheet" href="../../css/mui.min.css"/>
+    <link rel="stylesheet" href="../../css/base.css"/>
+    <link rel="stylesheet" href="../../css/sweetalert2.css"/>
+    <link rel="stylesheet" href="../../css/iconfont.css"/>
+    <link rel="stylesheet" href="../../css/header.css"/>
+    <link rel="stylesheet" href="../../css/mine/my_vodeo_class_edit.css"/>
+</head>
+<body>
+<div class="layer">
+    <header id="header" class="mui-bar mui-bar-nav">
+        <i class="mui-icon mui-icon-left-nav mui-pull-left" onclick="back()"></i>
+        <h1 class="mui-title">课程编辑</h1>
+    </header>
+    <div class="main">
+            <div class="tit">2018年高三数学上期</div>
+           <div class="info">
+               <p class="clearfix">
+                   <span>创建时间</span>
+                   <em>2018.02.23  15:23</em>
+                   <i class="f_right" onclick="location.href='./create_lesson.html'">
+                       <del class="iconfont icon-weibiaoti1"></del>课程修改
+                   </i>
+               </p>
+               <p class="clearfix status">
+                   <span>课程状态</span>
+                   <!--判断是否结课-->
+                   <em class="blue">未结课</em>
+                   <i class="f_right session ">
+                       结  课
+                   </i>
+               </p>
+               <div id="mask"></div>
+               <div id="session">
+                   <h3>结课状态的课程将禁止继续上架课时</h3>
+                   <div class="radio_button">
+                       <button class="quit">取消</button>
+                       <button class="confirm">确定</button>
+                   </div>
+               </div>
+               <p class="clearfix">
+                   <span>课程状态</span>
+                   <em>已发布 2018.02.23 16:00</em>
+                   <i class="f_right gray" >
+                       课程修改
+                   </i>
+               </p>
+
+           </div>
+        <div class="no_putway">
+            <p class="clearfix">
+                <span class="put_way">2个课时未上架</span>
+
+                <i class="f_right show" >
+                    创建课时
+                </i>
+            </p>
+            <p class="clearfix status">
+                <span>2018.02.23</span>
+                <em class="blue">AAAAAAAAAAAA</em>
+                <i class="f_right red">
+                    上  架
+                </i>
+            </p>
+            <p class="clearfix status">
+                <span>2018.02.23</span>
+                <em class="blue">名称名称名称名称</em>
+                <i class="f_right red">
+                    上  架
+                </i>
+            </p>
+        </div>
+        <div class="has_put_way">
+            <h3 class="clearfix">已上架 <s>10</s> 个课时
+                <em class="f_right">上架日期</em>
+            </h3>
+            <p>
+                <del data-id="1"></del>
+                <span>第1课  相交线第1课  相交线第1课  相交线第1课  相交线第1课  相交线</span>
+                <i class="f_right">2018.10.30 10:32</i>
+            </p>
+            <p>
+                <del data-id="2"></del>
+                <span>第1课  相交线</span>
+                <i class="f_right">2018.10.30 10:32</i>
+            </p>
+            <p>
+                <del data-id="3"></del>
+                <span>第1课  相交线</span>
+                <i class="f_right">2018.10.3 10:32</i>
+            </p>
+            <div class="operation">
+                <button class="all_choose">全选</button>
+                <button class="sold_out">下架</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="../../js/mui.min.js"></script>
+<script src="../../js/x_rem.js"></script>
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/base.js"></script>
+<script src="../../js/back.js"></script>
+<script src="../../js/sweetalert2.js"></script>
+<script>
+    $(function (){
+        /*结课*/
+        $(".session").click(function () {
+            $("#mask").show();
+            $("#session").show();
+        });
+        $(".quit").click(function () {
+            $("#mask").hide();
+            $("#session").hide();
+        })
+        $(".confirm").click(function () {
+            /*确定结课*/
+            $("#mask").hide();
+            $("#session").hide();
+        })
+        /*全选*/
+        var all_choose=true;
+        $(".all_choose").click(function () {
+            if(all_choose){
+                $(".has_put_way>p>del").text("√");
+                $(".has_put_way>p>del").addClass("active");
+                all_choose=false;
+            }else{
+                $(".has_put_way>p>del").text("")
+                $(".has_put_way>p>del").removeClass("active");
+                all_choose=true;
+            }
+        })
+        /*单选 下架*/
+        var falg=true;
+        $(".has_put_way>p").click(function () {
+            if(falg){
+                $(this).children("del").text("√");
+                $(this).children("del").addClass("active");
+                falg=false;
+            }else{
+                $(this).children("del").text("");
+                $(this).children("del").removeClass("active");
+                falg=true;
+            }
+
+        })
+        var str=[];
+        $(".sold_out").click(function () {
+            var active=$(".active");
+            for(var i=0;i<active.length;i++){
+                //console.log($(".active")[i]);
+                var that=active[i];
+               str.push(that.getAttribute("data-id"));
+            }
+            console.log(str);
+        })
+
+    })
+</script>
+</html>

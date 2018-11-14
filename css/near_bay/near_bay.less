@@ -14,6 +14,7 @@
     left: 3%;
     top: -2%;
     font-size: 0.34rem;
+    width: 2rem;
     del{
       position: absolute;
       top: 75%;
@@ -23,7 +24,7 @@
     color:#fff;
     position: absolute;
     left: 20%;
-    top:10%;
+    top:16%;
     width: 70%;
   }
   em{
@@ -101,9 +102,12 @@
     .list_teacher{
       width: 100%;
       position: relative;
-      padding-bottom: 0.6rem;
+      padding-bottom: 0.8rem;
       padding-top: 0.2rem;
       border-bottom: 1px solid #eeeeee;
+      &:first-of-type{
+        padding-top: 0;
+      }
       >img {
         width: 1rem;
         height: 1rem;
@@ -132,9 +136,11 @@
             border-radius: 3px;
             padding:0.01rem 0.1rem;
             border:1px solid #6cb628;
+
           }
         }
         .list_bottom{
+          height: 0.6rem;
           font-size: 0.24rem;
           margin-top: 0.1rem;
         }

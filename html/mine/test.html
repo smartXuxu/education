@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> html 转为图片</title>
+</head>
+<style>
+    .container{
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+    h3,p{
+        width: 100%;
+        text-align: center;
+    }
+    ol{
+        width: 100%;
+        padding: 0;
+    }
+    li{
+        text-align: center;
+        list-style: none;
+    }
+    img{
+        width: 200px;
+        height: 150px;
+        margin: 0 auto;
+    }
+</style>
+<body>
+<div class="container">
+    <h3>将此网页转换为一张图片</h3>
+    <p>
+        前往
+        <a href="https://html2canvas.hertzen.com/dist/html2canvas.min.js" target="_blank">
+            此处
+        </a>
+        下载html2canvas.js
+    </p>
+    <img src="http://img4.imgtn.bdimg.com/it/u=2153706307,1786056933&fm=26&gp=0.jpg" alt="">
+    <ol>
+        <li>内容一</li>
+        <li>内容二</li>
+        <li>内容三</li>
+        <li>内容四</li>
+        <li>内容五</li>
+    </ol>
+</div>
+<p id="save">点此保存图片</p>
+<p id="look">点此预览图片</p>
+<hr>
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+<script>
+    save.onclick = function(){
+        html2canvas(document.querySelector(".container"),{
+            useCORS:true,
+            logging:true,
+        }).then(canvas => {
+            var url = canvas.toDataURL('image/png')
+            var a = document.createElement('a')
+            var event = new MouseEvent('click')
+            a.download = name || '下载图片名称'
+        a.href = url
+        a.dispatchEvent(event)
+    });
+    }
+    look.onclick = function(){
+        html2canvas(document.querySelector(".container"),{
+            useCORS:true,
+            logging:true,
+        }).then(canvas => {
+            document.body.appendChild(canvas);
+    });
+    }
+</script>
+</body>
+</html>

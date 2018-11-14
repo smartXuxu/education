@@ -52,12 +52,12 @@
         .main{
             padding-top: 1.8rem;
         }
-        .hot_search{
+        .hot_search,.search_lately{
             width: 100%;
             height:auto;
             padding:0 0.3rem;
         }
-        .hot_tit{
+        .hot_tit,.search_lately>h2{
             position: relative;
 
             font-size: 0.32rem;
@@ -66,7 +66,7 @@
             color:#666;
 
         }
-        .hot_tit>span{
+        .hot_tit>span,.search_lately_content>span{
             margin-left: .2rem;
         }
         .hot_tit>i{
@@ -79,7 +79,7 @@
             margin-left: 0.3rem;
              
         }
-        .content span{
+        .content span,.search_lately_content>span{
             padding: 0.1rem;
             color:#999;
             margin-right: 0.1rem;
@@ -125,7 +125,13 @@
                 <!--tianco-->
             </div>
         </div>
-
+        <div class="search_lately">
+            <!-- 内容-->
+            <h2>热门搜索</h2>
+            <div class="search_lately_content">
+                <span>高三数学</span>
+            </div>
+        </div>
         <div class="excent_lesson">
             <ul>
                 <li>
@@ -205,8 +211,13 @@
 
 <script>
     $(function(){
-        /*都会和localStorage打交道   约定一个键  leTaoHistory */
+        /*热门搜索*/
+        $(".search_lately_content>span").click(function () {
+            $("#search").val($(this).text());
+        });
+        /* 点击搜索按钮，发送请求*/
 
+        /*都会和localStorage   约定一个键  leTaoHistory */
         /*1渲染列表*/
         /*获取*/
         var historyList = getHistoryData();

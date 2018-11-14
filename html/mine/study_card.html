@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <title>学习记录卡片</title>
+    <link rel="stylesheet" href="../../css/mui.min.css"/>
+    <link rel="stylesheet" href="../../css/base.css"/>
+    <link rel="stylesheet" href="../../css/sweetalert2.css"/>
+    <link rel="stylesheet" href="../../css/iconfont.css"/>
+    <style>
+        html,body,.layer{
+            height: 100%;
+            width: 100%;
+            -webkit-background-size: 100%;
+            background-size: 100%;
+            background-image: url("../../img/card_bg.png");
+        }
+        header{
+            padding-top: 0.6rem;
+            padding-left: 0.3rem;
+        }
+        header>span{
+           color:#fff;
+            font-size: 0.6rem;
+        }
+        .total_info{
+            margin-top: 0.5rem;
+            background-color: rgba(0,0,0, 0.1);
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            border-radius: 10px;
+            position: relative;
+            width: 90%;
+            padding: 0.3rem;
+            left: 5%;
+            text-align: center;
+        }
+        .total_info>h3, .total_info>p{
+            color:#d1dfe9;
+        }
+        .total_info>h3{
+            font-size: 0.36rem;
+        }
+        .total_info>p{
+            margin-top: 0.1rem;
+            font-size: 0.3rem;
+        }
+        .total_info>ul{
+            height: auto;
+            padding-bottom: 0.4rem;
+        }
+        .total_info>ul>li{
+            float: left;
+            width: 33%;
+            height: 1.2rem;
+            text-align: center;
+            color: #ffffff;
+            padding:0.4rem 0;
+            position: relative;
+        }
+        .total_info>ul>li:after{
+            position: absolute;
+            height: 0.6rem;
+            background-color: #fff;
+            width: 1px;
+            color:#fff;
+            left: 0%;
+            top: 52%;
+            content:"";
+        }
+        .total_info>ul>li:first-of-type:after{
+            height: 0;
+            width: 0;
+        }
+        .total_info>ul>li>span{
+            display: block;
+            padding-bottom: 0.1rem;
+
+        }
+        .proverb{
+            margin-top: 0.5rem;
+            padding:0 0.3rem 0 1.2rem;
+            text-align: left;
+
+        }
+        .proverb>p{
+            color:#fff;
+            font-size: 0.34rem;
+
+        }
+        .proverb>p:last-of-type{
+            font-size: 0.24rem;
+        }
+        .lately_study{
+            background-color: rgba(0, 0, 0, .05);
+            position: relative;
+            width: 90%;
+            left: 5%;
+            margin-top: 0.6rem;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+        }
+        .lately_study>h3{
+            height: 0.92rem;
+            line-height: 0.92rem;
+            padding-left: 0.3rem;
+            border-bottom: 1px solid #dcfaa4;
+            font-size: 0.32rem;
+            color: #ffffff;
+        }
+        .lately_study>.study{
+            height: 1.6rem;
+            position: relative;
+            padding:0 0.3rem;
+        }
+        .lately_study>.study>span{
+            width: 30%;
+            position: absolute;
+            top: 20%;
+            left: 3%;
+            z-index:1;
+            background-color: #4e5782;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+            color:#e3e4e9;
+
+        }
+        .lately_study>.study>span>em,.lately_study>.study>span>del{
+            display: block;
+            text-align: center;
+            font-size: 0.28rem;
+            padding-top: 0.1rem;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            word-break: break-all;
+        }
+        .lately_study>.study>span>del{
+            font-size: 0.24rem;
+            padding-top: 0;
+            padding-bottom: 0.1rem;
+
+        }
+        .lately_study>.study>.center{
+            display: inline-block;
+            width: 48%;
+            font-size: .28rem;
+            color:#fff;
+            position: absolute;
+            margin-left: 31%;
+            top: 28%;
+            z-index: 1;
+        }
+        .lately_study>.study>.center>i{
+            display: block;
+            font-size: .28rem;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            word-break: break-all;
+        }
+        .lately_study>.study>.center>span{
+            font-size: 0.24rem;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            word-break: break-all;
+        }
+        .lately_study>.study>.right{
+            width: 17%;
+            z-index: 1;
+            position: absolute;
+            right: 0%;
+            display: inline-block;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            word-break: break-all;
+            top: 45%;
+            color: #ffffff;
+        }
+        .more{
+            text-align: center;
+            margin-top: 0.3rem;
+            color:#fff;
+        }
+        .more>p{
+            font-size: 0.28rem;
+            margin-bottom: 0.1rem;
+            color:#fff;
+        }
+        .more>h4{
+            font-size: 0.3rem;
+            color:#ffa074;
+            margin-bottom: 0.1rem;
+        }
+        .more>.down{
+            width: 3rem;
+            height: 1.2rem;
+            background-color: #a1ccc6;
+            text-align: center;
+            margin:0 auto;
+            position: relative;
+            margin-top: 0.2rem;
+        }
+        .more>.down>i{
+            width: 1.2rem;
+            line-height: 1.2rem;
+            height: 1.2rem;
+            font-size: 0.6rem;
+        }
+        .more>.down>i:after{
+            position: absolute;
+            height: 1.2rem;
+            width: 1px;
+            left: 35%;
+            background-color: #dcfaa4;
+            color:#dcfaa4;
+            content:'';
+        }
+        .more>.down>span{
+            width: 1.8rem;
+            padding-top: 0.1rem;
+            font-size: 0.24rem;
+        }
+        .more>.down>span>em{
+            display: block;
+
+        }
+        .footer{
+            width: 100%;
+            height: 0.8rem;
+            position: relative;
+            margin-top: 0.2rem;
+        }
+        .footer>#save,.footer>#card{
+            position: absolute;
+            top: 1%;
+            width: 25%;
+            height: 100%;
+            line-height: 0.8rem;
+            background-color: rgba(0,0,0,.3);
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+            text-align: center;
+            color: #ffffff;
+
+        }
+        .footer>#save>em,.footer>#card>em{
+            padding-right: 0.1rem;
+        }
+        .footer>#save{
+            left: 15%;
+        }
+        .footer>#card{
+            right: 15%;
+        }
+    </style>
+</head>
+<body>
+<div class="layer">
+        <header>
+            <span class="mui-icon mui-icon-back" onclick="back()"></span>
+        </header>
+    <div class="total_info">
+        <h3>昵称</h3>
+        <p>我在猴姆</p>
+        <ul class="lesson clearfix">
+            <li>
+                <span>今日听课</span>
+                <em><i>75</i>分钟</em>
+            </li>
+            <li>
+                <span>本月听课</span>
+                <em><i>16</i>天</em>
+            </li>
+            <li>
+                <span>累计听课</span>
+                <em><i>65</i>小时</em>
+            </li>
+        </ul>
+    </div>
+    <div class="proverb">
+        <p>“即使现在，  对手也不停地翻动书页”</p>
+        <p>Even if the present, the match does not stop changes the page</p>
+    </div>
+    <div class="lately_study">
+        <h3>我最近的学习</h3>
+        <div class="study">
+            <span>
+                <em>物理</em>
+                <del>主讲：赵权权赵权权</del>
+            </span>
+            <div class="center">
+                <i>2018年高三上期物理三上期物理</i>
+                <span>华南师范大学附属中学师范大学附属中学</span>
+            </div>
+            <div class="right">学习中学习中</div>
+        </div>
+
+    </div>
+    <div class="more">
+        <p>更多名师名校教学课堂</p>
+        <h4>免费同步</h4>
+        <div class="down">
+            <i class="iconfont icon-xiazai2"></i>
+            <span>
+                <em>猴姆教学</em>
+                <i>APP</i>
+            </span>
+        </div>
+    </div>
+    <div class="footer">
+        <span id="save"><em class="iconfont icon-xiazai1"></em>保存图片</span>
+        <span id="card"><em class="iconfont icon-zhuanfa1"></em>打卡得积分</span>
+    </div>
+
+
+</div>
+</body>
+<script src="../../js/mui.min.js"></script>
+<script src="../../js/x_rem.js"></script>
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/base.js"></script>
+<script src="../../js/back.js"></script>
+<script src="../../js/sweetalert2.js"></script>
+<script src="../../js/html2_canvas.js"></script>
+<script>
+    save.onclick = function(){
+        html2canvas(document.querySelector(".layer"),{
+            useCORS:true,
+            logging:true,
+        }).then(canvas => {
+            var url = canvas.toDataURL('image/png')
+            var a = document.createElement('a')
+            var event = new MouseEvent('click')
+            a.download = name || '猴姆教育'
+        a.href = url
+        a.dispatchEvent(event)
+    });
+    }
+</script>
+</html>

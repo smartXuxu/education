@@ -60,7 +60,8 @@
 .layer .main .message_info .teacher_info_center em .icon-82 {
   color: #1c89db;
 }
-.layer .main .message_info .teacher_info_center em del {
+.layer .main .message_info .teacher_info_center em del,
+.layer .main .message_info .teacher_info_center em s {
   color: #f01414;
 }
 .layer .main .message_info > .info_center {
@@ -266,6 +267,9 @@
   font-size: 0.24rem;
   color: #666;
 }
+#item2 .request {
+  padding: 0;
+}
 /*��ʦ��ҳ*/
 .teacher_center .student_evaluate {
   width: 100%;
@@ -278,6 +282,12 @@
 .teacher_center .student_evaluate > h2 > em {
   font-size: 0.24rem;
   color: #666;
+}
+.teacher_center .student_evaluate > .see_more {
+  text-align: center;
+  height: 0.88rem;
+  line-height: 0.88rem;
+  color: #0086b3;
 }
 .teacher_center .student_evaluate > .evaluate_list {
   border-bottom: 1px solid #eee;
@@ -296,16 +306,22 @@
   width: 100%;
   position: absolute;
   margin-left: 1.2rem;
-  top: 10%;
+  top: 3%;
 }
 .teacher_center .student_evaluate > .evaluate_list > .eva_top > .eva_top_center > em {
   font-size: 0.34rem;
   color: #666;
+  display: block;
+}
+.teacher_center .student_evaluate > .evaluate_list > .eva_top > .eva_top_center > del {
+  font-size: 0.4rem;
+  color: #f01414;
 }
 .teacher_center .student_evaluate > .evaluate_list > .eva_top > .eva_top_center > i {
   padding-right: 1.5rem;
 }
 .teacher_center .student_evaluate > .evaluate_list > .eva_content > p {
+  margin: 0.2rem 0;
   font-size: 0.28rem;
   color: #32373b;
   overflow: hidden;

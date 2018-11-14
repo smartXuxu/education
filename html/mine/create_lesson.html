@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <title>创建 修改课程</title>
+
+    <link rel="stylesheet" href="../../css/mui.min.css"/>
+    <link rel="stylesheet" href="../../css/base.css"/>
+    <link rel="stylesheet" href="../../css/sweetalert2.css"/>
+    <link rel="stylesheet" href="../../css/iconfont.css"/>
+    <link rel="stylesheet" href="../../css/header.css"/>
+    <link rel="stylesheet" href="../../css/mine/create_lesson.css"/>
+</head>
+<body>
+<div class="layer">
+    <div id="mask"></div>
+    <div id="teach_year">
+        <h3>请选择课程所属学年</h3>
+        <ul>
+            <li><em>√</em><i>2018年 </i></li>
+            <li><em></em> <i>2017年</i></li>
+            <li><em></em> <i>2016年</i></li>
+            <li><em></em> <i>2015年</i></li>
+            <li><em></em> <i>2014年</i></li>
+        </ul>
+    </div>
+    <div id="term">
+        <h3>请选择课程所属学期</h3>
+        <ul>
+            <li><em>√</em><i>上学期 </i></li>
+            <li><em></em> <i>下学期</i></li>
+        </ul>
+    </div>
+    <header id="header" class="mui-bar mui-bar-nav">
+        <i class="mui-icon mui-icon-left-nav mui-pull-left" onclick="back()"></i>
+        <h1 class="mui-title">课程详情</h1>
+    </header>
+    <div class="main">
+        <p>
+            <span>所属学校</span>
+            <em>洛浦中学</em>
+        </p>
+        <h4>学校需与教师认证的学校保持一致，如需修改，请重新进行教师认证</h4>
+        <div class="content">
+            <a class="year_teach clearfix" href="javascript:;">
+                <span>所属学年</span>
+                <em></em>
+                <i class="mui-icon mui-icon-arrowright f_right"></i>
+            </a>
+            <a class="grade_teach clearfix" href="teach_grade.html">
+                <span>所属年级</span>
+                <em></em>
+                <i class="mui-icon mui-icon-arrowright f_right"></i>
+            </a>
+            <a class="subject_teach clearfix" href="teach_subject.html">
+                <span>所属学科</span>
+                <em></em>
+                <i class="mui-icon mui-icon-arrowright f_right"></i>
+            </a>
+            <a class="term clearfix" href="javascript:;">
+                <span>所属学期</span>
+                <em></em>
+                <i class="mui-icon mui-icon-arrowright f_right"></i>
+            </a>
+        </div>
+        <div class="lesson_name">
+           <h4>课程名称</h4>
+            <input type="text" placeholder="可不填,最多10个字符"/>
+            <h4>课程版本</h4>
+            <input type="text" placeholder="如人教版，可不填"/>
+            <h4>课程介绍</h4>
+            <textarea name="" placeholder="请简单的介绍一下课程，可不填写内容"></textarea>
+        </div>
+        <button class="sure">确定</button>
+    </div>
+</div>
+</body>
+<script src="../../js/mui.min.js"></script>
+<script src="../../js/x_rem.js"></script>
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/base.js"></script>
+<script src="../../js/back.js"></script>
+<script src="../../js/sweetalert2.js"></script>
+<script>
+    $(function () {
+        /*课程详情 可展示 可修改
+        * my_video_class_edit.html
+        * educational_administration.html 课程编辑*/
+
+        $(".year_teach").click(function () {
+            $("#mask").show();
+            $("#teach_year").show();
+
+        })
+        $(".term").click(function () {
+            $("#mask").show();
+            $("#term").show();
+        });
+        $("#teach_year li").click(function () {
+            $(this).children("em").text("√");
+            $(this).siblings().children("em").text("");
+            console.log($(this).children("i").text());
+            $(".year_teach>em").text($(this).children("i").text());
+            $("#mask").hide();
+            $("#teach_year").hide();
+        });
+        $("#term li").click(function () {
+            $(this).children("em").text("√");
+            $(this).siblings().children("em").text("");
+            console.log($(this).children("i").text());
+            $(".term>em").text($(this).children("i").text());
+            $("#mask").hide();
+            $("#term").hide();
+        })
+        let teach_grade=localStorage.getItem("teach_grade");
+        if(teach_grade){
+            $(".grade_teach>em").text(teach_grade);
+        }
+        let teach_subject=localStorage.getItem("teach_subject");
+        if(teach_subject){
+            $(".subject_teach>em").text(teach_subject);
+        }
+
+    })
+</script>
+</html>

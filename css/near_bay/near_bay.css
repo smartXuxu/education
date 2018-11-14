@@ -15,6 +15,7 @@
   left: 3%;
   top: -2%;
   font-size: 0.34rem;
+  width: 2rem;
 }
 .layer > .near_header i del {
   position: absolute;
@@ -24,7 +25,7 @@
   color: #fff;
   position: absolute;
   left: 20%;
-  top: 10%;
+  top: 16%;
   width: 70%;
 }
 .layer > .near_header em {
@@ -96,9 +97,12 @@
 .main .teacher_lists .list_teacher {
   width: 100%;
   position: relative;
-  padding-bottom: 0.6rem;
+  padding-bottom: 0.8rem;
   padding-top: 0.2rem;
   border-bottom: 1px solid #eeeeee;
+}
+.main .teacher_lists .list_teacher:first-of-type {
+  padding-top: 0;
 }
 .main .teacher_lists .list_teacher > img {
   width: 1rem;
@@ -132,6 +136,7 @@
   border: 1px solid #6cb628;
 }
 .main .teacher_lists .list_teacher .list_center .list_bottom {
+  height: 0.6rem;
   font-size: 0.24rem;
   margin-top: 0.1rem;
 }

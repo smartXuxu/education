@@ -1,0 +1,127 @@
+.main {
+  padding-top: 1.6rem;
+  background-color: #fff;
+}
+.main .sure {
+  height: 0.88rem;
+  line-height: 0.88rem;
+  position: fixed;
+  z-index: 1;
+  bottom: 0;
+  width: 100%;
+  background-color: #f01414;
+  color: #fff;
+  font-size: 0.3rem;
+  text-align: center;
+}
+.main > p {
+  height: 0.88rem;
+  line-height: 0.88rem;
+  padding-left: 0.3rem;
+  font-size: 0.28rem;
+  color: #666;
+}
+.main > p > span {
+  width: 1.6rem;
+  font-size: 0.3rem;
+  color: #333;
+}
+.main > h4 {
+  padding: 0.3rem;
+  line-height: 0.4rem;
+  font-size: 0.22rem;
+  background-color: #f4f4f4;
+}
+.main .content > a {
+  width: 100%;
+  display: block;
+  padding: 0 0.3rem;
+  height: 0.88rem;
+  line-height: 0.88rem;
+  font-size: 0.3rem;
+  border-bottom: 1px solid #eee;
+}
+.main .content > a > span {
+  width: 1.6rem;
+}
+.main .content > a em {
+  color: #999;
+  font-size: 0.28rem;
+}
+.main .content > a > i {
+  height: 0.88rem;
+  line-height: 0.88rem;
+  vertical-align: middle;
+}
+.main > .lesson_name {
+  padding-bottom: 1rem;
+}
+.main > .lesson_name > h4 {
+  height: 0.88rem;
+  line-height: 0.88rem;
+  font-size: 0.3rem;
+  background-color: #f4f4f4;
+  padding-left: 0.3rem;
+}
+.main > .lesson_name > input {
+  margin-bottom: 0;
+}
+.main > .lesson_name > textarea {
+  height: 3rem;
+  padding: 0.3rem;
+}
+#mask {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: 0.3;
+  background-color: #000000;
+  z-index: 5;
+  display: none;
+}
+#teach_year,
+#term {
+  display: none;
+  position: fixed;
+  left: 50%;
+  width: 80%;
+  top: 45%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  z-index: 6;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  font-size: 0.3rem;
+  color: #666666;
+}
+#teach_year > h3,
+#term > h3 {
+  text-align: center;
+  height: 1rem;
+  line-height: 1rem;
+}
+#teach_year > ul li,
+#term > ul li {
+  height: 0.88rem;
+  line-height: 0.88rem;
+  font-size: 0.3rem;
+  color: #666;
+}
+#teach_year > ul li > em,
+#term > ul li > em {
+  display: inline-block;
+  vertical-align: middle;
+  width: 0.5rem;
+  line-height: 0.5rem;
+  height: 0.5rem;
+  border: 1px solid #b5b5b5;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  margin-left: 20%;
+  margin-right: 5%;
+  padding-left: 0.1rem;
+}

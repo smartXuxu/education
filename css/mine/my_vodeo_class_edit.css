@@ -1,0 +1,182 @@
+.main {
+  padding-top: 1.6rem;
+  background-color: #fff;
+}
+.main #mask {
+  position: fixed;
+  left: 0%;
+  top: 0%;
+  background-color: rgba(0, 0, 0, 0.3);
+  height: 100%;
+  width: 100%;
+  z-index: 3;
+  display: none;
+}
+.main #session {
+  display: none;
+  position: absolute;
+  left: 50%;
+  width: 80%;
+  height: auto;
+  background-color: #fff;
+  top: 50%;
+  z-index: 4;
+  transform: translate(-50%, -50%);
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+.main #session > h3 {
+  height: 1.4rem;
+  line-height: 1.4rem;
+  text-align: center;
+  font-size: 0.3rem;
+  border-bottom: 1px solid #eeeeee;
+}
+.main #session > .radio_button {
+  height: 1rem;
+  line-height: 1rem;
+}
+.main #session > .radio_button > button {
+  width: 49%;
+  height: 1rem;
+  line-height: 1rem;
+  display: inline-block;
+  color: #008aff;
+}
+.main #session > .radio_button > button.quit {
+  border-right: 1px solid #eeeeee;
+}
+.main .tit {
+  height: 1rem;
+  line-height: 1rem;
+  text-align: center;
+  font-size: 0.32rem;
+  border-bottom: 0.2rem solid #eeeeee;
+}
+.main > .info,
+.main > .no_putway {
+  border-bottom: 0.2rem solid #eeeeee;
+  padding: 0 0.3rem;
+}
+.main > .info > p,
+.main > .no_putway > p {
+  height: 0.88rem;
+  line-height: 0.88rem;
+  font-size: 0.3rem;
+  color: #666666;
+}
+.main > .info > p > span,
+.main > .no_putway > p > span {
+  width: 1.8rem;
+}
+.main > .info > p > span.put_way,
+.main > .no_putway > p > span.put_way {
+  width: 3rem;
+}
+.main > .info > p > em,
+.main > .no_putway > p > em {
+  font-size: 0.28rem;
+}
+.main > .info > p > em.blue,
+.main > .no_putway > p > em.blue {
+  color: #008aff;
+}
+.main > .info > p > i,
+.main > .no_putway > p > i {
+  height: 0.5rem;
+  line-height: 0.5rem;
+  font-size: 0.24rem;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  border: 1px solid #c5c5c5;
+  text-align: center;
+  width: 1.6rem;
+  margin-top: 2% ;
+}
+.main > .info > p > i.gray,
+.main > .no_putway > p > i.gray {
+  background-color: #eeeeee;
+  border: none;
+}
+.main > .info > p > i.red,
+.main > .no_putway > p > i.red {
+  color: #f01414;
+}
+.main > .has_put_way .operation {
+  position: fixed;
+  bottom: 0;
+  height: 0.88rem;
+  line-height: 0.88rem;
+  width: 100%;
+  background-color: #eee;
+  color: #f01414;
+}
+.main > .has_put_way .operation > .all_choose {
+  width: 20%;
+  height: 0.88rem;
+  line-height: 0.88rem;
+  background-color: #f01414;
+  color: #ffffff;
+  border: none;
+  border-radius: 0%;
+}
+.main > .has_put_way .operation > .sold_out {
+  height: 0.88rem;
+  line-height: 0.88rem;
+  width: 78%;
+  border: none;
+  border-radius: 0%;
+  background-color: #eee;
+  text-align: center;
+  color: #f01414;
+}
+.main > .has_put_way > h3 {
+  padding: 0 0.3rem;
+  height: 0.88rem;
+  line-height: 0.88rem;
+  font-size: 0.3rem;
+}
+.main > .has_put_way > h3 > s {
+  color: #0082df;
+}
+.main > .has_put_way > h3 > em {
+  font-size: 0.28rem;
+  color: #666666;
+}
+.main > .has_put_way > p {
+  padding: 0 0.3rem;
+  height: 0.88rem;
+  line-height: 0.88rem;
+  font-size: 0.28rem;
+  color: #666;
+  position: relative;
+}
+.main > .has_put_way > p > del {
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  line-height: 0.5rem;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  padding-left: 2%;
+  margin-right: 0.3rem;
+  vertical-align: middle;
+  border: 1px solid #cccccc;
+}
+.main > .has_put_way > p span {
+  position: absolute;
+  margin-left: 0.8rem;
+  top: 0%;
+  width: 50%;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+}
+.main > .has_put_way > p > i {
+  font-size: 0.24rem;
+}

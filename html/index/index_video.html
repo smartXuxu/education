@@ -18,9 +18,13 @@
 <body style="background-color:#fff;">
 <div class="layer">
     <div class="video_header">
-        <i onclick="back()" class="mui-icon mui-icon-back"></i>
+        <i onclick="location.href='./index.html'" class="mui-icon mui-icon-back"></i>
         <div class="video_play">
-            <img src="../../img/index_video.jpg" alt=""/>
+            <video  controls='' width='100%'  name='media'>
+                <source src="../../img/视频1.mp4" type='video/mp4'/>
+                <source src="../../img/视频1.mp4" type='video/ogg'/>
+                <source src="../../img/视频1.mp4" type='video/webm'/>
+            </video>
         </div>
     </div>
     <div class="main">
@@ -52,14 +56,14 @@
                     <em class="iconfont icon-star"></em>
                     <span>收藏</span>
                 </div>
-                <div class="share">
+              <!--  <div class="share">
                     <em class="iconfont icon-tubiaozhizuo-"></em>
                     <span>分享</span>
                 </div>
                 <div class="download">
                     <em class="iconfont icon-xiazai1"></em>
                     <span>下载</span>
-                </div>
+                </div>-->
             </div>
             <div class="content">
                 <!--全部-->
@@ -119,6 +123,7 @@
                     </ul>
                 </div>
                 <div id="item2" class="mui-control-content detail_speak ">
+                   <!--详情-->
                     <div class="detail">
                       <h3>2018年高三语文上册</h3>
                       <p>——广州XXXXXXX附中</p>
@@ -132,17 +137,46 @@
                             <!--五角星 渲染 判断有9.8 首字母 匹配-->
                             <p>陈漂亮
                                 <em>评分9.8
-                                    <i class="iconfont icon-star"></i>
-                                    <i class="iconfont icon-star"></i>
-                                    <i class="iconfont icon-star"></i>
-                                    <i class="iconfont icon-star"></i>
-                                    <i class="iconfont icon-star"></i>
+                                    <i>★</i>
+                                    <i>★</i>
+                                    <i>★</i>
+                                    <i>★</i>
+                                    <i>★</i>
+
+                                  <!--  <i class="iconfont icon-star"></i>-->
                                 </em>
                             </p>
                             <span>华南师范大学附属中学数学教师</span>
                         </div>
                         <a href="../index/teacher_index.html" class="teacher_more mui-icon mui-icon-forward"></a>
                     </div>
+                    <!--评价教师-->
+                    <div class="comment_teacher">
+                        <h3>评价 <i>（121）</i>条</h3>
+                        <div class="comment_teacher_lists">
+                            <div class="teacher_list">
+                                <div class="teacher_top">
+                                    <img src="../../img/focus-img1.png" alt=""/>
+                                    <div class="center">
+                                        <span>小南国百宝</span>
+                                        <em>★</em>
+                                        <em>★</em>
+                                        <em>★</em>
+                                        <em>★</em>
+                                        <em>★</em>
+                                    </div>
+                                    <del>2018-03-14 08:30</del>
+                                </div>
+                            <div class="middle">
+                                很喜欢老师讲的课，上课幽师讲的课，上课幽师讲的课，上课幽默又非常的认真， 又不懂的老师会很耐心的帮助解答。非常好！
+                            </div>
+                            </div>
+                        </div>
+                        <!--查看更多-->
+                        <div class="see_more" onclick="location.href='comment_lists.html'">更多>></div>
+                    </div>
+
+
                     <div class="recomment_course">
                         <h4>推荐课程</h4>
                         <div class="excent_lesson">
@@ -199,11 +233,12 @@
                                     </a>
                                 </li>
                             </ul>
+
                         </div>
                     </div>
                 </div>
                 <div id="item3" class="mui-control-content video_comment">
-                    <div class="submit_comment" onclick="location.href='./publish/publish_request.html'">
+                    <div class="submit_comment" onclick="location.href='./write_video_comment.html'">
                         <i></i>
                     </div>
                     <!--评论-->
@@ -235,11 +270,11 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                       </div>
 
                 </div>
                 <div id="item4" class="mui-control-content ">
-                    <div class="ask_request" onclick="location.href='./publish/publish_request.html'">
+                    <div class="ask_request" onclick="location.href='../publish/publish_request.html'">
                         <i></i>
                     </div>
                     <div class="request">

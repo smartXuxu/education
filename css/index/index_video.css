@@ -5,18 +5,20 @@
   position: relative;
 }
 .layer .video_header > i {
-  color: #ffffff;
+  color: #333;
   position: absolute;
   top: 10%;
   left: 3%;
+  z-index: 2;
 }
 .layer .video_header > .video_play {
   width: 100%;
   height: 4rem;
   overflow: hidden;
 }
-.layer .video_header > .video_play > img {
+.layer .video_header > .video_play > video {
   width: 100%;
+  height: 4rem;
 }
 .layer .main {
   width: 100%;
@@ -28,10 +30,12 @@
 .layer .main #fix_share {
   position: fixed;
   right: 0%;
-  bottom: 15%;
+  /* bottom: 15%;*/
+  bottom: 30%;
   z-index: 2;
   width: 1.2rem;
-  height: 6rem;
+  /* height: 6rem;*/
+  height: 4rem;
   background-color: rgba(0, 0, 0, 0.4);
   color: #fff;
   display: none;
@@ -203,10 +207,65 @@
 }
 .layer .main > .main_content > .content .detail_speak .teacher_message > .message_center > p > em > i {
   color: #f01414;
-  font-size: 0.28rem;
+  font-size: 0.4rem;
 }
 .layer .main > .main_content > .content .detail_speak .teacher_message > .message_center > span {
   font-size: 0.24rem;
+}
+.layer .main > .main_content > .content .detail_speak .comment_teacher > .see_more {
+  border-top: 1px solid #eeeeee;
+  text-align: center;
+  height: 0.88rem;
+  line-height: 0.88rem;
+  color: #0086b3;
+}
+.layer .main > .main_content > .content .detail_speak .comment_teacher > h3 {
+  height: 0.88rem;
+  line-height: 0.88rem;
+  font-size: 0.3rem;
+}
+.layer .main > .main_content > .content .detail_speak .comment_teacher > h3 > i {
+  font-size: 0.24rem ;
+}
+.layer .main > .main_content > .content .detail_speak .comment_teacher > .comment_teacher_lists > .teacher_list > .teacher_top {
+  position: relative;
+}
+.layer .main > .main_content > .content .detail_speak .comment_teacher > .comment_teacher_lists > .teacher_list > .teacher_top > img {
+  vertical-align: middle;
+  width: 0.8rem;
+  height: 0.8rem;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+.layer .main > .main_content > .content .detail_speak .comment_teacher > .comment_teacher_lists > .teacher_list > .teacher_top > .center {
+  position: absolute;
+  margin-left: 1rem;
+  top: 3%;
+}
+.layer .main > .main_content > .content .detail_speak .comment_teacher > .comment_teacher_lists > .teacher_list > .teacher_top > .center span {
+  display: block;
+}
+.layer .main > .main_content > .content .detail_speak .comment_teacher > .comment_teacher_lists > .teacher_list > .teacher_top > .center em {
+  font-size: 0.4rem;
+  color: #f01414;
+}
+.layer .main > .main_content > .content .detail_speak .comment_teacher > .comment_teacher_lists > .teacher_list > .teacher_top > del {
+  position: absolute;
+  right: 3%;
+  top: 10%;
+  font-size: 0.22rem;
+}
+.layer .main > .main_content > .content .detail_speak .comment_teacher > .comment_teacher_lists > .teacher_list > .middle {
+  margin: 0.1rem 0;
+  font-size: 0.28rem;
+  padding-left: 1rem;
+  line-height: 0.5rem;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
 }
 .layer .main > .main_content > .content .detail_speak .recomment_course > h4 {
   height: 1rem;

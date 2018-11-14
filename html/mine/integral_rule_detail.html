@@ -22,8 +22,21 @@
             line-height: 1rem;
             padding-left: 0.3rem;
             font-size: 0.32rem;
+            position: relative;
             border-bottom: 0.2rem solid #eeeeee;
         }
+        .integral>button{
+            position: absolute;
+            right: 3%;
+            top: 24%;
+            width:35%;
+            height: 0.5rem;
+            line-height: 0.5rem;
+            border-radius: 10px;
+            color:#f01414;
+            border:1px solid #999;
+        }
+
         .integral>em{
             color:#f01414;
         }
@@ -56,6 +69,7 @@
     <div class="main">
         <div class="integral">
             可用积分 <em>50</em>
+            <button onclick="location.href='./integral_rule.html'">积分明细</button>
         </div>
         <ul class="content">
            <li>

@@ -45,7 +45,7 @@
         <div class="birthday clearfix">
             <span class="f_left">生日</span>
             <i class="mui-icon mui-icon-arrowright f_right"></i>
-            <input id='sign_up' data-options='{}' class="btn mui-btn mui-btn-block f_right" placeholder="请选择您的生日"/>
+            <input id='sign_up'  data-options='{"type":"date"}' class="btn mui-btn mui-btn-block f_right" placeholder="请选择您的生日"/>
             <div id='result' class="ui-alert"></div>
         </div>
         <div class="address clearfix">
@@ -122,8 +122,10 @@
                  * 示例为了简洁，将 options 放在了按钮的 dom 上
                  * 也可以直接通过代码声明 optinos 用于实例化 DtPicker
                  */
+
                 var picker = new $.DtPicker(options);
                 picker.show(function(rs) {
+                    console.log(rs);
                     /*
                      * rs.value 拼合后的 value
                      * rs.text 拼合后的 text
