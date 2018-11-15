@@ -2,7 +2,7 @@
     position: fixed;
     top: 0%;
     height: 1.6rem;
-    line-height: 1.8rem;
+    line-height: 2rem;
     padding-top: 0.4rem;
     background-color: #f01414;
     width: 100%;
@@ -12,7 +12,7 @@
 .layer>header>i{
     position: absolute;
     left: 3%;
-    top: 0%;
+    top: 12%;
     width: 0.8rem;
     height: 0.9rem;
 
@@ -53,9 +53,16 @@
 }
 /*底部*/
 /*mui 普通头部*/
+.mui-bar .mui-title{
+    position: absolute;
+    left: 50%;
+    top: 32%;
+    transform:translateX(-50%);
+}
 header .mui-title,header .mui-pull-left{
     color:#fff;
     font-size: 0.36rem;
+
 }
 /*带 首页 inout 搜索框的头部*/
 .header{

@@ -1,10 +1,16 @@
+.layer > header > i {
+  top: 9%;
+}
+.mui-bar .mui-title {
+  top: 20%;
+}
 .layer > header {
   height: 3rem;
 }
 .layer > header > .mui-icon.mui-icon-more {
   color: #ffffff;
   position: absolute;
-  top: 15%;
+  top: 20%;
 }
 .layer .main {
   /*�����ĸ�����ҳ*/
@@ -15,7 +21,7 @@
   width: 90%;
   height: auto;
   left: 5%;
-  top: 13%;
+  top: 12%;
   z-index: 3;
   padding: 0.3rem;
   -webkit-border-radius: 5px;
@@ -44,7 +50,7 @@
   top: 3%;
   z-index: -1;
   color: #fff;
-  font-size: 0.20rem;
+  font-size: 0.2rem;
   transform: rotate(45deg);
 }
 .layer .main .message_info > img {
@@ -121,7 +127,7 @@
   text-align: center;
 }
 .layer .main .mui-slider.find_request {
-  padding-top: 3rem;
+  padding-top: 40%;
 }
 .mui-segmented-control .mui-control-item {
   border: none;
@@ -198,7 +204,7 @@
   top: 5%;
 }
 .main_center .teacher_lists .list > .lst_center > span {
-  font-size: 0.32rem ;
+  font-size: 0.32rem;
   display: block;
 }
 .main_center .teacher_lists .list > .lst_center > span > .icon-nv {
@@ -240,7 +246,7 @@
   top: 15%;
 }
 .main_center .course_lists .course_list > .course_list_center > p {
-  font-size: 0.3rem ;
+  font-size: 0.3rem;
 }
 .main_center .course_lists .course_list > .course_list_center > p > del {
   width: 55%;

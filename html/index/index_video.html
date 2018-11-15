@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="../../css/iconfont.css"/>
     <link rel="stylesheet" href="../../css/swiper.min.css"/>
     <link rel="stylesheet" href="../../css/index/index.css"/>
-
     <link rel="stylesheet" href="../../css/index/index_video.css"/>
 </head>
 <body style="background-color:#fff;">
@@ -20,10 +19,10 @@
     <div class="video_header">
         <i onclick="location.href='./index.html'" class="mui-icon mui-icon-back"></i>
         <div class="video_play">
-            <video  controls='' width='100%'  name='media'>
-                <source src="../../img/视频1.mp4" type='video/mp4'/>
-                <source src="../../img/视频1.mp4" type='video/ogg'/>
-                <source src="../../img/视频1.mp4" type='video/webm'/>
+            <video  controls='controls' width='100%'  name='media'>
+                <source src="../../img/1.mp4" type='video/mp4'/>
+                <source src="../../img/1.mp4" type='video/ogg'/>
+                <source src="../../img/1.mp4" type='video/webm'/>
             </video>
         </div>
     </div>
@@ -31,18 +30,18 @@
         <div id="slider" class="mui-slider index_video ">
 
                 <div id="segmentedControl" class="mui-segmented-control">
-                    <a class="mui-control-item mui-active" href="#item1">
+                    <div class="mui-control-item active"  >
                         <span>目录</span>
-                    </a>
-                    <a class="mui-control-item" href="#item2">
+                    </div>
+                    <div class="mui-control-item">
                         <span>详情</span>
-                    </a>
-                    <a class="mui-control-item" href="#item3">
+                    </div>
+                    <div class="mui-control-item">
                         <span>评论</span>
-                    </a>
-                    <a class="mui-control-item" href="#item4">
+                    </div>
+                    <div class="mui-control-item">
                         <span>问答</span>
-                    </a>
+                    </div>
                 </div>
             <del class="mui-icon mui-icon-more fix_more"></del>
         </div>
@@ -59,18 +58,45 @@
               <!--  <div class="share">
                     <em class="iconfont icon-tubiaozhizuo-"></em>
                     <span>分享</span>
-                </div>
-                <div class="download">
-                    <em class="iconfont icon-xiazai1"></em>
-                    <span>下载</span>
                 </div>-->
+                <div class="download">
+                    <a href="../../img/1.mp4" download="1" target="_blank">
+                        <em class="iconfont icon-xiazai1"></em>
+                        <span>下载</span>
+                    </a>
+
+                </div>
             </div>
             <div class="content">
                 <!--全部-->
-                <div id="item1" class="mui-control-content mui-active all_lesson">
+                <div id="item1" class="mui-control-content active all_lesson">
                     <!--目录-->
                     <h3>初二上期课堂数学</h3>
                     <ul>
+                        <li>
+                            <a href="javascript:;" class="clearfix">
+                              <div class="f_left">
+                                  <em class="iconfont icon-bofang"></em>
+                                  <span>第1课  相交线</span>
+                              </div>
+                                <span class="f_right">
+                                    <!--判断是否下载-->
+                                    <em>已下载</em>05:41
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;" class="clearfix">
+                              <div class="f_left">
+                                  <em class="iconfont icon-bofang"></em>
+                                  <span>第1课  相交线</span>
+                              </div>
+                                <span class="f_right">
+                                    <!--判断是否下载-->
+                                    <em>已下载</em>05:41
+                                </span>
+                            </a>
+                        </li>
                         <li>
                             <a href="javascript:;" class="clearfix">
                               <div class="f_left">
@@ -254,6 +280,60 @@
                             </div>
                             <div class="eva_content">
                                 <p>很喜欢老师讲的课，上课幽默又非常的认真， 又不懂的老师会很耐心的帮助解答。非常好！ 很喜欢老师讲的课，上课幽默又非常的认真， 又不懂的老师会很耐心的帮助解答。非常好！</p>
+                                <div class="comment_imgs image-list">
+                                    <div class="comment_img_box cover">
+                                        <img src="../../img/focus-img1.png " data-original="../../img/focus-img1.png " alt="" data-preview-src="" data-preview-group="1">
+                                    </div>
+                                    <div class="comment_img_box cover">
+                                        <img src="../../img/focus-img1.png" alt="" data-preview-src="" data-original="../../img/focus-img1.png " data-preview-group="1">
+                                    </div>
+                                    <div class="comment_img_box cover">
+                                        <img src="../../img/focus-img1.png" alt="" data-preview-src="" data-original="../../img/focus-img1.png " data-preview-group="1">
+                                    </div>
+                                    <div class="comment_img_box cover">
+                                        <img src="../../img/focus-img1.png" alt="" data-original="../../img/focus-img1.png " data-preview-src=" " data-preview-group="1">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="evaluate_list">
+                            <div class="eva_top">
+                                <img src="../../img/focus-img1.png" alt="">
+                                <div class="eva_top_center clearfix">
+                                    <em>熊宝宝</em>
+                                    <del>2018-03-14 08:30</del>
+                                    <i class="f_right iconfont icon-like">10</i>
+                                </div>
+                            </div>
+                            <div class="eva_content">
+                                <p>很喜欢老师讲的课，上课幽默又非常的认真， 又不懂的老师会很耐心的帮助解答。非常好！ 很喜欢老师讲的课，上课幽默又非常的认真， 又不懂的老师会很耐心的帮助解答。非常好！</p>
+                                <div class="comment_imgs">
+                                    <div class="comment_img_box">
+                                        <img src="../../img/focus-img1.png" alt="" data-preview-src="" data-preview-group="1">
+                                    </div>
+                                    <div class="comment_img_box">
+                                        <img src="../../img/focus-img1.png" alt="" data-preview-src="" data-preview-group="1">
+                                    </div>
+                                    <div class="comment_img_box">
+                                        <img src="../../img/focus-img1.png" alt="" data-preview-src="" data-preview-group="1">
+                                    </div>
+                                    <div class="comment_img_box">
+                                        <img src="../../img/focus-img1.png" alt="" data-preview-src="" data-preview-group="1">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="evaluate_list">
+                            <div class="eva_top">
+                                <img src="../../img/focus-img1.png" alt="">
+                                <div class="eva_top_center clearfix">
+                                    <em>熊宝宝</em>
+                                    <del>2018-03-14 08:30</del>
+                                    <i class="f_right iconfont icon-like">10</i>
+                                </div>
+                            </div>
+                            <div class="eva_content">
+                                <p>很喜欢老师讲的课，上课幽默又非常的认真， 又不懂的老师会很耐心的帮助解答。非常好！ 很喜欢老师讲的课，上课幽默又非常的认真， 又不懂的老师会很耐心的帮助解答。非常好！</p>
                                 <div class="comment_imgs">
                                     <div class="comment_img_box">
                                         <img src="../../img/focus-img1.png" alt="" data-preview-src="" data-preview-group="1">
@@ -319,23 +399,41 @@
     </div>
     </div>
 </body>
-<script src="../../js/mui.min.js"></script>
-<script src="../../js/mui.preview.js"></script>
-<script src="../../js/mui.zoom.js"></script>
+
+<!--<script src="../../js/mui.min.js"></script>-->
+<!--<script src="../../js/mui.preview.js"></script>
+<script src="../../js/mui.zoom.js"></script>-->
 <script src="../../js/x_rem.js"></script>
 <script src="../../js/jquery.min.js"></script>
 <script src="../../js/base.js"></script>
-<script src="../../js/swiper.min.js"></script>
 <script src="../../js/sweetalert2.js"></script>
 <script>
+    /*图片查看 */
+   /* var viewer = new Viewer(document.getElementById('Views'), {
+        url: 'data-original'
+    });*/
     $(function () {
-        mui.previewImage()
-        mui('body').on('tap','a',function(){document.location.href=this.href;});
-        $('#scroll').scroll({
+       /* mui.previewImage()
+        mui('body').on('tap','a',function(){document.location.href=this.href;});*/
+        $("body").on('click','a',function(){document.location.href=this.href;});
+        /*$('#scroll').scroll({
             indicators: true //是否显示滚动条
-        });
-
-        var segmentedControl = document.getElementById('segmentedControl');
+        });*/
+        $(".mui-segmented-control>.mui-control-item").click(function () {
+            $(this).addClass("active");
+            $(this).siblings().removeClass("active");
+            var index = $(this).index();
+            //显示对应的div
+            //console.log(index);
+            //console.log(document.body.scrollHeight);
+            //console.log(document.body.offsetHeight);
+            //console.log(document.body.clientHeight);
+            $('.mui-control-content').eq(index).addClass('active');
+            $('.mui-control-content').eq(index).siblings().removeClass('active');
+          /*  console.log($('.mui-control-content').scrollTop());
+            $('.mui-control-content').scrollTop(0);*/
+        })
+     /*   var segmentedControl = document.getElementById('segmentedControl');
         $('.mui-input-group').on('change', 'input', function() {
             if (this.checked) {
                 var styleEl = document.querySelector('input[name="style"]:checked');
@@ -346,7 +444,7 @@
                     segmentedControl.className = 'mui-segmented-control' + (style ? (' mui-segmented-control-' + style) : '') + ' mui-segmented-control-' + color;
                 }
             }
-        });
+        });*/
         /*点击 出现点赞 */
         var flag=true;
         $(".fix_more").click(function () {
@@ -360,8 +458,6 @@
 
             }
         })
-
-
 
     })
 </script>

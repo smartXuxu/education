@@ -78,16 +78,17 @@
   text-align: center;
 }
 .main .near_bay_lesson .ex_footer ul li > em {
-  font-size: 0.38rem;
+  font-size: 0.28rem;
+  color: #999;
 }
 .main .near_bay_lesson .ex_footer ul li:first-of-type > em {
-  font-size: 0.42rem;
+  font-size: 0.3rem;
 }
 .main .near_bay_lesson .ex_footer ul li:last-of-type {
   margin-top: 0.05rem;
 }
 .main .near_bay_lesson .ex_footer ul li:last-of-type > em {
-  font-size: 0.4rem;
+  font-size: 0.3rem;
 }
 .main .teacher_lists {
   width: 100%;
@@ -129,7 +130,7 @@
   color: #6cb628;
 }
 .main .teacher_lists .list_teacher .list_center .list_center_center > em {
-  font-size: 0.20rem;
+  font-size: 0.2rem;
   color: #6cb628;
   border-radius: 3px;
   padding: 0.01rem 0.1rem;

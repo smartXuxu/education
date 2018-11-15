@@ -32,17 +32,25 @@
       position: fixed;
       right: 0%;
      /* bottom: 15%;*/
-      bottom: 30%;
+      bottom: 23%;
       z-index:2;
       width: 1.2rem;
      /* height: 6rem;*/
-      height: 4rem;
+      height: 5rem;
       background-color: rgba(0, 0, 0, .4);
       color:#fff;
       display: none;
       >div{
         &:first-of-type{
           margin-top: 0.3rem;
+        }
+        >a{
+          display: block;
+          color:#fff;
+          height: 1rem;
+          >img{
+            display: none;
+          }
         }
         em,span{
           display: block;
@@ -67,10 +75,11 @@
           font-size: 0.3rem;
           width: 80%;
           display: inline-block;
-          >a{
+          >div{
             height: 100%;
-            line-height: 0.88rem;
-            &.mui-active{
+            line-height: 0.8rem;
+            &.active{
+              color:#f01414;
               >span{
                  border-bottom: 2px solid #f01414;
                }
@@ -384,4 +393,10 @@
       }
     }
   }
+}
+.mui-control-content{
+  display: none;
+}
+.mui-control-content.active{
+  display: block;
 }

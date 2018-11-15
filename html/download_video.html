@@ -6,6 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
 
     <title></title>
+    <link rel="stylesheet" href="../css/iconfont.css"/>
     <style>
         a{
             width: 100%;
@@ -22,16 +23,49 @@
 <body>
 <!--<a href="../img/视频1.mp4" download="视频1.mp4">-->
     <video  id="media" controls='' width='100%'  name='media'>
-        <source src="../img/视频1.mp4" type='video/mp4'/>
-        <source src="../img/视频1.mp4" type='video/ogg'/>
-        <source src="../img/视频1.mp4" type='video/webm'/>
+        <source src="../img/1.mp4" type='video/mp4'/>
+        <source src="../img/1.mp4" type='video/ogg'/>
+        <source src="../img/1.mp4" type='video/webm'/>
     </video>
 <!--</a>-->
+<a href="../img/1.mp4" download="1" target="_blank">
+    <em class="iconfont icon-xiazai1"></em>
+    <span>下载</span>
+</a>
 </body>
 <script src="../js/jquery.min.js"></script>
+<script src="../js/mui.min.js"></script>
+
 <script>
+
+    mui('body').on('tap','a',function(){document.location.href=this.href;});
     var media= document.getElementById("media");
+
+    document.getElementById('media').addEventListener("x5videoexitfullscreen", function(){
+        alert("exit fullscreen")
+    })
+
+    document.getElementById('media').addEventListener("x5videoenterfullscreen", function(){
+        alert("enter fullscreen")
+    })
     media.addEventListener("webkitfullscreenchange", function(e)  {
+        /*var toFullScreen= (function(){
+            var full = Element.prototype.requestFullscreen ||
+                    Element.prototype.webkitRequestFullscreen||
+                    Element.prototype.mozRequestFullScreen||
+                    Element.prototype.msRequestFullscreen;
+            return function(dom){
+                full.call(dom)
+            }
+        })()
+        var exitFullscreen = (function(){
+            var full = document.exitFullscreen||
+                    document.mozExitFullScreen||
+                    document.webkitExitFullscreen;
+            return function(){
+                full.call(document);
+            }
+        })()*/
         if (!document.webkitIsFullScreen) {
             //退出全屏关闭视频
             //alert(1);
@@ -60,14 +94,6 @@
          /*   document.getElementById("media").style.transform='rotate(90deg)'*/
         }
     })
-    function resizeBody() {
-        var bodyHeight = document.documentElement.clientHeight;
-        var bodyWidth = document.documentElement.clientWidth;
-        $("#media").width((bodyHeight) + "px");
-        $("#media").height((bodyWidth) + "px");
-        media.style.transform='rotateY(90deg)';
-        //media.play();
-    }
     /*
     * function resizeBody() {
      var bodyHeight = document.documentElement.clientHeight;
