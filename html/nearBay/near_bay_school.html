@@ -261,7 +261,18 @@
 <script src="../../js/base.js"></script>
 <script src="../../js/sweetalert2.js"></script>
 <script>
-
+    getLocation();
+    function getLocation(){
+        if (navigator.geolocation){
+            console.log(2);
+            navigator.geolocation.getCurrentPosition(showPosition);
+        }else{
+            console.log("对不起，您的设备目前不支持定位，请您更改设置");
+        }
+    }
+    function showPosition(position){
+        console.log("维度: " + position.coords.latitude + "经度" + position.coords.longitude);
+    }
     $(function () {
         mui('body').on('tap','a',function(){document.location.href=this.href;});
         $('#footer').load('../common/footer.html');
@@ -288,9 +299,11 @@
         });
         /*城市选择*/
         if(localStorage.getItem("city")){
-            console.log(1);
+            //console.log(1);
             $(".near_header>i>s").html(localStorage.getItem("city"));
         }
+        /*学校*/
+
 
     })
 </script>

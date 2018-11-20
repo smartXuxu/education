@@ -79,7 +79,7 @@ header .mui-title,header .mui-pull-left{
     color:#FFF;
     position: absolute;
     top: 40%;
-    font-size: 0.34rem;
+    font-size: 0.3rem;
 }
 .header>.h_left>i{
     height: 100%;
@@ -97,7 +97,7 @@ header .mui-title,header .mui-pull-left{
     font-size: 0.28rem;
 }
 .header del{
-    font-size: 0.4rem;
+    font-size: 0.2rem;
 }
 .header>em{
     left: 2%;

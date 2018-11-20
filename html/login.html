@@ -15,19 +15,22 @@
     <div class="box clearfix">
         <h2>登录猴姆</h2>
         <nav>
-            <ul class="clearfix">
+            <img src="../img/login_logo.png" alt=""/>
+            <!--<ul class="clearfix">
                 <li class="active">
                     <span>普通登录</span>
                 </li>
                 <li>
                     <span>手机快速登录</span>
                 </li>
-            </ul>
+            </ul>-->
         </nav>
         <div class="username">
-            <input type="text" id="name" placeholder="请输入手机号"/> </div>
+            <input type="text" id="name" placeholder="请输入手机号"/>
+        </div>
         <div class="password">
-            <input type="password"  id="pwd" placeholder="请输入密码"/><i class="eye"></i></div>
+            <input type="password"  id="pwd" placeholder="请输入密码"/>
+            <i class="eye"></i></div>
         <button class="login_Button">登录</button>
 
         <div class="pwd_user clearfix">
@@ -49,10 +52,10 @@
                 <span></span>
             </div>
             <div class="link">
-                <a href=""> <img src="../img/WeChat.png" alt=""/></a>
-                <a href=""><img src="../img/qq.png" alt=""/></a>
+                <a href=""> <img src="../img/WeChat.png" alt="" id="weChat"/></a>
+                <a href=""><img src="../img/qq.png" alt="" id="qq"/></a>
 
-                <a href=""><img src="../img/sina.png" alt=""/></a>
+                <a href=""><img src="../img/sina.png" alt="" id="sina"/></a>
             </div>
         </div>
 
@@ -68,6 +71,19 @@
 <script src="../js/mui.min.js"></script>
 <script src="../js/base64.min.js"></script>
 <script>
+/*H5定位 结果发送给后台 或者保存下来*/
+    getLocation();
+    function getLocation(){
+        if (navigator.geolocation){
+            console.log(2);
+            navigator.geolocation.getCurrentPosition(showPosition);
+        }else{
+            console.log("对不起，您的设备目前不支持定位，请您更改设置");
+        }
+    }
+    function showPosition(position){
+        console.log("维度: " + position.coords.latitude + "经度" + position.coords.longitude);
+    }
 
     //判断 本地有没有密码 和 账号 实现 记住密码的功能；
     /* if(localStorage.getItem("uName")&&localStorage.getItem("pwd")){
@@ -99,7 +115,7 @@
                 return false;
             }
             else {
-                obj.mobilePhone= uName;
+                obj.phone= uName;
             }
         }
         else {
@@ -127,7 +143,7 @@
              dataType: 'json',
              success: function (data) {
                     console.log(data);
-                    if (data.code == "200") {
+                    if (data.status == "200") {
                    /* localStorage.setItem('userId',data.userId);
                     localStorage.setItem('user', data.code);*/
                     //用户登录成功之后 存储用户输入的值
@@ -137,18 +153,20 @@
                     // 获取设置的本地存储的密码的值 base64加密
                         pwd=base64.tranCode.encode(pwd);
                     var loPass = localStorage.setItem('pwd',pwd);
-             };
-         window.location.href = "./index/index.html";
-         }else{
-         sweetAlert(
-             '登录失败',
-             data.msg,
-             'error'
-         ).then(function () {
-                     $("#pwd").val("");
-                 })
-            }
-         },
+                        //console.log(data.data);
+                        localStorage.setItem("token",data.data);
+                         window.location.href = "./index/index.html";
+                 };
+             }else{
+             sweetAlert(
+                 '登录失败',
+                 data.msg,
+                 'error'
+             ).then(function () {
+                         $("#pwd").val("");
+                     })
+                }
+             },
              error: function (data) {
                  sweetAlert(
                          "sorry",
@@ -160,8 +178,6 @@
 
     }
     //页面加载 渲染的时候要判断是否存在
-
-
     function isChecked(){
         //获取cookie
         var cusername = localStorage.getItem("uName");
@@ -201,7 +217,164 @@
         }
         return true;
     }
-
+    //第三方登录
+    var tyindex=0;
+    // 获取用户头像标签
+    mui.init({
+        swipeBack:true //启用右滑关闭功能
+    });
+    mui.plusReady(function() {
+        plus.oauth.getServices(function(services) {
+            auths = services;
+        }, function(e) {
+            alert("获取登录服务列表失败：" + e.message + " - " + e.code);
+        });
+    })
+    document.getElementById('qq').addEventListener('tap',function() {
+        console.log("QQ");
+        tyindex=1;
+        authLogin('qq');
+    })
+    document.getElementById('weChat').addEventListener('tap',function() {
+        console.log("微信");
+        tyindex=2;
+        authLogin('weixin');
+    })
+    document.getElementById('sina').addEventListener('tap',function() {
+        console.log("微博");
+        tyindex=3;
+        authLogin('sinaweibo');
+    })
+    // 登录操作
+    function authLogin(type) {
+        var s;
+        for (var i = 0; i < auths.length; i++){
+            if (auths[i].id == type){
+                s = auths[i];
+                break;
+            }
+        }
+        if(!s.authResult) {
+            s.login(function(e) {
+                mui.toast("登录认证成功！");
+                authUserInfo(type);
+            }, function(e) {
+                mui.toast("登录认证失败！");
+            });
+        } else {
+            mui.toast("已经登录认证！");
+        }
+    }
+    //注销
+    function authLogout() {
+        for (var i in auths) {
+            var s = auths[i];
+            if (s.authResult) {
+                s.logout(function(e) {
+                    console.log("注销登录认证成功！");
+                }, function(e) {
+                    console.log("注销登录认证失败！");
+                });
+            }
+        }
+    }
+    // 微信登录认证信息
+    function authUserInfo(type) {
+        var s;
+        for (var i = 0; i < auths.length; i++){
+            if (auths[i].id == type) {
+                s=auths[i];
+                break;
+            }
+        }
+        if (!s.authResult) {
+            mui.toast("未授权登录！");
+        } else {
+//		昵称/头像/性别/openid
+            s.getUserInfo(function(e) {
+                console.log(JSON.stringify(s));
+                var kks=JSON.parse(JSON.stringify(s));
+                //获取opendid
+                var opendids=kks.authResult.openid;
+                var datask={
+                    openID:opendids,
+                    type:tyindex
+                }
+                console.log(tyindex);
+                /*已经有第三方的信息了*/
+              /* myAjax("data:datask,type:'post',url:{}",function(data){
+                   if(data.status==200){
+                      //
+                       
+                   }
+               }) */
+                myAjax("data:datask,type:'post',url:{}",function(data){
+                    console.log(JSON.stringify(data));
+                    if(data.status==200){//已经有第三方信息 登录成功返回token
+                        localStorage.setItem('token', JSON.stringify(data.data));
+                        window.location.href="./index/index.html";
+                        console.log(data.data);//保存token,跳转首页
+                    }else if(data.status==300){//跳转绑定页面
+                        console.log("去绑定");
+                        if(tyindex==1){//QQ
+                            var information={
+                                nickname:kks.userInfo.nickname,//昵称
+                                gender:kks.userInfo.gender,//性别
+                                openid:opendids,//opendid
+                                portrait:kks.userInfo.figureurl_qq_2,//头像
+                                type:tyindex
+                            }
+                            localStorage.setItem('grxs', JSON.stringify(information));
+                            window.location.href="binding.html";
+                        }else if(tyindex==2){//微信
+                            var information={
+                                nickname:kks.userInfo.nickname,//昵称
+                                gender:kks.userInfo.sex,//性别
+                                openid:opendids,//opendid
+                                portrait:kks.userInfo.headimgurl,//头像
+                                type:tyindex
+                            }
+                            console.log(kks.userInfo.nickname);//昵称
+                            console.log(sex);//性别
+                            console.log(opendids);//opendid
+                            console.log(kks.userInfo.headimgurl);//头像
+                            localStorage.setItem('grxs', JSON.stringify(information));
+                            window.location.href="./bindAccount.html";
+                        }else{//微博
+                            var sex="";
+                            if(kks.userInfo.gender=="m"){
+                                sex="男";
+                            }else{
+                                sex="女";
+                            }
+                            var information={
+                                nickname:kks.userInfo.nickname,//昵称
+                                gender:sex,//性别
+                                openid:opendids,//opendid
+                                portrait:kks.userInfo.headimgurl,//头像
+                                type:tyindex
+                            }
+                            console.log(kks.userInfo.nickname);//昵称
+                            console.log(sex);//性别
+                            console.log(opendids);//opendid
+                            console.log(kks.userInfo.headimgurl);//头像
+                            localStorage.setItem('grxs', JSON.stringify(information));
+                            window.location.href="binding.html";
+                        }
+                    }else{
+                        console.log("错误");
+                    }
+                },function(err){
+                    console.log(err);
+                    console.log(JSON.stringify(err));
+                })
+                authLogout();
+            }, function(e){
+                alert("获取用户信息失败：" + e.message + " - " + e.code);
+            });
+        }
+    }
+    /*第三方结束*/
 </script>
 </body>
 </html>

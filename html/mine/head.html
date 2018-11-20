@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>头像裁剪</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="../../css/head/cropper.min.css">
+    <link rel="stylesheet" href="../../css/head/imgcropping.css">
+    <link rel="stylesheet" href="../../css/sweetalert2.css">
+    <link rel="stylesheet" href="../../css/iconfont.css">
+
+    <style>
+        header{
+            width: 100%;
+            position: relative;
+            height: 50px;
+            padding-top: 40px;
+            line-height: 50px;
+            background-color: #f01414;
+            margin-bottom: 20px;
+        }
+        header i{
+            position: absolute;
+            height: 50px;
+            width: 30px;
+            left: 3%;
+          color:#fff;
+
+        }
+        .iconfont{
+            font-size: 22px;
+        }
+        header h3{
+            text-align: center;
+            font-size: 20px;
+            color: #fff;
+        }
+       #replaceImg{
+           border:none;
+           background-color: rgba(0, 0, 0, 0);
+           color: #f01414;
+           margin-left: 20px;
+       }
+        #replaceImg img{
+           height: 80%;
+        }
+        .l-btn{
+            background: #f01414;
+            border: 1px solid #f01414;
+
+        }
+        header em{
+            color: #fff;
+            position: absolute;
+            right: 3%;
+            top: 45%;
+            height: 100%;
+            font-style: normal;
+        }
+        .tailoring-content .choose-btn{
+            background:  #f01414;
+        }
+        .choose_pic{
+            left: 40%;
+            position: relative;
+        }
+    </style>
+</head>
+<body style="background: #fff">
+<header>
+    <i onclick="back()" class="iconfont icon-fanhui"></i>
+    <h3>上传头像</h3>
+    <em class="confirm">确定</em>
+</header>
+<div style="height: 320px;padding: 20px 0px;padding-left:15%;margin: 10px auto" class="getPic" id="replaceImg">
+<!--头像存放处-->
+    <img id="finalImg" src="../../img/focus-img1.png"  style="border-radius: 50%;">
+</div>
+<!--<button  class="l-btn choose_pic">选择图片</button>-->
+<!--图片裁剪框 start-->
+<div style="display: none" class="tailoring-container">
+    <div class="black-cloth" onClick="closeTailor(this)"></div>
+    <div class="tailoring-content">
+        <div class="tailoring-content-one">
+            <label title="上传图片" for="chooseImg" class="l-btn choose-btn">
+                <input type="file" accept="image/jpg,image/jpeg,image/png" name="file" id="chooseImg" class="hidden" onChange="selectImg(this)">
+                选择图片
+            </label>
+            <div class="close-tailoring"  onclick="closeTailor(this)">×</div>
+        </div>
+        <div class="tailoring-content-two">
+            <div class="tailoring-box-parcel">
+                <img id="tailoringImg">
+            </div>
+            <div class="preview-box-parcel">
+                <p>图片预览：</p>
+                <div class="square previewImg"></div>
+                <div class="circular previewImg"></div>
+            </div>
+        </div>
+        <div class="tailoring-content-three">
+            <button class="l-btn cropper-reset-btn">复位</button>
+            <button class="l-btn cropper-rotate-btn">旋转</button>
+            <button class="l-btn cropper-scaleX-btn">换向</button>
+            <button class="l-btn sureCut" id="sureCut">确定</button>
+        </div>
+    </div>
+</div>
+<!--图片裁剪框 end-->
+
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/base.js"></script>
+<script src="../../js/sweetalert2.js"></script>
+<script src="../../js/back.js"></script>
+<script src="../../js/head/cropper.min.js"></script>
+<script src="../../js/template-web.js"></script>
+<script id="getPic" type="text/html">
+    {{if data.avatar==null || !data.avatar}}
+    <img id="finalImg" src="../../img/focus-img1.png"  style="border-radius: 50%;">
+    {{else}}
+    <img id="finalImg" src="{{data.avatar}}" onerror="this.src='../../img/focus-img1.png'" style="border-radius: 50%;">
+    {{/if}}
+</script>
+<script type="text/javascript">
+
+    function back(){
+        history.go(-1);
+    }
+    //弹出框水平垂直居中
+    (window.onresize = function () {
+        var win_height = $(window).height();
+        var win_width = $(window).width();
+        if (win_width <= 768){
+            $(".tailoring-content").css({
+                "top": (win_height - $(".tailoring-content").outerHeight())/2,
+                "left": 0
+            });
+        }else{
+            $(".tailoring-content").css({
+                "top": (win_height - $(".tailoring-content").outerHeight())/2,
+                "left": (win_width - $(".tailoring-content").outerWidth())/2
+            });
+        }
+    })();
+
+    //弹出图片裁剪框
+    $("#replaceImg").on("click",function () {
+        $(".tailoring-container").toggle();
+    });
+
+    //图像上传
+
+    function selectImg(file) {
+        if (!file.files || !file.files[0]){
+            return true;
+        }else{
+            var fileData = file.files[0];
+            var size = fileData.size;   //注意，这里读到的是字节数
+            var isAllow = false;
+            if (!size) isAllow = false;
+            var maxSize = 2048;
+            maxSize = maxSize * 1024;   //转化为字节
+            isAllow = size <= maxSize;
+            if (!isAllow) {
+                alert("图片超过2 M，请重新上传");
+                return false;
+            }
+        }
+        var reader = new FileReader();
+        reader.onload = function (evt) {
+
+            var replaceSrc = evt.target.result;
+            //更换cropper的图片
+            $('#tailoringImg').cropper('replace', replaceSrc,false);//默认false，适应高度，不失真
+
+        };
+        reader.readAsDataURL(file.files[0]);
+
+    }
+    //cropper图片裁剪
+    $('#tailoringImg').cropper({
+        aspectRatio: 1/1,//默认比例
+        preview: '.previewImg',//预览视图
+        guides: false,  //裁剪框的虚线(九宫格)
+        autoCropArea: 0.5,  //0-1之间的数值，定义自动剪裁区域的大小，默认0.8
+        movable: false, //是否允许移动图片
+        dragCrop: true,  //是否允许移除当前的剪裁框，并通过拖动来新建一个剪裁框区域
+        movable: true,  //是否允许移动剪裁框
+        resizable: true,  //是否允许改变裁剪框的大小
+        zoomable: true,  //是否允许缩放图片大小
+        mouseWheelZoom: false,  //是否允许通过鼠标滚轮来缩放图片
+        touchDragZoom: true,  //是否允许通过触摸移动来缩放图片
+        rotatable: true,  //是否允许旋转图片
+        crop: function(e) {
+            // 输出结果数据裁剪图像。
+        }
+    });
+    //旋转
+    $(".cropper-rotate-btn").on("click",function () {
+        $('#tailoringImg').cropper("rotate", 45);
+    });
+    //复位
+    $(".cropper-reset-btn").on("click",function () {
+        $('#tailoringImg').cropper("reset");
+    });
+    //换向
+    var flagX = true;
+    $(".cropper-scaleX-btn").on("click",function () {
+        if(flagX){
+            $('#tailoringImg').cropper("scaleX", -1);
+            flagX = false;
+        }else{
+            $('#tailoringImg').cropper("scaleX", 1);
+            flagX = true;
+        }
+        flagX != flagX;
+    });
+
+    //裁剪后的处理
+    $("#sureCut").on("click",function () {
+        if ($("#tailoringImg").attr("src") == null ){
+            return false;
+        }else{
+            var cas = $('#tailoringImg').cropper('getCroppedCanvas');//获取被裁剪后的canvas
+            var base64url = cas.toDataURL('image/png'); //转换为base64地址形式
+            $("#finalImg").prop("src",base64url);//显示为图片的形式
+
+            //关闭裁剪框
+            closeTailor();
+            //裁切后的base64 地址
+            //console.log(base64url);
+        }
+    });
+
+
+    //关闭裁剪框
+    function closeTailor() {
+        $(".tailoring-container").toggle();
+    }
+    //更换头像，发送base64给后台
+    $(".confirm").on("click",function () {
+        var headePIc=$("#finalImg").attr('src').replace(/"/g,"");
+       sendHeadpic(headePIc);
+    });
+    var url=location.href.split("=")[1];
+    function sendHeadpic(headpicPath){
+        $.ajax({
+            xhrFields: {
+                withCredentials: true
+            },
+            type: "post",
+            url:baseUrl+"/user/uploadOrUpdateAvatar",
+            data:{
+                avatarImage:headpicPath
+            },
+            dataType: 'json',
+            success:function(data){
+                console.log(data);
+                if(data.code==200){
+                    sweetAlert(
+                            "恭喜您",
+                            data.msg,
+                            "success"
+                    ).then(function () {
+                                if(url){
+                                    location.href='./mine_data.html';
+                                }else{
+                                    location.href='./mine.html';
+                                }
+
+                            })
+                }else{
+                    sweetAlert(
+                            "sorry",
+                            data.msg,
+                            "error"
+                    )
+                }
+            },
+            error:function(data){
+                console.log(data);
+                sweetAlert(
+                        "sorry",
+                        data.msg,
+                        "error"
+                ).then(function () {
+                          location.href='../login.html'
+                        })
+
+            }
+        })
+    }
+    //获取个人信息 如头像
+    function getHeadpic(){
+        $.ajax({
+            xhrFields: {
+                withCredentials: true
+            },
+            type: "get",
+            async: false,
+            url: baseUrl+"/user/getCurrentUserMessage",
+
+            dataType: 'json',
+            success:function(data){
+                console.log(data);
+                var html=template("getPic",data);
+                    $(".getPic").html(html);
+            },
+            error:function(data){
+                console.log(data);
+            }
+        })
+    }
+   getHeadpic()
+</script>
+
+</body>
+</html>

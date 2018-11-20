@@ -2,6 +2,7 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-cache" />
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
     <title>猴姆教育首页</title>
@@ -317,6 +318,18 @@
 <script src="../../js/base.js"></script>
 <script src="../../js/swiper.min.js"></script>
 <script src="../../js/sweetalert2.js"></script>
+<script src="../../js/template-web.js"></script>
+<script src="../../js/template.js"></script>
+<script id="famous" type="text/html">
+
+</script>
+<!--热门好课-->
+<script id="hot_lesson" type="text/html"></script>
+<!--名师讲堂-->
+<script id="excent_lesson" type="text/html"></script>
+<!--问答-->
+<script id="request" type="text/html"></script>
+
 <script>
 $(function () {
     mui('body').on('tap','a',function(){document.location.href=this.href;});
@@ -343,7 +356,99 @@ $(function () {
             el: '.swiper-pagination',
         },
     })
+        //名师名校的推荐
+   /* myAjax("url:{},type:post", function (data) {
+        console.log(data);
+        if(data.status==200){
+            $(".famous").html(template("famous",data))
+        }else{
+            sweetAlert(
+                    "sorry",
+                    data.msg,
+                    "error"
+            )
+        }
+    })*/
+        //热门好课
+   /* myAjax("url:{},type:post", function (data) {
+        console.log(data);
+        if(data.status==200){
+            $(".excent_lesson").html(template("excent_lesson",data))
+        }else{
+            sweetAlert(
+                    "sorry",
+                    data.msg,
+                    "error"
+            )
+        }
+    })*/
+    /*名师讲堂*/
+   /* myAjax("url:{},type:post", function (data) {
+        console.log(data);
+        if(data.status==200){
+            $(".hot_lesson").html(template("hot_lesson",data))
+        }else{
+            sweetAlert(
+                    "sorry",
+                    data.msg,
+                    "error"
+            )
+        }
+    })*/
+    /*问答*/
+   /* myAjax("url:{},type:post", function (data) {
+        console.log(data);
+        if(data.status==200){
+            $(".request").html(template("request",data))
+        }else{
+            sweetAlert(
+                    "sorry",
+                    data.msg,
+                    "error"
+            )
+        }
+    })*/
 
 })
+</script>
+<script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.10&key=bd54e4be514aab4910f8afc68209d057"></script>
+<script type="text/javascript">
+    var map = new AMap.Map('container', {
+        resizeEnable: true,
+        center: [116.486409,39.921489],
+        zoom: 12
+    });
+
+    AMap.plugin('AMap.Weather', function() {
+        var weather = new AMap.Weather();
+        //查询实时天气信息, 查询的城市到行政级别的城市，如朝阳区、杭州市
+        /*城市选择*/
+        if(localStorage.getItem("city")){
+            var city=localStorage.getItem("city")
+        }else{
+            city=city;
+        }
+        weather.getLive(city, function(err, data) {
+            if (!err) {
+                $(".header>.h_left>i>del").text(data.weather);
+                $(".header>.h_left>i>em").text(data.temperature+ '℃');
+                var str = [];
+                str.push(data.city );
+                str.push( data.weather);
+                str.push(data.temperature + '℃');
+              /*  var marker = new AMap.Marker({map: map, position: map.getCenter()});
+                var infoWin = new AMap.InfoWindow({
+                    content: '<div class="info" style="position:inherit;margin-bottom:0;">'+str.join('')+'</div><div class="sharp"></div>',
+                    isCustom:true,
+                    offset: new AMap.Pixel(0, -37)
+                });
+                infoWin.open(map, marker.getPosition());
+                marker.on('mouseover', function() {
+                    infoWin.open(map, marker.getPosition());
+                });*/
+                console.log(str);
+            }
+        });
+    });
 </script>
 </html>

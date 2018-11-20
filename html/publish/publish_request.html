@@ -58,7 +58,6 @@
             </div>
 
             <div class="z_mask">
-
                 <div class="z_alert">
                     <p>确定要删除这张图片吗？</p>
                     <p>
@@ -74,9 +73,23 @@
             <em class="mui-icon mui-icon-help rule"></em>
         </div>
         <div class="origin">
-            <input type="text" placeholder="请输入问题来源（非必填）"/>
+            <input type="text" placeholder="请选择问题来源（非必填）"/>
         </div>
 
+        <div id="choose_share">
+            <h3>请您选择视频所属课程</h3>
+            <ul>
+                <!--内容从后台获取-->
+                <li>
+                    <em></em>
+                    <span>2018年高三数学上期2018年高三数学上期</span>
+                </li>
+                <li>
+                    <em></em>
+                    <span>2017年高三数学上期</span>
+                </li>
+            </ul>
+        </div>
         <div id="sure">
             <button class="confirm">
                 确定
@@ -91,6 +104,19 @@
 <script src="../../js/base.js"></script>
 <script src="../../js/sweetalert2.js"></script>
 <script>
+    /*选择问题来源*/
+    $(".origin>input").focus(function () {
+       // alert(1)
+        $("#mask").show()
+        $("#choose_share").show()
+    })
+    /*选择视频 所属课程 单选*/
+    $("#choose_share li").click(function () {
+        $(".origin>input").val($(this).children("span").text());
+        $("#mask").hide();
+        $("#choose_share").hide();
+    });
+
     /*弹框消失*/
     $(".rule").click(function () {
         $("#role_share").show();

@@ -22,10 +22,13 @@
         </div>
         <div class="Verification">
             <i>验证码</i>
-            <input type="text" placeholder="验证码" id="phone_num"/> <span class="gain" onclick="getcode()">发送验证码</span></div>
+            <input type="text" placeholder="验证码" id="phone_num"/>
+            <span class="gain" onclick="getcode()">发送验证码</span>
+        </div>
         <div class="password">
             <i>密码</i>
-            <input type="password" id="pwd" placeholder="请设置6-16位密码"/><em><i class="eye"></i></em> </div>
+            <input type="password" id="pwd" placeholder="请设置6-16位密码"/>
+            <em><i class="eye"></i></em> </div>
         <button class="register" onclick="register()">
             注册
         </button>
@@ -37,6 +40,7 @@
 <script src="../js/base.js"></script>
 <script src="../js/back.js"></script>
 <script src="../js/sweetalert2.js"></script>
+<script src="../js/md5.js"></script>
 <script>
     //添加小眼睛 和 叉号
     //点击小眼睛 改变input的状态
@@ -59,28 +63,41 @@
         }
         var mobile = $('#phone').val();
         if(!checkTelNum(mobile)){
-            alert('手机号码不正确');
+            alert('请您输入正确的手机号');
             $('#phone').val("");
             return false;
         }
        // var uuid=Math.random().toString(36).substr(2);
         //var obj = {mobile:mobile,uuid:uuid,type:1};
-        falg = false;
+       falg = false;
         $.ajax({
             xhrFields: {
                 withCredentials: true
             },
             type: "post",
-            url: baseUrl+"/api/getCode",
+            url: baseUrl+"/user/send/message",
             data: {
-                mobilePhone:mobile
+                mobile:mobile,
+                sig:hex_md5(mobile+"cc6ecf659073e51aa8291d686458a4ce")
             },
             datType: 'json',
             success: function (data){
-                //alert(data);
                 console.log(data);
-               console.log(data.data.result);
-                window.localStorage.setItem("code",JSON.stringify(data.data.result));
+                if(data.status!==200){
+                    sweetAlert(
+                            "sorry",
+                            "短信验证码不正确",
+                            "error"
+                    );
+                    return false
+                }
+            },error: function (msg) {
+                sweetAlert(
+                        "sorry",
+                        "网络发生错误,请您重试",
+                        "error"
+                );
+                return false;
             }
         })
     }
@@ -97,7 +114,7 @@
                 return false;
             }
             else {
-                parms.mobilePhone = phonenum;
+                parms.mobile = phonenum;
             }
         }
         else{
@@ -112,7 +129,6 @@
             alert('密码不能为空');
             return false;
         }
-
         if (!isNotBlank(safecode)) {
             sweetAlert(
                     'sorry',
@@ -122,22 +138,8 @@
                         $("#phone_num").val("");
                     })
             return false;
-
-        }
-        //验证短信验证码是否正确；
-
-        if(safecode!==localStorage.getItem("code").replace(/\"/g,"")){
-            sweetAlert(
-                    'sorry',
-                    '短信验证码不正确！',
-                    'error'
-            ).then(function () {
-                        $("#phone_num").val("");
-                    })
-            return false;
-           /* alert("短信验证码不正确");
-            $(".gain").val("");
-            return false;*/
+        }else{
+            parms.code=safecode ;
         }
         //parms.uuid=localStorage.getItem("uuid").replace(/\"/g,"");
         // console.log(JSON.stringify(parms));
@@ -158,21 +160,22 @@
                             '注册成功！',
                             'success'
                     ).then(function () {
-                                localStorage.removeItem("code");
                                 window.location.href="./login.html";
                             })
                 }
-                else if(data.code=="500"){
-                    alert(data.msg);
-                    $("input").val("");
-                    return false;
-                }else{
+
+               else{
                     sweetAlert(
                             'sorry',
-                            '网络发生错误，请您稍后重试！',
+                            data.msg,
                             'error'
-                    )
+                    ).then(function () {
+                             $("#phone_num").val("");
+                            })
                 }
+            },
+            error: function (msg) {
+
             }
         })
     }
@@ -189,6 +192,12 @@
     }
     //倒计时效果
     $(".gain").click(function(){
+        var mobile = $('#phone').val();
+        if(!checkTelNum(mobile)){
+            alert('手机号码不正确');
+            $('#phone').val("");
+            return false;
+        }
         var time=60;
         $(this).text(time+ "S");
         var timer= setInterval(function(){
@@ -204,7 +213,7 @@
     })
 
     $(".register").click(function(){
-        //register();
+       register();
     })
 
 </script>

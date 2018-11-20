@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
-
+    <meta http-equiv="Cache-Control" content="no-cache" />
     <title>编辑资料</title>
     <link rel="stylesheet" href="../../css/mui.min.css"/>
     <link rel="stylesheet" href="../../css/mui.picter.min.css"/>
@@ -25,7 +25,7 @@
         <div class="head clearfix">
             <span class="f_left">头像</span>
             <i class="mui-icon mui-icon-arrowright f_right"></i>
-            <img src="../../img/focus-img1.png" class="f_right" alt=""/>
+            <img src="../../img/focus-img1.png" class="f_right" alt="" onclick="location.href='./head.html'"/>
 
         </div>
         <div class="nickname clearfix">
@@ -86,7 +86,63 @@
 <script src="../../js/base.js"></script>
 <script src="../../js/back.js"></script>
 <script src="../../js/sweetalert2.js"></script>
+<script src="../../js/template-web.js"></script>
+<script id="info" type="text/html">
+    <div class="head clearfix">
+        <span class="f_left">头像</span>
+        <i class="mui-icon mui-icon-arrowright f_right"></i>
+        <img src="../../img/focus-img1.png" class="f_right" alt="" onclick="location.href='./head.html'"/>
 
+    </div>
+    <div class="nickname clearfix">
+        <span class="f_left">昵称</span>
+        <i class="mui-icon mui-icon-arrowright f_right"></i>
+        <input type="text" placeholder="请输入您的昵称" class="f_right" />
+
+    </div>
+    <div class="sex">
+        <span class="f_left">性别</span>
+        <div class="style_choose clearfix f_right">
+            <span data-type="1">男 <i class="active">√</i></span>
+            <span data-type="0">女 <i>√</i></span>
+        </div>
+
+    </div>
+    <div class="birthday clearfix">
+        <span class="f_left">生日</span>
+        <i class="mui-icon mui-icon-arrowright f_right"></i>
+        <input id='sign_up'  data-options='{"type":"date"}' class="btn mui-btn mui-btn-block f_right" placeholder="请选择您的生日"/>
+        <div id='result' class="ui-alert"></div>
+    </div>
+    <div class="address clearfix">
+        <span class="f_left">地址</span>
+        <i class="mui-icon mui-icon-arrowright f_right"></i>
+        <input type="text" placeholder="请输入您的地址" class="f_right" />
+
+    </div>
+    <!--  <div class="idCard clearfix">
+          <span class="f_left">身份</span>
+
+      </div>-->
+    <div class="class clearfix">
+        <span class="f_left">年级</span>
+        <i class="mui-icon mui-icon-arrowright f_right"></i>
+        <input type="text" placeholder="请输入您的年级" class="f_right"/>
+    </div>
+
+    <div class="school clearfix">
+        <span class="f_left">学校</span>
+        <i class="mui-icon mui-icon-arrowright f_right"></i>
+        <input type="text" placeholder="请输入您的学校" class="f_right" />
+
+    </div>
+    <div class="inSchool clearfix">
+        <span class="f_left">入学年份</span>
+        <i class="mui-icon mui-icon-arrowright f_right"></i>
+        <input type="number" placeholder="请输入您的入学年份" class="f_right" />
+
+    </div>
+</script>
 <script>
     $(function () {
         mui.init({
@@ -99,6 +155,10 @@
             payMethod=$(this).data("type");
             console.log(payMethod);
         });
+        var taken=localStorage.getItem("token");
+        myAjax("url:'/user/token/taken',type:'post',async:false", function (data) {
+            console.log(data);
+        })
         $(".save").click(function () {
 
 

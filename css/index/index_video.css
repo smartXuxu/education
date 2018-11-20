@@ -236,7 +236,7 @@
   font-size: 0.3rem;
 }
 .layer .main > .main_content > .content .detail_speak .comment_teacher > h3 > i {
-  font-size: 0.24rem;
+  font-size: 0.24rem ;
 }
 .layer .main > .main_content > .content .detail_speak .comment_teacher > .comment_teacher_lists > .teacher_list > .teacher_top {
   position: relative;
@@ -280,7 +280,7 @@
 }
 .layer .main > .main_content > .content .detail_speak .recomment_course > h4 {
   height: 1rem;
-  line-height: 0.6rem;
+  line-height: 0.6rem ;
   font-size: 0.3rem;
   color: #666;
 }

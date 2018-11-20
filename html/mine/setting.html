@@ -124,6 +124,11 @@
         });
 
         $(".quit_login").click(function () {
+            var token=localStorage.getItem("token");
+            function render(data){
+                console.log(data);
+            }
+            myAjax("{url:'/user/logout',data:{token:token},type:'post'}",render)
             localStorage.removeItem("pwd");
             location.href='../login.html';
         })

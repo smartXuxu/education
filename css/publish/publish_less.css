@@ -44,7 +44,7 @@
   /*ie 6��͸��*/
   background-color: black;
   position: fixed;
-  z-index: 999;
+  z-index: 1;
   top: 0;
   left: 0;
   /*display: none;*/
@@ -56,7 +56,7 @@
   height: auto;
   background-color: #fff;
   position: fixed;
-  z-index: 10000;
+  z-index: 2;
   top: 50%;
   left: 5%;
   display: none;
@@ -73,4 +73,57 @@
 }
 #role_share > p {
   font-size: 0.24rem;
+}
+.main #choose_share {
+  position: fixed;
+  z-index: 2;
+  left: 50%;
+  top: 40%;
+  display: none;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: auto;
+  background-color: #fff;
+  padding-left: 0.4rem;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+.main #choose_share > h3 {
+  height: 0.88rem;
+  line-height: 0.88rem;
+  font-size: 0.3rem;
+  text-align: center;
+}
+.main #choose_share > ul {
+  width: 100%;
+}
+.main #choose_share > ul > li {
+  height: 0.88rem;
+  line-height: 0.88rem;
+  position: relative;
+}
+.main #choose_share > ul > li > em {
+  width: 0.5rem;
+  height: 0.5rem;
+  line-height: 0.5rem;
+  padding-left: 2%;
+  display: inline-block;
+  margin-right: 0.3rem;
+  vertical-align: middle;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  border: 1px solid #868686;
+}
+.main #choose_share > ul > li > span {
+  position: absolute;
+  margin-left: 1rem;
+  width: 70%;
+  top: 0%;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
 }

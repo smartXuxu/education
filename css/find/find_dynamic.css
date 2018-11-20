@@ -177,6 +177,17 @@ header > span > a:last-of-type em {
 .list_top>.list_top_center>em{
     font-size: 0.3rem;
 }
+.list_top>.list_top_center>em>i.f_right{
+    border: 1px solid #f01414;
+    color:#f01414;
+    width: 1rem;
+    height: 0.5rem;
+    line-height: 0.5rem;
+    text-align: center;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
 .list_top_center>em>del,.list_top_center>em>s{
     font-size: 0.22rem;
     color: #666;

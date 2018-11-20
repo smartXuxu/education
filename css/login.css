@@ -112,7 +112,7 @@ html{
     width: 100%;
     height: 0.6rem;
     line-height:0.6rem;
-
+    margin-top: 0.1rem;
 }
 .register_Button{
     background: none;
@@ -200,7 +200,7 @@ input:checked  {
     transform: rotate(45deg); /!*!// 定制宽高加上旋转可以伪装内部的白色勾*!/
 }*/
 .foot_link{
-    margin-top: 3rem;
+    margin-top: 2rem;
 }
 .third_login{
     width: 100%;
@@ -279,8 +279,15 @@ input[type=text],input[type=password]{
 }
 nav{
     width: 100%;
-    height: 0.8rem;
-    line-height: 0.8rem;
+/*    height: 0.8rem;
+    line-height: 0.8rem;*/
+}
+nav>img{
+    width: 1.8rem;
+    height:1.8rem;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
 }
 nav>ul{
     width: 100%;
@@ -296,9 +303,12 @@ nav>ul>li{
     font-size: 0.32rem;
 }
 nav>ul>li:last-of-type{
-    text-align: center;
+    text-align: left;
 }
 nav>ul>li.active span{
     border-bottom:3px solid #f01414;
     
+}
+input[type=color], input[type=date], input[type=datetime-local], input[type=datetime], input[type=email], input[type=month], input[type=number], input[type=password], input[type=search], input[type=tel], input[type=text], input[type=time], input[type=url], input[type=week], select, textarea{
+    padding: 0;
 }

@@ -256,3 +256,9 @@ address,caption,cite,code,dfn,em,th{
     color: #333;
     border-left: none;
 }
+element {
+    border-width: thin;
+    -webkit-tap-highlight-color:rgba(255,255,255,0);/*ios和android下触摸元素时出现半透明灰色遮罩*/
+    -webkit-appearance: none;/*//iphone及ipad下输入框默认内阴影*/
+    -webkit-touch-callout: none;/*长时间按住页面出现闪退*/
+}

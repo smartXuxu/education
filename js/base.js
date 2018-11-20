@@ -29,7 +29,8 @@ if (window.history && window.history.pushState) {
 }
 //禁止 回退结束*/
 //var baseUrl="http://192.168.1.125:8080/";
-var baseUrl="http://39.104.127.252:8080/dongdong/";
+//var baseUrl="http://39.104.127.252:8080/dongdong/";
+var baseUrl='http://192.168.1.181:8087';
 function back(){
     history.go(-1);
 }
