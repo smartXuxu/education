@@ -55,35 +55,70 @@
   border-bottom: 0.2rem solid #eeeeee;
 }
 .main > .info,
-.main > .no_putway {
+.main .no_putway {
   border-bottom: 0.2rem solid #eeeeee;
   padding: 0 0.3rem;
 }
 .main > .info > p,
-.main > .no_putway > p {
+.main .no_putway > p {
   height: 0.88rem;
   line-height: 0.88rem;
   font-size: 0.3rem;
   color: #666666;
+  position: relative;
+}
+.main > .info > p.status > em,
+.main .no_putway > p.status > em {
+  left: 30%;
+  width: 40%;
+}
+.main > .info > p.course_status,
+.main .no_putway > p.course_status {
+  position: relative;
+}
+.main > .info > p.course_status em,
+.main .no_putway > p.course_status em {
+  position: absolute;
+  left: 20%;
+  top: 0%;
+  width: 55%;
+}
+.main > .info > p.course_status i,
+.main .no_putway > p.course_status i {
+  position: absolute;
+  right: 3%;
+  top: 3%;
 }
 .main > .info > p > span,
-.main > .no_putway > p > span {
-  width: 1.8rem;
+.main .no_putway > p > span {
+  /* width: 1.8rem;*/
 }
 .main > .info > p > span.put_way,
-.main > .no_putway > p > span.put_way {
+.main .no_putway > p > span.put_way {
   width: 3rem;
 }
 .main > .info > p > em,
-.main > .no_putway > p > em {
+.main .no_putway > p > em {
+  position: absolute;
   font-size: 0.28rem;
+  left: 20%;
+  top: 0%;
+  width: 55%;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
 }
 .main > .info > p > em.blue,
-.main > .no_putway > p > em.blue {
+.main .no_putway > p > em.blue {
   color: #008aff;
 }
 .main > .info > p > i,
-.main > .no_putway > p > i {
+.main .no_putway > p > i {
+  position: absolute;
+  right: 1%;
+  top: 3%;
   height: 0.5rem;
   line-height: 0.5rem;
   font-size: 0.24rem;
@@ -96,15 +131,15 @@
   margin-top: 2% ;
 }
 .main > .info > p > i.gray,
-.main > .no_putway > p > i.gray {
+.main .no_putway > p > i.gray {
   background-color: #eeeeee;
   border: none;
 }
 .main > .info > p > i.red,
-.main > .no_putway > p > i.red {
+.main .no_putway > p > i.red {
   color: #f01414;
 }
-.main > .has_put_way .operation {
+.main .has_put_way .operation {
   position: fixed;
   bottom: 0;
   height: 0.88rem;
@@ -113,7 +148,7 @@
   background-color: #eee;
   color: #f01414;
 }
-.main > .has_put_way .operation > .all_choose {
+.main .has_put_way .operation > .all_choose {
   width: 20%;
   height: 0.88rem;
   line-height: 0.88rem;
@@ -122,7 +157,7 @@
   border: none;
   border-radius: 0%;
 }
-.main > .has_put_way .operation > .sold_out {
+.main .has_put_way .operation > .sold_out {
   height: 0.88rem;
   line-height: 0.88rem;
   width: 78%;
@@ -132,20 +167,20 @@
   text-align: center;
   color: #f01414;
 }
-.main > .has_put_way > h3 {
+.main .has_put_way > h3 {
   padding: 0 0.3rem;
   height: 0.88rem;
   line-height: 0.88rem;
   font-size: 0.3rem;
 }
-.main > .has_put_way > h3 > s {
+.main .has_put_way > h3 > s {
   color: #0082df;
 }
-.main > .has_put_way > h3 > em {
+.main .has_put_way > h3 > em {
   font-size: 0.28rem;
   color: #666666;
 }
-.main > .has_put_way > p {
+.main .has_put_way > p {
   padding: 0 0.3rem;
   height: 0.88rem;
   line-height: 0.88rem;
@@ -153,7 +188,7 @@
   color: #666;
   position: relative;
 }
-.main > .has_put_way > p > del {
+.main .has_put_way > p > del {
   display: inline-block;
   width: 0.5rem;
   height: 0.5rem;
@@ -166,7 +201,7 @@
   vertical-align: middle;
   border: 1px solid #cccccc;
 }
-.main > .has_put_way > p span {
+.main .has_put_way > p span {
   position: absolute;
   margin-left: 0.8rem;
   top: 0%;
@@ -177,6 +212,6 @@
   -webkit-box-orient: vertical;
   word-break: break-all;
 }
-.main > .has_put_way > p > i {
+.main .has_put_way > p > i {
   font-size: 0.24rem;
 }

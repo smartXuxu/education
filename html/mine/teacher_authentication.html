@@ -27,6 +27,7 @@
         .Id_photo{
             background-color: #fff;
             margin-top: 0.2rem;
+            padding-bottom: 0.2rem;
         }
         .Id_photo>h2{
             min-height: 1rem;
@@ -42,13 +43,22 @@
             background: url("../../img/teacher_auth.png") no-repeat center;
             -webkit-background-size: 100%;
             background-size: 100%;
-            width: 100%;
+            width: 96%;
+            position: relative;
+            left: 1%;
             height: 4rem;
             margin:0 auto;
             margin-top: 0.2rem;
             overflow: hidden;
         }
-
+        .open>.open_box{
+            width: 80%;
+            margin:0 auto;
+            -webkit-background-size: 80%;
+            background-size: 80%;
+            background-image: url("../../img/created_lesson_03.png");
+            padding-bottom: .2rem;
+        }
         .against_box>input,.open_box>input{
             opacity: 0;
             display: block;
@@ -103,17 +113,17 @@
        <div class="teach_school clearfix" onclick="location.href='./teach_school.html'">
            <em>任教学校</em>
            <i class="mui-icon mui-icon-arrowright f_right"></i>
-           <span class="f_right">werw</span>
+           <span class="f_right"></span>
        </div>
         <div class="teach_grade clearfix" onclick="location.href='./teach_grade.html'">
             <em>任教年级</em>
             <i class="mui-icon mui-icon-arrowright f_right"></i>
-            <span class="f_right">werw</span>
+            <span class="f_right"></span>
         </div>
         <div class="teach_subject clearfix" onclick="location.href='./teach_subject.html'">
            <em>任教学科</em>
             <i class="mui-icon mui-icon-arrowright f_right"></i>
-           <span class="f_right">dasfdsa</span>
+           <span class="f_right"></span>
        </div>
         <div class="Id_photo clearfix">
             <h2 >必上传资料</h2>
@@ -122,7 +132,7 @@
                     <input type="file" id="against" accept="image/*" capture="camera" />
                 </div>
             </div>
-            <h2 >非必上传资料(上传任职证明，职位认证后将点亮 <em>V </em>图标）</h2>
+            <h2 >必上传资料(个人形象照片，用于个人介绍同时将点亮 <em>V </em>图标）</h2>
             <div class="open">
                 <div class="open_box">
                     <input type="file" id="just" accept="image/*" capture="camera"/>
@@ -185,37 +195,81 @@
         if(teach_grade){
             $(".teach_subject>span").text(teach_subject)
         }
-
+        //任教学校
+        var schoolName=localStorage.getItem("schoolName");
+        if(schoolName){
+            $(".teach_school>span").text(schoolName);
+        }
 
         $(".submit").click(function () {
-            var idCardNumber=$("#Idcard").val();
-            //身份证
-            isCardNo(idCardNumber);
-            //验证 身份证号
-            function isCardNo(card)
-            {
-                // 身份证号码为15位或者18位，15位时全为数字，18位前17位为数字，最后一位是校验位，可能为数字或字符X
-                var reg = /(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
-                if(reg.test(card) === false)
-                {
-                    sweetAlert(
-                            "sorry",
-                            "您的身份证输入不合法",
-                            "error"
-                    ).then(function () {
-                                $("#Idcard").val("");
-                            })
-                    return false;
-                }
+            //判断一下  如果没有选择 学校什么的 就不让发送请求
+            if($(".teach_school span").text().length==0&&$(".teach_grade span").text().length==0&&$(".teach_subject span").text().length==0){
+              sweetAlert(
+                      "sorry",
+                      "请您完善信息",
+                      "error"
+              )
+                return false;
             }
-            var base64IdCardBack=$(".against_box").css('backgroundImage').replace('url(','').replace(')','');
+            // 教师资格证照片
+            var teacherCertificate=$(".against_box").css('backgroundImage').replace('url(','').replace(')','');
             //console.log(base64IdCardBack);
-            if(base64IdCardBack.replace(/\"/g,"").match("img/against.png")){
+            if(teacherCertificate.replace(/\"/g,"").match("img/against.png")){
                 //if(base64IdCardBack.replace(/\"/g,"") =="http://localhost:63342/MU/img/against.png"){
-                base64IdCardBack="";
+                teacherCertificate="";
             }else{
-                base64IdCardBack=base64IdCardBack.replace(/"/g,"");
+                teacherCertificate=teacherCertificate.replace(/"/g,"");
             }
+            /* 个人照片*/
+            var teacherProof=$(".open_box").css('backgroundImage').replace('url(','').replace(')','');
+            //console.log(base64IdCardBack);
+            if(teacherProof.replace(/\"/g,"").match("img/created_lesson_03.png")){
+                //if(base64IdCardBack.replace(/\"/g,"") =="http://localhost:63342/MU/img/against.png"){
+                teacherProof="";
+            }else{
+                teacherProof=teacherProof.replace(/"/g,"");
+            }
+            myAjax({url:"/pic/base64/upload",data:{base64:teacherCertificate},type:"post"}, function (data) {
+                console.log(data);
+                if(data.status==200){
+                    teacherCertificate=data.data
+                    myAjax({url:"/pic/base64/upload",data:{base64:teacherProof},type:"post"}, function (data) {
+                        console.log(data);
+                        if(data.status==200){
+                            teacherProof=data.data;
+                            // 发送教师的认证消息
+                            var userid=localStorage.getItem("this_userid");
+                            var schoolId=localStorage.getItem("schoolId");
+                            var  grade=$(".teach_grade span").text();
+                            //$(".teach_grade span").text().length==0&&$(".teach_subject span").text()
+                            var teachingSubjects=$(".teach_subject span").text();
+                            var obj={
+                                "userid":userid,
+                                "identityAuthentication":4,
+                                schoolId:schoolId,
+                                teachingSubjects:teachingSubjects,
+                                grade:grade,
+                                teacherCertificate:teacherCertificate,
+                                teacherProof:teacherProof,
+
+                            }
+                            // 教师身份认证
+                             myAjax({url:"/authentication/updateTo/teacher",data:obj,type:"post"}, function (data) {
+                                 console.log(data);
+                                 if(data.status==200){
+                                     $(".submit").text("已提交，等待审核");
+                                     localStorage.removeItem("schoolName");
+                                     localStorage.removeItem("schoolId");
+                                     localStorage.removeItem("teach_grade");
+                                     localStorage.removeItem("teach_subject");
+                                 }
+                             })
+                        }
+                    })
+                }
+            })
+
+
         })
     })
 </script>

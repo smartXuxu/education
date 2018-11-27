@@ -53,27 +53,61 @@
     font-size: 0.32rem;
     border-bottom: 0.2rem solid #eeeeee;
   }
-  >.info,>.no_putway{
+  >.info,.no_putway{
     border-bottom: 0.2rem solid #eeeeee;
     padding:0 0.3rem;
+
     >p{
       height: 0.88rem;
       line-height: 0.88rem;
       font-size: 0.3rem;
       color:#666666;
+      position: relative;
+      &.status{
+        >em{
+          left: 30%;
+          width: 40%;
+        }
+      }
+      &.course_status{
+        position: relative;
+        em{
+          position: absolute;
+          left: 20%;
+          top: 0%;
+          width: 55%;
+        }
+        i{
+          position: absolute;
+          right: 3%;
+          top: 3%;
+        }
+      }
       >span{
-        width: 1.8rem;
+       /* width: 1.8rem;*/
         &.put_way{
           width: 3rem;
         }
       }
       >em{
+        position: absolute;
         font-size: 0.28rem;
+        left: 20%;
+        top: 0%;
+        width: 55%;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        word-break: break-all;
         &.blue{
           color:#008aff;
         }
       }
       >i{
+        position: absolute;
+        right: 1%;
+        top: 3%;
         height: 0.5rem;
         line-height: 0.5rem;
         font-size: 0.24rem;
@@ -94,7 +128,7 @@
       }
     }
   }
-  >.has_put_way{
+  .has_put_way{
     .operation{
       position: fixed;
       bottom: 0;

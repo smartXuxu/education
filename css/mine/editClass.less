@@ -57,6 +57,7 @@ html{
           margin-left: 1rem;
           width: 70%;
           top:0%;
+          font-size: 0.28rem;
           overflow: hidden;
           display: -webkit-box;
           -webkit-line-clamp: 1;
@@ -74,6 +75,7 @@ html{
     color:#fff;
     background-color: #f01414;
     bottom: 0;
+    font-size: 0.3rem;
   }
   .name,.choose{
     background-color: #fff;
@@ -99,12 +101,21 @@ html{
   }
   .choose{
     padding-bottom: 0.2rem;
+    height: 0.8rem;
+    line-height: 0.8rem;
+    position: relative;
     del{
       padding-left: 0.2rem;
       color:#008aff;
       font-size: 0.3rem;
+      position: absolute;
+      right: 2%;
+      top: 5%;
     }
     p{
+      position: absolute;
+      left: 22%;
+      top: 0%;
       padding-left: 0.2rem;
       color:#999999;
       width: 55%;
@@ -112,7 +123,6 @@ html{
       line-height: 0.8rem;
       font-size: 0.28rem;
       display: inline-block;
-      position: relative;
       border:1px solid #dcdcdc;
       -webkit-border-radius: 3px;
       -moz-border-radius: 3px;
@@ -121,6 +131,8 @@ html{
         display: inline-block;
         width: 70%;
         line-height: 0.8rem;
+       height: 0.8rem;
+        vertical-align: middle;
         overflow: hidden;
         display: -webkit-box;
         -webkit-line-clamp: 1;
@@ -153,11 +165,13 @@ html{
   .content{
     padding-top: 0.2rem;
     background-color: #fff;
-    >p{
-      padding:0 0.3rem;
-      color:#333;
-      font-size: 0.3rem; ;
-      line-height: 0.56rem;
+    >.detail_course{
+      >p{
+        padding:0 0.3rem;
+        color:#333;
+        font-size: 0.3rem; ;
+        line-height: 0.56rem;
+      }
     }
     .period{
       border-top: 0.2rem solid #eeeeee;

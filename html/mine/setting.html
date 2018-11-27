@@ -111,7 +111,8 @@
              * toggle 事件监听
              */
             this.addEventListener('toggle', function(event) {
-                //console.log(event.detail.isActive); //可直接获取当前状态
+                //console.log(event.detail.isActive);
+                // 可直接获取当前状态
                 if(event.detail.isActive==false){
                     console.log("视频不自动播放");
                     localStorage.setItem("autoPlay",true);
@@ -122,15 +123,39 @@
 
             });
         });
+        function render(token){
+            $.ajax({
+                //处理session每次不唯一问题
+                xhrFields: {
+                    withCredentials: true
+                },
+                async:false,
+                type: "post",
+                url: baseUrl+"/user/logout",
+                data:{token:token},
+                dataType: 'json',
+                success:function(data) {
+                    console.log(data);
+                    if(data.status==200){
+                        localStorage.removeItem("pwd");
+                        location.href='../login.html';
+                    }
+                }
 
+            })
+        }
         $(".quit_login").click(function () {
             var token=localStorage.getItem("token");
-            function render(data){
+            render(token);
+            /*function render(data){
                 console.log(data);
+                if(data.status==200){
+                    localStorage.removeItem("pwd");
+                     location.href='../login.html';
+                }
             }
-            myAjax("{url:'/user/logout',data:{token:token},type:'post'}",render)
-            localStorage.removeItem("pwd");
-            location.href='../login.html';
+            myAjax({url:'/user/logout',data:{token:token},type:post},render);*/
+
         })
     })
 </script>

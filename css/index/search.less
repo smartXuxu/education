@@ -1,0 +1,415 @@
+.baseColor{
+  color:#f01414;
+}
+.top_right>h2{
+  height: 0.5rem;
+}
+.layer>header>input{
+  height: 0.8rem;
+  line-height:0.8rem;
+  margin-left:1.3rem;
+  text-indent:3em;
+  width: 65%;
+  text-align: left;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  position: absolute;
+  top: 39%;
+}
+.select>header>.search-btn{
+  color:#fff;
+  font-size:0.30rem;
+  margin-left: 0.2rem;
+  top: 6%;
+  right: 5%;
+  background: none;
+  position: absolute;
+}
+.layer>header:before{
+  width: 0.5rem;
+  height: 0.6rem;
+  content:"";
+  background:url("../../img/search.png") no-repeat center;
+  -webkit-background-size: 100%;
+  background-size: 100%;
+  position:absolute;
+  z-index: 2;
+  left: 20%;
+  top: 45%;
+}
+.main{
+  padding-top: 1.8rem;
+}
+.hot_search,.search_lately{
+  width: 100%;
+  height:auto;
+  padding:0 0.3rem;
+}
+.hot_tit,.search_lately>h2{
+  position: relative;
+
+  font-size: 0.32rem;
+  height: 1rem;
+  line-height: 1rem;
+  color:#666;
+
+}
+.hot_tit>span,.search_lately_content>span{
+  margin-left: .2rem;
+}
+.hot_tit>i{
+  position: absolute;
+  right: 0%;
+}
+.content>p{
+  color:#999;
+  font-size:0.3rem;
+  margin-left: 0.3rem;
+
+}
+.content span,.search_lately_content>span{
+  padding: 0.1rem;
+  color:#999;
+  margin-right: 0.1rem;
+  border:1px solid #c1bfbf;
+  border-radius:5px;
+  margin-bottom: 0.2rem;
+}
+.top_right>h3{
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+}
+.top_right>h3 {
+  font-size: 0.3rem;
+  color: #333;
+
+}
+.layer>header>i{
+  top: 45%;
+  font-size: 0.6rem;
+}
+.main>.excent_lesson{
+  border-bottom: none;
+}
+/*学校*/
+#consequence{
+  padding: 0.3rem;
+  >p{
+    height: 0.8rem;
+    line-height: 0.8rem;
+  }
+  /*学校*/
+  > .list_school{
+    width: 100%;
+    position: relative;
+    margin-bottom: 0.3rem;
+    border-bottom: 1px solid #eee;
+    height: 1.68rem;
+    padding-bottom: 0.2rem;
+    .img_box{
+      width: 2.2rem;
+      height: 100%;
+      img{
+        width: 100%;
+        vertical-align:middle;
+      }
+    }
+    .right{
+      position: absolute;
+      padding-left: 2.4rem;
+      top: 0%;
+      width: 100%;
+      >em{
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        word-break: break-all;
+        font-size: 0.3rem;
+        del{
+          float: right;
+          font-size: 0.2rem;
+        }
+      }
+      .right_center{
+        margin-top: 0.1rem;
+        em{
+          display:inline-block;
+          background:url("../../img/cat.png") no-repeat center;
+          -webkit-background-size: 100%;
+          background-size: 100%;
+          width: 0.5rem;
+          height: 0.6rem;
+          vertical-align: bottom;
+        }
+        >del{
+          border:1px solid #f01414;
+          .baseColor;
+          border-radius: 5px;
+          padding:0.05rem 0.2rem;
+          font-size: 0.24rem;
+        }
+      }
+      .right_footer{
+        width: 100%;
+        position: relative;
+        margin-top: 0.05rem;
+        i{
+          width: 0.6rem;
+          height: 0.6rem;
+          display: inline-block;
+          color:#999999;
+        }
+        span{
+          padding-left: 0.6rem;
+          position: absolute;
+          top: 10%;
+          overflow: hidden;
+          display: -webkit-box;
+          -webkit-line-clamp: 1;
+          -webkit-box-orient: vertical;
+          word-break: break-all;
+        }
+      }
+    }
+  }
+  /*教师*/
+  > .list_teacher{
+    width: 100%;
+    position: relative;
+    padding-bottom: 0.8rem;
+    padding-top: 0.2rem;
+    border-bottom: 1px solid #eeeeee;
+    &:first-of-type{
+      padding-top: 0;
+    }
+    >img {
+      width: 1rem;
+      height: 1rem;
+      vertical-align: middle;
+      border-radius: 50%  ;
+    }
+    .list_center{
+      width: 100%;
+      top: 5%;
+      position: absolute;
+      padding-left: 1.5rem;
+      .list_center_top{
+        height: 0.6rem;
+        span{
+          font-size: 0.34rem;
+        }
+        i{
+          color:#666;
+        }
+      }
+      .list_center_center{
+        color:#6cb628;
+        >em{
+          font-size: 0.20rem;
+          color:#6cb628;
+          border-radius: 3px;
+          margin:0.01rem 0.1rem;
+          border:1px solid #6cb628;
+
+        }
+      }
+      .list_bottom{
+        font-size: 0.24rem;
+        margin-top: 0.1rem;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        word-break: break-all;
+      }
+    }
+  }
+  /*课程*/
+  >.list_course{
+    width: 100%;
+    position: relative;
+    padding-bottom: 0.3rem;
+    padding-top: 0.2rem;
+    border-bottom: 1px solid #eeeeee;
+   >a{
+     display: block;
+     position: relative;
+     >img{
+       width: 2.9rem;
+       height: 1.8rem;
+       overflow: hidden;
+       vertical-align: middle;
+     }
+     >.ex_right{
+       width: 100%;
+       position: absolute;
+       padding-left: 3.2rem;
+       top: 0%;
+       .ex_top{
+         width: 100%;
+         >span{
+           font-size: 0.32rem;
+         }
+         >em{
+           font-size: 0.26rem;
+           del{
+             .baseColor;
+           }
+         }
+       }
+       .ex_center,.ex_footer{
+         height: 0.7rem;
+         line-height: 0.7rem;
+         font-size: 0.24rem;
+         color:#666;
+         overflow: hidden;
+         display: -webkit-box;
+         -webkit-line-clamp: 1;
+         -webkit-box-orient: vertical;
+         word-break: break-all;
+       }
+
+     }
+   }
+  }
+}
+
+.famous{
+  width: 100%;
+  height:auto;
+  padding: 0.3rem;
+
+  .lists{
+    width: 100%;
+    margin-top: 0.3rem;
+    .list{
+      width: 100%;
+      position: relative;
+      margin-bottom: 0.3rem;
+      height: 1.68rem;
+      .img_box{
+        width: 2.2rem;
+        height: 100%;
+        img{
+          width: 100%;
+          vertical-align:middle;
+        }
+      }
+      .right{
+        position: absolute;
+        padding-left: 2.4rem;
+        top: 0%;
+        width: 100%;
+        >em{
+          overflow: hidden;
+          display: -webkit-box;
+          -webkit-line-clamp: 1;
+          -webkit-box-orient: vertical;
+          word-break: break-all;
+          font-size: 0.3rem;
+          del{
+            float: right;
+            font-size: 0.2rem;
+          }
+        }
+        .right_center{
+          margin-top: 0.1rem;
+          em{
+            display:inline-block;
+            background:url("../../img/cat.png") no-repeat center;
+            -webkit-background-size: 100%;
+            background-size: 100%;
+            width: 0.5rem;
+            height: 0.6rem;
+            vertical-align: bottom;
+          }
+          >del{
+            border:1px solid #f01414;
+            .baseColor;
+            border-radius: 5px;
+            padding:0.05rem 0.2rem;
+            font-size: 0.24rem;
+          }
+        }
+        .right_footer{
+          width: 100%;
+          position: relative;
+          margin-top: 0.05rem;
+          i{
+            width: 0.6rem;
+            height: 0.6rem;
+            display: inline-block;
+            color:#999999;
+          }
+          span{
+            padding-left: 0.6rem;
+            position: absolute;
+            top: 10%;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            word-break: break-all;
+          }
+        }
+      }
+    }
+  }
+}
+.teacher_lists{
+  width: 100%;
+  padding: 0.3rem;
+  margin-top: 0.2rem;
+  .list_teacher{
+    width: 100%;
+    position: relative;
+    padding-bottom: 0.8rem;
+    padding-top: 0.2rem;
+    border-bottom: 1px solid #eeeeee;
+    &:first-of-type{
+      padding-top: 0;
+    }
+    >img {
+      width: 1rem;
+      height: 1rem;
+      vertical-align: middle;
+      border-radius: 50%  ;
+    }
+    .list_center{
+      width: 100%;
+      top: 5%;
+      position: absolute;
+      padding-left: 1.5rem;
+      .list_center_top{
+        height: 0.6rem;
+        span{
+          font-size: 0.34rem;
+        }
+        i{
+          color:#666;
+        }
+      }
+      .list_center_center{
+        color:#6cb628;
+        >em{
+          font-size: 0.20rem;
+          color:#6cb628;
+          border-radius: 3px;
+          padding:0.01rem 0.1rem;
+          border:1px solid #6cb628;
+
+        }
+      }
+      .list_bottom{
+        height: 0.6rem;
+        font-size: 0.24rem;
+        margin-top: 0.1rem;
+      }
+    }
+  }
+}

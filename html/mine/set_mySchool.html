@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
 
-    <title>任教年级</title>
+    <title>设置我的年级</title>
     <link rel="stylesheet" href="../../css/mui.min.css"/>
     <link rel="stylesheet" href="../../css/base.css"/>
     <link rel="stylesheet" href="../../css/header.css"/>
@@ -13,8 +13,13 @@
         body,html{
             background-color: #f4f4f4;!important;
         }
-        .main{
-            margin-top: 1.6rem;
+        .my_class{
+            padding-top: 1.6rem;
+            background-color: #f4f4f4;
+            height: 2.3rem;
+            line-height: 0.8rem;
+            color:#333;
+            padding-left: 0.3rem;
         }
         .main>.class{
             background-color: #fff;
@@ -83,15 +88,15 @@
         }
         .finish{
             display: block;
-            width: 100%;
+            width: 30%;
             height: 0.8rem;
             line-height: 0.8rem;
-            background-color: #f01414;
+            background-color: rgba(0,0,0,.2);
+            -webkit-border-radius: 15px;
+            -moz-border-radius: 15px;
+            border-radius: 15px;
             text-align: center;
-            position: fixed;
-            bottom: 0;
-            color: #ffffff;
-            font-size: 0.3rem;
+            margin: 0.3rem auto;
         }
     </style>
 </head>
@@ -100,36 +105,44 @@
     <header id="header" class="mui-bar mui-bar-nav">
         <i class="mui-icon mui-icon-left-nav mui-pull-left" onclick="back()"></i>
         <h1 class="mui-title">设置年级</h1>
+
     </header>
+    <p class="my_class">我的年级是：</p>
     <div class="main">
-        <div class="class">
-            <h3>学前班</h3>
-            <div class="content mui-clearfix">
-                <span >学前班 </span>
-            </div>
-            <h3>小学</h3>
-            <div class="content mui-clearfix">
-                <span class="active">一年级 </span>
-                <span>二年级 <!--<em>&</em>--></span>
-                <span>三年级 <!--<em>&</em>--></span>
-                <span>四年级 <!--<em>&</em>--></span>
-                <span>五年级 <!--<em>&</em>--></span>
-                <span>六年级 <!--<em>&</em>--></span>
-            </div>
-            <h3>中学</h3>
-            <div class="content mui-clearfix">
-                <span>初一 </span>
-                <span>初二 </span>
-                <span>初三 </span>
-            </div>
-            <h3>高中</h3>
-            <div class="content mui-clearfix">
-                <span>高一 </span>
-                <span>高二 </span>
-                <span>高三 </span>
-            </div>
+     <div class="class">
+         <h3>学前班</h3>
+         <div class="content mui-clearfix">
+             <span >学前班</span>
+         </div>
+         <h3>小学</h3>
+         <div class="content mui-clearfix">
+             <span class="active">一年级</span>
+             <span>二年级</span>
+             <span>三年级</span>
+             <span>四年级</span>
+             <span>五年级</span>
+             <span>六年级</span>
+         </div>
+         <h3>中学</h3>
+         <div class="content mui-clearfix">
+             <span>初一</span>
+             <span>初二</span>
+             <span>初三</span>
+         </div>
+         <h3>高中</h3>
+         <div class="content mui-clearfix">
+             <span>高一</span>
+             <span>高二</span>
+             <span>高三</span>
+         </div>
+     </div>
+       <!-- <div class="school">
+            <h3>我的学校</h3>
+            <input type="text" placeholder="请填写您的学校"/>
         </div>
-        <button class="finish">确定</button>
+        <p class="info">我的学校为非必设置项，可忽略</p>-->
+        <button class="finish">完成</button>
+        <em class="more">如需补充更多资料可在个人中心编辑个人资料</em>
     </div>
 </div>
 
@@ -141,24 +154,15 @@
 <script src="../../js/back.js"></script>
 <script>
     $(function () {
-        var flag=true;
         $(".content>span").click(function () {
-            if(flag){
-                //$(this).siblings().removeClass("active");
-                $(this).addClass("active");
-                //console.log($(this).text());
-                flag=false;
-            }else{
-                $(this).removeClass("active");
-                //console.log($(this).text());
-                flag=true;
-            }
-
+            //$(this).siblings().removeClass("active");
+            $("span").removeClass("active");
+            $(this).addClass("active");
+            //console.log($(this).text());
         })
         $(".finish").click(function () {
             console.log($("span.active").text());
-            localStorage.setItem("teach_grade",$("span.active").text());
-            back();
+           location.href='./index/index.html';
         })
     })
 </script>

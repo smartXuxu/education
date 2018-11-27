@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
 
-    <title>我要回答</title>
+    <title>发动态</title>
     <link rel="stylesheet" href="../../css/mui.min.css"/>
     <link rel="stylesheet" href="../../css/base.css"/>
     <link rel="stylesheet" href="../../css/sweetalert2.css"/>
@@ -20,14 +20,37 @@
     html{
         background-color:#eee;
     }
+    .main{
+        background-color: #fff;
+    }
+    .main .z_photo{
+        border-bottom: 0;
+    }
+    .choose_fin{
+        display: block;
+        height: 1rem;
+        padding-left: 0.3rem;
+        position: relative;
+        left: 50%;
+        transform:translateX(-50%);
+    }
+        .sure{
+            width: 30%;
+            text-align: center;
+            background-color: #f01414;
+            color:#fff;
+            margin:0 auto;
+            height: 0.6rem;
+            display: none;
 
+        }
     </style>
 </head>
 <body style="background-color:#eee;">
 <div class="layer">
     <header id="header" class="mui-bar mui-bar-nav">
         <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-        <h1 class="mui-title">提问</h1>
+        <h1 class="mui-title">发动态</h1>
         <em class="finish">发布</em>
     </header>
     <div class="main">
@@ -63,6 +86,10 @@
                 </div>
             </div>
         </div>
+       <!-- <div class="choose_fin">
+            <button class="sure">上传图片</button>
+        </div>-->
+
     </div>
 </div>
 </body>
@@ -74,71 +101,88 @@
 <script>
 
     //图片上传
-    var obj={};
-    $(".confirm").click(function(){
-        var title= $(".style").val();
-        var startTime=$("#tests").val();
-        var endTime=$("#test").val();
-        //转换成功 图片的base64地址 很重要
-        // console.log(images);
-        //获取用户输入的全部内容之后 包括图片的地址  发送给后台 在进行页面的跳转
-        var content=$("textarea").val() ;
-        if(content!==""&&$(".location_info").text()!=="位置"&&title!==""&&endTime!==""&&startTime!==""){
-            startTime=new Date(startTime.replace(/-/g,"/"));
-            endTime=new Date(endTime.replace(/-/g,"/"));
-            obj.content=content;
-            obj.title=title;
-            obj.image= JSON.stringify(images);
-            obj.startTime=startTime;
-            obj.endTime=endTime;
-            obj.address= $(".location_info").text();
-            console.log(obj);
-            $.ajax({
-                //处理session每次不唯一问题
-                xhrFields: {
-                    withCredentials: true
-                },
-                //请求方式
-                type:'post',
-                url:baseUrl+'/partner/pushPartner',
-                dataType:'json',
-                data:obj,
-                beforeSend:function(){
-                    $("#loading").show();
-                },
-                success:function(data){
-                    console.log(data);
-                    if(data.code=="success"){
-                        $("#loading").hide();
-                        //alert("发表成功");
-                        swal(
-                                '干得漂亮！',
-                                '您发表成功了！',
-                                'success'
-                        ).then(function(){
-                                    //清除location 本地存储
-                                    localStorage.removeItem("location");
-                                    window.location.href="./work_sigle.html";
-                                })
 
-                    }
-                },
-                error:function(data){
-                    console.log(data);
+   /* $(".sure").click(function () {
+        var base64s=images.join("。").replace(/"/g,"");
+        console.log(base64s);
+        myAjax({url:"/pic/multiple/base64/upload",type:"post",data:{"base64s":base64s},async:false}, function (data) {
+           console.log(data);
+       })
+    })*/
+    var obj={};
+    $(".finish").click(function(){
+        var base64s=images.join("。").replace(/"/g,"");
+        console.log(base64s);
+        myAjax({url:"/pic/multiple/base64/upload",type:"post",data:{"base64s":base64s},async:false}, function (data) {
+            console.log(data);
+            if(data.status==200){
+                var picture=data.data;
+                //拿到 图片上传的地址
+                var userId=localStorage.getItem("this_userid");
+                var token=localStorage.getItem("token");
+                //转换成功 图片的base64地址 很重要
+
+                // var base64s=images.join("。").replace(/"/g,"");
+                //var images=images;
+                //获取用户输入的全部内容之后 包括图片的地址  发送给后台 在进行页面的跳转
+                var body=$("textarea").val() ;
+                if(body!=="" || picture!=="" ){
+                    obj.token=token;
+                    obj.userId=userId;
+                    obj.picture = picture;
+                    obj.body=body;
+                    console.log(obj);
+                    $.ajax({
+                        //处理session每次不唯一问题
+                        xhrFields: {
+                            withCredentials: true
+                        },
+                        //请求方式
+                        type:'post',
+                        url:baseUrl+'/dynamic/add/dynamic',
+                        dataType:'json',
+                        data:obj,
+                        beforeSend:function(){
+                          $("#loading").show();
+                        },
+                        success:function(data){
+                            console.log(data);
+                            if(data.status==200){
+                                //$("#loading").hide();
+                                //alert("发表成功");
+                                sweetAlert(
+                                        '恭喜！',
+                                        '您发表成功了！',
+                                        'success'
+                                ).then(function(){
+                                            //清除location 本地存储
+                                            location.href='../find/find_dynamic.html'
+                                        })
+
+                            }
+                        },
+                        error:function(data){
+                            console.log(data);
+                        }
+                    })
                 }
-            })
-        }
-        else{
-            sweetAlert(
-                    'sorry',
-                    '记得填写内容哦！',
-                    'error'
-            )
-        }
+                else{
+                    sweetAlert(
+                            'sorry',
+                            '记得填写内容哦！',
+                            'error'
+                    )
+                }
+            }else{
+
+            }
+        })
+
     })
     /*上传图片
      * */
     function imgChange(obj1, obj2) {
+       // $(".sure").show(); 上传 图片按钮显示
         //获取点击的文本框
         var file = document.getElementById("file");
         //存放图片的父级元素

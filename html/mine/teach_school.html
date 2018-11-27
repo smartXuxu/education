@@ -23,10 +23,42 @@
             height: 1rem;
             line-height: 1rem;
             padding:0 0.3rem;
+            position: relative;
+        }
+        .main>h3:before{
+            content:"";
+            position: absolute;
+            background: url("../../img/search.png") no-repeat center;
+            -webkit-background-size: 60%;
+            background-size: 60%;
+            width: 0.6rem;
+            height: 0.6rem;
+            left: 25%;
+            top: 18%;
+        }
+        .main>h3>input{
+            display: inline-block;
+            width: 60%;
+            height: 0.6rem;
+            padding: 0;
+            margin-top: 0.2rem;
+            margin-left: 0.3rem;
+            border:none;
+            text-indent: 25%;
+            background-color: #fff;
+            -webkit-border-radius:20px;
+            -moz-border-radius:20px;
+            border-radius: 20px;
         }
         .main>h3>em{
             width: 0.8rem;
             height: 1rem;
+        }
+        .main>h3>i{
+            height: 1rem;
+            width: 1rem;
+            display: inline-block;
+            text-align: center;
         }
         .layer>header>em{
             top: 5%;
@@ -55,19 +87,25 @@
     </style>
 </head>
 <body>
-<div id='container' style="display: none;"></div>
+<div id="loading">
+    <img src="../../img/login.gif" alt=""/>
+    <div>请等待，定位中...</div>
+</div>
+<!--<div id='container' style="display: none;"></div>-->
 <div class="layer">
     <header id="header" class="mui-bar mui-bar-nav">
         <i class="mui-icon mui-icon-left-nav mui-pull-left" onclick="back()"></i>
         <h1 class="mui-title">选择学校</h1>
-        <em onclick="location.href='../index/select_city.html'"><s>郑州</s><del class="mui-icon mui-icon-arrowdown" ></em>
-    </header>
+      <!--  <em onclick="location.href='../index/select_city.html'"><s>郑州</s><del class="mui-icon mui-icon-arrowdown" ></em>
+    --></header>
     <div class="main">
-        <h3 class="clearfix">附近学校
+        <h3 >附近学校
            <!-- <em class="iconfont icon-fangdajing f_right"></em>-->
+            <input type="text"  placeholder="请搜索"/>
+            <i id="search">搜索</i>
         </h3>
         <ul class="lists">
-            <li class="list">
+           <!-- <li class="list">
                 <p>天河区嘉福学校</p>
                 <h3>
                     <i class="iconfont icon-zuobiao"></i>
@@ -80,9 +118,8 @@
                     <i class="iconfont icon-zuobiao"></i>
                     广州市天河区白沙水路166
                 </h3>
-            </li>
+            </li>-->
         </ul>
-
     </div>
 </div>
 </body>
@@ -92,48 +129,81 @@
 <script src="../../js/base.js"></script>
 <script src="../../js/back.js"></script>
 <script src="../../js/sweetalert2.js"></script>
-<script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.10&key=bd54e4be514aab4910f8afc68209d057"></script>
-<script>
-    var map = new AMap.Map('container', {
-        resizeEnable: true
-    });
-    AMap.plugin('AMap.Geolocation', function() {
-        var geolocation = new AMap.Geolocation({
-            enableHighAccuracy: true,//是否使用高精度定位，默认:true
-            timeout: 10000,          //超过10秒后停止定位，默认：5s
-            buttonPosition:'RB',    //定位按钮的停靠位置
-            buttonOffset: new AMap.Pixel(10, 20),//定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
-            zoomToAccuracy: true,   //定位成功后是否自动调整地图视野到定位点
+<script src="../../js/template-web.js"></script>
+<script src="../../js/template.js"></script>
+<script type="text/html" id="school">
+    {{if data.length==0}}
+    <div class="in_fo">对不起，您的附近没有任何学校</div>
+    {{else}}
 
-        });
-        map.addControl(geolocation);
-        geolocation.getCurrentPosition(function(status,result){
-            if(status=='complete'){
-                onComplete(result)
-            }else{
-                onError(result)
-            }
-        });
-    });
-    //解析定位结果
-    function onComplete(data) {
-       // document.getElementById('status').innerHTML='定位成功'
-        var str = [];
-        str.push('定位结果：' + data.position);
-        str.push('定位类别：' + data.location_type);
-        console.log(str);
-        /* if(data.accuracy){
-            str.push('精度：' + data.accuracy + ' 米');
-        }//如为IP精确定位结果则没有精度信息
-        str.push('是否经过偏移：' + (data.isConverted ? '是' : '否'));*/
-       /* document.getElementById('result').innerHTML = str.join('<br>');*/
-    }
-    //解析定位错误信息
-    function onError(data) {
-        console.log(str = "定位失败" + data.message);
-        /*  document.getElementById('status').innerHTML='定位失败'
-      document.getElementById('result').innerHTML = '失败原因排查信息:'+data.message;*/
-    }
+    {{each data as value i}}
+    <li class="list" data-id="{{value.school.schoolId}}" data-name="{{value.school.name}}">
+        <p>{{value.school.name}}</p>
+        <h3>
+            <i class="iconfont icon-zuobiao"></i>
+            {{value.school.address}}
+        </h3>
+    </li>
+    {{/each}}
 
+    {{/if}}
 </script>
+<script>
+    $(function () {
+        //ajax 发送完毕
+        $(document).ajaxStop(function(){
+            $("#loading").hide();
+        });
+        /*城市选择*/
+        var city="郑州";
+        if(localStorage.getItem("city")){
+           city= localStorage.getItem("city");
+            console.log(city);
+        }
+        /*获取经纬度*/
+        myAjax({url:"/autonavi/map/web/geo/Geocode",data:{address:city},type:"post",async:false}, function (data) {
+            console.log(data);
+            if(data.status==200){
+                var location=data.data[0].location;
+                /*保存 发送给后台*/
+                myAjax({url:"/nearby/content/get/near/school",data:{center:location,radius:"10000"},type:"post"}, function (data) {
+                    console.log(data);
+                    if(data.status==200){
+                        $(".lists").html(template("school",data));
+                    }
+                })
+            }
+        })
+        /*搜索学校*/
+        $("#search").click(function () {
+            var search=$("input").val().trim();
+            if(search==""){
+                sweetAlert(
+                        "对不起",
+                        "请你输入搜索内容",
+                        error
+                )
+                return false;
+            }else{
+                myAjax({url:"/search/get/search/school",data:{search:search},type:"post"}, function (data) {
+                    console.log(data);
+                    if(data.status==200){
+                        $(".lists").html(template("school",data));
+                    }
+                })
+            }
+        })
+        $(".main").on("click",".list", function () {
+            var id=$(this).data("id");
+            var name=$(this).data("name");
+            localStorage.setItem("schoolId",id);
+            localStorage.setItem("schoolName",name);
+            location.href="./teacher_authentication.html";
+           /* console.log(id);
+            console.log(name);*/
+        })
+
+    })
+</script>
+
 </html>

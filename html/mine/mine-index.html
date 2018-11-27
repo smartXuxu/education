@@ -138,7 +138,6 @@
 <script src="../../js/x_rem.js"></script>
 <script src="../../js/jquery.min.js"></script>
 <script src="../../js/base.js"></script>
-
 <script src="../../js/sweetalert2.js"></script>
 <script>
     $(function () {
@@ -147,6 +146,23 @@
         setTimeout(function () {
             $(".mui-bar-tab>a:nth-of-type(4)").addClass("mui-active");
         },100);
+        /*通过 token 查询用户信息接口*/
+        var token=localStorage.getItem("token");
+        myAjax({url:`/user/token/${token}`,type:'post',async:false}, function (data) {
+        console.log(data);
+            if(data.status==200){
+                localStorage.setItem("this_userid",data.data.userid);
+            }
+            if(data.status==321){
+                sweetAlert(
+                        "sorry",
+                        "您的账号信息已过期，请您重新登录",
+                        "error"
+                ).then(function () {
+                            location.href='../login.html';
+                        })
+            }
+        })
     })
 </script>
 </html>

@@ -29,7 +29,7 @@
             <span>选择课程</span>
 
             <p>
-                <em>2016年高三数学下期16年高三数学下期 </em>
+                <em>请选择所属课程名称</em>
                 <i class="mui-icon mui-icon-arrowdown"></i>
             </p>
 
@@ -38,39 +38,42 @@
                 <h3>请您选择视频所属课程</h3>
                 <ul>
                     <!--内容从后台获取-->
-                    <li>
+                   <!-- <li>
                         <em></em>
                         <span>2018年高三数学上期2018年高三数学上期</span>
                     </li>
                     <li>
                         <em></em>
                         <span>2017年高三数学上期</span>
-                    </li>
+                    </li>-->
                 </ul>
             </div>
-            <del onclick="location.href='create_lesson.html'">创建新课程</del>
+            <del class="newLesson" >创建新课程</del>
         </div>
         <div class="read_more">
             <span class="f_left">查看详细</span>
             <em class="f_right">展开 <i class="iconfont icon-zhankai"></i></em>
         </div>
         <div class="content" style="display: none;">
-            <p>创建日期：2018年2月23日</p>
+            <!-- /course/related/get/course/Period/List -->
+            <div class="detail_course">
+                <!--课程详细信息-->
+               <!-- <p>创建日期：2018年2月23日</p>
 
-            <p>所属院校: 华南师范大学附属中学</p>
+                <p>所属院校: 华南师范大学附属中学</p>
 
-            <p>所属院校: 华南师范大学附属中学</p>
+                <p>所属年级：高三</p>
 
-            <p>所属年级：高三</p>
+                <p>所属科目：数学</p>
 
-            <p>所属科目：数学</p>
+                <p>所属学期：上期</p>
 
-            <p>所属学期：上期</p>
+                <p>发布状态：未发布</p>-->
 
-            <p>发布状态：未发布</p>
+            </div>
 
             <div class="period">
-                <h2 class="clearfix">已上架 <i>10</i>个课时 <em class="f_right">上架日期</em></h2>
+               <!-- <h2 class="clearfix">已上架 <i>10</i>个课时 <em class="f_right">上架日期</em></h2>
 
                 <p class="clearfix"><i></i>第1课 相交线 <em class="f_right">2018.10.02 10:32</em></p>
 
@@ -80,7 +83,7 @@
 
                 <p class="clearfix"><i></i>第1课 相交线 <em class="f_right">2018.10.02 10:32</em></p>
 
-                <p class="clearfix"><i></i>第1课 相交线 <em class="f_right">2018.10.02 10:32</em></p>
+                <p class="clearfix"><i></i>第1课 相交线 <em class="f_right">2018.10.02 10:32</em></p>-->
             </div>
         </div>
         <button class="publish">发布</button>
@@ -93,18 +96,111 @@
 <script src="../../js/base.js"></script>
 <script src="../../js/back.js"></script>
 <script src="../../js/sweetalert2.js"></script>
+<script src="../../js/template-web.js"></script>
+<script src="../../js/template.js"></script>
+<script type="text/html" id="course">
+{{if data==null||data.length==0}}
+<div class="no_in"> 对不起，您暂时没有课程可以选择</div>
+{{else}}
+{{each data as value i}}
+<li data-id="{{value.courseId}}">
+    <em></em>
+    <span>{{value.courseName}}</span>
+</li>
+
+{{/each}}
+    {{/if}}
+</script>
+<script id="detail" type="text/html">
+    <p>创建日期： {{time(data.createTime)}}</p>
+    <p>所属院校:   {{data.schoolName}}</p>
+    <p>所属年级： {{data.grade}}</p>
+    <p>所属学年： {{data.academicYear}}</p>
+    <p>所属科目： {{data.subject}}</p>
+    <p>所属学期： {{data.semester}}</p>
+    <p>发布状态： {{data.releaseStatus==1?"未发布":"已发布"}}</p>
+</script>
+<!--已上架课时-->
+<script id="period" type="text/html">
+    <h2 class="clearfix">已上架 <i>{{data.UpperShelfNum}}</i>个课时 <em class="f_right">上架日期</em></h2>
+    {{if data.UpperShelfNum==0}}
+    {{else}}
+    {{each data.UpperShelfList as value i}}
+    <p class="clearfix"><i></i>第1课 相交线 <em class="f_right">2018.10.02 10:32</em></p>
+
+    <p class="clearfix"><i></i>第1课 相交线 <em class="f_right">2018.10.02 10:32</em></p>
+
+    <p class="clearfix"><i></i>第1课 相交线 <em class="f_right">2018.10.02 10:32</em></p>
+
+    <p class="clearfix"><i></i>第1课 相交线 <em class="f_right">2018.10.02 10:32</em></p>
+
+    <p class="clearfix"><i></i>第1课 相交线 <em class="f_right">2018.10.02 10:32</em></p>
+    {{/each}}
+    {{/if}}
+</script>
 <script>
     $(function () {
+        //获取 该教师的视频列表
+        var id=localStorage.getItem("this_userid");
+      list(id);
+        var time_id=location.href.split("=")[1];
+        function list(id){
+            myAjax({url:"/course/related/get/Course/Name/List",data:{teacherid:id},type:"post"}, function (data) {
+                console.log(data);
+                if(data.status==200){
+                    $("#choose_share>ul").html(template("course",data))
+                }
+            })
+        }
+        //创建新课程
+        // onclick="location.href='create_lesson.html'"
+        $(".newLesson").click(function () {
+            var href=location.href.split("=")[1];
+            location.href='create_lesson.html?id='+href;
+        })
         /*选择课程的 下拉列表*/
         $(".choose>p>i").click(function () {
             $("#mask").show();
             $("#choose_share").show();
         });
         /*选择视频 所属课程 单选*/
-        $("#choose_share li").click(function () {
+        var  courseId;
+        $("#choose_share").on("click","li", function () {
             $(".choose>p>em").text($(this).children("span").text());
+           courseId=$(this).data("id");
+            console.log(courseId);
             $("#mask").hide();
             $("#choose_share").hide();
+            myAjax({url:"/course/related/get/course/BaseInfo",data:{courseid:courseId},type:"post"}, function (data) {
+                console.log(data);
+                if(data.status==200){
+                    template.helper("time",function(date){
+                        var time=new Date(date).toLocaleString().replace(/:\d{1,2}$/,' ').replace(/\//g,"-");
+                        return time;
+                        /* return new Date(parseInt(date) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ');*/
+                    });
+
+                    $(".detail_course").html(template("detail",data))
+
+                // 同时渲染得到该课程的上架列表
+                    myAjax({url:"/course/related/get/course/Period/List",data:{courseid:courseId},type:"post"}, function (data) {
+                        console.log(data);
+                        if(data.status==200){
+                            $(".period").html(template("period",data))
+                        }
+                    })
+                }
+
+            })
+        })
+       /* $("#choose_share li").click(function () {
+
+        })*/
+        $("#mask").click(function (e) {
+            if(e.target!==$("#choose_share")){
+                $("#mask").hide();
+                $("#choose_share").hide();
+            }
         })
         var flag = true;
         $(".read_more>em").click(function () {
@@ -118,6 +214,32 @@
                 $(".read_more>em>i").removeClass("iconfont icon-bofangqizhankai").addClass("iconfont icon-zhankai")
 
             }
+        })
+        //选择 发布
+        $(".publish").click(function () {
+            var periodName=$(".name>input").val().trim();
+            if(periodName==""){
+                sweetAlert(
+                        "sorry",
+                        "请您输入课时名称",
+                        "error"
+                )
+                return false;
+            }
+            if($(".choose p em").text()=="请选择所属课程名称"){
+                sweetAlert(
+                        "sorry",
+                        "请您选择课程",
+                        "error"
+                )
+                return false;
+            }
+            myAjax({url:"/period/related/addPeriod/IntoCourse",data:{id:time_id,courseId:courseId,periodName:periodName},type:"post"}, function (data) {
+                console.log(data);
+                if(data.status==200){
+                    //location.href="./educational_administration.html"
+                }
+            })
         })
     })
 </script>

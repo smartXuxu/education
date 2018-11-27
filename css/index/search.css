@@ -1,0 +1,411 @@
+.baseColor {
+  color: #f01414;
+}
+.top_right > h2 {
+  height: 0.5rem;
+}
+.layer > header > input {
+  height: 0.8rem;
+  line-height: 0.8rem;
+  margin-left: 1.3rem;
+  text-indent: 3em;
+  width: 65%;
+  text-align: left;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  position: absolute;
+  top: 39%;
+}
+.select > header > .search-btn {
+  color: #fff;
+  font-size: 0.30rem;
+  margin-left: 0.2rem;
+  top: 6%;
+  right: 5%;
+  background: none;
+  position: absolute;
+}
+.layer > header:before {
+  width: 0.5rem;
+  height: 0.6rem;
+  content: "";
+  background: url("../../img/search.png") no-repeat center;
+  -webkit-background-size: 100%;
+  background-size: 100%;
+  position: absolute;
+  z-index: 2;
+  left: 20%;
+  top: 45%;
+}
+.main {
+  padding-top: 1.8rem;
+}
+.hot_search,
+.search_lately {
+  width: 100%;
+  height: auto;
+  padding: 0 0.3rem;
+}
+.hot_tit,
+.search_lately > h2 {
+  position: relative;
+  font-size: 0.32rem;
+  height: 1rem;
+  line-height: 1rem;
+  color: #666;
+}
+.hot_tit > span,
+.search_lately_content > span {
+  margin-left: .2rem;
+}
+.hot_tit > i {
+  position: absolute;
+  right: 0%;
+}
+.content > p {
+  color: #999;
+  font-size: 0.3rem;
+  margin-left: 0.3rem;
+}
+.content span,
+.search_lately_content > span {
+  padding: 0.1rem;
+  color: #999;
+  margin-right: 0.1rem;
+  border: 1px solid #c1bfbf;
+  border-radius: 5px;
+  margin-bottom: 0.2rem;
+}
+.top_right > h3 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+}
+.top_right > h3 {
+  font-size: 0.3rem;
+  color: #333;
+}
+.layer > header > i {
+  top: 45%;
+  font-size: 0.6rem;
+}
+.main > .excent_lesson {
+  border-bottom: none;
+}
+/*ѧУ*/
+#consequence {
+  padding: 0.3rem;
+  /*ѧУ*/
+  /*��ʦ*/
+  /*�γ�*/
+}
+#consequence > p {
+  height: 0.8rem;
+  line-height: 0.8rem;
+}
+#consequence > .list_school {
+  width: 100%;
+  position: relative;
+  margin-bottom: 0.3rem;
+  border-bottom: 1px solid #eee;
+  height: 1.68rem;
+  padding-bottom: 0.2rem;
+}
+#consequence > .list_school .img_box {
+  width: 2.2rem;
+  height: 100%;
+}
+#consequence > .list_school .img_box img {
+  width: 100%;
+  vertical-align: middle;
+}
+#consequence > .list_school .right {
+  position: absolute;
+  padding-left: 2.4rem;
+  top: 0%;
+  width: 100%;
+}
+#consequence > .list_school .right > em {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+  font-size: 0.3rem;
+}
+#consequence > .list_school .right > em del {
+  float: right;
+  font-size: 0.2rem;
+}
+#consequence > .list_school .right .right_center {
+  margin-top: 0.1rem;
+}
+#consequence > .list_school .right .right_center em {
+  display: inline-block;
+  background: url("../../img/cat.png") no-repeat center;
+  -webkit-background-size: 100%;
+  background-size: 100%;
+  width: 0.5rem;
+  height: 0.6rem;
+  vertical-align: bottom;
+}
+#consequence > .list_school .right .right_center > del {
+  border: 1px solid #f01414;
+  color: #f01414;
+  border-radius: 5px;
+  padding: 0.05rem 0.2rem;
+  font-size: 0.24rem;
+}
+#consequence > .list_school .right .right_footer {
+  width: 100%;
+  position: relative;
+  margin-top: 0.05rem;
+}
+#consequence > .list_school .right .right_footer i {
+  width: 0.6rem;
+  height: 0.6rem;
+  display: inline-block;
+  color: #999999;
+}
+#consequence > .list_school .right .right_footer span {
+  padding-left: 0.6rem;
+  position: absolute;
+  top: 10%;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+}
+#consequence > .list_teacher {
+  width: 100%;
+  position: relative;
+  padding-bottom: 0.8rem;
+  padding-top: 0.2rem;
+  border-bottom: 1px solid #eeeeee;
+}
+#consequence > .list_teacher:first-of-type {
+  padding-top: 0;
+}
+#consequence > .list_teacher > img {
+  width: 1rem;
+  height: 1rem;
+  vertical-align: middle;
+  border-radius: 50%  ;
+}
+#consequence > .list_teacher .list_center {
+  width: 100%;
+  top: 5%;
+  position: absolute;
+  padding-left: 1.5rem;
+}
+#consequence > .list_teacher .list_center .list_center_top {
+  height: 0.6rem;
+}
+#consequence > .list_teacher .list_center .list_center_top span {
+  font-size: 0.34rem;
+}
+#consequence > .list_teacher .list_center .list_center_top i {
+  color: #666;
+}
+#consequence > .list_teacher .list_center .list_center_center {
+  color: #6cb628;
+}
+#consequence > .list_teacher .list_center .list_center_center > em {
+  font-size: 0.20rem;
+  color: #6cb628;
+  border-radius: 3px;
+  margin: 0.01rem 0.1rem;
+  border: 1px solid #6cb628;
+}
+#consequence > .list_teacher .list_center .list_bottom {
+  font-size: 0.24rem;
+  margin-top: 0.1rem;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+}
+#consequence > .list_course {
+  width: 100%;
+  position: relative;
+  padding-bottom: 0.3rem;
+  padding-top: 0.2rem;
+  border-bottom: 1px solid #eeeeee;
+}
+#consequence > .list_course > a {
+  display: block;
+  position: relative;
+}
+#consequence > .list_course > a > img {
+  width: 2.9rem;
+  height: 1.8rem;
+  overflow: hidden;
+  vertical-align: middle;
+}
+#consequence > .list_course > a > .ex_right {
+  width: 100%;
+  position: absolute;
+  padding-left: 3.2rem;
+  top: 0%;
+}
+#consequence > .list_course > a > .ex_right .ex_top {
+  width: 100%;
+}
+#consequence > .list_course > a > .ex_right .ex_top > span {
+  font-size: 0.32rem;
+}
+#consequence > .list_course > a > .ex_right .ex_top > em {
+  font-size: 0.26rem;
+}
+#consequence > .list_course > a > .ex_right .ex_top > em del {
+  color: #f01414;
+}
+#consequence > .list_course > a > .ex_right .ex_center,
+#consequence > .list_course > a > .ex_right .ex_footer {
+  height: 0.7rem;
+  line-height: 0.7rem;
+  font-size: 0.24rem;
+  color: #666;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+}
+.famous {
+  width: 100%;
+  height: auto;
+  padding: 0.3rem;
+}
+.famous .lists {
+  width: 100%;
+  margin-top: 0.3rem;
+}
+.famous .lists .list {
+  width: 100%;
+  position: relative;
+  margin-bottom: 0.3rem;
+  height: 1.68rem;
+}
+.famous .lists .list .img_box {
+  width: 2.2rem;
+  height: 100%;
+}
+.famous .lists .list .img_box img {
+  width: 100%;
+  vertical-align: middle;
+}
+.famous .lists .list .right {
+  position: absolute;
+  padding-left: 2.4rem;
+  top: 0%;
+  width: 100%;
+}
+.famous .lists .list .right > em {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+  font-size: 0.3rem;
+}
+.famous .lists .list .right > em del {
+  float: right;
+  font-size: 0.2rem;
+}
+.famous .lists .list .right .right_center {
+  margin-top: 0.1rem;
+}
+.famous .lists .list .right .right_center em {
+  display: inline-block;
+  background: url("../../img/cat.png") no-repeat center;
+  -webkit-background-size: 100%;
+  background-size: 100%;
+  width: 0.5rem;
+  height: 0.6rem;
+  vertical-align: bottom;
+}
+.famous .lists .list .right .right_center > del {
+  border: 1px solid #f01414;
+  color: #f01414;
+  border-radius: 5px;
+  padding: 0.05rem 0.2rem;
+  font-size: 0.24rem;
+}
+.famous .lists .list .right .right_footer {
+  width: 100%;
+  position: relative;
+  margin-top: 0.05rem;
+}
+.famous .lists .list .right .right_footer i {
+  width: 0.6rem;
+  height: 0.6rem;
+  display: inline-block;
+  color: #999999;
+}
+.famous .lists .list .right .right_footer span {
+  padding-left: 0.6rem;
+  position: absolute;
+  top: 10%;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+}
+.teacher_lists {
+  width: 100%;
+  padding: 0.3rem;
+  margin-top: 0.2rem;
+}
+.teacher_lists .list_teacher {
+  width: 100%;
+  position: relative;
+  padding-bottom: 0.8rem;
+  padding-top: 0.2rem;
+  border-bottom: 1px solid #eeeeee;
+}
+.teacher_lists .list_teacher:first-of-type {
+  padding-top: 0;
+}
+.teacher_lists .list_teacher > img {
+  width: 1rem;
+  height: 1rem;
+  vertical-align: middle;
+  border-radius: 50%  ;
+}
+.teacher_lists .list_teacher .list_center {
+  width: 100%;
+  top: 5%;
+  position: absolute;
+  padding-left: 1.5rem;
+}
+.teacher_lists .list_teacher .list_center .list_center_top {
+  height: 0.6rem;
+}
+.teacher_lists .list_teacher .list_center .list_center_top span {
+  font-size: 0.34rem;
+}
+.teacher_lists .list_teacher .list_center .list_center_top i {
+  color: #666;
+}
+.teacher_lists .list_teacher .list_center .list_center_center {
+  color: #6cb628;
+}
+.teacher_lists .list_teacher .list_center .list_center_center > em {
+  font-size: 0.20rem;
+  color: #6cb628;
+  border-radius: 3px;
+  padding: 0.01rem 0.1rem;
+  border: 1px solid #6cb628;
+}
+.teacher_lists .list_teacher .list_center .list_bottom {
+  height: 0.6rem;
+  font-size: 0.24rem;
+  margin-top: 0.1rem;
+}

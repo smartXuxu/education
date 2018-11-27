@@ -56,8 +56,77 @@
         }
       }
     }
-    >.video_lists{
+    .no_upload{
+      background-color: #fde7ad;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+      margin: 0.3rem;
       padding: 0.3rem;
+      #videoId{
+        width: 100%;
+        height: 4rem;
+      }
+      .load_tit{
+        overflow: hidden;
+        height: 0.6rem;
+        line-height: 0.6rem;
+        position: relative;
+        >span{
+          width: 0.5rem;
+          height: 0.5rem;
+          line-height: 0.5rem;
+          text-align: center;
+          border-radius: 3px;
+          background-color: #000000;
+          color:#fde7ad;
+          margin:0 0.2rem;
+        }
+        >em{
+          width: 65%;
+          position: absolute;
+          top: 10%;
+          overflow: hidden;
+          display: -webkit-box;
+          -webkit-line-clamp: 1;
+          -webkit-box-orient: vertical;
+          word-break: break-all;
+        }
+        >i{
+          width: 1.05rem;
+          -webkit-border-radius: 3px;
+          -moz-border-radius: 3px;
+          border-radius: 3px;
+          position: absolute;
+          height: 0.5rem;
+          line-height: 0.5rem;
+          right: 3%;
+          top: 10%;
+          border:1px solid #f01414;
+          background-color: #fff;
+          text-align: center;
+        }
+        >#videoName{
+          display: inline-block;
+        }
+      }
+      >.el-progress{
+        margin: 0.3rem;
+        .el-progress-bar{
+          height: 8px;
+          width: 100%;
+          background-color: #fff;
+          border-radius: 3px;
+        }
+        .el-progress__text{
+          padding-top: 0.05rem;
+          font-size: 0.24rem;
+        }
+      }
+
+    }
+    >.video_lists{
+      padding:0 0.3rem;
       .load_tit{
         height: 0.6rem;
         line-height: 0.6rem;
@@ -143,6 +212,7 @@
           position: relative;
           margin:0 auto;
           height: 1.2rem;
+          font-size: 0.24rem;
           >button{
             position: absolute;
             top: 40%;

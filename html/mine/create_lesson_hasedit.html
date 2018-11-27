@@ -99,6 +99,42 @@
 <script src="../../js/back.js"></script>
 <script src="../../js/sweetalert2.js"></script>
 <script src="../../js/template-web.js"></script>
+<script src="../../js/template.js"></script>
+<script id="content" type="text/html">
+    <a class="grade_teach clearfix" href="teach_grade.html">
+        <span>所属年级</span>
+        <em>{{data.grade}}</em>
+        <i class="mui-icon mui-icon-arrowright f_right"></i>
+    </a>
+    <a class="subject_teach clearfix" href="teach_subject.html">
+        <span>所属学科</span>
+        <em>{{data.subject}}</em>
+        <i class="mui-icon mui-icon-arrowright f_right"></i>
+    </a>
+    <a class="year_teach clearfix" href="javascript:;">
+        <span>所属学年</span>
+        <em>{{data.academicYear}}</em>
+        <i class="mui-icon mui-icon-arrowright f_right"></i>
+    </a>
+    <a class="term clearfix" href="javascript:;">
+        <span>所属学期</span>
+        <em>{{data.semester}}</em>
+        <i class="mui-icon mui-icon-arrowright f_right"></i>
+    </a>
+</script>
+<script id="lesson_name" type="text/html">
+    <h4>课程名称</h4>
+    <input  class="lesson" type="text" value="{{data.name}}" placeholder="可不填,不要太长"/>
+    <h4>课程版本</h4>
+    <input type="text" class="version" value="{{data.version}}" placeholder="如人教版，可不填"/>
+    <h4>课程封面</h4>
+    <div class="cover_box" style="background-image:'{{data.coursePicture}}'">
+        <input type="file" id="against" accept="image/*" capture="camera" />
+    </div>
+
+    <h4>课程介绍</h4>
+    <textarea name="" class="introduce" placeholder="请简单的介绍一下课程，可不填写内容">{{data.introduce}}</textarea>
+</script>
 <script>
     //获取 教师的所在学校
     var teacherId=localStorage.getItem("this_userid");
@@ -106,6 +142,20 @@
         console.log(data);
         if(data.status==200){
             $(".schoolName").text(data.data);
+        }
+    })
+
+    var courseid=location.href.split("=")[1];
+    myAjax({url:"/course/related/get/course/BaseInfo",data:{courseid:courseid},type:"post"}, function (data) {
+        console.log(data);
+        if(data.status==200){
+            template.helper("time",function(date){
+                var time=new Date(date).toLocaleString().replace(/:\d{1,2}$/,' ').replace(/\//g,"-");
+                return time;
+            });
+            /*模板引入*/
+            $(".lesson_name").html(template("lesson_name",data))
+            $(".content").html(template("content",data))
         }
     })
     /* 单个上传课程封面图片*/
@@ -195,7 +245,7 @@
             myAjax({url:"/pic/base64/upload",data:{base64:base64IdCardBack},type:"post"}, function (data) {
                 console.log(data);
                 if(data.status==200){
-                  var pic=data.data;
+                    var pic=data.data;
                     var obj={
                         token:token,
                         teacherId:teacherId,
@@ -248,15 +298,15 @@
                         }
                     })
 
-                       /* myAjax({url:"/course/related/add/course",data:obj,type:"post"}, function (data) {
-                        console.log(data);
-                        if(data.status==200){
-                            // teach_subject teach_grade
-                            localStorage.removeItem("teach_grade");
-                            localStorage.removeItem("teach_subject");
-                            back()
-                        }
-                    })*/
+                    /* myAjax({url:"/course/related/add/course",data:obj,type:"post"}, function (data) {
+                     console.log(data);
+                     if(data.status==200){
+                     // teach_subject teach_grade
+                     localStorage.removeItem("teach_grade");
+                     localStorage.removeItem("teach_subject");
+                     back()
+                     }
+                     })*/
                     // 发送创建课程的请求
                     /*
                      * /course/related/add/course

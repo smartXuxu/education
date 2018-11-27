@@ -8,105 +8,11 @@
     <title>搜索</title>
     <link rel="stylesheet" href="../../css/mui.min.css"/>
     <link rel="stylesheet" href="../../css/base.css"/>
+    <link rel="stylesheet" href="../../css/iconfont.css"/>
     <link rel="stylesheet" href="../../css/sweetalert2.css"/>
     <link rel="stylesheet" href="../../css/header.css"/>
-    <link rel="stylesheet" href="../../css/index/index.css"/>
-    <style>
-        .top_right>h2{
-            height: 0.5rem;
-        }
-        .layer>header>input{
-            height: 0.8rem;
-            line-height:0.8rem;
-            margin-left:1.3rem;
-            text-indent:3em;
-            width: 65%;
-            text-align: left;
-            -webkit-border-radius: 5px;
-            -moz-border-radius: 5px;
-            border-radius: 5px;
-            position: absolute;
-            top: 39%;
-        }
-       .select>header>.search-btn{
-            color:#fff;
-           font-size:0.30rem;
-           margin-left: 0.2rem;
-           top: 6%;
-           right: 5%;
-           background: none;
-           position: absolute;
-        }
-        .layer>header:before{
-            width: 0.5rem;
-            height: 0.6rem;
-            content:"";
-            background:url("../../img/search.png") no-repeat center;
-            -webkit-background-size: 100%;
-            background-size: 100%;
-            position:absolute;
-            z-index: 2;
-            left: 20%;
-            top: 45%;
-        }
-        .main{
-            padding-top: 1.8rem;
-        }
-        .hot_search,.search_lately{
-            width: 100%;
-            height:auto;
-            padding:0 0.3rem;
-        }
-        .hot_tit,.search_lately>h2{
-            position: relative;
-
-            font-size: 0.32rem;
-            height: 1rem;
-            line-height: 1rem;
-            color:#666;
-
-        }
-        .hot_tit>span,.search_lately_content>span{
-            margin-left: .2rem;
-        }
-        .hot_tit>i{
-            position: absolute;
-            right: 0%;
-        }
-        .content>p{
-            color:#999;
-            font-size:0.3rem;
-            margin-left: 0.3rem;
-             
-        }
-        .content span,.search_lately_content>span{
-            padding: 0.1rem;
-            color:#999;
-            margin-right: 0.1rem;
-            border:1px solid #c1bfbf;
-            border-radius:5px;
-            margin-bottom: 0.2rem;
-        }
-        .top_right>h3{
-            overflow: hidden;
-            display: -webkit-box;
-            -webkit-line-clamp: 1;
-            -webkit-box-orient: vertical;
-            word-break: break-all;
-        }
-        .top_right>h3 {
-            font-size: 0.3rem;
-            color: #333;
-
-        }
-        .layer>header>i{
-            top: 45%;
-            font-size: 0.6rem;
-        }
-        .main>.excent_lesson{
-            border-bottom: none;
-        }
-    </style>
+  <!--  <link rel="stylesheet" href="../../css/index/index.css"/>-->
+    <link rel="stylesheet" href="../../css/index/search.css"/>
 </head>
 <body style="background-color:#fff;">
 <div class="layer select">
@@ -129,65 +35,63 @@
             <!-- 内容-->
             <h2>热门搜索</h2>
             <div class="search_lately_content">
-                <span>高三数学</span>
+               <!-- <span>高三数学</span>-->
             </div>
         </div>
-        <div class="excent_lesson">
-            <ul>
-                <li>
-                    <a href="./index_video.html">
-                        <img src="../../img/index_edu.png" alt="">
-                        <div class="ex_right">
-                            <div class="ex_top clearfix">
-                                <span>主讲：傅娟</span>&nbsp;&nbsp;&nbsp;&nbsp;
-                                <em class="f_right"><del>11023</del>人学习</em>
-                            </div>
-                            <div class="ex_center">
-                                2018-07-15  更新第10课时更新第10课时
-                            </div>
-                            <div class="ex_footer">
-                                华南师范大学附属中学师范大学附属中学
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="./index_video.html">
-                        <img src="../../img/index_edu.png" alt="">
-                        <div class="ex_right">
-                            <div class="ex_top clearfix">
-                                <span>主讲：傅娟</span>&nbsp;&nbsp;&nbsp;&nbsp;
-                                <em class="f_right"><del>11023</del>人学习</em>
-                            </div>
-                            <div class="ex_center">
-                                2018-07-15  更新第10课时更新第10课时
-                            </div>
-                            <div class="ex_footer">
-                                华南师范大学附属中学师范大学附属中学
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="./index_video.html">
-                        <img src="../../img/index_edu.png" alt="">
-                        <div class="ex_right">
-                            <div class="ex_top clearfix">
-                                <span>主讲：傅娟</span>&nbsp;&nbsp;&nbsp;&nbsp;
-                                <em class="f_right"><del>11023</del>人学习</em>
-                            </div>
-                            <div class="ex_center">
-                                2018-07-15  更新第10课时更新第10课时
-                            </div>
-                            <div class="ex_footer">
-                                华南师范大学附属中学师范大学附属中学
-                            </div>
-                        </div>
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <!---->
+   <div id="consequence">
+       <!-- <div class="list_school" onclick="location.href='./edu_index.html'">
+                  <div class="img_box">
+                      <img src="../../img/index_school.png" alt="">
+
+                  </div>
+                  <div class="right">
+                      <em class="clearfix">华南师范大学 <del>1.2km</del></em>
+
+                      <div class="right_center">
+                          <em></em> 1&lt;!&ndash;这是什么？&ndash;&gt;
+                          &nbsp;&nbsp;&nbsp;&nbsp;<del>高中</del>
+                          &nbsp;&nbsp;&nbsp;&nbsp;<del>初中</del>
+                      </div>
+                      <div class="right_footer">
+                          <i class="iconfont icon-zuobiao"></i>
+                          <span>广州市天河区中山广州市天河区中山大道西1路</span>
+                      </div>
+                  </div>
+              </div>
+       <div class="list_teacher" onclick="location.href='../index/teacher_index.html'">
+               <img src="../../img/focus-img1.png" alt="">
+               <div class="list_center">
+                   <div class="list_center_top clearfix">
+                       <span>傅娟 </span><i class="f_right">1.2km</i>
+                   </div>
+                   <div class="list_center_center clearfix">
+                       <em>数学</em>
+                       <em>初二</em>
+                       <s class="f_right">在线</s>
+                   </div>
+                   <div class="list_bottom">
+                       华南师范大学附属中学
+                   </div>
+               </div>
+           </div>
+       <div class="list_course">
+           <a href="./index_video.html">
+               <img src="../../img/index_edu.png" alt="">
+               <div class="ex_right">
+                   <div class="ex_top clearfix">
+                       <span>主讲：傅娟</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                       <em class="f_right"><del>11023</del>人学习</em>
+                   </div>
+                   <div class="ex_center">
+                       2018-07-15  更新第10课时更新第10课时
+                   </div>
+                   <div class="ex_footer">
+                       华南师范大学附属中学师范大学附属中学
+                   </div>
+               </div>
+           </a>
+       </div>-->
+   </div>
     </div>
 
 </div>
@@ -208,13 +112,109 @@
     {{/each}}
     {{/if}}
 </script>
+<!--热门搜索的填充-->
+<script id="hotSearch" type="text/html">
+{{if data.length==0}}
 
+<span>高三数学</span>
+{{else}}
+    {{each data as value i}}
+        <span>{{value}}</span>
+    {{/each}}
+{{/if}}
+</script>
+<script type="text/html" id="result">
+{{if data.length==0||data==null}}
+<div class="no_in">对不起，暂时没有搜索结果</div>
+{{else}}
+<!--教师-->
+{{if data.searchTeacher.length!==0}}
+<p> 返回的教师有：</p>
+{{each data.searchTeacher as teacher i}}
+<div class="list_teacher" onclick="location.href='../index/teacher_index.html'">
+    <img src="../../img/focus-img1.png" alt="">
+    <div class="list_center">
+        <div class="list_center_top clearfix">
+            <span>{{teacher.teacher.nickname}} </span><i class="f_right">1.2km</i>
+        </div>
+        <div class="list_center_center clearfix">
+            <em>数学</em>
+            <em>初二</em>
+            <s class="f_right">在线</s>
+        </div>
+        <div class="list_bottom">
+            {{teacher.teacher.address}}
+        </div>
+    </div>
+</div>
+{{/each}}
+{{/if}}
+<!--学校-->
+{{if data.searchSchool.length!==0}}
+<p>返回的学校有：</p>
+{{each data.searchSchool as school i}}
+<div class="list_school" onclick="location.href='./edu_index.html?schoolID={{school.school.schoolId}}'">
+    <div class="img_box">
+        <img src="../../img/index_school.png" alt="">
+
+    </div>
+    <div class="right">
+        <em class="clearfix">{{school.school.name}} <del>1.2km</del></em>
+
+        <div class="right_center">
+            <em></em> {{school.teacherNum}}<!--这是什么？-->
+            &nbsp;&nbsp;&nbsp;&nbsp;<del>高中</del>
+            &nbsp;&nbsp;&nbsp;&nbsp;<del>初中</del>
+        </div>
+        <div class="right_footer">
+            <i class="iconfont icon-zuobiao"></i>
+            <span>{{school.school.address}}</span>
+        </div>
+    </div>
+</div>
+
+
+{{/each}}
+{{/if}}
+<!--课程-->
+{{if data.searchCourse.length!==0}}
+<p>返回的课程有：</p>
+{{each data.searchCourse as course i}}
+<div class="list_course">
+    <a href="./index_video.html">
+        <img src="../../img/index_edu.png" alt="">
+        <div class="ex_right">
+            <div class="ex_top clearfix">
+                <span>主讲：{{course.speaker}}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                <em class="f_right"><del>{{course.StudyCourseNum}}</del>人学习</em>
+            </div>
+            <div class="ex_center">
+                {{time(course.updateTime)}}  更新第{{course.updateNum}}课时
+            </div>
+            <div class="ex_footer">
+                {{course.course.schoolName}}
+            </div>
+        </div>
+    </a>
+</div>
+{{/each}}
+{{/if}}
+
+{{/if}}
+
+</script>
 <script>
     $(function(){
         /*热门搜索*/
-        $(".search_lately_content>span").click(function () {
-            $("#search").val($(this).text());
-        });
+        myAjax({url:"/search/hot/history",type:"post"},function(data){
+            console.log(data);
+            //data=data.slice(0,10);
+            $(".search_lately_content").html(template('hotSearch',{data:data.data.slice(0,5)}))
+            $(".search_lately_content>span").click(function () {
+                $("#search").val($(this).text());
+            });
+        })
+
         /* 点击搜索按钮，发送请求*/
 
         /*都会和localStorage   约定一个键  leTaoHistory */
@@ -231,7 +231,6 @@
         })
         /*2点击搜索*/
         $(".search-btn").click(function(){
-            //发送请求
 
             /*获取关键字*/
             var key = $.trim($('#search').val());
@@ -240,6 +239,25 @@
                 /*提示*/
                 alert("请输入搜索内容");
                 return false;
+            }else{
+                //发送请求
+                myAjax({url:"/search/add/history",data:{searchContent:key},type:"post"}, function (data) {
+                    console.log(data);
+                    //搜索历史
+                })
+                myAjax({url:"/search/get/search/all",data:{search:key},type:"post"}, function (data) {
+                    console.log(data);
+                    //搜索全部  教师课程 学校
+                    if(data.status==200){
+                        template.helper("time",function(date){
+                            var time=new Date(date).toLocaleString().replace(/:\d{1,2}$/,' ').substr(5,11).replace("/","-");
+                            return time;
+                            /* return new Date(parseInt(date) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ');*/
+                        });
+                        // 渲染
+                        $("#consequence").html(template("result",data))
+                    }
+                })
             }
            /* //var city=localStorage.getItem("city");
             function render(data){

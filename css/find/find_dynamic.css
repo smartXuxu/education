@@ -1,6 +1,10 @@
 .baseColor {
   color: #f01414;
 }
+.layer{
+    width: 100%;
+    height: 100%;
+}
 .layer > header {
   height: 1.6rem;
   padding-top: 0.5rem;
@@ -66,8 +70,14 @@ header > span > a:last-of-type em {
   top: 31%;
 }
 .main {
-  padding-top: 1.5rem;
-  padding-bottom: 1.2rem;
+    position: absolute;
+    top: 1.6rem;
+    bottom: 1rem;
+    left: 0;
+    width: 100%;
+    padding-top: 0;
+    overflow: auto;
+    overflow-x: hidden;
 }
 .mui-segmented-control {
   padding: 0 1.5rem;
@@ -171,11 +181,14 @@ header > span > a:last-of-type em {
 }
 .All_list>.list_top>.list_top_center{
     position: absolute;
-    margin-left: 1.35rem;
+    width: 100%;
+    left: 1.35rem;
     top: 2%;
 }
 .list_top>.list_top_center>em{
     font-size: 0.3rem;
+    display: inline-block;
+    width: 5rem;
 }
 .list_top>.list_top_center>em>i.f_right{
     border: 1px solid #f01414;
@@ -241,17 +254,23 @@ header > span > a:last-of-type em {
     width: 100% ;
     height: 100%;
     padding-bottom: 0.2rem;
-    border-bottom: 1px solid #eeeeee;
+   /* border-bottom: 1px solid #eeeeee;*/
 }
 .list_content_footer>ul>li{
     float: left;
 
+}
+.list_content_footer>ul>li:nth-of-type(2){
+    opacity: 0;
 }
 .list_content_footer>ul>li:nth-of-type(n+2){
      width: 20%;
  }
 .list_content_footer>ul>li:first-of-type{
     width: 40%;
+}
+.list_content_footer>ul>li:last-of-type .is_hand{
+   color:#f01414;
 }
 .list_content_footer>.comment_box{
     width: 100%;
@@ -286,4 +305,10 @@ header > span > a:last-of-type em {
 /*问答页面*/
 .mine_request{
     padding: 0;
+}
+.nowtime{
+    color:#999;
+}
+.All_lists>.focus_list:first-of-type{
+    padding-top: 0.2rem;
 }

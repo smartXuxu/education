@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+
+    <title>学生认证</title>
+    <link rel="stylesheet" href="../../css/mui.min.css"/>
+    <link rel="stylesheet" href="../../css/mui.picter.min.css"/>
+    <link rel="stylesheet" href="../../css/base.css"/>
+    <link rel="stylesheet" href="../../css/sweetalert2.css"/>
+    <link rel="stylesheet" href="../../css/iconfont.css"/>
+    <link rel="stylesheet" href="../../css/header.css"/>
+    <style>
+        .main{
+            background-color: #fff;
+            padding:0 0.3rem;
+            padding-top: 1.6rem;
+        }
+        .main > div {
+            height: 1rem;
+            line-height: 1rem;
+            font-size: 0.3rem;
+            color: #666;
+            border-bottom: 1px solid #eeeeee;
+        }
+        .main > div > input {
+            width: 50%;
+            height: 0.6rem;
+            border: none;
+            margin-top: 0.1rem;
+            text-align: right;
+            font-size: 0.28rem;
+            padding-right: 0;
+        }
+        .main > div > i {
+            height: 1rem;
+            line-height: 1rem;
+            /* margin-top: 0.2rem; */
+        }
+        .mui-btn-block,.mui-btn, button, input[type=button], input[type=reset], input[type=submit]{
+            padding: 0;
+        }
+       .mui-btn-danger{
+           margin-top: 0.5rem;
+           height: 1rem;
+           line-height: 1rem;
+           background-color: #f01414;
+        }
+        .main #choose_share {
+            position: fixed;
+            z-index: 7;
+            left: 50%;
+            top: 40%;
+            display: none;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: auto;
+            background-color: #fff;
+            padding-left: 0.4rem;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+        }
+        .main #choose_share > h3 {
+            height: 0.88rem;
+            line-height: 0.88rem;
+            font-size: 0.3rem;
+            text-align: center;
+        }
+        .main #choose_share > ul > li {
+            height: 0.88rem;
+            line-height: 0.88rem;
+            position: relative;
+        }
+        .main #choose_share > ul > li > em {
+            width: 0.5rem;
+            height: 0.5rem;
+            line-height: 0.5rem;
+            padding-left: 2%;
+            display: inline-block;
+            margin-right: 0.3rem;
+            vertical-align: middle;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            border-radius: 50%;
+            border: 1px solid #868686;
+        }
+        .main #choose_share > ul > li > span {
+            position: absolute;
+            margin-left: 1rem;
+            width: 70%;
+            top: 0%;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body>
+<div class="layer">
+    <header id="header" class="mui-bar mui-bar-nav">
+        <i class="mui-icon mui-icon-left-nav mui-pull-left" onclick="back()"></i>
+        <h1 class="mui-title">学生认证</h1>
+    </header>
+    <div class="main">
+        <div class="class clearfix" onclick="location.href='./set_mySchool.html'">
+            <span class="f_left">年级</span>
+            <i class="mui-icon mui-icon-arrowright f_right"></i>
+            <input type="text"  class="f_right">
+        </div>
+        <div class="school clearfix">
+            <span class="f_left">学校</span>
+            <input type="text" disabled placeholder="请选择您的学校" class="f_right">
+        </div>
+        <div id="mask" style="display: none"></div>
+        <div id="choose_share" >
+        <h3>请您选择您的学校</h3>
+        <ul>
+            <!--内容从后台获取-->
+            <li>
+                <em></em>
+                <span>2018年高三数学上期2018年高三数学上期</span>
+            </li>
+            <li>
+                <em></em>
+                <span>2017年高三数学上期</span>
+            </li>
+        </ul>
+    </div>
+        <div class="inSchool clearfix">
+            <span class="f_left">入学年份</span>
+           <input id='sign_up'  data-options='{"type":"month"}' class="btn mui-btn mui-btn-block f_right" placeholder="请选择您的入学年份"/>
+            <div id='result' class="ui-alert"></div>
+        </div>
+        <button type="button" class="mui-btn mui-btn-danger mui-btn-block confirm">确定</button>
+    </div>
+</div>
+</body>
+<script src="../../js/mui.min.js"></script>
+<script src="../../js/mui.picker.min.js"></script>
+<script src="../../js/x_rem.js"></script>
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/base.js"></script>
+<script src="../../js/back.js"></script>
+<script src="../../js/sweetalert2.js"></script>
+<script src="../../js/template-web.js"></script>
+<script src="../../js/template.js"></script>
+<script id="school" type="text/html">
+
+</script>
+<script>
+    $(function () {
+        // 选择学校 模板渲染
+        $(".school").click(function () {
+            $("#mask").show();
+            $("#choose_share").show();
+
+        })
+        $("#choose_share>ul>li").click(function(){
+            $(".school input").val($(this).children("span").text())
+            $("#mask").hide();
+            $("#choose_share").hide();
+        })
+        $("#mask").click(function (e) {
+            if(e.target!==$("#choose_share")){
+                $("#mask").hide();
+                $("#choose_share").hide();
+            }
+        })
+     $(".confirm").click(function () {
+         var obj={};
+
+         myAjax({url:'/authentication/updateTo/Student',data:obj,type:"post"},function(data){
+
+         })
+
+     })
+
+    })
+</script>
+<!--mui时间 -->
+<script>
+    (function($) {
+        $.init();
+        var result = $('#result')[0];
+        var btns = $('.btn');
+        btns.each(function(i, btn) {
+            btn.addEventListener('tap', function() {
+                var optionsJson = this.getAttribute('data-options') || '{}';
+                var options = JSON.parse(optionsJson);
+                var id = this.getAttribute('id');
+                /*
+                 * 首次显示时实例化组件
+                 * 示例为了简洁，将 options 放在了按钮的 dom 上
+                 * 也可以直接通过代码声明 optinos 用于实例化 DtPicker
+                 */
+
+                var picker = new $.DtPicker(options);
+                picker.show(function(rs) {
+                    console.log(rs);
+                    /*
+                     * rs.value 拼合后的 value
+                     * rs.text 拼合后的 text
+                     * rs.y 年，可以通过 rs.y.vaue 和 rs.y.text 获取值和文本
+                     * rs.m 月，用法同年
+                     * rs.d 日，用法同年
+                     * rs.h 时，用法同年
+                     * rs.i 分（minutes 的第二个字母），用法同年
+                     */
+                    var sign_up_end=document.querySelector("#sign_up");
+                    sign_up_end.value=rs.text;
+                    //result.innerText = '选择结果: ' + rs.text;
+                    /*
+                     * 返回 false 可以阻止选择框的关闭
+                     * return false;
+                     */
+                    /*
+                     * 释放组件资源，释放后将将不能再操作组件
+                     * 通常情况下，不需要示放组件，new DtPicker(options) 后，可以一直使用。
+                     * 当前示例，因为内容较多，如不进行资原释放，在某些设备上会较慢。
+                     * 所以每次用完便立即调用 dispose 进行释放，下次用时再创建新实例。
+                     */
+                    picker.dispose();
+                });
+            }, false);
+        });
+    })(mui);
+</script>
+</html>

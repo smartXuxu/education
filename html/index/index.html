@@ -426,7 +426,7 @@ $(function () {
         if(localStorage.getItem("city")){
             var city=localStorage.getItem("city")
         }else{
-            city=city;
+            city="郑州";
         }
         weather.getLive(city, function(err, data) {
             if (!err) {

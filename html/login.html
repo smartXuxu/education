@@ -78,7 +78,11 @@
             console.log(2);
             navigator.geolocation.getCurrentPosition(showPosition);
         }else{
-            console.log("对不起，您的设备目前不支持定位，请您更改设置");
+            sweetAlert(
+                    "sorry",
+                    "对不起，您的设备目前不支持定位，请您更改设置",
+                    "error"
+            )
         }
     }
     function showPosition(position){

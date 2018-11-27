@@ -70,6 +70,20 @@
   height: 3rem;
   padding: 0.3rem;
 }
+.main > .lesson_name .cover_box {
+  width: 60%;
+  height: 3rem;
+  margin: 0 auto;
+  background: url("../../img/created_lesson_03.png") no-repeat center;
+  -webkit-background-size: 100%;
+  background-size: 100%;
+}
+.main > .lesson_name .cover_box > input {
+  display: block;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
 #mask {
   width: 100%;
   height: 100%;
