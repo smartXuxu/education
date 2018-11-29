@@ -16,6 +16,10 @@
 
 </head>
 <body style="background-color:#fff;">
+<div id="loading">
+    <img src="../../img/login.gif" alt=""/>
+    <div>请等待，正在加载...</div>
+</div>
 <div class="layer">
     <!--header-->
     <header class="near_header">
@@ -46,7 +50,8 @@
         <div id="item1" class="mui-control-content mui-active">
             <div class="famous">
                 <div class="lists">
-                    <div class="list" onclick="location.href='../index/edu_index.html'">
+
+                   <!-- <div class="list" onclick="location.href='../index/edu_index.html'">
                         <div class="img_box">
                             <img src="../../img/index_school.png" alt="">
 
@@ -55,7 +60,7 @@
                             <em class="clearfix">华南师范大学 <del>1.2km</del></em>
 
                             <div class="right_center">
-                                <em></em> 1<!--这是什么？-->
+                                <em></em> 1&lt;!&ndash;这是什么？&ndash;&gt;
                                 &nbsp;&nbsp;&nbsp;&nbsp;<del>高中</del>
                                 &nbsp;&nbsp;&nbsp;&nbsp;<del>初中</del>
                             </div>
@@ -74,7 +79,7 @@
                             <em class="clearfix">华南师范大学 <del>1.2km</del></em>
 
                             <div class="right_center">
-                                <em></em> 1<!--这是什么？-->
+                                <em></em> 1&lt;!&ndash;这是什么？&ndash;&gt;
                                 &nbsp;&nbsp;&nbsp;&nbsp;<del>高中</del>
                                 &nbsp;&nbsp;&nbsp;&nbsp;<del>初中</del>
                             </div>
@@ -83,33 +88,15 @@
                                 <span>广州市天河区中山广州市天河区中山大道西1路</span>
                             </div>
                         </div>
-                    </div>
-                    <div class="list" onclick="location.href='../index/edu_index.html'">
-                        <div class="img_box">
-                            <img src="../../img/index_school.png" alt="">
-
-                        </div>
-                        <div class="right">
-                            <em class="clearfix">华南师范大学 <del>1.2km</del></em>
-
-                            <div class="right_center">
-                                <em></em> 1<!--这是什么？-->
-                                &nbsp;&nbsp;&nbsp;&nbsp;<del>高中</del>
-                                &nbsp;&nbsp;&nbsp;&nbsp;<del>初中</del>
-                            </div>
-                            <div class="right_footer">
-                                <i class="iconfont icon-zuobiao"></i>
-                                <span>广州市天河区中山广州市天河区中山大道西1路</span>
-                            </div>
-                        </div>
-                    </div>
+                    </div>-->
 
                 </div>
             </div>
         </div>
         <div id="item2" class="mui-control-content">
             <div class="teacher_lists" >
-                <div class="list_teacher" onclick="location.href='../index/teacher_index.html'">
+
+              <!--  <div class="list_teacher" onclick="location.href='../index/teacher_index.html'">
                     <img src="../../img/focus-img1.png" alt=""/>
                     <div class="list_center">
                         <div class="list_center_top clearfix">
@@ -140,30 +127,15 @@
                             华南师范大学附属中学
                         </div>
                     </div>
-                </div>
-                <div class="list_teacher" onclick="location.href='../index/teacher_index.html'">
-                    <img src="../../img/focus-img1.png" alt=""/>
-                    <div class="list_center">
-                        <div class="list_center_top clearfix">
-                            <span>傅娟 </span><i class="f_right">1.2km</i>
-                        </div>
-                        <div class="list_center_center clearfix">
-                            <em>数学</em>
-                            <em>初二</em>
-                            <s class="f_right">在线</s>
-                        </div>
-                        <div class="list_bottom">
-                            华南师范大学附属中学
-                        </div>
-                    </div>
-                </div>
+                </div>-->
 
             </div>
         </div>
         <div id="item3" class="mui-control-content">
             <div class="excent_lesson near_bay_lesson">
                 <ul>
-                    <li>
+
+                 <!--   <li>
                         <a href="../index/index_video.html">
                             <img src="../../img/index_edu.png" alt="">
                             <div class="ex_right">
@@ -216,34 +188,7 @@
                                 </div>
                             </div>
                         </a>
-                    </li>
-                    <li>
-                        <a href="../index/index_video.html">
-                            <img src="../../img/index_edu.png" alt="">
-                            <div class="ex_right">
-                                <div class="ex_top clearfix">
-                                    <span>主讲：傅娟</span>&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <em class="f_right"><del>11023</del>人学习</em>
-                                </div>
-                                <div class="ex_center">
-                                    2018-07-15  更新第10课时更新第10课时
-                                </div>
-                                <div class="ex_footer">
-                                    <ul class="clearfix">
-                                        <li>
-                                            <em class="iconfont icon-wode1">123</em>
-                                        </li>
-                                        <li>
-                                            <em class="iconfont icon-wujiaoxingkong">123</em>
-                                        </li>
-                                        <li>
-                                            <em class="mui-icon-extra mui-icon-extra-heart">123</em>
-                                        </li>
-                                        </ul>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
+                    </li>-->
 
                 </ul>
             </div>
@@ -260,8 +205,97 @@
 <script src="../../js/jquery.min.js"></script>
 <script src="../../js/base.js"></script>
 <script src="../../js/sweetalert2.js"></script>
+<script src="../../js/template-web.js"></script>
+<script src="../../js/template.js"></script>
+<script id="near_school" type="text/html">
+{{if data==null||data.length==0}}
+<div class="no_in">对不起 在您的附近暂时没有学校</div>
+{{else}}
+{{each data as value i}}
+<div class="list" onclick="location.href='../index/edu_index.html?schoolId={{value.school.schoolId}}'">
+    <div class="img_box">
+        <img src="../../img/index_school.png" alt="">
+    </div>
+    <div class="right">
+        <em class="clearfix">{{value.school.name}} <del>{{dis(value.distance)}}km</del></em>
+        <div class="right_center">
+            <em></em> {{value.teacherNum}}<!--这是什么？-->
+            {{each str(value.school.containClasses) as school i}}
+            &nbsp;&nbsp;&nbsp;&nbsp;<del>{{school}}</del>
+            {{/each}}
+
+        </div>
+        <div class="right_footer">
+            <i class="iconfont icon-zuobiao"></i>
+            <span>{{value.school.address}}</span>
+        </div>
+    </div>
+</div>
+{{/each}}
+    {{/if}}
+</script>
+<script id="teacher" type="text/html">
+    {{if data==null||data.length==0}}
+    <div class="no_in">对不起 在您的附近暂时没有教师</div>
+    {{else}}
+    {{each data as value i}}
+    <div class="list_teacher" onclick="location.href='../index/teacher_index.html?id={{value.teacher.userid}}'">
+        <img src='{{value.teacher.portrait==null?"../../img/logo.png":value.teacher.portrait}}' alt=""/>
+        <div class="list_center">
+            <div class="list_center_top clearfix">
+                <span>{{value.teacher==null?"猴姆教学":value.teacher.nickname}} </span><i class="f_right">{{dis(value.distance)}}km</i>
+            </div>
+            <div class="list_center_center clearfix">
+                <em>数学</em>
+                <em>初二</em>
+                <s class="f_right">{{value.whetherOnline==false?"离线":"在线"}}</s>
+            </div>
+            <div class="list_bottom">
+                {{value.schoolName}}
+            </div>
+        </div>
+    </div>
+    {{/each}}
+    {{/if}}
+</script>
+<script id="lesson" type="text/html">
+{{if data==null||data.length==0}}
+<div class="no_in">对不起，您的附近暂时没有课堂信息</div>
+{{else}}
+{{each data as value i}}
+<li>
+    <a href="../index/index_video.html">
+        <img src="../../img/index_edu.png" alt="">
+        <div class="ex_right">
+            <div class="ex_top clearfix">
+                <span>主讲：傅娟</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                <em class="f_right"><del>11023</del>人学习</em>
+            </div>
+            <div class="ex_center">
+                2018-07-15  更新第10课时更新第10课时
+            </div>
+            <div class="ex_footer">
+                <ul class="clearfix">
+                    <li>
+                        <em class="iconfont icon-wode1">123</em>
+                    </li>
+                    <li>
+                        <em class="iconfont icon-wujiaoxingkong">123</em>
+                    </li>
+                    <li>
+                        <em class="mui-icon-extra mui-icon-extra-heart">123</em>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </a>
+</li>
+
+{{/each}}
+    {{/if}}
+</script>
 <script>
-    getLocation();
+    /*getLocation();
     function getLocation(){
         if (navigator.geolocation){
             console.log(2);
@@ -272,8 +306,11 @@
     }
     function showPosition(position){
         console.log("维度: " + position.coords.latitude + "经度" + position.coords.longitude);
-    }
+    }*/
     $(function () {
+        $(document).ajaxStop(function(){
+            $("#loading").hide();
+        });
         mui('body').on('tap','a',function(){document.location.href=this.href;});
         $('#footer').load('../common/footer.html');
         setTimeout(function () {
@@ -298,11 +335,78 @@
             }
         });
         /*城市选择*/
+        var city="郑州";
         if(localStorage.getItem("city")){
             //console.log(1);
             $(".near_header>i>s").html(localStorage.getItem("city"));
+            city=localStorage.getItem("city")
         }
+        //经纬度选择
+        /*获取经纬度*/
+        myAjax({url:"/autonavi/map/web/geo/Geocode",data:{address:city},type:"post",async:false}, function (data) {
+            console.log(data);
+            if(data.status==200) {
+                var location = data.data[0].location;
+                console.log(location);
+                /*保存 发送给后台*/
+                //附近学校
+                myAjax({
+                    url: "/nearby/content/get/near/school",
+                    data: {center: location, radius: "40000"},
+                    type: "post"
+                }, function (data) {
+                    console.log(data);
+                    if (data.status == 200) {
+                        template.helper("dis", function (dis) {
+                            return parseFloat(dis / 1000).toFixed(2);
+                        });
+                        template.helper("str", function (str) {
+                            return str.split(",");
+                        });
+                        $("#item1>.famous>.lists").html(template("near_school", data));
+                    }
+                })
+                //附近 教师
+                myAjax({
+                    url: "/nearby/content/get/near/teacher",
+                    data: {center: location, radius: "40000"},
+                    type: "post"
+                }, function (data) {
+                    console.log(data);
+                    if (data.status == 200) {
+                        template.helper("dis", function (dis) {
+                            return parseFloat(dis / 1000).toFixed(2);
+                        });
+                        template.helper("str", function (str) {
+                            return str.split(",");
+                        });
+                        $("#item2>.teacher_lists").html(template("teacher", data));
+                    }
+
+                })
+                //附近 课堂
+                myAjax({
+                    url: "/nearby/content/get/near/course",
+                    data: {center: location, radius: "40000"},
+                    type: "post"
+                }, function (data) {
+                    console.log(data);
+                    if (data.status == 200) {
+                        template.helper("dis", function (dis) {
+                            return parseFloat(dis / 1000).toFixed(2);
+                        });
+                        template.helper("str", function (str) {
+                            return str.split(",");
+                        });
+                        $("#item3 ul").html(template("lesson", data));
+                    }
+
+                })
+            }
+        })
+
         /*学校*/
+
 
 
     })

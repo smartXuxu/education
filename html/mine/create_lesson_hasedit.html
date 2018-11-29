@@ -81,7 +81,7 @@
             <h4>课程版本</h4>
             <input type="text" class="version" placeholder="如人教版，可不填"/>
             <h4>课程封面</h4>
-            <div class="cover_box">
+            <div class="cover_box" >
                 <input type="file" id="against" accept="image/*" capture="camera" />
             </div>
 
@@ -128,7 +128,7 @@
     <h4>课程版本</h4>
     <input type="text" class="version" value="{{data.version}}" placeholder="如人教版，可不填"/>
     <h4>课程封面</h4>
-    <div class="cover_box" style="background-image:'{{data.coursePicture}}'">
+    <div class="cover_box">
         <input type="file" id="against" accept="image/*" capture="camera" />
     </div>
 
@@ -155,15 +155,16 @@
             });
             /*模板引入*/
             $(".lesson_name").html(template("lesson_name",data))
-            $(".content").html(template("content",data))
+            $(".content").html(template("content",data));
+          $(".main > .lesson_name .cover_box").css("background-image","url(+'data.data.coursePicture'+)");
+            /* 单个上传课程封面图片*/
+            document.querySelector("#against").onchange=function () {
+                var file=document.querySelector("#against").files;
+                html5Reader(file,".cover_box")
+            }
         }
     })
-    /* 单个上传课程封面图片*/
-    document.querySelector("#against").onchange=function () {
-        var file=document.querySelector("#against").files;
-        html5Reader(file,".cover_box")
 
-    }
 
     function html5Reader(file,ele){
         //var file = file.files[0];
@@ -215,7 +216,9 @@
         }
         //完后 编辑 保存信息
         $(".sure").click(function () {
-            let year_teach=$(".year_teach>em").text()
+            let year_teach=$(".year_teach>em").text();
+            teach_grade=$(".grade_teach>em").text();
+            teach_subject=$(".subject_teach>em").text();
             let term=$(".term>em").text();
             let token=localStorage.getItem("token");
             if(teach_grade==""&&teach_subject==""&&year_teach==""&&term==""){
@@ -248,6 +251,7 @@
                     var pic=data.data;
                     var obj={
                         token:token,
+                        id:courseid,
                         teacherId:teacherId,
                         schoolName:$(".schoolName").text(),
                         academicYear:year_teach,
@@ -267,7 +271,7 @@
                         },
                         async: false,
                         type: "post",
-                        url:baseUrl+ "/course/related/add/course",
+                        url:baseUrl+ "/course/related/update/course/baseinfo",
                         data: obj,
                         beforeSend: function (msg) {
                             $("#loading").show()
@@ -282,7 +286,7 @@
                                 localStorage.removeItem("teach_subject");
                                 sweetAlert(
                                         "恭喜您",
-                                        "课程创建成功了",
+                                        "课程修改成功了",
                                         "success"
                                 ).then(function () {
                                             back()

@@ -120,19 +120,19 @@
                     <h2>课程列表</h2>
                     <div class="lesson_status">
                         <em>结课状态</em>
-                        <span data-lesson="0" class="active">全部</span>
-                        <span data-lesson="1">未结课</span>
-                        <span data-lesson="2">已结课</span>
+                        <span data-classEndingStatus="0" class="active">全部</span>
+                        <span data-classEndingStatus="1">未结课</span>
+                        <span data-classEndingStatus="2">已结课</span>
                     </div>
                     <div class="publish_status">
                         <em>发布状态</em>
-                        <span data-publish="3" class="active">全部</span>
-                        <span data-publish="4">未发布</span>
-                        <span data-publish="5">已发布</span>
+                        <span data-releaseStatus="0" class="active">全部</span>
+                        <span data-releaseStatus="1">未发布</span>
+                        <span data-releaseStatus="2">已发布</span>
                     </div>
                 </div>
                 <div class="my_video_lists">
-                    <div class="list">
+                  <!--  <div class="list">
                         <span>未发布</span>
                         <h4>2018年初二化学上期课堂 <i>未结课</i></h4>
                         <p>
@@ -140,7 +140,7 @@
                             华南师范大学附属中学
                             <i>共10课时，<s>2</s> 课时未上架</i></p>
                         <div class="list_b clearfix" onclick="location.href='./editClass.html'">
-                        <!--<div class="list_b clearfix" onclick="location.href='./my_video_class_edit.html'">-->
+                        &lt;!&ndash;<div class="list_b clearfix" onclick="location.href='./my_video_class_edit.html'">&ndash;&gt;
                             <span>最新编辑 2018.07.23</span>
                             <i class="mui-icon mui-icon-forward f_right"></i>
                         </div>
@@ -156,7 +156,7 @@
                             <span>最新编辑 2018.07.23</span>
                             <i class="mui-icon mui-icon-forward f_right"></i>
                         </div>
-                    </div>
+                    </div>-->
                 </div>
 
             </div>
@@ -216,7 +216,7 @@
                     </div>
                     <div class="operation">
                         <button class="putaway">已上架</button>
-                        <button class="editC" onclick="location.href='./my_video_class_edit.html?id={{value.id}}'">课程编辑</button>
+                        <button class="editC" onclick="location.href='./my_video_class_edit.html?id={{value.courseId}}'">课程编辑</button>
                     </div>
 
                 </li>
@@ -228,25 +228,41 @@
 {{/each}}
     {{/if}}
 </script>
-<!--<script type="text/html" id="my_video_no">
-{{if data.length==0}}
-<div class="in_fo"> 对不起，您暂时没有视频已编辑</div>
+<script id="mine" type="text/html">
+{{if data==""||data==null ||data.length==0}}
+<div class="no_in"> 对不起，您暂时没有视频展示</div>
 {{else}}
 {{each data as value i}}
-<li class="upload_success">
-    <div class="load_tit">
-        <span>HD</span>
-        <em>20180716183621.mov -2018/07/16 18:36</em>
-        <i>完成上传</i>
+{{if value.coures.releaseStatus==1}}
+<div class="list">
+    <span>未发布</span>
+    <h4>{{value.coures.academicYear}}{{value.coures.grade}}{{value.coures.subject}}{{value.coures.semester}} <i>{{value.coures.classEndingStatus==1?"未结课":"已结课"}}</i></h4>
+    <p>
+        {{value.coures.schoolName}}
+        <i>共{{sum(value.LowerShelfNum,value.UpperShelfNum)}}课时，<s>{{value.LowerShelfNum}}</s> 课时未上架</i></p>
+    <div class="list_b clearfix" >
+        <!--<div class="list_b clearfix" onclick="location.href='./my_video_class_edit.html'">-->
+        <span>最新编辑 {{time(value.coures.updateTime)}}</span>
+        <em class="f_right">已上架{{value.UpperShelfNum}}课时</em>
     </div>
-    <div class="operation">
-        <button class="quit">移除</button>
-        <button class="edit" onclick="location.href='editClass.html'">编入课程</button>
+</div>
+{{else}}
+<div class="list has_publish">
+    <span>已发布</span>
+    <h4>{{value.coures.academicYear}}{{value.coures.grade}}{{value.coures.subject}}{{value.coures.semester}} <i>{{value.coures.classEndingStatus==1?"未结课":"已结课"}}</i></h4>
+    <p>
+        {{value.coures.schoolName}}
+        <i>共{{sum(value.LowerShelfNum,value.UpperShelfNum)}}课时，<s>{{value.LowerShelfNum}}</s> 课时未上架</i></p>
+    <div class="list_b clearfix" >
+        <!--<div class="list_b clearfix" onclick="location.href='./my_video_class_edit.html'">-->
+        <span>最新编辑 {{time(value.coures.updateTime)}}</span>
+        <em class="f_right">已上架{{value.UpperShelfNum}}课时</em>
     </div>
-</li>
+</div>
+{{/if}}
 {{/each}}
     {{/if}}
-</script>-->
+</script>
 <script>
     //教师的id
     var teacherId=localStorage.getItem("this_userid");
@@ -460,7 +476,6 @@
         // /period/related/get/all/Period
         // /period/related/get/already/Editor 已编辑的 teacherid
         //  /period/related/get/Not/Editor 未编辑的 teacherid
-
         $("#item1>h2>em").click(function () {
             $(this).addClass("active");
             $(this).siblings().removeClass("active");
@@ -478,23 +493,84 @@
             }
 
         })
+        //我的视频
+        var classEndingStatus=$(".lesson_status>.active").data("classendingstatus");
+        var releaseStatus=$(".publish_status>.active").data("releasestatus");
+        myClass(classEndingStatus,releaseStatus);
 
-        /*点击 结课状态的 发布状态*/
-        function status(ele,data){
-           ele.click(function () {
-                $(this).siblings().removeClass("active");
-                $(this).addClass("active");
-                console.log($(this).data(data));
+        function  myClass(classEndingStatus,releaseStatus){
+            var obj={
+                teacherid:teacherId,
+                classEndingStatus:classEndingStatus,
+                releaseStatus:releaseStatus
+            }
+            //获取  active 的
+            myAjax({url:"/course/related/get/Course/List",data:obj,type:"post"}, function (data) {
+                console.log(data);
+                if(data.status==200){
+                    template.helper("sum",function(a,b){
+
+                        return a-0+b;
+                    })
+                    template.helper("time",function(date){
+                        var time=new Date(date).toLocaleString().replace(/:\d{1,2}$/,' ').replace(/\//g,"-");
+                        return time;
+                        /* return new Date(parseInt(date) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ');*/
+                    });
+                    $("#item2>.my_video_lists").html(template("mine",data))
+
+                }
             })
 
         }
-        status($(".lesson_status>span"),"lesson");
-        status($(".publish_status>span"),"publish");
+        /*点击 结课状态的 发布状态*/
+        /*function status(ele,callback){
+           ele.click(function () {
+                $(this).siblings().removeClass("active");
+                $(this).addClass("active");
+               // console.log($(this).data(data));
+               //获取 class=active 的 类名
+               //callback();
+            })
 
-        /*删除我的视频 */
+        }
+        status($(".lesson_status>span"), function () {
+            classendingstatus=$(this).data("classendingstatus");
+          releaseStatus=$(".publish_status>.active").data("releasestatus");
+            console.log(classendingstatus);
+            console.log(releaseStatus);
+            myClass(classendingstatus,releaseStatus);
+        });*/
+        $(".lesson_status>span").click(function () {
+            $(this).siblings().removeClass("active");
+            $(this).addClass("active");
+            classendingstatus=$(this).data("classendingstatus");
+            releaseStatus=$(".publish_status>.active").data("releasestatus");
+            myClass(classendingstatus,releaseStatus);
+        })
+        //status($(".publish_status>span"),"releasestatus");
+        $(".publish_status>span").click(function () {
+            $(this).siblings().removeClass("active");
+            $(this).addClass("active");
+            classendingstatus=$(".lesson_status>span").data("classendingstatus");
+            releaseStatus=$(this).data("releasestatus");
+            myClass(classendingstatus,releaseStatus);
+        })
+
+        var str=[];
+        $(".put_way").on("click",".sold_out", function () {
+            var active = $("#item2 .active");
+            for (var i = 0; i < active.length; i++) {
+                //console.log($(".active")[i]);
+                var that = active[i];
+                str.push(that.getAttribute("data-id"));
+            }
+            console.log(str);
+        })
+       /* /!*删除我的视频 *!/
         $(".delete").click(function () {
             alert(1);
-        })
+        })*/
     })
 </script>
 </html>

@@ -162,7 +162,7 @@
   padding-top: 0rem;
   >.replay{
     position: fixed;
-    bottom: 1%;
+    bottom: 0%;
     z-index: 3;
     height: 1rem;
     background-color: #fff;
@@ -187,6 +187,7 @@
          vertical-align: middle;
        }
      }
+
     }
 
   }
@@ -255,10 +256,10 @@
           position: absolute;
           margin-left: 3.2rem;
           top:15%;
+          width: 55%;
             >p{
               font-size: 0.3rem ;
               >del{
-
                 width: 55%;
                 overflow: hidden;
                 display: -webkit-box;
@@ -295,8 +296,33 @@
 }
 /*½ÌÊ¦Ö÷Ò³*/
 .teacher_center{
+  .write_submit{
+  position: fixed;
+  right: 2%;
+  bottom: 15%;
+  width: 1rem;
+  height: 1rem;
+  z-index: 3;
+  background-color: #f01414;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  >em{
+    width: 0.8rem;
+    height: 0.8rem;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: url("../../img/submit_comment.png") no-repeat center;
+    -webkit-background-size: 80%;
+    background-size: 80%;
+  }
+}
   .student_evaluate{
     width: 100%;
+
+
     >h2{
       font-size: 0.32rem;
       height: 0.8rem;
@@ -313,6 +339,7 @@
       color:#0086b3;
     }
     >.evaluate_list{
+      padding:0.2rem 0;
       border-bottom: 1px solid #eee;
       >.eva_top{
         position: relative;

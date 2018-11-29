@@ -19,7 +19,7 @@
 }
 .layer > .near_header i del {
   position: absolute;
-  top: 75%;
+  top: 84%;
 }
 .layer > .near_header .header_center {
   color: #fff;
@@ -134,6 +134,7 @@
   color: #6cb628;
   border-radius: 3px;
   margin: 0.01rem 0.1rem;
+  padding: 0 0.1rem;
   border: 1px solid #6cb628;
 }
 .main .teacher_lists .list_teacher .list_center .list_bottom {

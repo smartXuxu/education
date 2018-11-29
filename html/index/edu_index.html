@@ -20,11 +20,11 @@
     <header id="header" class="mui-bar mui-bar-nav">
         <i class="mui-icon mui-icon-left-nav mui-pull-left" onclick="location.href='./index.html'"></i>
         <h1 class="mui-title">主页</h1>
-        <em class="mui-icon mui-icon-more"></em>
+       <!-- <em class="mui-icon mui-icon-more"></em>-->
     </header>
     <div class="main">
         <div class="message_info clearfix">
-            <img src="../../img/focus-img1.png" alt=""/>
+          <!--  <img src="../../img/focus-img1.png" alt=""/>
             <div class="info_center">
                 <em>华南师范大学附属中学</em>
                 <span><i>高中</i><i>初中</i></span>
@@ -53,17 +53,17 @@
 
                     </li>
                 </ul>
-            </div>
+            </div>-->
         </div>
         <div id="slider" class="mui-slider find_request">
             <div style="padding: 10px 10px;">
                 <div id="segmentedControl" class="mui-segmented-control">
-                    <a class="mui-control-item mui-active" href="#course">
-                        <span>课程(2)</span>
-                    </a>
-                    <a class="mui-control-item" href="#teacher">
-                        <span>教师(2)</span>
-                    </a>
+                    <div class="mui-control-item mui-active" >
+                        <span>课程 (<s>2</s>)</span>
+                    </div>
+                    <div class="mui-control-item" >
+                        <span>教师(<s>2</s>)</span>
+                    </div>
 
                 </div>
             </div>
@@ -73,7 +73,7 @@
                 <div id="course" class="mui-control-content mui-active">
                    <!--课程-->
                     <div class="course_lists">
-                        <div class="course_list" onclick="location.href='./index_video.html'" >
+                       <!-- <div class="course_list" onclick="location.href='./index_video.html'" >
                             <img src="../../img/index_edu.png" alt=""/>
                             <div class="course_list_center ">
                                 <p class="clearfix">
@@ -86,8 +86,8 @@
                                 </div>
                                 <span>华南师范大学附属中学</span>
                             </div>
-                        </div>
-                        <div class="course_list" onclick="location.href='./index_video.html'">
+                        </div>-->
+                     <!--   <div class="course_list" onclick="location.href='./index_video.html'">
                             <img src="../../img/index_edu.png" alt=""/>
                             <div class="course_list_center ">
                                 <p class="clearfix">
@@ -100,15 +100,15 @@
                                 </div>
                                 <span>华南师范大学附属中学</span>
                             </div>
-                        </div>
+                        </div>-->
                     </div>
                 </div>
                 <div id="teacher" class="mui-control-content">
                     <div class="teacher_lists">
-                        <div class="list" onclick="location.href='./teacher_index.html'">
+                        <!--<div class="list" onclick="location.href='./teacher_index.html'">
                             <img src="../../img/focus-img1.png" alt=""/>
                             <div class="lst_center">
-                                <!-- 判断男女-->
+                                &lt;!&ndash; 判断男女&ndash;&gt;
                                 <span>傅娟 <em class="iconfont icon-nv" ></em></span>
                                 <p>2课程 || 40课时 &nbsp;&nbsp;&nbsp;&nbsp;3w 学生 | 5.2w 获赞</p>
                                 <div class="lst_footer">
@@ -116,49 +116,142 @@
                                     <i>初二</i>
                                 </div>
                             </div>
-                        </div>
-                        <div class="list" onclick="location.href='./teacher_index.html'">
-                            <img src="../../img/focus-img1.png" alt=""/>
-                            <div class="lst_center">
-                                <span>傅娟 <em class="iconfont icon-82" ></em></span>
-                                <p>2课程 || 40课时 &nbsp;&nbsp;&nbsp;&nbsp;3w 学生 | 5.2w 获赞</p>
-                                <div class="lst_footer">
-                                    <i>数学</i>
-                                    <i>初二</i>
-                                </div>
-                            </div>
-                        </div>
+                        </div>-->
+
                     </div>
                 </div>
 
             <!--操作-->
             <div class="replay">
-                <button class="attention"> +  关注</button>
-                <button class="hand"><em class="mui-icon-extra mui-icon-extra-heart"></em> 点赞</button>
+                <!--操作-->
             </div>
         </div>
-
     </div>
 </div>
 </body>
-<script src="../../js/mui.min.js"></script>
+<!--<script src="../../js/mui.min.js"></script>-->
 <script src="../../js/x_rem.js"></script>
 <script src="../../js/jquery.min.js"></script>
 <script src="../../js/base.js"></script>
 <script src="../../js/back.js"></script>
 <script src="../../js/sweetalert2.js"></script>
+<script src="../../js/template-web.js"></script>
+<script src="../../js/template.js"></script>
+<script type="text/html" id="info">
+
+    <img src='{{data.baseInfo.portrait==null?"../../img/logo.png":data.baseInfo.portrait}}' alt=""/>
+    <div class="info_center">
+        <em>{{data.baseInfo.name}}</em>
+        <span>
+            {{each str(data.baseInfo.containClasses) as value i}}
+            <i>{{value}}</i>
+            {{/each}}
+        </span>
+        <p>{{data.baseInfo.address}}</p>
+    </div>
+    <div class="teacher_Attention">
+        <ul class="clearfix">
+            <li>
+                <a href="javascript:;">
+                    <em>{{sub(data.StudentNum)}}</em>
+                    <span>学生</span>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <em>{{sub(data.FansNum)}}</em>
+                    <span>粉丝</span>
+                </a>
+
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <em>{{sub(data.LoveNum)}}</em>
+                    <span>获赞</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</script>
+<script type="text/html" id="replay">
+    {{if data.WhetherAttention==false}}
+    <button class="attention"> +  关注</button>
+    {{else}}
+    <button class="attention"> 取消关注</button>
+    {{/if}}
+    {{if data.WhetherLove==false}}
+    <button class="hand "><em class="mui-icon-extra mui-icon-extra-heart"></em> 点赞</button>
+    {{else}}
+    <button class="hand"><em class="mui-icon-extra mui-icon-extra-heart"></em> <s>取消点赞</s></button>
+    {{/if}}
+</script>
+<script id="courseList" type="text/html">
+    {{if data.updateNum==0}}
+    <div class="no_in">对不起，暂时没有课程可以展示</div>
+    {{else}}
+    {{each data.allCourse as value i}}
+    <div class="course_list" onclick="location.href='./index_video.html'" >
+        <img src='{{value.course.coursePicture==null?"../../img/login.gif":value.course.coursePicture}}' alt=""/>
+        <div class="course_list_center ">
+            <p class="clearfix">
+                <del class="f_left">更新第{{value.updateNum}}课时</del>
+                <i class="f_right">{{time(value.updateTime)}}</i></p>
+            <div class="icons">
+                <em class="iconfont icon-wode1"> {{value.StudyCourseNum}}</em>
+                <em class="iconfont icon-wujiaoxingkong"> {{value.CollectNum}}</em>
+                <em class="mui-icon-extra mui-icon-extra-heart"> {{value.LoveNum}}</em>
+            </div>
+            <span>{{value.course.schoolName}}</span>
+        </div>
+    </div>
+    {{/each}}
+    {{/if}}
+</script>
+<script id="teacherList" type="text/html">
+    {{if data.updateNum==0}}
+    <div class="no_in">对不起，暂时没有课程可以展示</div>
+    {{else}}
+    {{each data.teacherList as value i}}
+    <div class="list" onclick="location.href='./teacher_index.html?id={{value.teacher.userid}}'">
+        <img src='{{value.teacher.portrait==null?"../../img/logo.png":value.teacher.portrait}}' alt=""/>
+        <div class="lst_center">
+            <!-- 判断男女-->
+            <span>{{value.teacher.nickname==null?value.teacher.realName==null?"猴姆教学":value.teacher.realName:value.teacher.nickname}} <em class="iconfont {{value.teacher.gender=='女'||value.teacher.gender==null?'icon-nv':'icon-82'}}" ></em></span>
+            <p>{{value.CourseNum}}课程 || {{value.PeriodNum}}课时 &nbsp;&nbsp;&nbsp;{{value.FansNum}} 学生 | {{value.LoveNum}} 获赞</p>
+            <div class="lst_footer">
+                {{each str(value.teacher.teachingSubjects) as value i}}
+                <i>{{value}}</i>
+                {{/each}}
+                {{each str(value.teacher.grade) as value i}}
+                <i>{{value}}</i>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+    {{/each}}
+    {{/if}}
+</script>
 <script>
+
     $(function () {
         /*判断是否关注  关注与取消关注*/
-        mui('body').on('tap','a',function(){document.location.href=this.href;});
+      /*  mui('body').on('tap','a',function(){document.location.href=this.href;});
 
         $('#scroll').scroll({
             indicators: true //是否显示滚动条
-        });
+        });*/
         $(".near_header>em").click(function () {
             alert( 1);
         })
-        var segmentedControl = document.getElementById('segmentedControl');
+        $(".mui-segmented-control>.mui-control-item").click(function () {
+            $(this).addClass("mui-active");
+            $(this).siblings().removeClass("mui-active");
+            var index = $(this).index();
+            $('.mui-control-content').eq(index).addClass('mui-active');
+            $('.mui-control-content').eq(index).siblings().removeClass('mui-active');
+
+        })
+      /*  var segmentedControl = document.getElementById('segmentedControl');
         $('.mui-input-group').on('change', 'input', function() {
             if (this.checked) {
                 var styleEl = document.querySelector('input[name="style"]:checked');
@@ -170,6 +263,92 @@
                 }
             }
         });
+        */
+        //关注 或取消关注学校
+        var userid=localStorage.getItem("this_userid");
+        var schoolid=location.href.split("=")[1];
+        // 点赞
+        function loveSchool(e){
+            myAjax({url:"/dynamic/update/Love/School",
+                data:{userid:userid,
+                    schoolid:schoolid
+                },type:"post"}, function (data) {
+                console.log(data);
+                if(data.status==200){
+                    if(data.data.love==true){
+                        $(e).children("s").text("取消点赞")
+                    }else{
+                        $(e).children("s").text("点赞")
+                    }
+                }
+            })
+        }
+        $(".main").on("click",".hand", function () {
+            loveSchool(this)
+        })
+     //关注
+        function attSchool(e){
+            myAjax({url:"/dynamic/update/Attention/School",
+                data:{fansId:userid,
+                    beFocusedSchoolid:schoolid
+                },type:"post"}, function (data) {
+                console.log(data);
+                if(data.status==200){
+                    if(data.data.attention==true){
+                        $(e).text("取消关注")
+                    }else{
+                        $(e).text("+ 关注")
+                    }
+                }
+            })
+        }
+        $(".main").on("click",".attention", function () {
+            attSchool(this)
+        })
+
+        //先得到是否 关注
+
+        myAjax({url:"/school/related/get/School/BaseInfo",data:{userid:userid,schoolid:schoolid},type:"post"}, function (data) {
+            //console.log(data);
+            if(data.status==200){
+                template.helper("str", function (str) {
+                    return str.split(",")
+                });
+                template.helper("sub", function (b) {
+                    return parseInt(20000+b);
+                })
+                $(".message_info").html(template("info",data));
+                $(".replay").html(template("replay",data));
+
+            }
+
+        })
+        //学校课程列表
+        myAjax({url:"/school/related/get/School/CourseList",data:{schoolid:schoolid},type:"post"}, function (data) {
+            console.log(data);
+                if(data.status==200){
+                    $("#segmentedControl>a:first-of-type>span>s").text(data.data.courseNum);
+                    template.helper("time",function(date){
+                        var time=new Date(date).toLocaleString().replace(/:\d{1,2}$/,' ').substr(0,10).replace(/\//g,"-");
+                        return time;
+
+                    });
+                    $("#course>.course_lists").html(template("courseList",data));
+
+                }
+        })
+        //学校教师列表
+        myAjax({url:"/school/related/get/School/TeacherList",data:{schoolid:schoolid},type:"post"}, function (data) {
+            console.log(data);
+            if(data.status==200){
+                $("#segmentedControl>a:last-of-type>span>s").text(data.data.teacherNum);
+                template.helper("str", function (str) {
+                    return str.split(" ")
+                });
+                $("#teacher>.teacher_lists").html(template("teacherList",data))
+
+            }
+        })
 
     })
 </script>

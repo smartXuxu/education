@@ -28,11 +28,19 @@
         .main > div > input {
             width: 50%;
             height: 0.6rem;
+            line-height: 0.6rem;
             border: none;
             margin-top: 0.1rem;
             text-align: right;
             font-size: 0.28rem;
             padding-right: 0;
+        }
+        .main >.class{
+            height: 1.1rem;
+        }
+        .main >.class >input{
+            height: 0.8rem;
+
         }
         .main > div > i {
             height: 1rem;
@@ -132,8 +140,8 @@
         </ul>
     </div>
         <div class="inSchool clearfix">
-            <span class="f_left">入学年份</span>
-           <input id='sign_up'  data-options='{"type":"month"}' class="btn mui-btn mui-btn-block f_right" placeholder="请选择您的入学年份"/>
+            <span class="f_left">入学时间</span>
+           <input id='sign_up'  data-options='{"type":"month"}' class="btn mui-btn mui-btn-block f_right" placeholder="请选择您的入学时间"/>
             <div id='result' class="ui-alert"></div>
         </div>
         <button type="button" class="mui-btn mui-btn-danger mui-btn-block confirm">确定</button>
@@ -154,12 +162,13 @@
 </script>
 <script>
     $(function () {
+        var userId=localStorage.getItem("this_userid");
         // 选择学校 模板渲染
         $(".school").click(function () {
             $("#mask").show();
             $("#choose_share").show();
 
-        })
+        });
         $("#choose_share>ul>li").click(function(){
             $(".school input").val($(this).children("span").text())
             $("#mask").hide();
@@ -171,14 +180,42 @@
                 $("#choose_share").hide();
             }
         })
-     $(".confirm").click(function () {
-         var obj={};
+        var grade=localStorage.getItem("studentGrade");
+        $(".class>input").val(grade);
 
-         myAjax({url:'/authentication/updateTo/Student',data:obj,type:"post"},function(data){
+        var obj={};
+     $(".confirm").click(function () {
+
+         obj.userid = userId;
+         obj.identityAuthentication = 3;
+         if ($(".class>input").val() == "") {
+             sweetAlert(
+                     "sorry",
+                     "请您设置你的年级",
+                     "error"
+             )
+             return false;
+         } else {
+             obj.grade = $(".class>input").val();
+         }
+         if ($(".inSchool>input").val().trim() == "") {
+             sweetAlert(
+                     "sorry",
+                     "请您选择入学时间",
+                     "error"
+             )
+             return false;
+         } else {
+             obj.admissionTime = $(".inSchool>input").val();
+         }
+         console.log(obj);
+     })
+
+         /*myAjax({url:'/authentication/updateTo/Student',data:obj,type:"post"},function(data){
 
          })
 
-     })
+     })*/
 
     })
 </script>
@@ -201,7 +238,7 @@
 
                 var picker = new $.DtPicker(options);
                 picker.show(function(rs) {
-                    console.log(rs);
+                    //console.log(rs);
                     /*
                      * rs.value 拼合后的 value
                      * rs.text 拼合后的 text

@@ -80,16 +80,20 @@
             <h3>请您选择视频所属课程</h3>
             <ul>
                 <!--内容从后台获取-->
-                <li>
-                    <em></em>
-                    <span>2018年高三数学上期2018年高三数学上期</span>
+                <li data-id="1">
+
+                    <span>2018年高三数学上期2018年高三数学上期2018年高三数学上期2018年高三数学上期2018年高三数学上期2018年高三数学上期</span>
+
                 </li>
                 <li>
-                    <em></em>
                     <span>2017年高三数学上期</span>
                 </li>
+                <!--重绘 页面 二级示例
+                -->
             </ul>
+
         </div>
+
         <div id="sure">
             <button class="confirm">
                 确定
@@ -99,6 +103,8 @@
 </div>
 </body>
 <script src="../../js/mui.min.js"></script>
+<script src="../../js/mui.picker.min.js"></script>
+<script src="../../js/mui_poppicker.js"></script>
 <script src="../../js/x_rem.js"></script>
 <script src="../../js/jquery.min.js"></script>
 <script src="../../js/base.js"></script>
@@ -112,7 +118,7 @@
     })
     /*选择视频 所属课程 单选*/
     $("#choose_share li").click(function () {
-        $(".origin>input").val($(this).children("span").text());
+       // $(".origin>input").val($(this).children("span").text());
         $("#mask").hide();
         $("#choose_share").hide();
     });
@@ -126,12 +132,35 @@
             $("#mask").hide();
         })
     })
+    $("#mask").click(function (e) {
+        if(e.target!==$("#choose_share")){
+            $("#choose_share").hide();
+            $("#mask").hide();
+        }
+    })
     //图片上传
     var obj={};
     $(".confirm").click(function(){
-        var title= $(".style").val();
-        var startTime=$("#tests").val();
-        var endTime=$("#test").val();
+      var num=$(".score>input").val().trim();
+        var reg=/^\d+$/;
+        console.log(num);
+        if(!reg.test(num)){
+            sweetAlert(
+                    "sorry",
+                    "请您输入非负整数(可以为0)",
+                    "error"
+            )
+        }
+    //图片转换
+        var base64s=images.join("。").replace(/"/g,"");
+        console.log(base64s);
+       /* myAjax({url:"/pic/multiple/base64/upload",type:"post",data:{"base64s":base64s},async:false}, function (data){
+            if(data.status==200){
+                var pic=data.data;
+            }
+        })*/
+       /* var title= $(".style").val();
+
         //转换成功 图片的base64地址 很重要
         // console.log(images);
         //获取用户输入的全部内容之后 包括图片的地址  发送给后台 在进行页面的跳转
@@ -187,7 +216,7 @@
                     '记得填写内容哦！',
                     'error'
             )
-        }
+        }*/
     })
     /*上传图片
      * */
@@ -286,6 +315,7 @@
     function removeDom(id){
         document.getElementById(id).outerHTML='';
     }
+
 
 </script>
 

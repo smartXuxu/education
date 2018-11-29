@@ -24,7 +24,7 @@
     </header>
     <div class="main">
         <div class="comment_teacher_lists">
-            <div class="teacher_list">
+            <!--<div class="teacher_list">
                 <div class="teacher_top">
                     <img src="../../img/focus-img1.png" alt=""/>
                     <div class="center">
@@ -74,7 +74,7 @@
                 <div class="middle">
                     很喜欢老师讲的课，上课幽师讲的课，上课幽师讲的课，上课幽默又非常的认真， 又不懂的老师会很耐心的帮助解答。非常好！
                 </div>
-            </div>
+            </div>-->
         </div>
     </div>
 </div>
@@ -85,9 +85,85 @@
 <script src="../../js/base.js"></script>
 <script src="../../js/back.js"></script>
 <script src="../../js/sweetalert2.js"></script>
+<script src="../../js/template-web.js"></script>
+<script src="../../js/template.js"></script>
+<script id="evaluate" type="text/html">
+    {{if data == null||data.length==0}}
+    <div class="no_in">对不起，暂时没有评价</div>
+    {{else}}
+    {{each data.evaluateTeacherList as value i}}
+    <div class="teacher_list">
+        <div class="teacher_top">
+            <img src="{{value.user.portrait==null?'../../img/logo.png':value.user.portrait}}" alt=""/>
+            <div class="center clearfix">
+                <span>{{value.user.nickname==null?value.user.realName==null?"猴姆教学":value.user.realName:value.user.nickname}}</span>
+                {{if str(value.evaluateTeacher.score) ==1}}
+                <em>★</em>
+                {{else if str(value.evaluateTeacher.score) ==2}}
+                <em>★</em>
+                <em>★</em>
+                {{else if str(value.evaluateTeacher.score) ==3}}
+                <em>★</em>
+                <em>★</em>
+                <em>★</em>
+                {{else if str(value.evaluateTeacher.score) ==4}}
+                <em>★</em>
+                <em>★</em>
+                <em>★</em>
+                <em>★</em>
+                {{else}}
+                <em>★</em>
+                <em>★</em>
+                <em>★</em>
+                <em>★</em>
+                <em>★</em>
+                {{/if}}
+
+            </div>
+            <del>{{value.evaluateTeacher.updateTime==null?"时间不详":time(value.evaluateTeacher.updateTime)}}</del>
+        </div>
+        <div class="middle">
+            <p>{{value.evaluateTeacher.body}}</p>
+        </div>
+    </div>
+    {{/each}}
+   {{/if}}
+</script>
 <script>
     $(function () {
-
+        var teacherid=location.href.split("=")[1];
+        myAjax({url:"/teacher/related/get/Teacher/Evaluate/List",
+            data:{teacherid:teacherid,page:1,size:5},
+            type:"post"}, function (data) {
+            console.log(data);
+            if(data.status==200){
+                template.helper("time",function(date){
+                    var time=new Date(date).toLocaleString().replace(/:\d{1,2}$/,' ').replace(/\//g,"-");
+                    return time;
+                });
+                template.helper("str",function(str){
+                    return parseInt(str)
+                });
+                $(".comment_teacher_lists").html(template("evaluate",data))
+            }
+        })
+        var obj={
+            teacherid:teacherid,
+            size:5
+        };
+        loadmoreIndex( $('.main'),'/teacher/related/get/Teacher/Evaluate/List',obj,function (data) {
+            console.log(data);
+            if(data.status==200){
+                $("#item2>.focus_center").append(template("AttentionUser",data));
+                //$('#item1>.All_lists').append(template("Alldy",data));
+                //点赞
+                $(".hand").click(function () {
+                    var id=$(this).data("id");
+                    console.log(id);
+                    loveDynamic(id,this);
+                })
+            }
+        });
     })
 </script>
 </html>

@@ -237,6 +237,7 @@
             myAjax({url:"/period/related/addPeriod/IntoCourse",data:{id:time_id,courseId:courseId,periodName:periodName},type:"post"}, function (data) {
                 console.log(data);
                 if(data.status==200){
+                    $(".publish").text("已发布");
                     //location.href="./educational_administration.html"
                 }
             })

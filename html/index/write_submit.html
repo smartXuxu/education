@@ -113,10 +113,11 @@
         );
 
         //星星点击事件
+        var index=0;
         $('li').click(function() {
             $('li').css('color', '#ADADAD');
             isClicked = true;
-            var index = $(this).index();
+             index = $(this).index();
 
             for(var i = 1; i <= index+1; i++) {
                 $('li:nth-child(' + i + ')').css('color', '#F0AD4E');
@@ -133,10 +134,57 @@
                 clickNum = 0;
                 beforeClickedIndex = index;
             }
-            //console.log(index);
+
+            index=parseInt(index+1);
+            console.log(index);
             /*注意
             * index就是点亮星星的个数 需要加1 因为是从0 开始的*/
         });
+        var teacherid=location.href.split("=")[1];
+        var userid=localStorage.getItem("this_userid");
+        $(".submit").click(function () {
+            //只有当index !==0 ||body !==""
+            var body=$("textarea").val().trim();
+            if(body.length>120){
+                sweetAlert(
+                        "sorry",
+                        "输入超过了最大的长度",
+                        "error"
+                )
+                return false;
+            }
+            if(index !==0 || body !==""){
+                myAjax({url:"/teacher/related/add/Teacher/Evaluate",
+                    data:{userid:userid,
+                        teacherid:teacherid,
+                        body:body,
+                        score:index
+                    },
+                    type:"post"
+                },function (data) {
+                console.log(data);
+                    if(data.status==200){
+
+                    }else if(data.status == 300){
+                        sweetAlert(
+                                "sorry",
+                                "您不是该老师的学生，没有评论权限",
+                                "error"
+                        )
+                    }
+            })
+
+            }else{
+                sweetAlert(
+                        "sorry",
+                        "请您点亮星星或者输入评价的内容",
+                        "error"
+                )
+                return false;
+            }
+
+        })
+
     });
 </script>
 

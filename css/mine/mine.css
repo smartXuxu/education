@@ -107,7 +107,7 @@
 }
 .layer .mian .mine_center.mui-table-view a {
   color: #696969;
-  font-size: 0.32rem ;
+  font-size: 0.32rem;
 }
 .layer .mian .mine_center.mui-table-view a em {
   margin: 0.2rem;
@@ -137,4 +137,12 @@
 }
 .educational a {
   border-bottom: 1px solid #eeeeee;
+}
+.edu_gray {
+  position: relative;
+}
+.edu_gray i {
+  position: absolute;
+  right: 10%;
+  top: 25%;
 }
