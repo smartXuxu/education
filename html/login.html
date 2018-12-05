@@ -72,7 +72,7 @@
 <script src="../js/base64.min.js"></script>
 <script>
 /*H5定位 结果发送给后台 或者保存下来*/
-    getLocation();
+   // getLocation();
     function getLocation(){
         if (navigator.geolocation){
             console.log(2);
@@ -154,6 +154,7 @@
                     if($('#check').is(':checked')){
                     // 获取设置的本地存储的用户名的值
                     var loUser = localStorage.setItem('uName',uName);
+
                     // 获取设置的本地存储的密码的值 base64加密
                         pwd=base64.tranCode.encode(pwd);
                     var loPass = localStorage.setItem('pwd',pwd);

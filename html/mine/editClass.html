@@ -126,16 +126,8 @@
     {{if data.UpperShelfNum==0}}
     {{else}}
     {{each data.UpperShelfList as value i}}
-    <p class="clearfix"><i></i>第1课 相交线 <em class="f_right">2018.10.02 10:32</em></p>
-
-    <p class="clearfix"><i></i>第1课 相交线 <em class="f_right">2018.10.02 10:32</em></p>
-
-    <p class="clearfix"><i></i>第1课 相交线 <em class="f_right">2018.10.02 10:32</em></p>
-
-    <p class="clearfix"><i></i>第1课 相交线 <em class="f_right">2018.10.02 10:32</em></p>
-
-    <p class="clearfix"><i></i>第1课 相交线 <em class="f_right">2018.10.02 10:32</em></p>
-    {{/each}}
+    <p class="clearfix"><i></i>第{{i+1}}课 {{value.periodName}} <em class="f_right">{{time(value.updateTime)}}</em></p>
+     {{/each}}
     {{/if}}
 </script>
 <script>
@@ -186,6 +178,11 @@
                     myAjax({url:"/course/related/get/course/Period/List",data:{courseid:courseId},type:"post"}, function (data) {
                         console.log(data);
                         if(data.status==200){
+                            template.helper("time",function(date){
+                                var time=new Date(date).toLocaleString().replace(/:\d{1,2}$/,' ').replace(/\//g,"-");
+                                return time;
+                                /* return new Date(parseInt(date) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ');*/
+                            });
                             $(".period").html(template("period",data))
                         }
                     })

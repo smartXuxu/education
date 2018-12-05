@@ -21,14 +21,14 @@
     </header>
     <div class="mian">
         <div class="mine_login">
-            <!--判断有没有登录-->
-            <!--未登录-->
-            <!--<div class="no_login" onclick="location.href='../login.html'">
+           <!-- 判断有没有登录
+            &lt;!&ndash;未登录&ndash;&gt;
+            &lt;!&ndash;<div class="no_login" onclick="location.href='../login.html'">
                 <div class="head_img">
                 </div>
                 <span>点击登录</span>
-            </div>-->
-            <!--登录过了-->
+            </div>&ndash;&gt;
+            &lt;!&ndash;登录过了&ndash;&gt;
             <div class="has_login">
                <div class="login_content">
                    <img src="../../img/focus-img1.png" alt=""/>
@@ -64,7 +64,7 @@
                         </li>
                     </ul>
                 </div>
-            </div>
+            </div>-->
         </div>
         <ul class="mui-table-view mine_center">
             <li class="mui-table-view-cell">
@@ -148,6 +148,67 @@
 <script src="../../js/jquery.min.js"></script>
 <script src="../../js/base.js"></script>
 <script src="../../js/sweetalert2.js"></script>
+<script src="../../js/template-web.js"></script>
+<script src="../../js/template.js"></script>
+<script id="no_login" type="text/html">
+   <!-- 判断有没有登录-->
+    <!--未登录-->
+    <div class="no_login" onclick="location.href='../login.html'">
+        <div class="head_img">
+        </div>
+        <span>点击登录</span>
+    </div>
+</script>
+<script id="has_login" type="text/html">
+    <!--登录过了-->
+    <div class="has_login">
+        <div class="login_content">
+            <img src="{{data.user.portrait==null?'../../img/logo.png':data.user.portrait}}" alt=""/>
+            <div class="has_center">
+                <em>{{data.user.nickname==null?data.user.realName==null?"未设置":data.user.realName:data.user.nickname}}</em>
+                <del>{{data.school}}&nbsp;&nbsp;{{data.user.grade}}&nbsp;&nbsp;
+                    {{if data.user.identityAuthentication==4}}
+                    教师
+                {{else if data.user.identityAuthentication==3}}
+                    学生
+                {{else if data.user.identityAuthentication==2}}
+                    教师身份认证中
+                {{else }}
+                    游客
+
+                    {{/if}}
+                </del>
+            </div>
+            <div class="has_right" onclick="location.href='editData.html'">
+                编辑 <i class="mui-icon mui-icon-arrowright"></i>
+            </div>
+        </div>
+        <div class="my_Attention">
+            <ul class="clearfix">
+                <li>
+                    <a href="./my_attention.html">
+                        <em>{{data.AllAttentionNum}}</em>
+                        <span>关注</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./my_fans.html">
+                        <em>{{data.FansNum}}</em>
+                        <span>粉丝</span>
+                    </a>
+
+                </li>
+                <li>
+                    <a href="./integral_rule_detail.html?score={{data.user.usableIntegral}}">
+                        <em>{{data.user.usableIntegral}}</em>
+                        <span>积分</span>
+                    </a>
+
+                </li>
+            </ul>
+        </div>
+    </div>
+</script>
 <script>
     $(function () {
         mui('body').on('tap','a',function(){document.location.href=this.href;});
@@ -157,6 +218,7 @@
         },100);
         /*通过 token 查询用户信息接口*/
         var token=localStorage.getItem("token");
+        var userid =localStorage.getItem("this_userid");
         myAjax({url:`/user/token/${token}`,type:'post',async:false}, function (data) {
         console.log(data);
             if(data.status==200){
@@ -172,7 +234,22 @@
                         })
             }
         })
-
+        if(!token){
+            /*未登录*/
+            $(".mine_login").html(template("no_login"));
+        }else{
+            myAjax({url:"/user/my/get/Base/Info",data:{userid:userid},type:"post"}, function (data) {
+                console.log(data);
+                $(".mine_login").html(template("has_login",data));
+                if(data.status==200){
+                    if(data.data.user.identityAuthentication==4){
+                        $(".edu_gray").hide()
+                    }else{
+                        $(".educational").hide()
+                    }
+                }
+            })
+        }
     })
 </script>
 </html>

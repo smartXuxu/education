@@ -214,7 +214,7 @@
 {{each data as value i}}
 <div class="list" onclick="location.href='../index/edu_index.html?schoolId={{value.school.schoolId}}'">
     <div class="img_box">
-        <img src="../../img/index_school.png" alt="">
+        <img src="{{value.school.portrait==null?'../../img/index_school.png':value.school.portrait}}"  onerror="this.src='../../img/no_img.png'" alt="">
     </div>
     <div class="right">
         <em class="clearfix">{{value.school.name}} <del>{{dis(value.distance)}}km</del></em>
@@ -264,26 +264,27 @@
 {{else}}
 {{each data as value i}}
 <li>
-    <a href="../index/index_video.html">
-        <img src="../../img/index_edu.png" alt="">
+    <a href="../index/index_video.html?id={{value.course.id}}">
+        <img src="{{value.course.coursePicture==null?'../../img/index_edu.png':value.course.coursePicture}}" onerror="this.src='../../img/no_img.png'" alt="">
+
         <div class="ex_right">
             <div class="ex_top clearfix">
-                <span>主讲：傅娟</span>&nbsp;&nbsp;&nbsp;&nbsp;
-                <em class="f_right"><del>11023</del>人学习</em>
+                <span>主讲：{{value.speaker}}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                <em class="f_right"><del>{{value.StudyCourseNum}}</del>人学习</em>
             </div>
             <div class="ex_center">
-                2018-07-15  更新第10课时更新第10课时
+                {{time(value.updateTime)}}  更新第{{value.updateNum}}课时
             </div>
             <div class="ex_footer">
                 <ul class="clearfix">
                     <li>
-                        <em class="iconfont icon-wode1">123</em>
+                        <em class="iconfont icon-wode1"> {{value.StudyCourseNum}}</em>
                     </li>
                     <li>
-                        <em class="iconfont icon-wujiaoxingkong">123</em>
+                        <em class="iconfont icon-wujiaoxingkong"> {{value.CourseCollectNum}}</em>
                     </li>
                     <li>
-                        <em class="mui-icon-extra mui-icon-extra-heart">123</em>
+                        <em class="mui-icon-extra mui-icon-extra-heart"> {{value.CourseLoveNum}}</em>
                     </li>
                 </ul>
             </div>
@@ -397,6 +398,10 @@
                         });
                         template.helper("str", function (str) {
                             return str.split(",");
+                        });
+                        template.helper("time",function(date){
+                            var time=new Date(date).toLocaleString().replace(/:\d{1,2}$/,' ').replace(/\//g,"-");
+                            return time;
                         });
                         $("#item3 ul").html(template("lesson", data));
                     }

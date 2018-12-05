@@ -14,6 +14,10 @@
     <link rel="stylesheet" href="../../css/find/find_dynamic.css"/>
 </head>
 <body style="background-color:#fff;">
+<div id="loading">
+    <img src="../../img/login.gif" alt=""/>
+    <div>请等待，正在加载...</div>
+</div>
 <div class="layer">
     <header class="header_list">
         <span>
@@ -50,7 +54,7 @@
             </div>
             <div>
                 <div id="item1" class="mui-control-content mui-active">
-                    <div class="request">
+                  <!--  <div class="request">
                         <div class="qu_list" >
                             <div class="tit" onclick="location.href='../index/quest_detail.html'">
                                 6的平方等于多少？
@@ -85,10 +89,10 @@
 
                             </div>
                         </div>
-                    </div>
+                    </div>-->
                 </div>
                 <div id="item2" class="mui-control-content">
-                    <div class="request new_request">
+                 <!--   <div class="request new_request">
                         <div class="qu_list" >
                             <div class="tit" onclick="location.href='../index/quest_detail.html'">
                                 3的平方等于多少？
@@ -123,10 +127,10 @@
 
                             </div>
                         </div>
-                    </div>
+                    </div>-->
                 </div>
                 <div id="item3" class="mui-control-content">
-                    <div class="request wating_request">
+                 <!--   <div class="request wating_request">
                         <div class="qu_list" >
                             <div class="tit" onclick="location.href='../index/quest_detail.html'">
                                 1的平方等于多少？
@@ -144,7 +148,7 @@
 
                             </div>
                         </div>
-                    </div>
+                    </div>-->
                 </div>
             </div>
         </div>
@@ -159,8 +163,68 @@
 <script src="../../js/jquery.min.js"></script>
 <script src="../../js/base.js"></script>
 <script src="../../js/sweetalert2.js"></script>
+<script src="../../js/template-web.js"></script>
+<script src="../../js/template.js"></script>
+<script id="hot" type="text/html">
+    <div class="request" >
+        {{if data==null}}
+        <div class="no_in">对不起，暂时没有问答数据了</div>
+        {{else}}
+        {{each data as value i}}
+        <div class="qu_list" onclick="location.href='../index/quest_detail.html?id={{value.questions.id}}'">
+            <div class="tit">
+                {{value.questions.title}}
+            </div>
+            <div class="qu_bottom clearfix">
+                <div class="bo_left">
+                    <em class="iconfont icon-wode1"></em>{{value.questionuser.nickname==null?value.questionuser.realName==null?"猴姆教学":value.questionuser.realName:value.questionuser.nickname}}
+                    <i class="iconfont icon-huangguan"></i>悬赏：{{value.questions.reward}}积分
+                    <del class="iconfont icon-xiaoxi"></del>{{value.answerNum}}
+                </div>
+                <div class="bo_right f_right" onclick="location.href='../index/my_want_request.html?questionid={{value.questions.id}}'">
+                    <s class="iconfont icon-weibiaoti1" ></s>
+                    我要回答
+                </div>
+
+            </div>
+        </div>
+        {{/each}}
+        {{/if}}
+    </div>
+</script>
+<script id="wait" type="text/html">
+    <div class="request" >
+        {{if data==null}}
+        <div class="no_in">对不起，暂时没有问答数据了</div>
+        {{else}}
+        {{each data as value i}}
+        <div class="qu_list" onclick="location.href='../index/quest_detail.html?id={{value.questions.id}}'">
+            <div class="tit">
+                {{value.questions.title}}
+            </div>
+            <div class="qu_bottom clearfix">
+                <div class="bo_left">
+                    <em class="iconfont icon-wode1"></em>{{value.questionuser.nickname==null?value.questionuser.realName==null?"猴姆教学":value.questionuser.realName:value.questionuser.nickname}}
+                    <i class="iconfont icon-huangguan"></i>悬赏：{{value.questions.reward}}积分
+                    <del class="iconfont icon-xiaoxi"></del>{{value.answerNum}}
+                </div>
+                <div class="bo_right f_right" onclick="location.href='../index/my_want_request.html?questionid={{value.questions.id}}'">
+                    <s class="iconfont icon-weibiaoti1" ></s>
+                    我要回答
+                </div>
+
+            </div>
+        </div>
+        {{/each}}
+        {{/if}}
+    </div>
+</script>
 <script>
     $(function () {
+        //ajax 发送完毕
+        $(document).ajaxStop(function(){
+            $("#loading").hide();
+        });
         mui('body').on('tap','a',function(){document.location.href=this.href;});
         $('#footer').load('../common/footer.html');
         setTimeout(function () {
@@ -189,6 +253,36 @@
         $(".layer > .header_list > em").click(function () {
             location.href='../index/search.html';
         })
+        // 热门问答列表
+        myAjax({url:"/Question/and/Answer/get/Hot/Question",data:"",type:"post"}, function (data) {
+            console.log(data);
+            if(data.status==200){
+                $("#item1").html(template("hot",data));
+            }
+        })
+        //最新问答
+        myAjax({url:"/Question/and/Answer/get/New/Question",data:"",type:"post"}, function (data) {
+            console.log(data);
+            if(data.status==200){
+                $("#item2").html(template("hot",data));
+            }
+        })
+        //等待回答
+        myAjax({url:"/Question/and/Answer/get/NotAnswer/Question",data:{page:1,size:6},type:"post"}, function (data) {
+            console.log(data);
+            if(data.status==200){
+                $("#item3").html(template("wait",data));
+            }
+        })
+
+        loadmoreIndex($('.main'),"/Question/and/Answer/get/NotAnswer/Question",{size:6}, function (data) {
+            console.log(data);
+            if(data.status==200){
+                $("#item3").append(template("wait",data));
+            }
+
+        })
+
 
     })
 </script>

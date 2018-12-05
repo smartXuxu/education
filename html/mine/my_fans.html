@@ -13,7 +13,15 @@
     <link rel="stylesheet" href="../../css/iconfont.css"/>
     <link rel="stylesheet" href="../../css/header.css"/>
     <link rel="stylesheet" href="../../css/near_bay/near_bay.css"/>
+    <style>
+        .main .teacher_lists .list_teacher{
+            padding-bottom: 0.2rem;
 
+        }
+        .main .teacher_lists .list_teacher .list_center{
+            top: 15%;
+        }
+    </style>
 </head>
 <body style="background-color:#fff;">
 <div class="layer">
@@ -24,11 +32,11 @@
 
     <div class="main">
         <div class="teacher_lists">
-            <div class="list_teacher" onclick="location.href='../index/teacher_index.html'">
+           <!-- <div class="list_teacher" onclick="location.href='../index/teacher_index.html'">
                 <img src="../../img/focus-img1.png" alt="">
                 <div class="list_center">
                     <div class="list_center_top clearfix">
-                        <span>傅娟 </span>
+                        <span>{{value.nickname}} </span>
                     </div>
                     <div class="list_center_center clearfix">
                         <em>数学</em>
@@ -38,7 +46,7 @@
                         华南师范大学附属中学
                     </div>
                 </div>
-            </div>
+            </div>-->
         </div>
     </div>
 </div>
@@ -49,4 +57,74 @@
 <script src="../../js/base.js"></script>
 <script src="../../js/back.js"></script>
 <script src="../../js/sweetalert2.js"></script>
+<script src="../../js/template-web.js"></script>
+<script src="../../js/template.js"></script>
+<script type="text/html" id="mine">
+    {{if data==null||data.length==0}}
+    <div class="no_in">对不起，您暂时没有粉丝列表</div>
+    {{else}}
+    {{each data as value i}}
+        {{if value.identityAuthentication==4}}
+        <div class="list_teacher" onclick=location.href='../index/teacher_index.html?id={{value.userid}}'>
+            <img src="{{value.portrait==null?'../../img/logo.png':value.portrait}}" alt="">
+            <div class="list_center">
+                <div class="list_center_top clearfix">
+                    <span>{{value.nickname==null?value.realName==null?"猴姆教学":value.realName:value.nickname}} </span>
+                </div>
+                <div class="list_center_center clearfix">
+                    <!--身份-->
+                    {{if value.identityAuthentication==4}}
+                    <em>教师</em>
+                    {{else if value.identityAuthentication==3}}
+                    <em>个人</em>
+                    {{else if value.identityAuthentication==2}}
+                    <em>教师身份认证中</em>
+                    {{else}}
+                    <em>游客</em>
+                    {{/if}}
+                </div>
+                <!-- <div class="list_bottom">
+                    华南师范大学附属中学
+                </div>-->
+            </div>
+        </div>
+        {{else}}
+    <div class="list_teacher" onclick=location.href='../index/edu_index.html?id={{value.userid}}'>
+        <img src="{{value.portrait==null?'../../img/logo.png':value.portrait}}" alt="">
+        <div class="list_center">
+            <div class="list_center_top clearfix">
+                <span>{{value.nickname==null?value.realName==null?"猴姆教学":value.realName:value.nickname}} </span>
+            </div>
+            <div class="list_center_center clearfix">
+                <!--身份-->
+                {{if value.identityAuthentication==4}}
+                <em>教师</em>
+                {{else if value.identityAuthentication==3}}
+                <em>个人</em>
+                {{else if value.identityAuthentication==2}}
+                <em>教师身份认证中</em>
+                {{else}}
+                <em>游客</em>
+                {{/if}}
+            </div>
+            <!-- <div class="list_bottom">
+                华南师范大学附属中学
+            </div>-->
+        </div>
+    </div>
+        {{/if}}
+    {{/each}}
+    {{/if}}
+</script>
+<script>
+    $(function () {
+        var userId=localStorage.getItem("this_userid");
+        myAjax({url:"/user/my/get/Fans/List",data:{userid:userId},type:"post"}, function (data) {
+            console.log(data);
+            if(data.status==200){
+                $(".teacher_lists").html(template("mine",data))
+            }
+        })
+    })
+</script>
 </html>

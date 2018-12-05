@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
-
     <title>我的问答</title>
     <link rel="stylesheet" href="../../css/mui.min.css"/>
     <link rel="stylesheet" href="../../css/base.css"/>
@@ -15,6 +14,10 @@
 
 </head>
 <body style="background-color:#fff;">
+<div id="loading">
+    <img src="../../img/login.gif" alt=""/>
+    <div>请等待，正在加载...</div>
+</div>
 <div class="layer">
     <header id="header" class="mui-bar mui-bar-nav">
         <i class="mui-icon mui-icon-left-nav mui-pull-left" onclick="back()"></i>
@@ -40,7 +43,7 @@
                 <!--提问-->
                 <div id="ask" class="mui-control-content mui-active">
                    <div class="ask">
-                       <div class="qu_list" onclick="location.href='../index/quest_detail.html'">
+                      <!-- <div class="qu_list" onclick="location.href='../index/quest_detail.html'">
                            <div class="tit">
                                <p>6的平方等于多少？</p>
                                <em>2018/7/1 15:30:56</em>
@@ -74,39 +77,13 @@
                                </div>
                            </div>
                        </div>
-                   </div>
+                  --> </div>
                 </div>
                 <!--回答 -->
                 <div id="response" class="mui-control-content ">
                     <div class="response">
-                        <div class="qu_list" onclick="location.href='../index/quest_detail.html'">
-                            <div class="tit">
-                                6的平方等于多少？
-                            </div>
-                            <div class="qu_bottom clearfix">
-                                <div class="bo_left">
-                                    <i class="iconfont icon-huangguan"></i>悬赏：15积分
-                                    <del>已采纳2个回答 </del>
-                                </div>
-                                <div class="bo_right f_right" >
-                                    <s class="iconfont icon-xiaoxi"></s>
-                                    99+
-                                </div>
-                            </div>
-                            <div class="my_response">
-                               <div class="my_res_top ">
-                                   <em>2018/7/1 </em>&nbsp;&nbsp;&nbsp;&nbsp;
-                                   <del>我的回答：</del>
-                               </div>
-                                <div class="my_res_bot clearfix">
-                                    <p>这么简单，等于1啊！这么简单，等于1啊！这么简单等于1啊！这么简单么简单</p>
-                                    <!--判断有没有被采纳-->
-                                    <span>已被采纳</span>
-                                </div>
 
-                            </div>
-                        </div>
-                        <div class="qu_list" onclick="location.href='../index/quest_detail.html'">
+                      <!--  <div class="qu_list" onclick="location.href='../index/quest_detail.html'">
                             <div class="tit">
                                 6的平方等于多少？
                             </div>
@@ -127,18 +104,18 @@
                                </div>
                                 <div class="my_res_bot clearfix">
                                     <p>这么简单，等于1啊！这么简单，等于1啊！这么简单等于1啊！这么简单么简单</p>
-                                    <!--判断有没有被采纳-->
+                                    &lt;!&ndash;判断有没有被采纳&ndash;&gt;
                                     <span>已被采纳</span>
                                 </div>
 
                             </div>
-                        </div>
+                        </div>-->
                     </div>
                 </div>
                 <!--关注-->
                 <div id="attention" class="mui-control-content ">
                     <div class="attention">
-                        <div class="qu_list" >
+                      <!--  <div class="qu_list" >
                             <div class="tit" onclick="location.href='../index/quest_detail.html'">
                                 6的平方等于多少？
                             </div>
@@ -171,7 +148,7 @@
                                 </div>
 
                             </div>
-                        </div>
+                        </div>-->
                     </div>
                 </div>
         </div>
@@ -184,12 +161,108 @@
 <script src="../../js/base.js"></script>
 <script src="../../js/back.js"></script>
 <script src="../../js/sweetalert2.js"></script>
+<script src="../../js/template-web.js"></script>
+<script src="../../js/template.js"></script>
+<script id="my_request" type="text/html">
+    {{if data==null||data.length==0}}
+    <div class="no_in">对不起，您暂时没有发起任何提问</div>
+    {{else}}
+    {{each data as value i}}
+    <div class="qu_list" onclick="location.href='./quest_detail_mine.html?id={{value.questions.id}}'">
+        <div class="tit">
+            <p>{{value.questions.title}}</p>
+            <em>{{time(value.questions.updateTime)}}</em>
+        </div>
+
+        <div class="qu_bottom clearfix">
+            <div class="bo_left">
+                <i class="iconfont icon-huangguan"></i>悬赏：{{value.questions.reward}}积分
+                <del>已采纳{{value.AdoptAnswerNum}}个回答 </del>
+            </div>
+            <div class="bo_right f_right">
+                <s class="iconfont icon-xiaoxi"></s>
+                {{value.answerNum}}
+            </div>
+        </div>
+    </div>
+    {{/each}}
+{{/if}}
+</script>
+<script id="my_answer" type="text/html">
+    {{if data==null||data.length==0}}
+    <div class="no_in">对不起，您暂时没有回答任何问题</div>
+    {{else}}
+    {{each data as value i}}
+    <div class="qu_list" onclick="location.href='../index/quest_detail.html?id={{value.questions.id}}'">
+        <div class="tit">
+            <p>{{value.questions.title}}</p>
+            <em>{{time(value.questions.updateTime)}}</em>
+        </div>
+
+        <div class="qu_bottom clearfix">
+            <div class="bo_left">
+                <i class="iconfont icon-huangguan"></i>悬赏：{{value.questions.reward}}积分
+                <del>已采纳{{value.AdoptAnswerNum}}个回答 </del>
+            </div>
+            <div class="bo_right f_right">
+                <s class="iconfont icon-xiaoxi"></s>
+                {{value.answerNum}}
+            </div>
+        </div>
+        <div class="my_response">
+            <div class="my_res_top ">
+                <em>{{value.answers.updaeTime}} </em>&nbsp;&nbsp;&nbsp;&nbsp;
+                <del>我的回答：</del>
+            </div>
+            <div class="my_res_bot clearfix">
+                <p>{{value.answers.body}}</p>
+                <!--判断有没有被采纳-->
+                {{if value.answers.status==1}}
+                <span>暂未采纳</span>
+                {{else}}
+                <span>已被采纳</span>
+                {{/if}}
+            </div>
+
+        </div>
+    </div>
+    {{/each}}
+    {{/if}}
+</script>
+<script id="my_att" type="text/html">
+    {{if data==null||data.length==0}}
+<div class="no_in">对不起，您还没有关注任何问答</div>
+    {{else}}
+    {{each data as value i}}
+    <div class="qu_list" >
+        <div class="tit" onclick="location.href='../index/quest_detail.html?id={{value.questions.id}}'">
+            {{value.questions.title}}
+        </div>
+        <div class="qu_bottom clearfix">
+            <div class="bo_left">
+                <em class="iconfont icon-wode1"></em>{{value.questionuser.nickname==null?value.questionuser.realName==null?"暂无设置":value.questionuser.realName:value.questionuser.nickname}}
+                <i class="iconfont icon-huangguan"></i>悬赏：{{value.questions.reward}}积分
+                <del class="iconfont icon-xiaoxi"></del>{{value.answerNum}}
+            </div>
+            <div class="bo_right f_right" onclick="location.href='../index/my_want_request.html?id={{value.questions.id}}'">
+                <s class="iconfont icon-weibiaoti1"></s>
+                我要回答
+            </div>
+
+        </div>
+    </div>
+    {{/each}}
+    {{/if}}
+</script>
 <script>
     $(function () {
         $('#scroll').scroll({
             indicators: true //是否显示滚动条
         });
-
+        //ajax 发送完毕
+        $(document).ajaxStop(function(){
+            $("#loading").hide();
+        });
         var segmentedControl = document.getElementById('segmentedControl');
         $('.mui-input-group').on('change', 'input', function() {
             if (this.checked) {
@@ -202,6 +275,38 @@
                 }
             }
         });
+        var userid=localStorage.getItem("this_userid")
+        //  我的提问
+        myAjax({url:"/user/my/get/My/Question/List",type:"post",data:{userid:userid}}, function (data) {
+            console.log(data);
+            if(data.status==200){
+                template.helper("time",function(date){
+                    var time=new Date(date).toLocaleString().replace(/:\d{1,2}$/,' ').replace("/","-");
+                    return time;
+                    /* return new Date(parseInt(date) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ');*/
+                });
+            $("#ask>.ask").html(template("my_request",data));
+            }
+        })
+        //我的回答
+        myAjax({url:"/user/my/get/AnswerTo/Question/List",data:{userid:userid},type:"post"}, function (data) {
+            console.log(data);
+            if(data.status==200){
+                template.helper("time",function(date){
+                    var time=new Date(date).toLocaleString().replace(/:\d{1,2}$/,' ').replace("/","-");
+                    return time;
+                    /* return new Date(parseInt(date) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ');*/
+                });
+            $("#response>.response").html(template("my_answer",data));
+            }
+        })
+        //我的关注
+        myAjax({url:"/user/my/get/AttentionQusetion/List",data:{userid:userid},type:"post"}, function (data) {
+            console.log(data);
+            if(data.status==200){
+                $("#attention>.attention").html(template("my_att",data));
+            }
+        })
     })
 </script>
 </html>

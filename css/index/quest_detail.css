@@ -40,11 +40,11 @@
   font-size: 0.32rem;
 }
 .layer .main > .request_detail > .request_tit > h3 > del {
-  width: 1.2rem;
+  padding: 0 0.05rem;
   margin-top: 0.1rem;
-  height: 0.5rem;
+  height: 0.6rem;
   text-align: center;
-  line-height: 0.5rem;
+  line-height: 0.6rem;
   border: 1px solid #f01414;
   color: #f01414;
   border-radius: 3px;
@@ -150,6 +150,11 @@
   vertical-align: middle;
   margin-right: 0.1rem;
 }
+.layer .main > .request_lists > .list_quest > .quest_center_footer > del.active,
+.layer .main > .request_lists > .list_quest > .quest_center_footer > em.active,
+.layer .main > .request_lists > .list_quest > .quest_center_footer > s.active {
+  color: #f01414;
+}
 .layer .main > .request_lists > .list_quest > .quest_center_footer > span {
   width: 1.2rem;
   height: 0.5rem;
@@ -180,7 +185,7 @@
   background-size: 100%;
 }
 .layer .main > .response > input {
-  width: 45%;
+  width: 72%;
   height: 0.9rem;
   background-color: #aa1211;
   margin-left: 0.5rem;

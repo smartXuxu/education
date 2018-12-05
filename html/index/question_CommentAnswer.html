@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+
+    <title>答案评论详情</title>
+    <link rel="stylesheet" href="../../css/mui.min.css"/>
+    <link rel="stylesheet" href="../../css/base.css"/>
+    <link rel="stylesheet" href="../../css/sweetalert2.css"/>
+    <link rel="stylesheet" href="../../css/iconfont.css"/>
+    <link rel="stylesheet" href="../../css/header.css"/>
+    <link rel="stylesheet" href="../../css/index/question_CommentAnswer.css"/>
+</head>
+<body style="overflow-x: hidden">
+<div class="layer" style="overflow-x: hidden">
+    <header id="header" class="mui-bar mui-bar-nav">
+        <i class="mui-icon mui-icon-left-nav mui-pull-left" onclick="back()"></i>
+        <h1 class="mui-title">问答评论列表</h1>
+    </header>
+    <div class="main question_list">
+        <div class="evaluate_lists">
+           <!-- <div class="evaluate_list">
+                <div class="eva_top">
+                    <img src="../../img/focus-img1.png" alt="">
+                    <div class="eva_top_center clearfix">
+                        <em>熊宝宝</em>
+                        <del>2018-03-14 08:30</del>
+                    </div>
+                </div>
+                <div class="eva_content">
+                    <p>很喜欢老师讲的课，上课幽默又非常的认真， 又不懂的老师会很耐心的帮助解答。非常好！ 很喜欢老师讲的课，上课幽默又非常的认真， 又不懂的老师会很耐心的帮助解答。非常好！</p>
+                </div>
+            </div>-->
+            
+        </div>
+
+    </div>
+    <div class="response">
+        <input type="text" placeholder="我要回复">
+            <span class="finish">
+                完成
+            </span>
+    </div>
+</div>
+</body>
+<script src="../../js/mui.min.js"></script>
+<script src="../../js/x_rem.js"></script>
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/base.js"></script>
+<script src="../../js/back.js"></script>
+<script src="../../js/sweetalert2.js"></script>
+<script src="../../js/template-web.js"></script>
+<script src="../../js/template.js"></script>
+<script type="text/html" id="detail">
+   {{if data==null||data.length==0}}
+   <div class="no_in">对不起暂时没有评论</div>
+   {{else}}
+   {{each data as value i}}
+   <div class="evaluate_list">
+       <div class="eva_top">
+           <img src="{{value.user.portrait==null?'../../img/logo.png':value.user.portrait}}" alt="">
+           <div class="eva_top_center clearfix">
+               <em>{{value.user.nickname==null?value.user.realName==null?"未设置":value.user.realName:value.user.nickname}}</em>
+               <del>{{time(value.commentAnswers.updateTime)}}</del>
+           </div>
+       </div>
+       <div class="eva_content">
+           <p>{{value.commentAnswers.body}}</p>
+       </div>
+   </div>
+   {{/each}}
+    {{/if}}
+</script>
+<script>
+    $(function () {
+        var answer=location.href.split("=")[1];
+        render(answer)
+         function render(answer){
+             myAjax({url:"/Question/and/Answer/find/Answer/CommentList",
+                 data:{answerid:answer},type:"post"}, function (data) {
+                 console.log(data);
+                 if(data.status==200){
+                     template.helper("time",function(time){
+                         var timestamp=new Date().getTime();//当前时间戳
+                         var kk=timestamp-time;//发表时的时间戳
+                         var timea="";
+                         var sec=parseInt(kk/1000);//秒
+                         var min=parseInt(sec/60);//分
+                         var hour=parseInt(min/60);//时
+                         var day=parseInt(hour/24);//天
+                         if(sec<60){
+                             timea=sec+"秒前";
+                         }else if(min<60){
+                             timea=min+"分钟前";
+                         }else if(hour<24){
+                             timea=hour+"小时前";
+                         }else if(day<7){
+                             timea=day+"天前";
+                         }else{
+                             timea=new Date(time).toLocaleString().replace(/:\d{1,2}$/,' ').replace("/","-");
+                         }
+                         return timea;
+
+                     });
+                     $(".evaluate_lists").html(template("detail",data)) ;
+                 }
+             })
+         }
+        //发表评论
+        $(".finish").click(function () {
+            var body=$(".response>input").val().trim();
+            if(body.length==0){
+                sweetAlert(
+                        "sorry",
+                        "请您输入评论的内容",
+                        "error"
+                )
+                return false;
+            }else{
+                eva(body);
+            }
+        })
+        var userid=localStorage.getItem("this_userid");
+        function eva(body){
+            myAjax({url:"/Question/and/Answer/add/Answer/Comment",
+                data:{userid:userid,
+                    answersid:answer,
+                body:body},type:"post"}, function (data) {
+                console.log(data);
+                if(data.status==200){
+                    $("input").val("")
+                    render(answer);
+
+                }
+            })
+        }
+    })
+</script>
+</html>

@@ -96,4 +96,10 @@
 <script src="../../js/base.js"></script>
 <script src="../../js/back.js"></script>
 <script src="../../js/sweetalert2.js"></script>
+<script>
+    $(function () {
+        var score=location.href.split("=")[1];
+        $(".my_integral>span>em").text(score);
+    })
+</script>
 </html>

@@ -259,7 +259,7 @@
                         }else if(day<7){
                             timea=day+"天前";
                         }else{
-                            timea=new Date(time).toLocaleString().replace(/:\d{1,2}$/,' ').substr(5,11).replace(/\//g,"-");
+                            timea=new Date(time).toLocaleString().replace(/:\d{1,2}$/,' ').replace(/\//g,"-");
                         }
                         return timea;
 
@@ -300,7 +300,7 @@
         var parentId;
         //委托的 元素不能是渲染出来的元素 委托给任何非渲染的元素即可
         $(".All_lists").on('click',".reply",function(){
-            console.log(234321);
+            //console.log(234321);
             falg=false;
             var name=$(this).data("name");
             // console.log(name);

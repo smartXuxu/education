@@ -68,22 +68,19 @@
     </header>
     <div class="main">
         <div class="integral">
-            可用积分 <em>50</em>
-            <button onclick="location.href='./integral_rule.html'">积分明细</button>
-        </div>
+        可用积分 <em>50</em>
+        <button >积分明细</button>
+    </div>
         <ul class="content">
-           <li>
+
+          <!-- <li>
                <span>实名认证 <em>+10</em></span>
                <i>2018-08-05 15:30</i>
            </li>
            <li>
                <span>实名认证 <em>+10</em></span>
                <i>2018-08-05 15:30</i>
-           </li>
-           <li>
-               <span>实名认证 <em>+10</em></span>
-               <i>2018-08-05 15:30</i>
-           </li>
+           </li>-->
         </ul>
     </div>
 </div>
@@ -95,4 +92,30 @@
 <script src="../../js/base.js"></script>
 <script src="../../js/back.js"></script>
 <script src="../../js/sweetalert2.js"></script>
+<script src="../../js/template-web.js"></script>
+<script id="rule" type="text/html">
+    {{each data as value i}}
+    <li>
+        <span>{{value.source}} <em>{{value.subtract==null?'+'+value.increase:'-'+value.subtract}}</em></span>
+        <i>2018-08-05 15:30</i>
+    </li>
+    {{/each}}
+</script>
+<script>
+    $(function () {
+        var userid=localStorage.getItem("this_userid");
+        var score=location.href.split("=")[1];
+        $(".integral em").text(score);
+        $(".integral button").click(function () {
+            location.href='./integral_rule.html?score='+score;
+        });
+
+        myAjax({url:"/user/my/get/Integral/Log",type:"post",data:{userid:userid}}, function (data) {
+            console.log(data);
+            if(data.status==200){
+                $(".content").html(template("rule",data));
+            }
+        })
+    })
+</script>
 </html>

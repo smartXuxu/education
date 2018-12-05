@@ -1,0 +1,73 @@
+.main {
+  position: absolute;
+  top: 1.5rem;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  overflow: auto;
+  background-color: #fff;
+}
+.request {
+  width: 100%;
+  padding: 0 0.3rem;
+}
+.request h3 {
+  height: 0.72rem;
+  width: 100%;
+}
+.request h3 em {
+  font-size: 0.36rem;
+}
+.request h3 i {
+  font-size: 0.24rem;
+  color: #666;
+}
+.request h3 i del {
+  font-size: 0.34rem;
+}
+.request .qu_list {
+  width: 100%;
+  border-bottom: 1px solid #eee;
+}
+.request .qu_list .tit {
+  width: 100%;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+  font-size: 0.32rem;
+  height: 0.8rem;
+  line-height: 0.8rem;
+}
+.request .qu_list .qu_bottom {
+  position: relative;
+  height: 0.8rem;
+}
+.request .qu_list .qu_bottom .bo_left {
+  font-size: 0.24rem;
+  display: inline-block;
+  color: #8c8c8c;
+}
+.request .qu_list .qu_bottom .bo_left > em,
+.request .qu_list .qu_bottom .bo_left > i,
+.request .qu_list .qu_bottom .bo_left > del {
+  vertical-align: top;
+  margin-right: 0.1rem;
+}
+.request .qu_list .qu_bottom .bo_right {
+  color: #666;
+  font-size: 0.26rem;
+  padding: 0.05rem 0.1rem 0.05rem 0.05rem;
+  border: 1px solid #999;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  position: absolute;
+  right: 3%;
+  z-index: 2;
+  top: 5%;
+}
+.request .qu_list .qu_bottom .bo_right > s {
+  vertical-align: middle;
+}

@@ -1,0 +1,95 @@
+/*����*/
+.main {
+  position: absolute;
+  top: 1.3rem;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  padding-top: 0;
+  background-color: #fff;
+  overflow: auto;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.video_comment .evaluate_lists {
+  margin-top: 0.2rem;
+}
+.video_comment .evaluate_lists .see_more {
+  height: 0.6rem;
+  line-height: 0.6rem;
+  font-size: 0.3rem;
+  text-align: center;
+}
+.video_comment .evaluate_lists > .evaluate_list {
+  padding: 0.1rem 0.3rem;
+  width: 100%;
+  border-bottom: 1px solid #eee;
+}
+.video_comment .evaluate_lists > .evaluate_list > .eva_top {
+  position: relative;
+  padding-bottom: 0.2rem;
+}
+.video_comment .evaluate_lists > .evaluate_list > .eva_top > img {
+  width: 0.8rem;
+  height: 0.8rem;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+.video_comment .evaluate_lists > .evaluate_list > .eva_top > .eva_top_center {
+  width: 100%;
+  position: absolute;
+  margin-left: 1.2rem;
+  top: 10%;
+}
+.video_comment .evaluate_lists > .evaluate_list > .eva_top > .eva_top_center > em {
+  font-size: 0.34rem;
+  color: #666;
+  display: block;
+}
+.video_comment .evaluate_lists > .evaluate_list > .eva_top > .eva_top_center > del {
+  color: #666;
+  display: block;
+  font-size: 0.2rem;
+}
+.video_comment .evaluate_lists > .evaluate_list > .eva_top > .eva_top_center > i {
+  position: absolute;
+  right: 3%;
+  top: 10%;
+  color: #666;
+  padding-right: 1.5rem;
+}
+.video_comment .evaluate_lists > .evaluate_list > .eva_content {
+  margin-bottom: 0.2rem;
+}
+.video_comment .evaluate_lists > .evaluate_list > .eva_content > p {
+  font-size: 0.28rem;
+  color: #32373b;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+}
+.video_comment .evaluate_lists > .evaluate_list > .eva_content > .comment_imgs {
+  width: 100%;
+  margin-top: 0.2rem;
+}
+.video_comment .evaluate_lists > .evaluate_list > .eva_content > .comment_imgs > .comment_img_box {
+  width: 45%;
+  height: 1.8rem;
+  display: inline-block;
+  margin-left: 0.1rem;
+  margin-bottom: 0.1rem;
+  overflow: hidden;
+  position: relative;
+  background-color: #333333;
+}
+.video_comment .evaluate_lists > .evaluate_list > .eva_content > .comment_imgs > .comment_img_box > img {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

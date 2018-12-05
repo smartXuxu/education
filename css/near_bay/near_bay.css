@@ -63,8 +63,9 @@
   margin-top: 0.2rem;
 }
 .main .near_bay_lesson > ul > li {
-  padding-bottom: 0.2rem;
+  padding-bottom: 0.3rem;
   border-bottom: 1px solid #eeeeee;
+  min-height: 2rem;
 }
 .main .near_bay_lesson .ex_footer ul {
   height: 0.6rem;

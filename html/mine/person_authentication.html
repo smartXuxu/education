@@ -167,16 +167,29 @@ function html5Reader(file,ele){
     }
 }
     $(function () {
+        var obj={};
        $(".submit").click(function () {
-           var idCardNumber=$("#Idcard").val();
-           //身份证
-           isCardNo(idCardNumber);
+           obj.userid=localStorage.getItem("this_userid");
+           //真实姓名
+           var realName=$(".realName>input").val().trim();
+           //未认证
+          obj.realnameAuthentication=1;
+           if(realName.length==0){
+               sweetAlert(
+                       "sorry",
+                       "姓名不能为空哦",
+                       "error"
+               )
+               return false;
+           }else{
+               obj.realName=realName;
+           }
+           var idCardNumber=$("#Idcard").val().trim();
+
            //验证 身份证号
-           function isCardNo(card)
-           {
-               // 身份证号码为15位或者18位，15位时全为数字，18位前17位为数字，最后一位是校验位，可能为数字或字符X
+           // 身份证号码为15位或者18位，15位时全为数字，18位前17位为数字，最后一位是校验位，可能为数字或字符X
                var reg = /(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
-               if(reg.test(card) === false)
+               if(reg.test(idCardNumber) === false)
                {
                    sweetAlert(
                            "sorry",
@@ -184,18 +197,61 @@ function html5Reader(file,ele){
                            "error"
                    ).then(function () {
                                $("#Idcard").val("");
+                               return false;
                            })
                    return false;
+               }else{
+                   obj.idNumber=idCardNumber;
                }
-           }
-           var base64IdCardBack=$(".against_box").css('backgroundImage').replace('url(','').replace(')','');
+
+           var idCardFront=$(".against_box").css('backgroundImage').replace('url(','').replace(')','');
            //console.log(base64IdCardBack);
-           if(base64IdCardBack.replace(/\"/g,"").match("img/against.png")){
+           if(idCardFront.replace(/\"/g,"").match("img/against.png")){
                //if(base64IdCardBack.replace(/\"/g,"") =="http://localhost:63342/MU/img/against.png"){
-               base64IdCardBack="";
+               idCardFront="";
+               sweetAlert(
+                       "sorry",
+                       "请您上传身份证正面照",
+                       "error"
+               )
+               return false;
            }else{
-               base64IdCardBack=base64IdCardBack.replace(/"/g,"");
+               idCardFront=idCardFront.replace(/"/g,"");
            }
+           var idCardBack=$(".open_box").css('backgroundImage').replace('url(','').replace(')','');
+           //console.log(base64IdCardBack);
+           if(idCardBack.replace(/\"/g,"").match("img/just.png")){
+               //if(base64IdCardBack.replace(/\"/g,"") =="http://localhost:63342/MU/img/against.png"){
+               idCardBack="";
+               sweetAlert(
+                       "sorry",
+                       "请您上传身份证反面照",
+                       "error"
+               )
+               return false;
+           }else{
+               idCardBack=idCardBack.replace(/"/g,"");
+           }
+           myAjax({url:"/pic/base64/upload",data:{base64:idCardFront},type:"post"}, function (data) {
+               console.log(data);
+               if (data.status == 200) {
+                   obj.idCardFront=data.data;
+                   myAjax({url:"/pic/base64/upload",data:{base64:idCardBack},type:"post"}, function (data) {
+                       console.log(data);
+                       if(data.status==200){
+                           obj.idCardBack=data.data;
+                           myAjax({url:"/authentication/update/RealName",data:obj,type:"post"}, function (data) {
+                            console.log(data);
+                               if(data.status==200){
+                                 $(".submit").text("已提交，等待审核");
+                               }
+                            })
+                       }
+                   })
+               }
+           })
+
+
        })
     })
 </script>

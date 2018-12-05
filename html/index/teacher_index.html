@@ -16,9 +16,13 @@
     <link rel="stylesheet" href="../../css/index/teacher_index.css"/>
 </head>
 <body style="background-color:#fff; overflow-x: hidden">
+<div id="loading">
+    <img src="../../img/login.gif" alt=""/>
+    <div>请等待，正在加载...</div>
+</div>
 <div class="layer">
     <header id="header" class="mui-bar mui-bar-nav">
-        <i class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" onclick="location.href='./index.html'"></i>
+        <i class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" onclick="back()"></i>
         <h1 class="mui-title">个人主页</h1>
         <em class="mui-icon mui-icon-more"></em>
     </header>
@@ -69,16 +73,16 @@
         <div id="slider" class="mui-slider find_request">
             <div style="padding: 10px 10px;">
                 <div id="segmentedControl" class="mui-segmented-control">
-                    <a class="mui-control-item mui-active" href="#item1">
+                    <span class="mui-control-item mui-active">
                         <span>主讲课程</span>
-                    </a>
-                    <a class="mui-control-item" href="#item2">
+                    </span>
+                    <span class="mui-control-item">
                         <span>课堂问答</span>
-                    </a>
-                    <a class="mui-control-item" href="#item3">
+                    </span>
+                    <span class="mui-control-item" >
                         <span>学生评价</span>
-                    </a>
-                    <span class="mui-control-item dynamic_href" href="javascript:;">
+                    </span>
+                    <span class="mui-control-item dynamic_href" >
                         <span>动态</span>
                     </span>
 
@@ -152,9 +156,9 @@
     </div>
 </div>
 </body>
-<script src="../../js/mui.min.js"></script>
+<!--<script src="../../js/mui.min.js"></script>
 <script src="../../js/mui.zoom.js"></script>
-<script src="../../js/mui.preview.js"></script>
+<script src="../../js/mui.preview.js"></script>-->
 <script src="../../js/x_rem.js"></script>
 <script src="../../js/jquery.min.js"></script>
 <script src="../../js/base.js"></script>
@@ -223,7 +227,7 @@
 {{else}}
 {{each data as value i}}
 <div class="course_list" onclick="location.href='./index_video.html'">
-    <img src="{{value.course==null||value.course.coursePicture==null?'../../img/index_edu.png':value.course.coursePicture}}" alt="">
+    <img src="{{value.course==null||value.course.coursePicture==null?'../../img/index_edu.png':value.course.coursePicture}}" onerror="this.src='../../img/index_edu.png'" alt="">
     <div class="course_list_center ">
         <p class="clearfix">
             <del class="f_left">更新第{{value.updateNum}}课时</del>
@@ -233,34 +237,33 @@
             <em class="iconfont icon-wujiaoxingkong"> {{value.CollectNum}}</em>
             <em class="mui-icon-extra mui-icon-extra-heart"> {{value.LoveNum}}</em>
         </div>
-        <span>{{value.course.version}} {{value.course.grade}}</span>
+        <span>{{value.course==null?"未知":value.course.version}} {{value.course==null?"":value.course.grade}}</span>
     </div>
 </div>
 {{/each}}
     {{/if}}
 </script>
-<script id="quest" type="text/html">
+<script id="request" type="text/html">
     {{if data.length==0||!data||data==null}}
     <div class="no_in">对不起，暂时没有课堂问答喔</div>
     {{else}}
 {{each data as value i}}
-<div class="qu_list">
-    <div class="tit">
-        6的平方等于多少？
-    </div>
-    <div class="qu_bottom clearfix">
-        <div class="bo_left">
-            <em class="iconfont icon-wode1"></em>赵英俊
-            <i class="iconfont icon-huangguan"></i>悬赏：15积分
-            <del class="iconfont icon-xiaoxi"></del>99+
+    <div class="qu_list" >
+        <div class="tit" onclick="location.href='../index/quest_detail.html?id={{value.questions.id}}'">
+            {{value.questions.title}}
         </div>
-        <div class="bo_right f_right" onclick="location.href='./my_want_request.html'">
-            <s class="iconfont icon-weibiaoti1"></s>
-            我要回答
+        <div class="qu_bottom clearfix">
+            <div class="bo_left">
+                <em class="iconfont icon-wode1"></em>{{value.questionuser.nickname==null?value.questionuser.realName==null?"暂无设置":value.questionuser.realName:value.questionuser.nickname}}
+                <i class="iconfont icon-huangguan"></i>悬赏：{{value.questions.reward}}积分
+                <del class="iconfont icon-xiaoxi"></del>{{value.answerNum}}
+            </div>
+            <div class="bo_right f_right" onclick="location.href='../index/my_want_request.html?id={{value.questions.id}}'">
+                <s class="iconfont icon-weibiaoti1"></s>
+                我要回答
+            </div>
         </div>
-
     </div>
-</div>
 {{/each}}
     {{/if}}
 </script>
@@ -311,9 +314,20 @@
 </script>
 <script>
     $(function () {
+        //ajax 发送完毕
+        $(document).ajaxStop(function(){
+            $("#loading").hide();
+        });
         /*判断 用户是否关注 */
-        mui.previewImage();
-        mui('body').on('tap','a',function(){document.location.href=this.href;});
+        $(".mui-segmented-control>.mui-control-item").click(function () {
+            $(this).addClass("mui-active");
+            $(this).siblings().removeClass("mui-active");
+            var index = $(this).index();
+            $('.mui-control-content').eq(index).addClass('mui-active');
+            $('.mui-control-content').eq(index).siblings().removeClass('mui-active');
+           })
+        /*mui.previewImage();
+        mui('body').on('tap','a',function(){document.location.href=this.href;});*/
         $('#scroll').scroll({
             indicators: true //是否显示滚动条
         });
@@ -417,7 +431,7 @@
                     var time=new Date(date).toLocaleString().replace(/:\d{1,2}$/,' ').substr(0,9).replace(/\//g,"-");
                     return time;
                 });
-              $("#item2>.request").html(template("course",data))
+              $("#item2>.request").html(template("request",data))
             }
         })
         //学生评价

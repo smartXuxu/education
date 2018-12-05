@@ -17,7 +17,9 @@
     <link href="../../css/data_time/mobiscroll.2.13.2.css" rel="stylesheet" />
 
     <style>
-
+.say>.style{
+    border-bottom: 1px solid #eeeeee;
+}
 
     </style>
 </head>
@@ -77,17 +79,15 @@
         </div>
 
         <div id="choose_share">
-            <h3>请您选择视频所属课程</h3>
+            <h3>请您选择来源(首先选择教师，其次课程)</h3>
             <ul>
-                <!--内容从后台获取-->
+               <!-- &lt;!&ndash;内容从后台获取&ndash;&gt;
                 <li data-id="1">
-
                     <span>2018年高三数学上期2018年高三数学上期2018年高三数学上期2018年高三数学上期2018年高三数学上期2018年高三数学上期</span>
-
                 </li>
                 <li>
                     <span>2017年高三数学上期</span>
-                </li>
+                </li>-->
                 <!--重绘 页面 二级示例
                 -->
             </ul>
@@ -109,8 +109,48 @@
 <script src="../../js/jquery.min.js"></script>
 <script src="../../js/base.js"></script>
 <script src="../../js/sweetalert2.js"></script>
+<script src="../../js/template-web.js"></script>
+<script src="../../js/template.js"></script>
+<script id="share" type="text/html">
+    {{each data as value i}}
+    <li data-id="{{value.teacherId}}" class="status">
+        <span>教师姓名：{{value.nickname==null?"猴姆教学":value.nickname}}</span>
+    </li>
+    {{/each}}
+</script>
+<script id="choose" type="text/html">
+    {{each data as value i}}
+    <li data-id="{{value.courseId}}" class="status_course">
+       <span>{{value.courseName}}</span>
+    </li>
+    {{/each}}
+</script>
 <script>
     /*选择问题来源*/
+    myAjax({url:"/Question/and/Answer/get/Question/From/teacherList",data:"",type:"post"}, function (data) {
+        console.log(data);
+        if(data.status==200){
+            $("#choose_share>ul").html(template("share",data));
+        }
+    })
+    $("#choose_share").on("click",".status", function () {
+        var teacherId=$(this).data("id");
+        myAjax({url:"/Question/and/Answer/get/Question/From/CourseList",
+            data:{teacherid:teacherId},type:"post"}, function (data) {
+            console.log(data);
+            if(data.status==200){
+                $("#choose_share>ul").html(template("choose",data));
+            }
+        })
+    })
+    var courseId;
+    $("#choose_share").on("click",".status_course", function () {
+       courseId=$(this).data("id");
+        console.log(courseId);
+        $(".origin>input").val($(this).text());
+        $("#mask").hide();
+        $("#choose_share").hide();
+    })
     $(".origin>input").focus(function () {
        // alert(1)
         $("#mask").show()
@@ -141,6 +181,29 @@
     //图片上传
     var obj={};
     $(".confirm").click(function(){
+       var title=$(".say>.style").val().trim();
+        if(title==""){
+            sweetAlert(
+                    "sorry",
+                    "标题不能为空哦",
+                    "error"
+            )
+            return false;
+
+        }else{
+            obj.title=title;
+        }
+       obj.userid=localStorage.getItem("this_userid");
+        if($(".origin>input").val().trim()==""){
+            sweetAlert(
+                    "sorry",
+                    "请您选择问题来源",
+                    "error"
+            )
+            return false;
+        }else{
+            obj.courseid=courseId;
+        }
       var num=$(".score>input").val().trim();
         var reg=/^\d+$/;
         console.log(num);
@@ -150,15 +213,49 @@
                     "请您输入非负整数(可以为0)",
                     "error"
             )
+        }else{
+          obj.reward=num;
+        }
+        var body=$("textarea").val().trim();
+        if(body==""){
+            sweetAlert(
+                    "sorry",
+                    "问题描述不能为空哦",
+                    "error"
+            )
+            return false;
+        }else{
+            obj.body=body;
         }
     //图片转换
         var base64s=images.join("。").replace(/"/g,"");
-        console.log(base64s);
-       /* myAjax({url:"/pic/multiple/base64/upload",type:"post",data:{"base64s":base64s},async:false}, function (data){
+       // console.log(base64s);
+        myAjax({url:"/pic/multiple/base64/upload",type:"post",data:{"base64s":base64s},async:false}, function (data) {
+            console.log(data);
             if(data.status==200){
-                var pic=data.data;
+               obj.picture=data.data;
+                myAjax({url:"/Question/and/Answer/add/Question",data:obj,type:"post"}, function (data) {
+                    console.log(data);
+                    if(data.status==200){
+                        sweetAlert(
+                                "恭喜你",
+                                "发布提问成功",
+                                "success"
+                        ).then(function () {
+                                    $("input").val("");
+                                    $("textarea").val("");
+                                })
+                    }else{
+                        sweetAlert(
+                                "sorry",
+                                data.msg,
+                                "error"
+                        )
+                        return false;
+                    }
+                })
             }
-        })*/
+        })
        /* var title= $(".style").val();
 
         //转换成功 图片的base64地址 很重要

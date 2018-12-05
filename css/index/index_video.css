@@ -31,11 +31,12 @@
   position: fixed;
   right: 0%;
   /* bottom: 15%;*/
-  bottom: 23%;
+  bottom: 38%;
   z-index: 2;
   width: 1.2rem;
   /* height: 6rem;*/
-  height: 5rem;
+  /* height: 5rem;*/
+  height: 3rem;
   background-color: rgba(0, 0, 0, 0.4);
   color: #fff;
   display: none;
@@ -62,6 +63,9 @@
   height: 0.7rem;
   line-height: 0.7rem;
   font-size: 0.5rem;
+}
+.layer .main #fix_share > div em.active {
+  color: #f01414;
 }
 .layer .main > .index_video {
   width: 100%;
@@ -291,7 +295,14 @@
 .layer .main > .main_content > .content .video_comment .evaluate_lists {
   margin-top: 0.2rem;
 }
+.layer .main > .main_content > .content .video_comment .evaluate_lists .see_more {
+  height: 0.6rem;
+  line-height: 0.6rem;
+  font-size: 0.3rem;
+  text-align: center;
+}
 .layer .main > .main_content > .content .video_comment .evaluate_lists > .evaluate_list {
+  padding-top: 0.2rem;
   border-bottom: 1px solid #eee;
 }
 .layer .main > .main_content > .content .video_comment .evaluate_lists > .evaluate_list > .eva_top {
@@ -328,6 +339,9 @@
   color: #666;
   padding-right: 1.5rem;
 }
+.layer .main > .main_content > .content .video_comment .evaluate_lists > .evaluate_list > .eva_content {
+  margin-bottom: 0.2rem;
+}
 .layer .main > .main_content > .content .video_comment .evaluate_lists > .evaluate_list > .eva_content > p {
   font-size: 0.28rem;
   color: #32373b;
@@ -363,4 +377,10 @@
 }
 .mui-control-content.active {
   display: block;
+}
+#item4 .see_more {
+  text-align: center;
+  height: 0.8rem;
+  line-height: 0.8rem;
+  font-size: 0.3rem;
 }

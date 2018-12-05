@@ -164,11 +164,22 @@
                 },function (data) {
                 console.log(data);
                     if(data.status==200){
-
+                        sweetAlert(
+                                "恭喜您",
+                                "发表评论成功",
+                                "success"
+                        )
+                        $(".submit").text("发表成功");
                     }else if(data.status == 300){
                         sweetAlert(
                                 "sorry",
                                 "您不是该老师的学生，没有评论权限",
+                                "error"
+                        )
+                    }else{
+                        sweetAlert(
+                                "sorry",
+                                data.msg,
                                 "error"
                         )
                     }

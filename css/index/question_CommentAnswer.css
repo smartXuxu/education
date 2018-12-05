@@ -1,0 +1,128 @@
+.main {
+  top: 1rem;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  padding: 0.3rem;
+  overflow: auto;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.response {
+  height: 1rem;
+  width: 100%;
+  line-height: 1rem;
+  background-color: #f01414;
+  position: fixed;
+  bottom: 0;
+  z-index: 1;
+}
+.response:before {
+  width: 0.5rem;
+  height: 0.5rem;
+  content: '';
+  position: absolute;
+  left: 3%;
+  top: 30%;
+  background: url(../../img/edit.png) no-repeat center;
+  -webkit-background-size: 100%;
+  background-size: 100%;
+}
+.response > input {
+  width: 70%;
+  height: 0.9rem;
+  background-color: #aa1211;
+  margin-left: 0.2rem;
+  text-indent: 1em;
+  color: #fff;
+}
+.response > span {
+  width: 25%;
+  display: inline-block;
+  color: #fff;
+  text-align: center;
+}
+.question_list .evaluate_lists {
+  margin-top: 0.2rem;
+  padding-bottom: 1rem;
+}
+.question_list .evaluate_lists .see_more {
+  height: 0.6rem;
+  line-height: 0.6rem;
+  font-size: 0.3rem;
+  text-align: center;
+}
+.question_list .evaluate_lists > .evaluate_list {
+  padding-top: 0.2rem;
+  width: 100%;
+  border-bottom: 1px solid #eee;
+}
+.question_list .evaluate_lists > .evaluate_list > .eva_top {
+  position: relative;
+  padding-bottom: 0.2rem;
+}
+.question_list .evaluate_lists > .evaluate_list > .eva_top > img {
+  width: 0.8rem;
+  height: 0.8rem;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+.question_list .evaluate_lists > .evaluate_list > .eva_top > .eva_top_center {
+  width: 100%;
+  position: absolute;
+  margin-left: 1.2rem;
+  top: 10%;
+}
+.question_list .evaluate_lists > .evaluate_list > .eva_top > .eva_top_center > em {
+  font-size: 0.34rem;
+  color: #666;
+  display: block;
+}
+.question_list .evaluate_lists > .evaluate_list > .eva_top > .eva_top_center > del {
+  color: #666;
+  display: block;
+  font-size: 0.2rem;
+}
+.question_list .evaluate_lists > .evaluate_list > .eva_top > .eva_top_center > i {
+  position: absolute;
+  right: 3%;
+  top: 10%;
+  color: #666;
+  padding-right: 1.5rem;
+}
+.question_list .evaluate_lists > .evaluate_list > .eva_content {
+  margin-bottom: 0.2rem;
+}
+.question_list .evaluate_lists > .evaluate_list > .eva_content > p {
+  font-size: 0.28rem;
+  color: #32373b;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+}
+.question_list .evaluate_lists > .evaluate_list > .eva_content > .comment_imgs {
+  width: 100%;
+  margin-top: 0.2rem;
+}
+.question_list .evaluate_lists > .evaluate_list > .eva_content > .comment_imgs > .comment_img_box {
+  width: 45%;
+  height: 1.8rem;
+  display: inline-block;
+  margin-left: 0.1rem;
+  margin-bottom: 0.1rem;
+  overflow: hidden;
+  position: relative;
+  background-color: #333333;
+}
+.question_list .evaluate_lists > .evaluate_list > .eva_content > .comment_imgs > .comment_img_box > img {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

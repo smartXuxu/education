@@ -20,7 +20,7 @@
     <header id="header" class="mui-bar mui-bar-nav">
         <i class="mui-icon mui-icon-left-nav mui-pull-left" onclick="back()"></i>
         <h1 class="mui-title">评分</h1>
-        <em  onclick="location.href='./write_submit.html'"><del class="iconfont icon-pinglun"></del>写评价</em>
+        <em><del class="iconfont icon-pinglun"></del>写评价</em>
     </header>
     <div class="main">
         <div class="comment_teacher_lists">
@@ -132,6 +132,9 @@
 <script>
     $(function () {
         var teacherid=location.href.split("=")[1];
+        $("header>em").click(function () {
+           location.href='./write_submit.html?teacherid='+teacherid;
+        })
         myAjax({url:"/teacher/related/get/Teacher/Evaluate/List",
             data:{teacherid:teacherid,page:1,size:5},
             type:"post"}, function (data) {

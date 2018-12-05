@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
-
     <title>我的动态</title>
     <link rel="stylesheet" href="../../css/mui.min.css"/>
     <link rel="stylesheet" href="../../css/mui_img.css"/>
@@ -24,7 +23,7 @@
         }
         .main{
             padding: 0 0.3rem;
-            padding-top: 1.8rem;
+            padding-top: 0.3rem;
         }
         .list_content_footer>ul>li:first-of-type {
             width: 20%;
@@ -32,6 +31,23 @@
         .list_content_footer>ul>li:nth-of-type(2) {
             width: 20%;
             color:#00204c;
+            opacity: 1;
+        }
+        .list_content_footer>ul>li:nth-of-type(3) {
+            opacity: 0;
+        }
+        .main{
+            bottom: 0.1rem;
+        }
+        .All_list>.list_top>.list_top_center{
+            width: 70%;
+        }
+        .list_top_center .f_right{
+          color:#f01414;
+        }
+        .list_content_footer>ul{
+            height: 0.8rem;
+            line-height: 0.8rem;
         }
     </style>
 </head>
@@ -43,7 +59,7 @@
     </header>
     <div class="main">
         <div class="All_lists">
-            <div class="All_list">
+          <!--  <div class="All_list">
                 <div class="list_top">
                     <img src="../../img/focus-img1.png" alt="">
                     <div class="list_top_center clearfix">
@@ -58,7 +74,7 @@
                         明天开始新的一章数学学习，同学们做好预习哦
                     </div>
                     <div class="imgs">
-                        <!--注意类名 可能会与关注页面 重复-->
+                        &lt;!&ndash;注意类名 可能会与关注页面 重复&ndash;&gt;
                         <div class="img_box">
                             <img src="../../img/focus-img1.png" alt="" data-preview-src="" data-preview-group="1">
                         </div>
@@ -82,7 +98,7 @@
                         <li><em class="iconfont icon-like">150</em></li>
                     </ul>
                     <div class="comment_box">
-                        <!--判断有没有回复人 渲染出来两句回复就可以了-->
+                        &lt;!&ndash;判断有没有回复人 渲染出来两句回复就可以了&ndash;&gt;
                         <p>
                             <i>魏雨</i>&nbsp;:&nbsp;&nbsp;
                             真是一个真实一个爱学习的孩子啊！真实一个爱学习的孩子啊！  真是一个真实一个爱学习的孩子啊！真实一个爱学习的孩子啊！
@@ -94,7 +110,7 @@
                         <div class="more" onclick="location.href='../index/see_more_comment.html'">查看更多回复&gt;&gt;</div>
                     </div>
                 </div>
-            </div>
+            </div>-->
 
         </div>
     </div>
@@ -108,10 +124,184 @@
 <script src="../../js/base.js"></script>
 <script src="../../js/back.js"></script>
 <script src="../../js/sweetalert2.js"></script>
+<script src="../../js/template-web.js"></script>
+<script src="../../js/template.js"></script>
+<script id="mine_dy" type="text/html">
+    {{if data==null||data.length==0}}
+    <div class="no_in">对不起，暂时没有动态</div>
+    {{else}}
+    {{each data as value i}}
+    <div class="focus_lists All_lists">
+        <div class="focus_list All_list"  >
+            <div class="list_top"  onclick="location.href='../index/see_more_comment.html?dynamicid={{value.dynamic.id}}'">
+                {{if value.user.portrait==null}}
+                <img src="../../img/logo.png" alt=""/>
+                {{else}}
+                <img src="../../img/focus-img1.png" alt=""/>
+                {{/if}}
+                <div class="list_top_center clearfix">
+                    <em>{{value.user.nickname==null?value.user.realName==null?"猴姆教学":value.user.realName:value.user.nickname}} <!--<i class="f_right" onclick="attention('{{value.user.userid}}',this)" >已关注</i>--></em>
+                    <p>{{value.school==null?"暂未完善学校":value.school}}</p>
+                  <!--  <div class="f_right" data-id='{{value.dynamic.id}}'>删除</div>-->
+                </div>
+            </div>
+            <div class="list_content clearfix">
+                <div class="tit"  onclick="location.href='../index/see_more_comment.html?dynamicid={{value.dynamic.id}}'">
+                    {{value.dynamic.body}}
+                </div>
+                <div class="imgs"  onclick="location.href='../index/see_more_comment.html?dynamicid={{value.dynamic.id}}'">
+                    <!--注意类名 可能会与关注页面 重复-->
+                    <!--判断有没有图片-->
+                    {{if value.dynamic.picture==null||value.dynamic.picture==""}}
+                    {{else}}
+                    {{each str(value.dynamic.picture) as img k}}
+                    <div class="img_box">
+                        <img src="{{img}}" alt="" data-preview-src="" data-preview-group="{{i}}"/>
+                    </div>
+                    {{/each}}
+                    {{/if}}
+                </div>
+            </div>
+            <div class="list_content_footer clearfix" >
+                <ul class="clearfix">
+                    <li>浏览{{value.dynamic.previewNum}}次</li>
+                    <li class="delete" data-id='{{value.dynamic.id}}'>删除</li>
+                    <li><em class="iconfont icon-zhuanfa"> 120</em></li>
+                    <li><em class="iconfont icon-xiaoxi" onclick="location.href='../index/see_more_comment.html?dynamicid={{value.dynamic.id}}'"> {{value.commentNum}}</em></li>
+                    <!--判断是否点赞-->
+                    {{if value.love.是否点赞 =="否"}}
+                    <li class="hand" data-id='{{value.dynamic.id}}'><em class="iconfont icon-like"> {{value.love.点赞总数}}</em></li>
+                    {{else}}
+                    <li  class="hand" data-id='{{value.dynamic.id}}'><em class="iconfont icon-like is_hand"> {{value.love.点赞总数}}</em></li>
+                    {{/if}}
+                </ul>
+                {{if value.commentNum !==0}}
+                <div class="comment_box">
+                    <!--判断有没有回复人 渲染出来两句回复就可以了-->
+                    {{each value.someComments as value i}}
+                    <!--回复的动态-->
+                    {{if value.publisher}}
+                    <p>
+                        <i>{{value.publisher}}</i>&nbsp;:&nbsp;&nbsp;
+                        {{value.body}}
+                    </p>
+                    {{/if}}
+                    {{if value.replyTo==null}}
+                    <p>
+                        <i>{{value.reply}}</i> :&nbsp;&nbsp; {{value.body}}
+                    </p>
+                    {{else}}
+                    <p>
+                        <i>{{value.reply}}</i>&nbsp;&nbsp;回复
+                        <s>{{value.replyTo}}</s>&nbsp;&nbsp;:&nbsp;&nbsp;{{value.body}}
+                    </p>
+                    {{/if}}
+                    <!--回复的是个人 回复的动态-->
+                    <!--回复的个人-->
+                    {{/each}}
+
+                    <div class="more" onclick="location.href='../index/see_more_comment.html?dynamicid={{value.dynamic.id}}'">查看更多回复>></div>
+                </div>
+                {{/if}}
+            </div>
+
+        </div>
+    </div>
+    {{/each}}
+    {{/if}}
+</script>
 <script>
     $(function () {
         mui.previewImage();
         mui('body').on('tap','a',function(){document.location.href=this.href;});
+   var userid=localStorage.getItem("this_userid");
+        render(userid);
+        function render(id){
+            myAjax({url:"/user/my/get/Dynamic/List",data:{userid:id,page:1,size:5},type:"post"}, function (data) {
+                console.log(data);
+                if(data.status==200){
+                    template.helper("str",function(str){
+
+                        return str.split(",");
+                    })
+                    template.helper("time",function(time){
+                        var timestamp=new Date().getTime();//当前时间戳
+                        var kk=timestamp-time;//发表时的时间戳
+                        var timea="";
+                        var sec=parseInt(kk/1000);//秒
+                        var min=parseInt(sec/60);//分
+                        var hour=parseInt(min/60);//时
+                        var day=parseInt(hour/24);//天
+                        if(sec<60){
+                            timea=sec+"秒前";
+                        }else if(min<60){
+                            timea=min+"分钟前";
+                        }else if(hour<24){
+                            timea=hour+"小时前";
+                        }else if(day<7){
+                            timea=day+"天前";
+                        }else{
+                            timea=new Date(time).toLocaleString().replace(/:\d{1,2}$/,' ').substr(5,11).replace("/","-");
+                        }
+                        return timea;
+
+                    });
+                    $(".All_lists").html(template("mine_dy",data));
+                    //点赞
+                    $(".hand").click(function () {
+                        var id=$(this).data("id");
+                        console.log(id);
+                        loveDynamic(id,this);
+                    })
+                }
+
+            })
+
+        }
+      /*点赞*/
+        function loveDynamic(id,e){
+            myAjax({url:"/dynamic/update/Love/Dynamic",data:{"userid":userid,"dynamicid":id},type:"post",async:false}, function (data) {
+                console.log(data);
+                if(data.status==200){
+                    if(data.data.love.是否点赞=="否"){
+                        /*去掉类名*/
+                        $(e).children("em").removeClass("is_hand");
+                        $(e).children("em").text(" "+data.data.love.点赞总数);
+                    }else{
+                        $(e).children("em").addClass("is_hand");
+                        $(e).children("em").text(" "+data.data.love.点赞总数);
+                    }
+                    //重绘页面不行了
+                    /* dynamic(1,3,localStorage.getItem("this_userid"));*/
+                }
+            })
+        }
+        loadmore( $('.main'),'/user/my/get/Dynamic/List',localStorage.getItem("this_userid"),function (data) {
+            console.log(data);
+            if(data.status==200){
+                $(".All_lists").append(template("mine_dy",data));
+                //$('#item1>.All_lists').append(template("Alldy",data));
+                //点赞
+                $(".hand").click(function () {
+                    var id=$(this).data("id");
+                    console.log(id);
+                    loveDynamic(id,this);
+                })
+            }
+        });
+        $(".main").on("click",".delete", function () {
+            var id=$(this).data("id");
+           deleteDy(id)
+        })
+        //删除我的动态
+        function deleteDy(id){
+            myAjax({url:"/user/my/delete/Dynamic",type:"post",data:{dynamicid:id}}, function (data) {
+                console.log(data);
+                if(data.status==200){
+                    render(userid);
+                }
+            })
+        }
     })
 </script>
 </html>

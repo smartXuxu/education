@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <title>全部的问答列表</title>
+    <link rel="stylesheet" href="../../css/mui.min.css"/>
+    <link rel="stylesheet" href="../../css/base.css"/>
+    <link rel="stylesheet" href="../../css/sweetalert2.css"/>
+    <link rel="stylesheet" href="../../css/iconfont.css"/>
+    <link rel="stylesheet" href="../../css/header.css"/>
+    <link rel="stylesheet" href="../../css/index/question_lists.css"/>
+
+</head>
+
+<body style="overflow-x: hidden">
+<div class="layer" style="overflow-x: hidden">
+    <header id="header" class="mui-bar mui-bar-nav">
+        <i class="mui-icon mui-icon-left-nav mui-pull-left" onclick="back()"></i>
+        <h1 class="mui-title">问答列表</h1>
+    </header>
+    <div class="main">
+
+    </div>
+</div>
+</body>
+<script src="../../js/mui.min.js"></script>
+<script src="../../js/x_rem.js"></script>
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/base.js"></script>
+<script src="../../js/back.js"></script>
+<script src="../../js/sweetalert2.js"></script>
+<script src="../../js/template-web.js"></script>
+<script src="../../js/template.js"></script>
+<script id="question" type="text/html">
+    <div class="request" >
+        {{if data==null}}
+        <div class="no_in">对不起，暂时没有问答数据</div>
+        {{else}}
+        {{each data as value i}}
+        <div class="qu_list" onclick="location.href='./quest_detail.html?id={{value.questions.id}}'">
+            <div class="tit">
+                {{value.questions.title}}
+            </div>
+            <div class="qu_bottom clearfix">
+                <div class="bo_left">
+                    <em class="iconfont icon-wode1"></em>{{value.questionuser.nickname==null?value.questionuser.realName==null?"猴姆教学":value.questionuser.realName:value.questionuser.nickname}}
+                    <i class="iconfont icon-huangguan"></i>悬赏：{{value.questions.reward}}积分
+                    <del class="iconfont icon-xiaoxi"></del>{{value.answerNum}}
+                </div>
+                <div class="bo_right f_right" onclick="location.href='./my_want_request.html?questionid={{value.questions.id}}'">
+                    <s class="iconfont icon-weibiaoti1" ></s>
+                    我要回答
+                </div>
+            </div>
+        </div>
+        {{/each}}
+        {{/if}}
+    </div>
+</script>
+<script>
+    $(function () {
+        var courseid=location.href.split("=")[1];
+        // 课程问答列表
+        myAjax({url:"/course/related/get/Course/QuestionList",
+            data:{courseid:courseid,
+                page:1,
+                size:8
+            },
+            type:"post"},function(data){
+            console.log(data);
+            if(data.status==200){
+                $(".main").html(template("question",data));
+            }
+        })
+        loadmoreIndex($(".main"),"/course/related/get/Course/QuestionList",{size:5,courseid:courseid}, function (data) {
+            console.log(data);
+            if(data.status==200){
+                $(".main").append(template("question",data));
+            }
+        })
+    })
+</script>
+</html>

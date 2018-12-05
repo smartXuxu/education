@@ -312,3 +312,6 @@ header > span > a:last-of-type em {
 .All_lists>.focus_list:first-of-type{
     padding-top: 0.2rem;
 }
+.main .request{
+    padding:0 0.3rem;
+}

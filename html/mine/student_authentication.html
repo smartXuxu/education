@@ -120,15 +120,16 @@
             <i class="mui-icon mui-icon-arrowright f_right"></i>
             <input type="text"  class="f_right">
         </div>
-        <div class="school clearfix">
+        <div class="school clearfix" onclick="location.href='./teach_school.html'">
             <span class="f_left">学校</span>
+            <i class="mui-icon mui-icon-arrowright f_right"></i>
             <input type="text" disabled placeholder="请选择您的学校" class="f_right">
         </div>
-        <div id="mask" style="display: none"></div>
+       <!-- <div id="mask" style="display: none"></div>
         <div id="choose_share" >
         <h3>请您选择您的学校</h3>
         <ul>
-            <!--内容从后台获取-->
+            &lt;!&ndash;内容从后台获取&ndash;&gt;
             <li>
                 <em></em>
                 <span>2018年高三数学上期2018年高三数学上期</span>
@@ -138,7 +139,7 @@
                 <span>2017年高三数学上期</span>
             </li>
         </ul>
-    </div>
+    </div>-->
         <div class="inSchool clearfix">
             <span class="f_left">入学时间</span>
            <input id='sign_up'  data-options='{"type":"month"}' class="btn mui-btn mui-btn-block f_right" placeholder="请选择您的入学时间"/>
@@ -155,11 +156,17 @@
 <script src="../../js/base.js"></script>
 <script src="../../js/back.js"></script>
 <script src="../../js/sweetalert2.js"></script>
-<script src="../../js/template-web.js"></script>
-<script src="../../js/template.js"></script>
-<script id="school" type="text/html">
 
-</script>
+<!--<script id="school" type="text/html">
+    <li>
+        <em></em>
+        <span>2018年高三数学上期2018年高三数学上期</span>
+    </li>
+    <li>
+        <em></em>
+        <span>2017年高三数学上期</span>
+    </li>
+</script>-->
 <script>
     $(function () {
         var userId=localStorage.getItem("this_userid");
@@ -182,10 +189,15 @@
         })
         var grade=localStorage.getItem("studentGrade");
         $(".class>input").val(grade);
+        //任教学校
+        var schoolName=localStorage.getItem("schoolName");
+        if(schoolName){
+            $(".school>input").val(schoolName);
+        }
 
-        var obj={};
+
      $(".confirm").click(function () {
-
+         var obj={};
          obj.userid = userId;
          obj.identityAuthentication = 3;
          if ($(".class>input").val() == "") {
@@ -196,7 +208,7 @@
              )
              return false;
          } else {
-             obj.grade = $(".class>input").val();
+             obj.grade = $(".class>input").val().trim();
          }
          if ($(".inSchool>input").val().trim() == "") {
              sweetAlert(
@@ -206,16 +218,32 @@
              )
              return false;
          } else {
-             obj.admissionTime = $(".inSchool>input").val();
+             obj.date =new Date($(".inSchool>input").val().trim()).getTime() ;
          }
          console.log(obj);
-     })
+         if($(".school>input").val()==""){
+             sweetAlert(
+                     "对不起",
+                     "请您选择您的学校",
+                     "error"
+             )
+             return false ;
+         }else{
+             obj.schoolId=localStorage.getItem("schoolId");
+         }
 
-         /*myAjax({url:'/authentication/updateTo/Student',data:obj,type:"post"},function(data){
-
+         myAjax({url:'/authentication/updateTo/Student',data:obj,type:"post"},function(data){
+             console.log(data);
+             if(data.status==200){
+                 sweetAlert(
+                         "恭喜",
+                         "学生认证成功",
+                         "success"
+                 )
+                 $(".confirm").text("认证成功");
+             }
          })
-
-     })*/
+     })
 
     })
 </script>

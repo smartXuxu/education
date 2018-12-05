@@ -116,10 +116,10 @@
 <script src="../../js/head/cropper.min.js"></script>
 <script src="../../js/template-web.js"></script>
 <script id="getPic" type="text/html">
-    {{if data.avatar==null || !data.avatar}}
-    <img id="finalImg" src="../../img/focus-img1.png"  style="border-radius: 50%;">
+    {{if data.portrait==null || !data.portrait}}
+    <img id="finalImg" src="../../img/logo.png"  style="border-radius: 50%;">
     {{else}}
-    <img id="finalImg" src="{{data.avatar}}" onerror="this.src='../../img/focus-img1.png'" style="border-radius: 50%;">
+    <img id="finalImg" src="{{data.portrait}}" onerror="this.src='../../img/logo.png'" style="border-radius: 50%;">
     {{/if}}
 </script>
 <script type="text/javascript">
@@ -232,8 +232,6 @@
             //console.log(base64url);
         }
     });
-
-
     //关闭裁剪框
     function closeTailor() {
         $(".tailoring-container").toggle();
@@ -243,33 +241,31 @@
         var headePIc=$("#finalImg").attr('src').replace(/"/g,"");
        sendHeadpic(headePIc);
     });
-    var url=location.href.split("=")[1];
+   // var url=location.href.split("=")[1];
+    //上传 base64 图片地址  保存地址  如果没有
     function sendHeadpic(headpicPath){
         $.ajax({
             xhrFields: {
                 withCredentials: true
             },
             type: "post",
-            url:baseUrl+"/user/uploadOrUpdateAvatar",
+            url:baseUrl+"/pic/base64/upload",
             data:{
-                avatarImage:headpicPath
+                base64:headpicPath
             },
             dataType: 'json',
             success:function(data){
                 console.log(data);
-                if(data.code==200){
+                if(data.status==200){
+                    localStorage.setItem("userPic",data.data)
                     sweetAlert(
                             "恭喜您",
                             data.msg,
                             "success"
                     ).then(function () {
-                                if(url){
-                                    location.href='./mine_data.html';
-                                }else{
-                                    location.href='./mine.html';
-                                }
-
+                                back()
                             })
+
                 }else{
                     sweetAlert(
                             "sorry",
@@ -292,27 +288,30 @@
         })
     }
     //获取个人信息 如头像
-    function getHeadpic(){
+    var token=localStorage.getItem("token");
+    function getHeadpic(token){
         $.ajax({
             xhrFields: {
                 withCredentials: true
             },
             type: "get",
             async: false,
-            url: baseUrl+"/user/getCurrentUserMessage",
-
+            url: baseUrl+`/user/token/${token}`,
             dataType: 'json',
             success:function(data){
                 console.log(data);
-                var html=template("getPic",data);
-                    $(".getPic").html(html);
+                if(data.status==200){
+                     var html=template("getPic",data);
+                     $(".getPic").html(html);
+                }
+
             },
             error:function(data){
                 console.log(data);
             }
         })
     }
-   getHeadpic()
+   getHeadpic(token);
 </script>
 
 </body>

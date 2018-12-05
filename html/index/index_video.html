@@ -15,153 +15,159 @@
     <link rel="stylesheet" href="../../css/index/index.css"/>
     <link rel="stylesheet" href="../../css/index/index_video.css"/>
 </head>
-<body style="background-color:#fff;">
+<body style="background-color:#fff;overflow-x: hidden">
 <div class="layer">
     <div class="video_header">
-        <i onclick="location.href='./index.html'" class="mui-icon mui-icon-back"></i>
+        <i onclick="back()" class="mui-icon mui-icon-back"></i>
         <div class="video_play">
-            <video  controls='controls' width='100%'  name='media'>
-                <source src="../../img/1.mp4" type='video/mp4'/>
+            <video  controls='controls' width='100%'  name='media' src="../../img/1.mp4">
+               <!-- <source src="../../img/1.mp4" type='video/mp4'/>
                 <source src="../../img/1.mp4" type='video/ogg'/>
-                <source src="../../img/1.mp4" type='video/webm'/>
+                <source src="../../img/1.mp4" type='video/webm'/>-->
             </video>
         </div>
     </div>
     <div class="main">
         <div id="slider" class="mui-slider index_video ">
 
-                <div id="segmentedControl" class="mui-segmented-control">
-                    <div class="mui-control-item active"  >
-                        <span>目录</span>
-                    </div>
-                    <div class="mui-control-item">
-                        <span>详情</span>
-                    </div>
-                    <div class="mui-control-item">
-                        <span>评论</span>
-                    </div>
-                    <div class="mui-control-item">
-                        <span>问答</span>
-                    </div>
+            <div id="segmentedControl" class="mui-segmented-control">
+                <div class="mui-control-item active"  >
+                    <span>目录</span>
                 </div>
+                <div class="mui-control-item">
+                    <span>详情</span>
+                </div>
+                <div class="mui-control-item">
+                    <span>评论</span>
+                </div>
+                <div class="mui-control-item">
+                    <span>问答</span>
+                </div>
+            </div>
             <del class="mui-icon mui-icon-more fix_more"></del>
         </div>
         <div class="main_content">
             <div id="fix_share">
-                <div class="hand">
+                <!--<div class="hand">
                     <em class="iconfont icon-xin"></em>
                     <span>5100</span>
                 </div>
                 <div class="star">
                     <em class="iconfont icon-star"></em>
-                    <span>收藏</span>
-                </div>
-              <!--  <div class="share">
-                    <em class="iconfont icon-tubiaozhizuo-"></em>
-                    <span>分享</span>
+                    <span>123</span>
                 </div>-->
-                <div class="download">
+                <!--  <div class="share">
+                      <em class="iconfont icon-tubiaozhizuo-"></em>
+                      <span>分享</span>
+                  </div>-->
+               <!-- <div class="download">
                     <a href="../../img/1.mp4" download="1" target="_blank">
                         <em class="iconfont icon-xiazai1"></em>
                         <span>下载</span>
                     </a>
 
-                </div>
+                </div>-->
             </div>
             <div class="content">
                 <!--全部-->
                 <div id="item1" class="mui-control-content active all_lesson">
                     <!--目录-->
+                    <!--填充-->
+
                     <h3>初二上期课堂数学</h3>
+                    <ul class="item1">
+                    </ul>
+                    <!--<h3>初二上期课堂数学</h3>
                     <ul>
                         <li>
                             <a href="javascript:;" class="clearfix">
-                              <div class="f_left">
-                                  <em class="iconfont icon-bofang"></em>
-                                  <span>第1课  相交线</span>
-                              </div>
+                                <div class="f_left">
+                                    <em class="iconfont icon-bofang"></em>
+                                    <span>第1课  相交线</span>
+                                </div>
                                 <span class="f_right">
-                                    <!--判断是否下载-->
+                                    &lt;!&ndash;判断是否下载&ndash;&gt;
                                     <em>已下载</em>05:41
                                 </span>
                             </a>
                         </li>
                         <li>
                             <a href="javascript:;" class="clearfix">
-                              <div class="f_left">
-                                  <em class="iconfont icon-bofang"></em>
-                                  <span>第1课  相交线</span>
-                              </div>
+                                <div class="f_left">
+                                    <em class="iconfont icon-bofang"></em>
+                                    <span>第1课  相交线</span>
+                                </div>
                                 <span class="f_right">
-                                    <!--判断是否下载-->
+                                    &lt;!&ndash;判断是否下载&ndash;&gt;
                                     <em>已下载</em>05:41
                                 </span>
                             </a>
                         </li>
                         <li>
                             <a href="javascript:;" class="clearfix">
-                              <div class="f_left">
-                                  <em class="iconfont icon-bofang"></em>
-                                  <span>第1课  相交线</span>
-                              </div>
+                                <div class="f_left">
+                                    <em class="iconfont icon-bofang"></em>
+                                    <span>第1课  相交线</span>
+                                </div>
                                 <span class="f_right">
-                                    <!--判断是否下载-->
+                                    &lt;!&ndash;判断是否下载&ndash;&gt;
                                     <em>已下载</em>05:41
                                 </span>
                             </a>
                         </li>
                         <li>
                             <a href="javascript:;" class="clearfix">
-                              <div class="f_left">
-                                  <em class="iconfont icon-bofang"></em>
-                                  <span>第1课  相交线</span>
-                              </div>
+                                <div class="f_left">
+                                    <em class="iconfont icon-bofang"></em>
+                                    <span>第1课  相交线</span>
+                                </div>
                                 <span class="f_right">
-                                    <!--判断是否下载-->
+                                    &lt;!&ndash;判断是否下载&ndash;&gt;
                                     <em>已下载</em>05:41
                                 </span>
                             </a>
                         </li>
                         <li>
                             <a href="javascript:;" class="clearfix">
-                              <div class="f_left">
-                                  <em class="iconfont icon-bofang"></em>
-                                  <span>第1课  相交线</span>
-                              </div>
+                                <div class="f_left">
+                                    <em class="iconfont icon-bofang"></em>
+                                    <span>第1课  相交线</span>
+                                </div>
                                 <span class="f_right">
-                                    <!--判断是否下载-->
+                                    &lt;!&ndash;判断是否下载&ndash;&gt;
                                     <em>已下载</em>05:41
                                 </span>
                             </a>
                         </li>
                         <li>
                             <a href="javascript:;" class="clearfix">
-                              <div class="f_left">
-                                  <em class="iconfont icon-bofang"></em>
-                                  <span>第1课  相交线</span>
-                              </div>
+                                <div class="f_left">
+                                    <em class="iconfont icon-bofang"></em>
+                                    <span>第1课  相交线</span>
+                                </div>
                                 <span class="f_right">
-                                    <!--判断是否下载-->
+                                    &lt;!&ndash;判断是否下载&ndash;&gt;
                                     <em>已下载</em>05:41
                                 </span>
                             </a>
                         </li>
 
-                    </ul>
+                    </ul>-->
                 </div>
                 <div id="item2" class="mui-control-content detail_speak ">
-                   <!--详情-->
+                    <!--详情-->
                     <div class="detail">
-                      <h3>2018年高三语文上册</h3>
-                      <p>——广州XXXXXXX附中</p>
-                      <div class="detail_text">
-                          分析文章结构，归纳内容要点，概括中心意思这一考点是高考论述类文章阅读必考考点一般为单独命题，个别省市将这-一考点与理解概念、分析作者观点态度等考点结合起来考查，题型以客观选择题为主，个别省市有主观题形式。试题内容一般要求考生能够从整体上把握文意，对具体的内容加以概括，对复杂的内容加以整理。2019年高考仍会沿袭上述命题特点。
-                      </div>
-                  </div>
+                        <!--详情-->
+                      <!--  <h3>2018年高三语文上册</h3>
+                        <p>——广州XXXXXXX附中</p>
+                        <div class="detail_text">
+                            分析文章结构，归纳内容要点，概括中心意思这一考点是高考论述类文章阅读必考考点一般为单独命题，个别省市将这-一考点与理解概念、分析作者观点态度等考点结合起来考查，题型以客观选择题为主，个别省市有主观题形式。试题内容一般要求考生能够从整体上把握文意，对具体的内容加以概括，对复杂的内容加以整理。2019年高考仍会沿袭上述命题特点。
+                        </div>-->
+                    </div>
                     <div class="teacher_message">
-                        <img src="../../img/focus-img1.png" alt=""/>
+                     <!-- <img src="../../img/focus-img1.png" alt=""/>
                         <div class="message_center">
-                            <!--五角星 渲染 判断有9.8 首字母 匹配-->
+                           &lt;!&ndash; &lt;!&ndash;五角星 渲染 判断有9.8 首字母 匹配&ndash;&gt;&ndash;&gt;
                             <p>陈漂亮
                                 <em>评分9.8
                                     <i>★</i>
@@ -169,17 +175,16 @@
                                     <i>★</i>
                                     <i>★</i>
                                     <i>★</i>
-
-                                  <!--  <i class="iconfont icon-star"></i>-->
                                 </em>
                             </p>
                             <span>华南师范大学附属中学数学教师</span>
+
                         </div>
-                        <a href="../index/teacher_index.html" class="teacher_more mui-icon mui-icon-forward"></a>
+                        <a href="../index/teacher_index.html" class="teacher_more mui-icon mui-icon-forward"></a>-->
                     </div>
                     <!--评价教师-->
                     <div class="comment_teacher">
-                        <h3>评价 <i>（121）</i>条</h3>
+                       <!-- <h3>评价 <i>（121）</i>条</h3>
                         <div class="comment_teacher_lists">
                             <div class="teacher_list">
                                 <div class="teacher_top">
@@ -194,13 +199,13 @@
                                     </div>
                                     <del>2018-03-14 08:30</del>
                                 </div>
-                            <div class="middle">
-                                很喜欢老师讲的课，上课幽师讲的课，上课幽师讲的课，上课幽默又非常的认真， 又不懂的老师会很耐心的帮助解答。非常好！
-                            </div>
+                                <div class="middle">
+                                    很喜欢老师讲的课，上课幽师讲的课，上课幽师讲的课，上课幽默又非常的认真， 又不懂的老师会很耐心的帮助解答。非常好！
+                                </div>
                             </div>
                         </div>
-                        <!--查看更多-->
-                        <div class="see_more" onclick="location.href='comment_lists.html'">更多>></div>
+                        &lt;!&ndash;查看更多&ndash;&gt;
+                        <div class="see_more" onclick="location.href='comment_lists.html'">更多>></div>-->
                     </div>
 
 
@@ -265,10 +270,10 @@
                     </div>
                 </div>
                 <div id="item3" class="mui-control-content video_comment">
-                    <div class="submit_comment" onclick="location.href='./write_video_comment.html'">
+                    <!--<div class="submit_comment" onclick="location.href='./write_video_comment.html'">
                         <i></i>
                     </div>
-                    <!--评论-->
+                    &lt;!&ndash;评论&ndash;&gt;
                     <div class="evaluate_lists">
                         <div class="evaluate_list">
                             <div class="eva_top">
@@ -297,65 +302,11 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="evaluate_list">
-                            <div class="eva_top">
-                                <img src="../../img/focus-img1.png" alt="">
-                                <div class="eva_top_center clearfix">
-                                    <em>熊宝宝</em>
-                                    <del>2018-03-14 08:30</del>
-                                    <i class="f_right iconfont icon-like">10</i>
-                                </div>
-                            </div>
-                            <div class="eva_content">
-                                <p>很喜欢老师讲的课，上课幽默又非常的认真， 又不懂的老师会很耐心的帮助解答。非常好！ 很喜欢老师讲的课，上课幽默又非常的认真， 又不懂的老师会很耐心的帮助解答。非常好！</p>
-                                <div class="comment_imgs">
-                                    <div class="comment_img_box">
-                                        <img src="../../img/focus-img1.png" alt="" data-preview-src="" data-preview-group="1">
-                                    </div>
-                                    <div class="comment_img_box">
-                                        <img src="../../img/focus-img1.png" alt="" data-preview-src="" data-preview-group="1">
-                                    </div>
-                                    <div class="comment_img_box">
-                                        <img src="../../img/focus-img1.png" alt="" data-preview-src="" data-preview-group="1">
-                                    </div>
-                                    <div class="comment_img_box">
-                                        <img src="../../img/focus-img1.png" alt="" data-preview-src="" data-preview-group="1">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="evaluate_list">
-                            <div class="eva_top">
-                                <img src="../../img/focus-img1.png" alt="">
-                                <div class="eva_top_center clearfix">
-                                    <em>熊宝宝</em>
-                                    <del>2018-03-14 08:30</del>
-                                    <i class="f_right iconfont icon-like">10</i>
-                                </div>
-                            </div>
-                            <div class="eva_content">
-                                <p>很喜欢老师讲的课，上课幽默又非常的认真， 又不懂的老师会很耐心的帮助解答。非常好！ 很喜欢老师讲的课，上课幽默又非常的认真， 又不懂的老师会很耐心的帮助解答。非常好！</p>
-                                <div class="comment_imgs">
-                                    <div class="comment_img_box">
-                                        <img src="../../img/focus-img1.png" alt="" data-preview-src="" data-preview-group="1">
-                                    </div>
-                                    <div class="comment_img_box">
-                                        <img src="../../img/focus-img1.png" alt="" data-preview-src="" data-preview-group="1">
-                                    </div>
-                                    <div class="comment_img_box">
-                                        <img src="../../img/focus-img1.png" alt="" data-preview-src="" data-preview-group="1">
-                                    </div>
-                                    <div class="comment_img_box">
-                                        <img src="../../img/focus-img1.png" alt="" data-preview-src="" data-preview-group="1">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                       </div>
+                    </div>-->
 
                 </div>
                 <div id="item4" class="mui-control-content ">
-                    <div class="ask_request" onclick="location.href='../publish/publish_request.html'">
+                    <!--<div class="ask_request" onclick="location.href='../publish/publish_request.html'">
                         <i></i>
                     </div>
                     <div class="request">
@@ -376,43 +327,215 @@
 
                             </div>
                         </div>
-                        <div class="qu_list">
-                            <div class="tit">
-                                6的平方等于多少？
-                            </div>
-                            <div class="qu_bottom clearfix">
-                                <div class="bo_left">
-                                    <em class="iconfont icon-wode1"></em>赵英俊
-                                    <i class="iconfont icon-huangguan"></i>悬赏：15积分
-                                    <del class="iconfont icon-xiaoxi"></del>99+
-                                </div>
-                                <div class="bo_right f_right" onclick="location.href='./my_want_request.html'">
-                                    <s class="iconfont icon-weibiaoti1"></s>
-                                    我要回答
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
+                    </div>-->
                 </div>
-       </div>
+            </div>
+        </div>
     </div>
-    </div>
-    </div>
+</div>
 </body>
 
-<!--<script src="../../js/mui.min.js"></script>-->
-<!--<script src="../../js/mui.preview.js"></script>
-<script src="../../js/mui.zoom.js"></script>-->
 <script src="../../js/x_rem.js"></script>
 <script src="../../js/jquery.min.js"></script>
 <script src="../../js/base.js"></script>
 <script src="../../js/sweetalert2.js"></script>
+<script src="../../js/template-web.js"></script>
+<script src="../../js/template.js"></script>
+<script id="dialog" type="text/html">
+        {{each data.UpperShelfList as value i}}
+        <li data-href="{{value.fileLink}}" data-id="{{value.courseId}}">
+            <a href="javascript:;" class="clearfix" >
+                <div class="f_left">
+                    <em class="iconfont icon-bofang"></em>
+                    <span>第{{i+1}}课  {{value.fileName}}</span>
+                </div>
+                <span class="f_right">
+                    <!--判断是否下载-->
+                    <em>0{{multiply(value.fileSize)}}</em>
+                </span>
+            </a>
+        </li>
+        {{/each}}
+</script>
+<script id="detailTop" type="text/html">
+    <h3>{{data.academicYear}}{{data.grade}}{{data.subject}}{{data.semester}}</h3>
+    <p>——{{data.schoolName}}</p>
+    <div class="detail_text">
+        {{data.introduce==null?"简介是空白的":data.introduce}}
+    </div>
+</script>
+<script id="teacher_score" type="text/html">
+    <img src="{{data.teacher.portrait==null?'../../img/logo.png':data.teacher.portrait}}" alt=""/>
+    <div class="message_center">
+        <p>{{data.teacher.nickname==null?data.teacher.realName==null?"猴姆教学":data.teacher.realName:data.teacher.nickname}}
+            <em>评分{{data.Score==null?"暂无":data.Score}}
+                {{if data.Score==null}}
+                {{else}}
+                {{if spl(data.Score)==1}}
+                <i>★</i>
+                {{else if spl(data.Score)==2}}
+                <i>★</i>
+                <i>★</i>
+                {{else if spl(data.Score)==3}}
+                <i>★</i>
+                <i>★</i>
+                <i>★</i>
+                {{else if spl(data.Score)==4}}
+                <i>★</i>
+                <i>★</i>
+                <i>★</i>
+                <i>★</i>
+                {{else}}
+                <i>★</i>
+                <i>★</i>
+                <i>★</i>
+                <i>★</i>
+                <i>★</i>
+                {{/if}}
+                {{/if}}
+            </em>
+        </p>
+        <span>{{data.schoolName}}{{data.teacher.grade}}教师</span>
+
+    </div>
+    <a href="../index/teacher_index.html?teacherid={{data.teacher.userid}}" class="teacher_more mui-icon mui-icon-forward"></a>
+</script>
+<script id="evaluate" type="text/html">
+
+    {{if data == null||data.length==0}}
+    <div class="no_in">对不起，暂时没有评价</div>
+    {{else}}
+    <h3>评价 <i>（{{data==null?0:data.evaluateTeacherNum}}）</i>条</h3>
+    <div class="comment_teacher_lists">
+    {{each data.evaluateTeacherList as value i}}
+    <div class="teacher_list">
+        <div class="teacher_top">
+            <img src="{{value.user.portrait==null?'../../img/logo.png':value.user.portrait}}" alt=""/>
+            <div class="center">
+                <span>{{value.user.nickname==null?value.user.realName==null?"猴姆教学":value.user.realName:value.user.nickname}}</span>
+                {{if str(value.evaluateTeacher.score) ==1}}
+                <em>★</em>
+                {{else if str(value.evaluateTeacher.score) ==2}}
+                <em>★</em>
+                <em>★</em>
+                {{else if str(value.evaluateTeacher.score) ==3}}
+                <em>★</em>
+                <em>★</em>
+                <em>★</em>
+                {{else if str(value.evaluateTeacher.score) ==4}}
+                <em>★</em>
+                <em>★</em>
+                <em>★</em>
+                <em>★</em>
+                {{else}}
+                <em>★</em>
+                <em>★</em>
+                <em>★</em>
+                <em>★</em>
+                <em>★</em>
+                {{/if}}
+
+            </div>
+            <del>{{value.evaluateTeacher.updateTime==null?"时间不详":time(value.evaluateTeacher.updateTime)}}</del>
+        </div>
+        <div class="middle">
+            {{value.evaluateTeacher.body}}
+        </div>
+    </div>
+        </div>
+
+    {{/each}}
+    <!--查看更多-->
+    <div class="see_more" onclick="location.href='comment_lists.html?teacherid={{data.evaluateTeacherList[0].evaluateTeacher.teacherid}}'">查看更多>>></div>
+    {{/if}}
+</script>
+<!--视频的评价-->
+<script id="video_eva" type="text/html">
+    <div class="submit_comment" >
+        <i></i>
+    </div>
+    <!--评论-->
+    <div class="evaluate_lists">
+        {{if data==null||data.length==0 }}
+        <div class="no_in">对不起，暂时没有评论</div>
+        {{else }}
+        {{each data as value i}}
+        <div class="evaluate_list">
+            <div class="eva_top">
+                <img src="{{value.user.portrait==null?'../../img/logo.png':value.user.portrait}}" alt="">
+                <div class="eva_top_center clearfix">
+                    <em>{{value.user.nickname==null?value.user.realName==null?"猴姆教学":value.user.realName:value.user.nickname}}</em>
+                    <del>{{time(value.commentsCourse.updateTime)}}</del>
+                    <!--<i class="f_right iconfont icon-like">10</i>-->
+                </div>
+            </div>
+            <div class="eva_content">
+                <p>{{value.commentsCourse.body}}</p>
+            </div>
+        </div>
+        {{/each}}
+        {{if data.length==4}}
+        <div class="see_more" onclick="location.href='video_eva_lists.html?courseid={{data[0].commentsCourse.courseid}}'">查看更多>>></div>
+        {{/if}}
+        {{/if}}
+    </div>
+</script>
+<script id="question" type="text/html">
+    <div class="ask_request" onclick="location.href='../publish/publish_request.html'">
+        <i></i>
+    </div>
+    <div class="request" >
+        {{if data==null}}
+        <div class="no_in">对不起，暂时没有问答数据</div>
+        {{else}}
+        {{each data as value i}}
+        <div class="qu_list" onclick="location.href='./quest_detail.html?id={{value.questions.id}}'">
+            <div class="tit">
+               {{value.questions.title}}
+            </div>
+            <div class="qu_bottom clearfix">
+                <div class="bo_left">
+                    <em class="iconfont icon-wode1"></em>{{value.questionuser.nickname==null?value.questionuser.realName==null?"猴姆教学":value.questionuser.realName:value.questionuser.nickname}}
+                    <i class="iconfont icon-huangguan"></i>悬赏：{{value.questions.reward}}积分
+                    <del class="iconfont icon-xiaoxi"></del>{{value.answerNum}}
+                </div>
+
+                <div class="bo_right f_right" onclick="location.href='./my_want_request.html?questionid={{value.questions.id}}'">
+                    <s class="iconfont icon-weibiaoti1" ></s>
+                    我要回答
+                </div>
+
+            </div>
+        </div>
+        {{/each}}
+        {{if data.length==5}}
+        <div class="see_more" onclick="location.href='question_list.html?courseid={{data[0].questions.courseid}}'">查看更多>>></div>
+        {{/if}}
+        {{/if}}
+    </div>
+</script>
+<script id="fix" type="text/html">
+    <div class="hand">
+        <em class="iconfont icon-xin {{data[0].是否点赞=='否'?'':'active'}}"></em>
+        <span>{{data[0].点赞总数}}</span>
+    </div>
+    <div class="star">
+        <em class="iconfont icon-star {{data[1].是否收藏=='否'?'':'active'}}"></em>
+        <span>{{data[1].收藏总数}}</span>
+    </div>
+    <!--  <div class="share">
+          <em class="iconfont icon-tubiaozhizuo-"></em>
+          <span>分享</span>
+      </div>-->
+    <!-- <div class="download">
+         <a href="../../img/1.mp4" download="1" target="_blank">
+             <em class="iconfont icon-xiazai1"></em>
+             <span>下载</span>
+         </a>
+
+     </div>-->
+</script>
 <script>
-    /*图片查看 */
-   /* var viewer = new Viewer(document.getElementById('Views'), {
-        url: 'data-original'
-    });*/
     document.addEventListener('plusready', function() {
         var webview = plus.webview.currentWebview();
         plus.key.addEventListener('backbutton', function() {
@@ -429,38 +552,122 @@
         });
     });
     $(function () {
-       /* mui.previewImage()
-        mui('body').on('tap','a',function(){document.location.href=this.href;});*/
-        $("body").on('click','a',function(){document.location.href=this.href;});
-        /*$('#scroll').scroll({
-            indicators: true //是否显示滚动条
-        });*/
         $(".mui-segmented-control>.mui-control-item").click(function () {
             $(this).addClass("active");
             $(this).siblings().removeClass("active");
             var index = $(this).index();
-            //显示对应的div
-            //console.log(index);
-            //console.log(document.body.scrollHeight);
-            //console.log(document.body.offsetHeight);
-            //console.log(document.body.clientHeight);
             $('.mui-control-content').eq(index).addClass('active');
             $('.mui-control-content').eq(index).siblings().removeClass('active');
-          /*  console.log($('.mui-control-content').scrollTop());
-            $('.mui-control-content').scrollTop(0);*/
+
         })
-     /*   var segmentedControl = document.getElementById('segmentedControl');
-        $('.mui-input-group').on('change', 'input', function() {
-            if (this.checked) {
-                var styleEl = document.querySelector('input[name="style"]:checked');
-                var colorEl = document.querySelector('input[name="color"]:checked');
-                if (styleEl && colorEl) {
-                    var style = styleEl.value;
-                    var color = colorEl.value;
-                    segmentedControl.className = 'mui-segmented-control' + (style ? (' mui-segmented-control-' + style) : '') + ' mui-segmented-control-' + color;
-                }
+        var courseid=location.href.split("=")[1];
+        var userId=localStorage.getItem("this_userid");
+        //目录
+        myAjax({url:"/course/related/get/course/Period/List",
+            type:"post",
+            data:{courseid:courseid}}, function (data) {
+            console.log(data);
+            if(data.status==200){
+                template.helper("multiply", function (mss) {
+                    var hours = parseInt((mss % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    var minutes = parseInt((mss % (1000 * 60 * 60)) / (1000 * 60));
+                    var seconds = parseInt((mss % (1000 * 60)) / 1000);
+                    if(hours==00&&minutes==00){
+                        return  seconds+"秒" ;
+                    }
+                    if(hours==00){
+                        return  minutes + " 分" + seconds ;
+                    }
+                    return + hours + " 时 " + minutes + " 分 " + seconds+"秒" ;
+
+                })
+                $("#item1>ul").html(template("dialog",data))
+                $(".video_play>video").attr("src",data.data.UpperShelfList[0].fileLink);
+                $(".video_play>video").attr("data-id",data.data.UpperShelfList[0].courseId);
             }
-        });*/
+        })
+        //播放视频
+        $("#item1").on("click",".item1>li", function () {
+            //console.log(123);
+            var href=$(this).data("href");
+            //把这个的自定义id 换成 课时的id
+            // 更换 播放地址的时候还要 发送一个记录时间的ajax
+            var id=$(this).data("id");
+            $(".video_play>video").attr("src",href);
+            $(".video_play>video").attr("data-id",id);
+        })
+        //课程的基本信息
+        var teacherId;
+        myAjax({url:"/course/related/get/course/BaseInfo",data:{courseid:courseid},type:"post"}, function (data) {
+            console.log(data);
+            if(data.status==200){
+               $("#item1>h3").text(data.data.grade+data.data.subject+data.data.semester);
+                $("#item2>.detail").html(template("detailTop",data))
+               teacherId=data.data.teacherId;
+                //获取教师的评分
+                myAjax({url:"/teacher/related/get/Teacher/Evaluate/Score",data:{teacherid:teacherId},type:"post"}, function (data) {
+                    console.log(data);
+                    template.helper("spl", function (spl) {
+                        return parseInt(spl);
+                    })
+
+                    $("#item2 .teacher_message").html(template("teacher_score",data))
+                    //根据教师id获取课程的点赞和收藏总数
+                  /*  myAjax({url:"/teacher/related/get/Teacher/CourseList",
+                        data:{teacherid:teacherId},type:"post"}, function (data) {
+                        console.log(data);
+                        if(data.status==200){
+                            $("#fix_share>.hand span").text(data.data.loveNum);
+                        }
+                    })*/
+                })
+                //获取教师的评价
+                myAjax({url:"/teacher/related/get/Teacher/Evaluate/List",
+                    data:{teacherid:teacherId,page:1,size:1},
+                    type:"post"}, function (data) {
+                    console.log(data);
+                    if(data.status==200){
+                        template.helper("time",function(date){
+                            var time=new Date(date).toLocaleString().replace(/:\d{1,2}$/,' ').replace(/\//g,"-");
+                            return time;
+                        });
+                        template.helper("str",function(str){
+                            return parseInt(str)
+                        });
+                        $("#item2 .comment_teacher").html(template("evaluate",data))
+                    }
+                })
+            }
+        })
+        //、、获取视频评论
+        myAjax({url:"/course/related/get/Course/CommentsList",
+            data:{courseid:courseid,size:4,page:1},
+            type:"post"}, function (data) {
+            console.log(data);
+            if(data.status==200){
+                template.helper("time",function(date){
+                    var time=new Date(date).toLocaleString().replace(/:\d{1,2}$/,' ').replace(/\//g,"-");
+                    return time;
+                });
+                $("#item3").html(template("video_eva",data));
+            }
+        })
+    //发表评论 跳转
+        $("#item3").on("click",".submit_comment", function () {
+           location.href='./write_video_comment.html?id='+courseid;
+        })
+        // 课程问答列表
+       myAjax({url:"/course/related/get/Course/QuestionList",
+           data:{courseid:courseid,
+               page:1,
+               size:5
+           },
+           type:"post"},function(data){
+           console.log(data);
+           if(data.status==200){
+               $("#item4").html(template("question",data));
+           }
+       })
         /*点击 出现点赞 */
         var flag=true;
         $(".fix_more").click(function () {
@@ -474,6 +681,81 @@
 
             }
         })
+
+        //获取课程的点赞和收藏总数
+        myAjax({url:"/course/related/get/Course/LoveAndCollectInfo",
+                    data:{courseid:courseid,
+                        userid:userId},type:"post"}, function (data) {
+                    console.log(data);
+                    if(data.status==200){
+                        $("#fix_share").html(template("fix",data));
+                    }
+                }
+                )
+
+
+        $(".main").on("click",".hand", function () {
+            loveCourse(courseid,this);
+        })
+        //对课程点赞
+        function loveCourse(id,e){
+            myAjax({url:"/dynamic/update/Love/Course",
+                data:{userid:userId,
+                    courseid:id},type:"post"}, function (data) {
+                console.log(data);
+                if(data.status==200){
+                    if(data.data.love.是否点赞=="是"){
+                        $(e).children("em").css("color","#f01414");
+                        $(e).children("span").text(data.data.love.点赞总数)
+                    }else{
+                        $(e).children("em").css("color","#fff");
+                        $(e).children("span").text(data.data.love.点赞总数)
+                    }
+                }
+            })
+
+        }
+        //课程收藏 star
+        $(".main").on("click",".star", function () {
+           attCourse(courseid,this);
+        })
+        function attCourse(id,e){
+            myAjax({url:"/dynamic/update/collect/Course",
+                data:{userid:userId,
+                    courseid:id},type:"post"}, function (data) {
+                console.log(data);
+                if(data.status==200){
+                    if(data.data.collection.是否收藏=="是"){
+                       $(e).children("em").css("color","#f01414");
+                       $(e).children("span").text(data.data.collection.收藏总数)
+                    }else{
+                       $(e).children("em").css("color","#fff");
+                       $(e).children("span").text(data.data.collection.收藏总数)
+                    }
+                }
+            })
+        }
+        //视频 播放事件
+        var time=0;
+        var vid = document.querySelector('video');
+        vid.addEventListener('play', function () {
+            console.log(time);
+        }, false);
+        vid.addEventListener('pause', function () {
+            console.log(time);
+        }, false);
+        vid.addEventListener('timeupdate', function () {
+           time=vid.currentTime;
+        });
+        //用户离开当前页面
+            window.onbeforeunload = function(){
+                sweetAlert(
+                        "很遗憾",
+                        "你要结束本课程的学习了吗",
+                        "error"
+                );
+                console.log(time);
+            }
 
     })
 </script>

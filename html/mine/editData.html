@@ -22,25 +22,23 @@
         <em class="save">保存</em>
     </header>
     <div class="main">
-        <div class="head clearfix">
+        <div class="head clearfix" onclick="location.href='./head.html'">
             <span class="f_left">头像</span>
             <i class="mui-icon mui-icon-arrowright f_right"></i>
-            <img src="../../img/focus-img1.png" class="f_right" alt="" onclick="location.href='./head.html'"/>
-
+           <!-- <img src="../../img/focus-img1.png" class="f_right" alt="" />
+-->
         </div>
         <div class="nickname clearfix">
             <span class="f_left">昵称</span>
             <i class="mui-icon mui-icon-arrowright f_right"></i>
             <input type="text" placeholder="请输入您的昵称" class="f_right" />
-
         </div>
         <div class="sex">
             <span class="f_left">性别</span>
             <div class="style_choose clearfix f_right">
-                <span data-type="1">男 <i class="active">√</i></span>
-                <span data-type="0">女 <i>√</i></span>
+                <span data-type="1"><em>男</em> <i class="active">√</i></span>
+                <span data-type="0"><em>女</em> <i>√</i></span>
             </div>
-
         </div>
         <div class="birthday clearfix">
             <span class="f_left">生日</span>
@@ -58,7 +56,7 @@
             <span class="f_left">身份</span>
 
         </div>-->
-        <div class="class clearfix">
+       <!-- <div class="class clearfix">
             <span class="f_left">年级</span>
             <i class="mui-icon mui-icon-arrowright f_right"></i>
             <input type="text" placeholder="请输入您的年级" class="f_right"/>
@@ -74,8 +72,7 @@
             <span class="f_left">入学年份</span>
             <i class="mui-icon mui-icon-arrowright f_right"></i>
             <input type="number" placeholder="请输入您的入学年份" class="f_right" />
-
-        </div>
+        </div>-->
     </div>
 </div>
 </body>
@@ -87,12 +84,12 @@
 <script src="../../js/back.js"></script>
 <script src="../../js/sweetalert2.js"></script>
 <script src="../../js/template-web.js"></script>
-<script id="info" type="text/html">
+<!--<script id="info" type="text/html">
     <div class="head clearfix">
         <span class="f_left">头像</span>
         <i class="mui-icon mui-icon-arrowright f_right"></i>
-        <img src="../../img/focus-img1.png" class="f_right" alt="" onclick="location.href='./head.html'"/>
-
+       &lt;!&ndash; <img src="../../img/focus-img1.png" class="f_right" alt="" onclick="location.href='./head.html'"/>
+&ndash;&gt;
     </div>
     <div class="nickname clearfix">
         <span class="f_left">昵称</span>
@@ -120,11 +117,10 @@
         <input type="text" placeholder="请输入您的地址" class="f_right" />
 
     </div>
-    <!--  <div class="idCard clearfix">
+    &lt;!&ndash;  <div class="idCard clearfix">
           <span class="f_left">身份</span>
-
-      </div>-->
-</script>
+      </div>&ndash;&gt;
+</script>-->
 <script>
     $(function () {
         mui.init({
@@ -141,8 +137,67 @@
         myAjax({url:`/user/token/${token}`,type:'post',async:false}, function (data) {
             console.log(data);
         })
+       /* var userId=localStorage.getItem("this_userId")
+        myAjax({url:"/app/my/to/other/info",type:'post',data:{userId:userId}}, function (data) {
+            console.log(data);
+        })*/
+        var obj={};
         $(".save").click(function () {
+            obj.userid=localStorage.getItem("this_userid");
+            obj.token=localStorage.getItem("token");
+            var  portrait=localStorage.getItem("userPic");
+            if(!portrait){
+                sweetAlert(
+                        "sorry",
+                        "请您上传您的个人头像",
+                        "error"
+                )
+                return false
+            }else{
+               obj.portrait=portrait;
+            }
+            var nickname=$(".nickname>input").val().trim();
+            if(nickname.length==0){
+                sweetAlert(
+                        "sorry",
+                        "昵称不能为空哦",
+                        "error"
+                )
+                return false;
+            }else{
+                obj.nickname=nickname;
+            }
+            //男 女
+            if(payMethod==1){
+                obj.gender="男"
+            }else{
+                obj.gender="女"
+            }
+            //地址
+            obj.address=$(".address>input").val().trim();
+            //生日
+            var birthday=$("#sign_up").val().trim()
+            if(birthday==""){
+                sweetAlert(
+                        "对不起",
+                        "请您选择生日",
+                        "error"
+                )
+            }else{
+                obj.date=new Date(birthday).getTime();
+            }
+            myAjax({url:"/user/modify/personal",data:obj,type:"post"}, function (data) {
+                console.log(data);
+                if(data.status==200){
+                   //localStorage.removeItem("userPic");
+                sweetAlert(
+                        "恭喜您",
+                        "个人资料修改成功了",
+                        "success"
+                )
 
+                }
+            })
 
         })
 
@@ -167,7 +222,7 @@
 
                 var picker = new $.DtPicker(options);
                 picker.show(function(rs) {
-                    console.log(rs);
+                   // console.log(rs);
                     /*
                      * rs.value 拼合后的 value
                      * rs.text 拼合后的 text

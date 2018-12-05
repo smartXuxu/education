@@ -16,9 +16,13 @@
 
 </head>
 <body style="background-color:#fff;">
+<div id="loading">
+    <img src="../../img/login.gif" alt=""/>
+    <div>请等待，正在加载...</div>
+</div>
 <div class="layer">
     <header id="header" class="mui-bar mui-bar-nav">
-        <i class="mui-icon mui-icon-left-nav mui-pull-left" onclick="location.href='./index.html'"></i>
+        <i class="mui-icon mui-icon-left-nav mui-pull-left" onclick="back()"></i>
         <h1 class="mui-title">主页</h1>
        <!-- <em class="mui-icon mui-icon-more"></em>-->
     </header>
@@ -58,18 +62,16 @@
         <div id="slider" class="mui-slider find_request">
             <div style="padding: 10px 10px;">
                 <div id="segmentedControl" class="mui-segmented-control">
-                    <div class="mui-control-item mui-active" >
+                    <div class="mui-control-item mui-active">
                         <span>课程 (<s>2</s>)</span>
                     </div>
-                    <div class="mui-control-item" >
+                    <div class="mui-control-item">
                         <span>教师(<s>2</s>)</span>
                     </div>
-
                 </div>
             </div>
         </div>
         <div class="main_center mine_request edu_center">
-
                 <div id="course" class="mui-control-content mui-active">
                    <!--课程-->
                     <div class="course_lists">
@@ -138,7 +140,6 @@
 <script src="../../js/template-web.js"></script>
 <script src="../../js/template.js"></script>
 <script type="text/html" id="info">
-
     <img src='{{data.baseInfo.portrait==null?"../../img/logo.png":data.baseInfo.portrait}}' alt=""/>
     <div class="info_center">
         <em>{{data.baseInfo.name}}</em>
@@ -186,12 +187,12 @@
     {{/if}}
 </script>
 <script id="courseList" type="text/html">
-    {{if data.updateNum==0}}
+    {{if data==null||data.updateNum==0}}
     <div class="no_in">对不起，暂时没有课程可以展示</div>
     {{else}}
     {{each data.allCourse as value i}}
-    <div class="course_list" onclick="location.href='./index_video.html'" >
-        <img src='{{value.course.coursePicture==null?"../../img/login.gif":value.course.coursePicture}}' alt=""/>
+    <div class="course_list" onclick="location.href='./index_video.html?id={{value.course.id}}'" >
+        <img src='{{value.course.coursePicture==null?"../../img/logo.png":value.course.coursePicture}}' onerror="this.src='../../img/logo.png'" alt=""/>
         <div class="course_list_center ">
             <p class="clearfix">
                 <del class="f_left">更新第{{value.updateNum}}课时</del>
@@ -208,7 +209,7 @@
     {{/if}}
 </script>
 <script id="teacherList" type="text/html">
-    {{if data.updateNum==0}}
+    {{if data==null||data.updateNum==0}}
     <div class="no_in">对不起，暂时没有课程可以展示</div>
     {{else}}
     {{each data.teacherList as value i}}
@@ -219,12 +220,14 @@
             <span>{{value.teacher.nickname==null?value.teacher.realName==null?"猴姆教学":value.teacher.realName:value.teacher.nickname}} <em class="iconfont {{value.teacher.gender=='女'||value.teacher.gender==null?'icon-nv':'icon-82'}}" ></em></span>
             <p>{{value.CourseNum}}课程 || {{value.PeriodNum}}课时 &nbsp;&nbsp;&nbsp;{{value.FansNum}} 学生 | {{value.LoveNum}} 获赞</p>
             <div class="lst_footer">
+                {{if value.teacher.teachingSubjects !==null}}
                 {{each str(value.teacher.teachingSubjects) as value i}}
                 <i>{{value}}</i>
                 {{/each}}
                 {{each str(value.teacher.grade) as value i}}
                 <i>{{value}}</i>
                 {{/each}}
+                {{/if}}
             </div>
         </div>
     </div>
@@ -232,8 +235,11 @@
     {{/if}}
 </script>
 <script>
-
     $(function () {
+        //ajax 发送完毕
+        $(document).ajaxStop(function(){
+            $("#loading").hide();
+        });
         /*判断是否关注  关注与取消关注*/
       /*  mui('body').on('tap','a',function(){document.location.href=this.href;});
 
@@ -242,14 +248,13 @@
         });*/
         $(".near_header>em").click(function () {
             alert( 1);
-        })
+        });
         $(".mui-segmented-control>.mui-control-item").click(function () {
             $(this).addClass("mui-active");
             $(this).siblings().removeClass("mui-active");
             var index = $(this).index();
             $('.mui-control-content').eq(index).addClass('mui-active');
             $('.mui-control-content').eq(index).siblings().removeClass('mui-active');
-
         })
       /*  var segmentedControl = document.getElementById('segmentedControl');
         $('.mui-input-group').on('change', 'input', function() {
@@ -305,9 +310,7 @@
         $(".main").on("click",".attention", function () {
             attSchool(this)
         })
-
         //先得到是否 关注
-
         myAjax({url:"/school/related/get/School/BaseInfo",data:{userid:userid,schoolid:schoolid},type:"post"}, function (data) {
             //console.log(data);
             if(data.status==200){
@@ -327,7 +330,7 @@
         myAjax({url:"/school/related/get/School/CourseList",data:{schoolid:schoolid},type:"post"}, function (data) {
             console.log(data);
                 if(data.status==200){
-                    $("#segmentedControl>a:first-of-type>span>s").text(data.data.courseNum);
+                    $("#segmentedControl>div:first-of-type>span>s").text(data.data.courseNum);
                     template.helper("time",function(date){
                         var time=new Date(date).toLocaleString().replace(/:\d{1,2}$/,' ').substr(0,10).replace(/\//g,"-");
                         return time;
@@ -341,7 +344,7 @@
         myAjax({url:"/school/related/get/School/TeacherList",data:{schoolid:schoolid},type:"post"}, function (data) {
             console.log(data);
             if(data.status==200){
-                $("#segmentedControl>a:last-of-type>span>s").text(data.data.teacherNum);
+                $("#segmentedControl>div:last-of-type>span>s").text(data.data.teacherNum);
                 template.helper("str", function (str) {
                     return str.split(" ")
                 });

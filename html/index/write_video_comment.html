@@ -38,26 +38,26 @@
     <header id="header" class="mui-bar mui-bar-nav">
         <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
         <h1 class="mui-title">写评论</h1>
-        <em>确认</em>
+        <em class="sure">确认</em>
     </header>
     <div class="main">
         <div class="mui-input-row">
-            <textarea id="textarea"  placeholder="请输入答案内容"></textarea>
+            <textarea id="textarea"  placeholder="请输入评论内容"></textarea>
         </div>
-        <div class="imageBox">
-            <!--<a href="javascript:;" class="image">
+       <!-- <div class="imageBox">
+            &lt;!&ndash;<a href="javascript:;" class="image">
                   <img src="../img/publish_common.png" alt="" class="userImg"/>
                   <span class="add_pic">点击添加图片</span>
-              </a>-->
-            <!--<a href="javascript:;">
+              </a>&ndash;&gt;
+            &lt;!&ndash;<a href="javascript:;">
               <img src="../img/publish_common.png" alt="" class="userImg"/>
               <span class="add_pic">点击添加图片</span>
           </a>
-              <input type="file" capture="camera" accept="image/*" id="cameraInput" name="cameraInput" multiple>-->
+              <input type="file" capture="camera" accept="image/*" id="cameraInput" name="cameraInput" multiple>&ndash;&gt;
             <div class="z_photo">
                 <div class="z_file">
-                    <!--   <img src="../img/publish_common.png" alt="" class="userImg"/>-->
-                    <!--<span class="add_pic">点击添加图片</span>-->
+                    &lt;!&ndash;   <img src="../img/publish_common.png" alt="" class="userImg"/>&ndash;&gt;
+                    &lt;!&ndash;<span class="add_pic">点击添加图片</span>&ndash;&gt;
                     <input type="file" capture="camera" name="file" id="file" value=""  accept="image/*" multiple onchange="imgChange('z_photo','z_file');" />
                 </div>
             </div>
@@ -72,7 +72,7 @@
                     </p>
                 </div>
             </div>
-        </div>
+        </div>-->
     </div>
 </div>
 </body>
@@ -84,24 +84,15 @@
 <script>
     //图片上传
     var obj={};
-    $(".confirm").click(function(){
-        var title= $(".style").val();
-        var startTime=$("#tests").val();
-        var endTime=$("#test").val();
+    obj.userid=localStorage.getItem("this_userid");
+    obj.courseid=location.href.split("=")[1];
+    $(".sure").click(function(){
         //转换成功 图片的base64地址 很重要
         // console.log(images);
         //获取用户输入的全部内容之后 包括图片的地址  发送给后台 在进行页面的跳转
         var content=$("textarea").val() ;
-        if(content!==""&&$(".location_info").text()!=="位置"&&title!==""&&endTime!==""&&startTime!==""){
-            startTime=new Date(startTime.replace(/-/g,"/"));
-            endTime=new Date(endTime.replace(/-/g,"/"));
-            obj.content=content;
-            obj.title=title;
-            obj.image= JSON.stringify(images);
-            obj.startTime=startTime;
-            obj.endTime=endTime;
-            obj.address= $(".location_info").text();
-            console.log(obj);
+        if(content!==""){
+            obj.body=content;
             $.ajax({
                 //处理session每次不唯一问题
                 xhrFields: {
@@ -109,7 +100,7 @@
                 },
                 //请求方式
                 type:'post',
-                url:baseUrl+'/partner/pushPartner',
+                url:baseUrl+'/course/related/add/Course/Comments',
                 dataType:'json',
                 data:obj,
                 beforeSend:function(){
@@ -117,8 +108,7 @@
                 },
                 success:function(data){
                     console.log(data);
-                    if(data.code=="success"){
-                        $("#loading").hide();
+                    if(data.status=="200"){
                         //alert("发表成功");
                         swal(
                                 '干得漂亮！',
@@ -126,10 +116,15 @@
                                 'success'
                         ).then(function(){
                                     //清除location 本地存储
-                                    localStorage.removeItem("location");
-                                    window.location.href="./work_sigle.html";
+                                 back()
                                 })
 
+                    }else{
+                        sweetAlert(
+                                'sorry',
+                                data.msg,
+                                'error'
+                        )
                     }
                 },
                 error:function(data){

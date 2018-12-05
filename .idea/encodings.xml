@@ -3,5 +3,6 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/css/index/index.css" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/css/index/index.less" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/css/index/question_lists.less" charset="UTF-8" />
   </component>
 </project>

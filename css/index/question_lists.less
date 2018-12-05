@@ -1,0 +1,72 @@
+.main{
+  position: absolute;
+  top: 1.5rem;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  overflow: auto;
+  background-color: #fff;
+}
+.request{
+  width: 100%;
+  padding:0 0.3rem;
+  h3{
+    height: 0.72rem;
+    width: 100%;
+    em{
+      font-size: 0.36rem;
+    }
+    i{
+      font-size: 0.24rem;
+      color:#666;
+      del{
+        font-size: 0.34rem;
+      }
+    }
+  }
+  .qu_list{
+    width: 100%;
+    border-bottom: 1px solid #eee;
+    .tit{
+      width: 100%;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      word-break: break-all;
+      font-size: 0.32rem;
+      height: 0.8rem;
+      line-height: 0.8rem;
+    }
+    .qu_bottom{
+      position: relative;
+      height: 0.8rem;
+      .bo_left{
+        font-size: 0.24rem;
+        display: inline-block;
+        color:#8c8c8c;
+        >em,>i,>del{
+          vertical-align: top;
+          margin-right: 0.1rem;
+        }
+
+      }
+      .bo_right{
+        color:#666;
+        font-size: 0.26rem;
+        padding: 0.05rem 0.1rem 0.05rem 0.05rem ;
+        border:1px solid #999;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        position: absolute;
+        right: 3%;
+        z-index: 2;
+        top: 5%;
+        >s{
+          vertical-align: middle;
+        }
+      }
+    }
+  }
+}

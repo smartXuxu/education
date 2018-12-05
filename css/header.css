@@ -84,7 +84,7 @@ header .mui-title,header .mui-pull-left{
 }
 .header>.h_left>i{
     height: 100%;
-    width: 0.6rem;
+    width: 0.7rem;
     display: inline-block;
     position: absolute;
     top: -30%;
@@ -128,7 +128,7 @@ header .mui-title,header .mui-pull-left{
     color:#c9c9c9;
 }
 .header>.h_left>s{
-    padding-left: 0.65rem;
+    padding-left: 0.75rem;
 }
 /*¡¢¸½½ü  header*/
 .near_header{

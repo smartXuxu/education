@@ -68,7 +68,7 @@
     </header>
     <div class="main">
         <ul id="OA_task_4" class="mui-table-view" >
-            <li class="mui-table-view-cell save_lesson " data-id="111" >
+           <!-- <li class="mui-table-view-cell save_lesson " data-id="111" >
                 <div class="mui-slider-right mui-disabled">
                     <a class="mui-btn mui-btn-red" >删除</a>
                 </div>
@@ -92,7 +92,7 @@
                     </div>
                 </div>
             </li>
-        </ul>
+        --></ul>
     </div>
 </div>
 </body>
@@ -102,8 +102,44 @@
 <script src="../../js/base.js"></script>
 <script src="../../js/back.js"></script>
 <script src="../../js/sweetalert2.js"></script>
+<script src="../../js/template-web.js"></script>
+<script src="../../js/template.js"></script>
+<script type="text/html" id="my_save">
+{{if data==null||data.length==0}}
+<p class="no_in">对不起，您暂时没有收藏任何课程</p>
+{{else}}
+{{each data as value i}}
+<li class="mui-table-view-cell save_lesson " data-id="{{value.course.id}}" onclick="location.href='../index/index_video.html?id={{value.course.id}}'" >
+    <div class="mui-slider-right mui-disabled">
+        <a class="mui-btn mui-btn-red"  >删除</a>
+    </div>
+    <div class="mui-slider-handle mui-table lesson">
+        <div class="mui-table-cell">
+            <a href="../index/index_video.html?id={{value.course.id}}">
+                <img src="{{value.course.coursePicture==null?'../../img/index_edu.png':value.course.coursePicture}}" alt="">
+                <div class="ex_right">
+                    <div class="ex_top clearfix">
+                        <span>主讲：{{value.speaker}}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <em class="f_right">已学<del>{{mul(value.StudyCourseTime,value.CourseTotalTime)}}%</del></em>
+                    </div>
+                    <div class="ex_center">
+                        {{value.course.schoolName}}
+                    </div>
+                    <div class="ex_footer">
+                       最近学习：{{time(value.LastStudyTime)}}
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</li>
+
+{{/each}}
+    {{/if}}
+</script>
 <script>
         mui.init();
+        var userid=localStorage.getItem("this_userid");
         (function($) {
             var btnArray = ['确认', '取消'];
             //第二个demo，向左拖拽后显示操作图标，释放后自动触发的业务逻辑
@@ -116,6 +152,21 @@
                         /*删除成功了 获取自定义的 id*/
                         var id = elem.getAttribute("data-id");
                         console.log(id);
+                        quitAtt(id);
+                        function quitAtt(id){
+                            myAjax({url:"/dynamic/update/collect/Course",
+                                data:{userid:userid,
+                                    courseid:id},type:"post"}, function (data) {
+                                console.log(data);
+                                if(data.status==200){
+                                    sweetAlert(
+                                            "恭喜",
+                                            "取消收藏成功",
+                                            "success"
+                                    )
+                                }
+                            })
+                        }
                     } else {
                         setTimeout(function() {
                             $.swipeoutClose(elem);
@@ -125,6 +176,46 @@
             });
 
         })(mui);
+    $(function () {
+
+        myAjax({url:"/core/find/Collect/Courses",data:{userid :userid },type:"post"}, function (data) {
+            console.log(data);
+            if(data.status==200){
+                template.helper("str",function(str){
+
+                    return str.split(",");
+                })
+                template.helper("time",function(time){
+                    var timestamp=new Date().getTime();//当前时间戳
+                    var kk=timestamp-time;//发表时的时间戳
+                    var timea="";
+                    var sec=parseInt(kk/1000);//秒
+                    var min=parseInt(sec/60);//分
+                    var hour=parseInt(min/60);//时
+                    var day=parseInt(hour/24);//天
+                    if(sec<60){
+                        timea=sec+"秒前";
+                    }else if(min<60){
+                        timea=min+"分钟前";
+                    }else if(hour<24){
+                        timea=hour+"小时前";
+                    }else if(day<7){
+                        timea=day+"天前";
+                    }else{
+                        timea=new Date(time).toLocaleString().replace(/:\d{1,2}$/,' ').replace("/","-");
+                    }
+                    return timea;
+                });
+
+                template.helper("mul",function (a,b) {
+                    return parseFloat(a/b).toFixed(2);
+                });
+                $(".main>#OA_task_4").html(template("my_save",data));
+            }
+        })
+
+
+    })
 </script>
 
 

@@ -38,26 +38,26 @@
     <header id="header" class="mui-bar mui-bar-nav">
         <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
         <h1 class="mui-title">我要回答</h1>
-        <em>确认</em>
+        <em class="sure">确认</em>
     </header>
     <div class="main">
        <div class="mui-input-row">
         <textarea id="textarea"  placeholder="请输入答案内容"></textarea>
         </div>
-        <div class="imageBox">
-            <!--<a href="javascript:;" class="image">
+       <!-- <div class="imageBox">
+            &lt;!&ndash;<a href="javascript:;" class="image">
                   <img src="../img/publish_common.png" alt="" class="userImg"/>
                   <span class="add_pic">点击添加图片</span>
-              </a>-->
-            <!--<a href="javascript:;">
+              </a>&ndash;&gt;
+            &lt;!&ndash;<a href="javascript:;">
               <img src="../img/publish_common.png" alt="" class="userImg"/>
               <span class="add_pic">点击添加图片</span>
           </a>
-              <input type="file" capture="camera" accept="image/*" id="cameraInput" name="cameraInput" multiple>-->
+              <input type="file" capture="camera" accept="image/*" id="cameraInput" name="cameraInput" multiple>&ndash;&gt;
             <div class="z_photo">
                 <div class="z_file">
-                    <!--   <img src="../img/publish_common.png" alt="" class="userImg"/>-->
-                    <!--<span class="add_pic">点击添加图片</span>-->
+                    &lt;!&ndash;   <img src="../img/publish_common.png" alt="" class="userImg"/>&ndash;&gt;
+                    &lt;!&ndash;<span class="add_pic">点击添加图片</span>&ndash;&gt;
                     <input type="file" capture="camera" name="file" id="file" value=""  accept="image/*" multiple onchange="imgChange('z_photo','z_file');" />
                 </div>
             </div>
@@ -72,7 +72,7 @@
                     </p>
                 </div>
             </div>
-        </div>
+        </div>-->
     </div>
 </div>
 </body>
@@ -82,6 +82,47 @@
 <script src="../../js/base.js"></script>
 <script src="../../js/sweetalert2.js"></script>
 <script>
+    $(function () {
+        var questId=location.href.split("=")[1];
+        var obj={};
+        obj.userid=localStorage.getItem("this_userid");
+        obj.questionid=questId;
+        $(".sure").click(function () {
+           var body=$("textarea").val().trim();
+            if(body.length==0){
+                sweetAlert(
+                        "对不起",
+                        "问题的答案是不能为空的",
+                        "error"
+                )
+                return false;
+            }else{
+              obj.body=body;
+            }
+            myAjax({url:"/Question/and/Answer/add/Answer",data:obj,type:"post"
+            }, function (data) {
+                console.log(data);
+                if(data.status==200){
+                    sweetAlert(
+                            "恭喜",
+                            "发表成功了",
+                            "success"
+                    ).then(
+                            back()
+                    )
+                }else{
+                    sweetAlert(
+                            "对不起",
+                            data.msg,
+                            "error"
+                    )
+                    return false;
+                }
+            })
+        })
+    })
+</script>
+<!--<script>
     //图片上传
     var obj={};
     $(".confirm").click(function(){
@@ -242,5 +283,5 @@
     function removeDom(id){
         document.getElementById(id).outerHTML='';
     }
-</script>
+</script>-->
 </html>
