@@ -69,6 +69,21 @@
         .All_list>.list_content>.tit{
             display: block;
         }
+        .comment_box>.comments_father>.reply {
+            font-size: 0.26rem;
+            color:#999;
+
+        }
+        .comment_box>.comments_father>.reply>i,.comment_box>.comments_father>.reply>s{
+            color:#00204c;
+        }
+        .comment_box>.comments_father{
+            border-bottom: 1px solid #eee;
+            padding: 0.2rem 0;
+        }
+        .comment_box>.comments_father>.son{
+            padding-left: 0.5rem;
+        }
     </style>
 </head>
 <body style="background-color:#fff;overflow-x: hidden">
@@ -171,12 +186,11 @@
                 {{data.dynamic.body}}
             </div>
             <div class="imgs">
-                <!--注意类名 可能会与关注页面 重复-->
                 {{if data.dynamic.picture==null||data.dynamic.picture==""}}
                 {{else}}
                 {{each str(data.dynamic.picture) as img k}}
                 <div class="img_box">
-                    <img src="{{img}}" alt="" data-preview-src="" data-preview-group="{{k}}"/>
+                    <img src="{{img}}" alt="" data-preview-src="" data-preview-group="1"/>
                 </div>
                 {{/each}}
                 {{/if}}
@@ -199,27 +213,26 @@
             <div class="comment_box">
                 <!--判断有没有回复人 渲染出来两句回复就可以了-->
                 {{each data.listComment as comment i}}
-                {{each comment as value j}}
-                <!--回复的动态-->
-                {{if value.publisher}}
-                <p  class='reply' data-id="{{value.userId}}" data-name="{{value.publisher}}" data-parentid="{{value.Id}}">
-                    <i >{{value.publisher}}</i>&nbsp;:&nbsp;&nbsp;
-                    {{value.body}}
-                </p>
-                {{/if}}
-                {{if value.replyTo==null}}
-                <p class='reply' data-id="{{value.userId}}" data-name="{{value.reply}}" data-parentid="0">
-                    <i >{{value.reply}}</i> :&nbsp;&nbsp; {{value.body}}
-                </p>
-                {{else}}
-                <p class='reply' data-id="{{value.userId}}" data-name="{{value.reply}}" data-parentid="0">
-                    <i>{{value.reply}}</i>&nbsp;&nbsp;回复
-                    <s >{{value.replyTo}}</s>&nbsp;&nbsp;:&nbsp;&nbsp;{{value.body}}
-                </p>
-                {{/if}}
-                <!--回复的是个人 回复的动态-->
-                <!--回复的个人-->
-                {{/each}}
+                <div class="comments_father" data-parentid="{{comment[0].Id}}" >
+                    {{each comment as value j}}
+                    <!--回复的动态-->
+                    {{if value.publisher}}
+                    <p  class='reply father' data-id="{{value.userId}}" data-name="{{value.publisher}}" data-parentid="{{value.Id}}">
+                        <i >{{value.publisher}}</i>&nbsp;:&nbsp;&nbsp;
+                        {{value.body}}
+                    </p>
+                    {{/if}}
+                    {{if value.reply}}
+                    <p class='reply son' data-id="{{value.userId}}" data-name="{{value.reply}}">
+                        <i>{{value.reply}}</i>&nbsp;&nbsp;回复
+                        <s >{{value.replyTo}}</s>&nbsp;&nbsp;:&nbsp;&nbsp;{{value.body}}
+                    </p>
+                    {{/if}}
+
+                    <!--回复的是个人 回复的动态-->
+                    <!--回复的个人-->
+                    {{/each}}
+                </div>
                 {{/each}}
             </div>
             {{/if}}
@@ -237,7 +250,7 @@
         render();
         function render(){
             myAjax({url:"/dynamic/find/Dynamic/details",data:{dynamicid:href,userid:userid},type:"post",async:false}, function (data) {
-               // console.log(data);
+             console.log(data);
                 if(data.status==200){
                     template.helper("str",function(str){
                         return str.split(",");
@@ -306,7 +319,8 @@
             // console.log(name);
             id=$(this).data("id");
             // console.log(id);
-            parentId=$(this).data("parentid");
+            parentId=$(this).closest(".comments_father").data("parentid");
+           // parentId=$(this).data("parentid");
             //console.log(parentId);
             $("input").attr("placeholder",": "+name);
         });
@@ -328,6 +342,7 @@
                 obj.parentId=0;
                 obj.userId=userid;
                 obj.body=$("input").val().trim();
+                console.log(obj);
             }else{
                 obj.dynamicId=href;
                 obj.dynamicOwnerid=dyUid;
@@ -335,16 +350,19 @@
                 obj.parentId= parentId;
                 obj.userId=userid;
                 obj.body=$("input").val().trim();
-                console.log(id);
+                console.log(obj);
             }
             myAjax({url:"/dynamic/add/Comment",type:"post",data:obj}, function (data) {
                 console.log(data);
+
                 if(data.status==200){
                     //render();不重绘页面 追加
+                    falg=true;
+                    obj={};
                     render();
                     $("input").val("");
                     $("input").attr("placeholder","");
-                    falg=true;
+
                 }
             })
         })

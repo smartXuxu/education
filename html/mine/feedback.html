@@ -14,8 +14,17 @@
     <link rel="stylesheet" href="../../css/publish/publish_activity.css">
     <link rel="stylesheet" href="../../css/index/report.css">
     <link rel="stylesheet" href="../../css/mine/feedback.css"/>
+    <style>
+        #loading{
+            display: none;
+        }
+    </style>
 </head>
 <body style="background-color:#fff;">
+<div id="loading">
+    <img src="../../img/login.gif" alt=""/>
+    <div>请等待，正在发送...</div>
+</div>
 <div class="layer">
     <header id="header" class="mui-bar mui-bar-nav">
         <i class="mui-icon mui-icon-left-nav mui-pull-left" onclick="back()"></i>
@@ -40,22 +49,23 @@
             <div id="item1" class="mui-control-content mui-active">
                <div class="feedback">
                    <div class="mui-card">
+                       <!--多选的话就是把 mui-radio 换成 mui-checkbox type:checkbox-->
                        <form class="mui-input-group">
-                           <div class="mui-input-row mui-checkbox mui-left">
+                           <div class="mui-input-row mui-radio mui-left ">
                                <label>内容意见</label>
-                               <input name="checkbox" value="Item 1" type="checkbox" checked="">
+                               <input name="radio" value="1" type="radio" class="rds" checked="">
                            </div>
-                           <div class="mui-input-row mui-checkbox mui-left">
+                           <div class="mui-input-row mui-radio mui-left ">
                                <label>产品意见</label>
-                               <input name="checkbox" value="Item 2" type="checkbox">
+                               <input name="radio" value="2" class="rds" type="radio">
                            </div>
-                           <div class="mui-input-row mui-checkbox mui-left">
+                           <div class="mui-input-row mui-radio mui-left">
                                <label>BUG问题</label>
-                               <input name="checkbox" value="Item 2" type="checkbox">
+                               <input name="radio" value="3" class="rds"type="radio">
                            </div>
-                           <div class="mui-input-row mui-checkbox mui-left">
+                           <div class="mui-input-row mui-radio mui-left">
                                <label>其他</label>
-                               <input name="checkbox" value="Item 2" type="checkbox">
+                               <input name="radio" value="4" class="rds" type="radio">
                            </div>
                        </form>
                    </div>
@@ -78,7 +88,7 @@
                        </div>
                    </div>
                    <p><em>注意：</em>每张图片不要超过<em>2</em>M</p>
-                   <input type="text" placeholder="留下您的联系方式(邮箱、手机等)吧,咱们后期联系">
+                   <input type="text" class="phone" placeholder="留下您的联系方式(邮箱、手机等)吧,咱们后期联系">
                    <div class="submit">提交</div>
                </div>
             </div>
@@ -99,6 +109,8 @@
             </div>
     </div>
 </div>
+
+</div>
 </body>
 <script src="../../js/mui.min.js"></script>
 <script src="../../js/x_rem.js"></script>
@@ -107,6 +119,55 @@
 <script src="../../js/back.js"></script>
 <script src="../../js/sweetalert2.js"></script>
 <script>
+        var obj={};
+       obj.userid=localStorage.getItem("this_userid");
+        $(".submit").click(function () {
+
+            getVals();
+            obj.content=$("textarea").val().trim();
+            obj.contact=$(".phone").val().trim();
+            $("#loading").show();
+            //上传 图片 转换地址
+            images=images.join("。").replace(/"/g,"");
+            myAjax({url:"/pic/multiple/base64/upload",type:"post",data:{"base64s":images},async:false}, function (data) {
+                console.log(data);
+                if (data.status == 200) {
+                    $("#loading").hide();
+                    obj.picture  = data.data;
+                   myAjax({url:"/sundry/add/Feedback",data:obj,type:"post"}, function (data) {
+                       console.log(data);
+                       if(data.status==200){
+                           $(".submit").text("已提交");
+                       }
+                   })
+                }
+            })
+        function getVals(){
+            var res = getCheckBoxRes('rds');
+            if(res.length < 1){
+                mui.toast('请选择');
+                return;
+            }
+            //数组转换为 字符串
+            obj.classify=res.join("");
+            //console.log(res);
+            /* mui.toast(res);*/
+        }
+        function getCheckBoxRes(className){
+            var rdsObj   = document.getElementsByClassName(className);
+            var checkVal = new Array();
+            var k        = 0;
+            for(i = 0; i < rdsObj.length; i++){
+                if(rdsObj[i].checked){
+                    checkVal[k] = rdsObj[i].value;
+                    k++;
+                }
+            }
+            return checkVal;
+        }
+
+    })
+
     /*上传图片
      * */
     function imgChange(obj1, obj2) {

@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
-
     <title>我的消息</title>
     <link rel="stylesheet" href="../../css/mui.min.css"/>
     <link rel="stylesheet" href="../../css/base.css"/>
@@ -70,8 +69,12 @@
                 left: 16%;
                 top:10%;
             }
+        .delete{
+            font-size: 0.24rem;
+            color:#f01414;
+            margin-top: 0.2rem;
+        }
     </style>
-
 </head>
 <body style="background-color:#fff;">
 <div class="layer">
@@ -81,33 +84,7 @@
     </header>
     <div class="main">
         <ul class=" message_lists">
-
-                 <li class="no_notice"> 暂时没有消息</li>
-                 <li  data-id="1" onclick="location.href='./message_notice_detail.html'">
-                     <!--onclick="location.href='./message_notice_detail.html'"-->
-                     <img src="../../img/logo.png" alt=""/>
-                     <del></del>
-                     <div class="center">
-                         <em>系统消息</em>
-                         <p>恭喜您，已经完成实名认证啦已经完成实名认证啦已经完成实名认证啦</p>
-                     </div>
-                     <div class="right">
-                         07-21
-                     </div>
-                 </li>
-                 <li  data-id="2" onclick="location.href='./message_notice_detail.html'">
-                    <!-- onclick="location.href='./message_notice_detail.html'"-->
-                     <img src="../../img/logo.png" alt=""/>
-                     <del></del>
-                     <div class="center">
-                         <em>系统消息</em>
-                         <p>恭喜您，已经完成实名认证啦已经完成实名认证啦已经完成实名认证啦</p>
-                     </div>
-                     <div class="right">
-                         07-21
-                     </div>
-                 </li>
-
+            <!--填充-->
         </ul>
     </div>
 </div>
@@ -118,4 +95,86 @@
 <script src="../../js/base.js"></script>
 <script src="../../js/back.js"></script>
 <script src="../../js/sweetalert2.js"></script>
+<script src="../../js/template-web.js"></script>
+<script src="../../js/template.js"></script>
+<script type="text/html" id="message">
+{{if data==null||data.length==0}}
+<li class="no_notice"> 暂时没有消息</li>
+{{else}}
+{{each data as value i}}
+<li>
+    <img src="../../img/logo.png" alt=""/>
+    {{if value.status==0}}
+    <del></del>
+    {{else}}
+    {{/if}}
+    <div class="center" onclick="location.href='./message_notice_detail.html?id={{value.id}}'">
+        {{if value.classify==0}}
+        <em>系统消息</em>
+        {{else if value.classify==1}}
+        <em>课程消息</em>
+        {{else if value.classify==2}}
+        <em>问答消息</em>
+        {{else if value.classify==3}}
+        <em>动态消息</em>
+        {{/if}}
+        <p>{{value.title}}</p>
+    </div>
+    <div class="right">
+        {{time(value.createTime)}}
+        <p class="delete" data-id="{{value.id}}">删除</p>
+    </div>
+</li>
+{{/each}}
+    {{/if}}
+</script>
+<script>
+    $(function () {
+        var userid=localStorage.getItem("this_userid");
+        render();
+        function render(){
+            myAjax({url:"/core/my/messages",
+                data:{userid:userid},
+                type:"post"}, function (data) {
+                console.log(data);
+                if(data.status==200){
+                    template.helper("str",function(str){
+                        return str.split(",");
+                    });
+                    template.helper("time",function(time){
+                        var timestamp=new Date().getTime();//当前时间戳
+                        var kk=timestamp-time;//发表时的时间戳
+                        var timea="";
+                        var sec=parseInt(kk/1000);//秒
+                        var min=parseInt(sec/60);//分
+                        var hour=parseInt(min/60);//时
+                        var day=parseInt(hour/24);//天
+                        if(sec<60){
+                            timea=sec+"秒前";
+                        }else if(min<60){
+                            timea=min+"分钟前";
+                        }else if(hour<24){
+                            timea=hour+"小时前";
+                        }else if(day<7){
+                            timea=day+"天前";
+                        }else{
+                            timea=new Date(time).toLocaleString().replace(/:\d{1,2}$/,' ').replace("/","-");
+                        }
+                        return timea;
+                    });
+                    $(".main>.message_lists").html(template("message",data));
+                }
+            })
+        }
+        $(".main").on("click",".delete", function (data) {
+            var id=$(this).data("id");
+            myAjax({url:"/core/delete/message",data:{messageid:id},type:'post'}, function (data) {
+                console.log(data);
+                if(data.status==200){
+                    render();
+                }
+            })
+        })
+    })
+</script>
 </html>

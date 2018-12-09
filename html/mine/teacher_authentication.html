@@ -262,6 +262,16 @@
                                      localStorage.removeItem("schoolId");
                                      localStorage.removeItem("teach_grade");
                                      localStorage.removeItem("teach_subject");
+                                 }else{
+                                     sweetAlert(
+                                             "sorry",
+                                             data.msg,
+                                             "error"
+                                     )
+                                     localStorage.removeItem("schoolName");
+                                     localStorage.removeItem("schoolId");
+                                     localStorage.removeItem("teach_grade");
+                                     localStorage.removeItem("teach_subject");
                                  }
                              })
                         }

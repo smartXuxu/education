@@ -26,7 +26,7 @@
         <h1 class="mui-title">主页</h1>
        <!-- <em class="mui-icon mui-icon-more"></em>-->
     </header>
-    <div class="main">
+    <div class="main" style="display: none;">
         <div class="message_info clearfix">
           <!--  <img src="../../img/focus-img1.png" alt=""/>
             <div class="info_center">
@@ -239,6 +239,7 @@
         //ajax 发送完毕
         $(document).ajaxStop(function(){
             $("#loading").hide();
+            $(".main").show();
         });
         /*判断是否关注  关注与取消关注*/
       /*  mui('body').on('tap','a',function(){document.location.href=this.href;});

@@ -241,7 +241,7 @@
         {{if value.user.portrait==null}}
         <img src="../../img/logo.png" alt=""/>
         {{else}}
-        <img src="../../img/focus-img1.png" alt=""/>
+        <img src="{{value.user.portrait}}" alt=""/>
         {{/if}}
         <div class="list_top_center clearfix">
             <em>{{value.user.nickname==null?value.user.realName==null?"猴姆教学":value.user.realName:value.user.nickname}}
@@ -257,7 +257,7 @@
         {{if value.user.portrait==null}}
         <img src="../../img/logo.png" alt=""/>
         {{else}}
-        <img src="../../img/focus-img1.png" alt=""/>
+        <img src="{{value.user.portrait}}" alt=""/>
         {{/if}}
         <div class="list_top_center clearfix">
             <em>{{value.user.nickname==null?value.user.realName==null?"猴姆教学":value.user.realName:value.user.nickname}}
@@ -301,18 +301,15 @@
             <!--判断有没有回复人 渲染出来两句回复就可以了-->
             {{each value.someComments as value i}}
             <!--回复的动态-->
+
+
             {{if value.publisher}}
             <p>
                 <i>{{value.publisher}}</i>&nbsp;:&nbsp;&nbsp;
                 {{value.body}}
             </p>
-            {{/if}}
-            {{if value.replyTo==null}}
-            <p>
-                <i>{{value.reply}}</i> :&nbsp;&nbsp; {{value.body}}
-            </p>
             {{else}}
-            <p>
+            <p  class="son">
                 <i>{{value.reply}}</i>&nbsp;&nbsp;回复
                 <s>{{value.replyTo}}</s>&nbsp;&nbsp;:&nbsp;&nbsp;{{value.body}}
             </p>
@@ -340,7 +337,7 @@
                 {{if value.user.portrait==null}}
                 <img src="../../img/logo.png" alt=""/>
                 {{else}}
-                <img src="../../img/focus-img1.png" alt=""/>
+                <img src="{{value.user.portrait}}" alt=""/>
                 {{/if}}
                 <div class="list_top_center clearfix">
                     <em>{{value.user.nickname==null?value.user.realName==null?"猴姆教学":value.user.realName:value.user.nickname}} <!--<i class="f_right" onclick="attention('{{value.user.userid}}',this)" >已关注</i>--></em>
@@ -386,13 +383,8 @@
                         <i>{{value.publisher}}</i>&nbsp;:&nbsp;&nbsp;
                         {{value.body}}
                     </p>
-                    {{/if}}
-                    {{if value.replyTo==null}}
-                    <p>
-                        <i>{{value.reply}}</i> :&nbsp;&nbsp; {{value.body}}
-                    </p>
                     {{else}}
-                    <p>
+                    <p class="son">
                         <i>{{value.reply}}</i>&nbsp;&nbsp;回复
                         <s>{{value.replyTo}}</s>&nbsp;&nbsp;:&nbsp;&nbsp;{{value.body}}
                     </p>
@@ -412,6 +404,24 @@
     {{/if}}
 </script>
 <script>
+    (function($, doc) {
+        $.init();
+        $.plusReady(function() {
+            var backButtonPress = 0;
+            $.back = function(event) {
+                backButtonPress++;
+                if (backButtonPress > 1) {
+                    plus.runtime.quit();
+                } else {
+                    plus.nativeUI.toast('再按一次退出应用');
+                }
+                setTimeout(function() {
+                    backButtonPress = 0;
+                }, 1000);
+                return false;
+            };
+        });
+    }(mui, document));
     /*关注*/
     var userId=localStorage.getItem("this_userid");
     console.log(userId);

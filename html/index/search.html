@@ -115,7 +115,6 @@
 <!--热门搜索的填充-->
 <script id="hotSearch" type="text/html">
 {{if data.length==0}}
-
 <span>高三数学</span>
 {{else}}
     {{each data as value i}}
@@ -124,13 +123,13 @@
 {{/if}}
 </script>
 <script type="text/html" id="result">
-{{if data.length==0||data==null}}
+{{if data==null||data.length==0}}
 <div class="no_in">对不起，暂时没有搜索结果</div>
 {{else}}
 <!--教师-->
-{{if data.searchTeacher.length!==0}}
-<p> 返回的教师有：</p>
+{{if data.searchTeacher!==null||data.searchTeacher.length!==0}}
 {{each data.searchTeacher as teacher i}}
+<p> 返回的教师有：</p>
 <div class="list_teacher" onclick="location.href='../index/teacher_index.html'">
     <img src="../../img/focus-img1.png" alt="">
     <div class="list_center">
@@ -150,9 +149,9 @@
 {{/each}}
 {{/if}}
 <!--学校-->
-{{if data.searchSchool.length!==0}}
-<p>返回的学校有：</p>
+{{if data.searchSchool!==null||data.searchSchool.length!==0}}
 {{each data.searchSchool as school i}}
+<p>返回的学校有：</p>
 <div class="list_school" onclick="location.href='./edu_index.html?schoolID={{school.school.schoolId}}'">
     <div class="img_box">
         <img src="../../img/index_school.png" alt="">
@@ -176,9 +175,10 @@
 {{/each}}
 {{/if}}
 <!--课程-->
-{{if data.searchCourse.length!==0}}
-<p>返回的课程有：</p>
+{{if data.searchCourse!==null||data.searchCourse.length!==0}}
+
 {{each data.searchCourse as course i}}
+<p>返回的课程有：</p>
 <div class="list_course">
     <a href="./index_video.html">
         <img src="../../img/index_edu.png" alt="">
@@ -239,7 +239,7 @@
                 alert("请输入搜索内容");
                 return false;
             }else{
-                //发送请求
+                //发送请求添加搜索历史
                 myAjax({url:"/search/add/history",data:{searchContent:key},type:"post"}, function (data) {
                     console.log(data);
                     //搜索历史
@@ -248,6 +248,15 @@
                     console.log(data);
                     //搜索全部  教师课程 学校
                     if(data.status==200){
+                        /*优化 判断 返回的是一个空数组*/
+                        if(JSON.stringify(data.data) == "{}"){
+                            sweetAlert(
+                                    "sorry",
+                                    "对不起，暂时符合您搜索条件的数据",
+                                    "error"
+                            )
+                            return false;
+                        }
                         template.helper("time",function(date){
                             var time=new Date(date).toLocaleString().replace(/:\d{1,2}$/,' ').substr(5,11).replace("/","-");
                             return time;

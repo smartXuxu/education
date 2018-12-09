@@ -16,6 +16,12 @@
     <style>
         .main{
             background-color: #fff;
+            position: absolute;
+            top: 1.6rem;
+            left: 0;
+            padding-top: 0;
+            width: 100%;
+            overflow: scroll;
         }
         .main .excent_lesson{
             border:none;
@@ -44,7 +50,7 @@
    <div class="main">
        <div class="recently_learn excent_lesson">
           <ul>
-               <li>
+             <!--  <li>
                    <a href="../index/index_video.html">
                        <img src="../../img/index_edu.png" alt="">
                        <div class="ex_right">
@@ -124,7 +130,7 @@
                            </div>
                        </div>
                    </a>
-               </li>
+               </li>-->
            </ul>
        </div>
    </div>
@@ -136,4 +142,95 @@
 <script src="../../js/base.js"></script>
 <script src="../../js/back.js"></script>
 <script src="../../js/sweetalert2.js"></script>
+<script src="../../js/template-web.js"></script>
+<script src="../../js/template.js"></script>
+<script type="text/html" id="near">
+    {{if data==null||data.length==0}}
+    <div class="no_in">对不起，您没有最近学习的记录</div>
+    {{else}}
+    {{each data as value i}}
+    <li>
+        <a href="../index/index_video.html?id={{value.course.id}}">
+            <img src="{{value.course.coursePicture==null?'../../img/index_edu.png':value.course.coursePicture}}" alt="">
+            <div class="ex_right">
+                <div class="ex_top clearfix">
+                    <span>主讲：{{value.speaker}}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <em class="f_right"><del>{{mul(value.StudyCourseTime,value.CourseTotalTime)}}%</del></em>
+                </div>
+                <div class="ex_center">
+                    {{time(value.updateTime)}}  更新第{{value.updateNum}}课时
+                </div>
+                <div class="ex_footer">
+                    <ul class="clearfix">
+                        <li>
+                            <em class="iconfont icon-wode1">{{value.StudyCourseNum}}</em>
+                        </li>
+                        <li>
+                            <em class="iconfont icon-wujiaoxingkong">{{value.CourseCollectNum}}</em>
+                        </li>
+                        <li>
+                            <em class="mui-icon-extra mui-icon-extra-heart">{{value.CourseLoveNum}}</em>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </a>
+    </li>
+    {{/each}}
+    {{/if}}
+</script>
+<script>
+    $(function () {
+        var userid=localStorage.getItem("this_userid");
+        var token=localStorage.getItem("token");
+        //最近的学习
+        myAjax({url:"/core/find/LatelyStudy/Courses",
+            data:{userid:userid,
+                page:1,
+                size:5,
+                token:token},type:"post"}, function (data) {
+            console.log(data);
+            if(data.status==200){
+                template.helper("str",function(str){
+                    return str.split(",");
+                });
+                template.helper("mul", function (a,b) {
+                    return parseFloat(a/b).toFixed(2);
+                });
+                template.helper("time",function(time){
+                    var timestamp=new Date().getTime();//当前时间戳
+                    var kk=timestamp-time;//发表时的时间戳
+                    var timea="";
+                    var sec=parseInt(kk/1000);//秒
+                    var min=parseInt(sec/60);//分
+                    var hour=parseInt(min/60);//时
+                    var day=parseInt(hour/24);//天
+                    if(sec<60){
+                        timea=sec+"秒前";
+                    }else if(min<60){
+                        timea=min+"分钟前";
+                    }else if(hour<24){
+                        timea=hour+"小时前";
+                    }else if(day<7){
+                        timea=day+"天前";
+                    }else{
+                        timea=new Date(time).toLocaleString().replace(/:\d{1,2}$/,' ').substr(5,12).replace(/\//g,"-");
+                    }
+                    return timea;
+
+                });
+                $(".recently_learn>ul").html(template("near",data));
+            }
+        })
+        loadmoreIndex($(".main"),"/core/find/LatelyStudy/Courses",
+                {userid:userid,
+                    size:5,
+                    token:token}, function (data) {
+                    if(data.status==200){
+                        $(".recently_learn>ul").append(template("near",data));
+                    }
+                })
+
+    })
+</script>
 </html>

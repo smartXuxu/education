@@ -16,51 +16,86 @@
     <link rel="stylesheet" href="../../css/mine/mine_study.css"/>
 </head>
 <body style="background-color:#fff;">
+<div id="loading">
+    <img src="../../img/login.gif" alt=""/>
+    <div>请等待，正在加载...</div>
+</div>
 <div class="layer">
     <header id="header" class="mui-bar mui-bar-nav">
         <i class="mui-icon mui-icon-left-nav mui-pull-left" onclick="back()"></i>
         <h1 class="mui-title">学习中心</h1>
     </header>
     <div class="main">
-        <div class="near_study">
-               <ul class="clearfix">
-                   <li>
-                       <p>今天听课</p>
-                       <em><i>30</i>分钟</em>
-                     <!--  <span></span>-->
-                   </li>
-                   <li>
-                       <p>获得积分</p>
-                       <em><i>0</i>分</em>
-                      <!-- <span></span>-->
-                   </li>
-                   <li>
-                       <p>本月听课</p>
-                       <em><i>16</i>天</em>
-                     <!--  <span></span>-->
-                   </li>
-                   <li>
-                       <p>累计听课</p>
-                       <em><i>65</i>小时</em>
-                   </li>
-               </ul>
-               <p>今日学习满40分钟才可获得积分哦 <em class="iconfont icon-9 rule"></em></p>
-           </div>
-        <div class="learn">
-            <h3 class="f_left">累计听课时长 <i>3900 </i> 分钟</h3>
-            <span class="f_right" onclick="location.href='study_card.html'">生成学习记录卡</span>
+        <div class="study">
+           <!-- <div class="near_study">
+                  <ul class="clearfix">
+                      <li>
+                          <p>今天听课</p>
+                          <em><i>30</i>分钟</em>
+                        &lt;!&ndash;  <span></span>&ndash;&gt;
+                      </li>
+                      <li>
+                          <p>获得积分</p>
+                          <em><i>0</i>分</em>
+                         &lt;!&ndash; <span></span>&ndash;&gt;
+                      </li>
+                      <li>
+                          <p>本月听课</p>
+                          <em><i>16</i>天</em>
+                        &lt;!&ndash;  <span></span>&ndash;&gt;
+                      </li>
+                      <li>
+                          <p>累计听课</p>
+                          <em><i>65</i>小时</em>
+                      </li>
+                  </ul>
+                  <p>今日学习满40分钟才可获得积分哦 <em class="iconfont icon-9 rule"></em></p>
+            </div>
+            <div class="learn">
+                <h3 class="f_left">累计听课时长 <i>3900 </i> 分钟</h3>
+                <span class="f_right" onclick="location.href='study_card.html'">生成学习记录卡</span>
+            </div>
+            <div class="progress clearfix">
+                <div class="loader-container"></div>
+                <em class="f_left">10小时</em>
+                <i class="f_right">60小时</i>
+            </div>-->
         </div>
-        <div class="progress clearfix">
-            <div class="loader-container"></div>
-            <em class="f_left">10小时</em>
-            <i class="f_right">60小时</i>
-        </div>
+
         <!--!&#45;&#45; 为ECharts准备一个具备大小（宽高）的DOM容器&ndash;&gt;-->
-        <div id='charts' style='width:100%;height:240px;'></div>
+            <div id='charts' style='width:100%;height:240px;'></div>
         <!--最近学习-->
         <div class="recently_learn excent_lesson">
             <h2>最近学习 <em class="mui-icon mui-icon-more-filled f_right" onclick="location.href='recently_learn.html'" ></em></h2>
             <ul>
+
+            <!--    <li>
+                <a href="../index/index_video.html">
+                    <img src="../../img/index_edu.png" alt="">
+                    <div class="ex_right">
+                        <div class="ex_top clearfix">
+                            <span>主讲：傅娟</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <em class="f_right"><del>正在学习</del></em>
+                        </div>
+                        <div class="ex_center">
+                            2018-07-15  更新第10课时更新第10课时
+                        </div>
+                        <div class="ex_footer">
+                            <ul class="clearfix">
+                                <li>
+                                    <em class="iconfont icon-wode1">123</em>
+                                </li>
+                                <li>
+                                    <em class="iconfont icon-wujiaoxingkong">123</em>
+                                </li>
+                                <li>
+                                    <em class="mui-icon-extra mui-icon-extra-heart">123</em>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </a>
+            </li>
                 <li>
                     <a href="../index/index_video.html">
                         <img src="../../img/index_edu.png" alt="">
@@ -87,61 +122,7 @@
                             </div>
                         </div>
                     </a>
-                </li>
-                <li>
-                    <a href="../index/index_video.html">
-                        <img src="../../img/index_edu.png" alt="">
-                        <div class="ex_right">
-                            <div class="ex_top clearfix">
-                                <span>主讲：傅娟</span>&nbsp;&nbsp;&nbsp;&nbsp;
-                                <em class="f_right"><del>正在学习</del></em>
-                            </div>
-                            <div class="ex_center">
-                                2018-07-15  更新第10课时更新第10课时
-                            </div>
-                            <div class="ex_footer">
-                                <ul class="clearfix">
-                                    <li>
-                                        <em class="iconfont icon-wode1">123</em>
-                                    </li>
-                                    <li>
-                                        <em class="iconfont icon-wujiaoxingkong">123</em>
-                                    </li>
-                                    <li>
-                                        <em class="mui-icon-extra mui-icon-extra-heart">123</em>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="../index/index_video.html">
-                        <img src="../../img/index_edu.png" alt="">
-                        <div class="ex_right">
-                            <div class="ex_top clearfix">
-                                <span>主讲：傅娟</span>&nbsp;&nbsp;&nbsp;&nbsp;
-                                <em class="f_right"><del>正在学习</del></em>
-                            </div>
-                            <div class="ex_center">
-                                2018-07-15  更新第10课时更新第10课时
-                            </div>
-                            <div class="ex_footer">
-                                <ul class="clearfix">
-                                    <li>
-                                        <em class="iconfont icon-wode1">123</em>
-                                    </li>
-                                    <li>
-                                        <em class="iconfont icon-wujiaoxingkong">123</em>
-                                    </li>
-                                    <li>
-                                        <em class="mui-icon-extra mui-icon-extra-heart">123</em>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </a>
-                </li>
+                </li>-->
             </ul>
         </div>
     </div>
@@ -154,71 +135,211 @@
 <script src="../../js/back.js"></script>
 <script src="../../js/sweetalert2.js"></script>
 <script src="../../js/echarts.simple.min.js"></script>
+<script src="../../js/template-web.js"></script>
+<script src="../../js/template.js"></script>
+<script type="text/html" id="study">
+    <div class="near_study">
+        <ul class="clearfix">
+            <li>
+                <p>今天听课</p>
+                <em><i>{{minute(data.todayStudyTime)}}</i>分钟</em>
+                <!--  <span></span>-->
+            </li>
+            <li>
+                <p>获得积分</p>
+                <em><i>{{data.user.usableIntegral}}</i>分</em>
+                <!-- <span></span>-->
+            </li>
+            <li>
+                <p>本月听课</p>
+                <em><i>{{day(data.monthStudyTime)}}</i>天</em>
+                <!--  <span></span>-->
+            </li>
+            <li>
+                <p>累计听课</p>
+                <em><i>{{hour(data.user.sumLearnTime)}}</i>小时</em>
+            </li>
+        </ul>
+        <p>今日学习满40分钟才可获得积分哦 <em class="iconfont icon-9 rule" onclick="location.href='./integral_rule.html?id={{data.user.usableIntegral}}'" ></em></p>
+    </div>
+    <div class="learn">
+        <h3 class="f_left">累计听课时长 <i>{{minute(data.user.sumLearnTime)}} </i> 分钟</h3>
+        <span class="f_right" onclick="location.href='study_card.html'">生成学习记录卡</span>
+    </div>
+    <div class="progress clearfix">
+        <div class="loader-container"></div>
+        <em class="f_left">{{hour(data.user.sumLearnTime)}}小时</em>
+        <i class="f_right">1000小时</i>
+    </div>
+</script>
+<script type="text/html" id="near">
+{{if data==null||data.length==0}}
+<div class="no_in">对不起，您没有最近学习的记录</div>
+{{else}}
+{{each data as value i}}
+<li>
+    <a href="../index/index_video.html?id={{value.course.id}}">
+        <img src="{{value.course.coursePicture==null?'../../img/index_edu.png':value.course.coursePicture}}" alt="">
+        <div class="ex_right">
+            <div class="ex_top clearfix">
+                <span>主讲：{{value.speaker}}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                <em class="f_right"><del>{{mul(value.StudyCourseTime,value.CourseTotalTime)}}%</del></em>
+            </div>
+            <div class="ex_center">
+                {{time(value.updateTime)}}  更新第{{value.updateNum}}课时
+            </div>
+            <div class="ex_footer">
+                <ul class="clearfix">
+                    <li>
+                        <em class="iconfont icon-wode1"> {{value.StudyCourseNum}}</em>
+                    </li>
+                    <li>
+                        <em class="iconfont icon-wujiaoxingkong"> {{value.CourseCollectNum}}</em>
+                    </li>
+                    <li>
+                        <em class="mui-icon-extra mui-icon-extra-heart"> {{value.CourseLoveNum}}</em>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </a>
+</li>
+{{/each}}
+    {{/if}}
+</script>
 <script>
     $(function () {
-        $(".near_study>p>.rule").click(function () {
-           location.href='./integral_rule.html'
-        })
-        //总共是100 个小时 然后用户看了50个小时，x_width是显示的进度条的宽度
-        var pai=100/50;
-        var x_width=100/pai;
-        $(".loader-container").width(x_width+"%");
-        /*canvas 绘制饼状图*/
-        //基于准备好的DOM，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('charts'));
-        // 变量 存储
-        var chinese=30;
-        var option = {
-            series : [
-                {
-                    name: '来源',
-                    type: 'pie',
-                    radius : '55%',
-                    center: ['50%', '60%'],
-                    data:[
-                        {value:chinese, name:'语文', itemStyle: { color: '#f01414' }},
-                        {value:5, name:'数学', itemStyle: { color: '#fa9426' }},
-                        {value:4, name:'英语', itemStyle: { color: '#d8b0e1' }},
-                        {value:5, name:'物理', itemStyle: { color: '#eca918' }},
-                        {value:48, name:'化学', itemStyle: { color: '#fe96855' }},
-                        {value:60, name:'其他', itemStyle: { color: '#84c0e5' }}
-                    ],
-                    itemStyle: {
-                        emphasis: {
-                            shadowBlur: 10,
-                            shadowOffsetX: 0,
-                            shadowColor: 'rgba(0, 0, 0, 0.3)'
-                        },
-                        normal:{
-                            label:{
-                                show: true,
-                                formatter: '{b} :  ({d}%)'
-                            },
-                            labelLine :{show:true}
+        //ajax 发送完毕
+        $(document).ajaxStop(function(){
+            $("#loading").hide();
+            $(".main").show();
+        });
+        var userid=localStorage.getItem("this_userid");
+        var token=localStorage.getItem("token");
+        /*进入学习中心*/
+        myAjax({url:"/core/select/learning/center",
+            data:{userid:userid},type:"post",async:false}, function (data) {
+            console.log(data);
+            $("#loading").hide();
+            if(data.status==200){
+                template.helper("day", function (mss) {
+                   return parseInt(mss / 1000 / 60 / 60 / 24);
+                });
+                template.helper("hour", function (mss) {
+                    return parseInt((mss/1000/60/60));
+                });
+                template.helper("minute", function (mss) {
+                    return parseInt((mss /1000/60));
+                });
+
+                $(".study").html(template("study",data));
+                //总共是100 个小时 然后用户看了50个小时，x_width是显示的进度条的宽度
+                var totalT= parseInt((data.data.user.sumLearnTime/1000/60/60));
+              //console.log(totalT);
+                var pai=1000/totalT;
+                /*这个100代表的是百分比*/
+                var x_width=100/pai;
+                $(".loader-container").width(x_width+"%");
+                /*canvas 绘制饼状图*/
+                //基于准备好的DOM，初始化echarts实例
+                var myChart = echarts.init(document.getElementById('charts'));
+                // 变量 存储
+                var totalTim=data.data.user.sumLearnTime;
+                console.log(totalTim);
+                $("#charts").hide();
+               /* var chinese=data.data.SubjectStudyTime[0].time;
+                var math=data.data.SubjectStudyTime[1].time;
+                var eng=data.data.SubjectStudyTime[2].time;
+                var physics=data.data.SubjectStudyTime[3].time;
+                var mis=data.data.SubjectStudyTime[4].time;*/
+                var chinese=data.data.Chineselanguage==null?0:data.data.Chineselanguage;
+                var math=data.data.mathematics==null?0:data.data.mathematics;
+                var eng=data.data.English==null?0:data.data.English;
+                var physics=data.data.physical==null?0:data.data.physical;
+                var mis=data.data.chemical==null?0:data.data.chemical;
+                $("#charts").show();
+                console.log(chinese);
+               option = {
+                    series : [
+                        {
+                            name: '来源',
+                            type: 'pie',
+                            radius : '55%',
+                            center: ['50%', '60%'],
+                            data:[
+                                {value:chinese, name:"语文", itemStyle: { color: '#f01414' }},
+                                {value:math, name:"数学", itemStyle: { color: '#fa9426' }},
+                                {value:eng, name:"英语", itemStyle: { color: '#d8b0e1' }},
+                                {value:physics, name:"物理", itemStyle: { color: '#eca918' }},
+                                {value:mis, name:'其他', itemStyle: { color: '#fe96855' }},
+                            ],
+                            itemStyle: {
+                                emphasis: {
+                                    shadowBlur: 10,
+                                    shadowOffsetX: 0,
+                                    shadowColor: 'rgba(0, 0, 0, 0.3)'
+                                },
+                                normal:{
+                                    label:{
+                                        show: true,
+                                        formatter: '{b} :  ({d}%)'
+                                    },
+                                    labelLine :{show:true}
+                                }
+                            }
                         }
+                    ]
+                };
 
-                        /* normal: {//饼状图上的文本显示
-                         label: {
-                         show: false,
-                         position: 'inner',
-                         formatter: "{c}({d}%)",//数值和百分比
-                         textStyle: {
-                         fontSize: 12,
-                         fontWeight: 'bolder'
-                         }
-                         },
-                         labelLine: {
-                         show: false //显示饼状图上的文本时，指示线不显示，在第一个data时显示指示线
-                         }
+                //使用刚指定的配置项和数据显示图表
+                myChart.setOption(option);
 
-                         }*/
+            }
+        })
+        //最近的学习
+        myAjax({url:"/core/find/LatelyStudy/Courses",
+            data:{userid:userid,
+            page:1,
+            size:5,
+                token:token},type:"post"}, function (data) {
+            console.log(data);
+            if(data.status==200){
+                template.helper("str",function(str){
+                    return str.split(",");
+                });
+                template.helper("mul", function (a,b) {
+                    return parseFloat(a/b).toFixed(2);
+                });
+                template.helper("time",function(time){
+                    var timestamp=new Date().getTime();//当前时间戳
+                    var kk=timestamp-time;//发表时的时间戳
+                    var timea="";
+                    var sec=parseInt(kk/1000);//秒
+                    var min=parseInt(sec/60);//分
+                    var hour=parseInt(min/60);//时
+                    var day=parseInt(hour/24);//天
+                    if(sec<60){
+                        timea=sec+"秒前";
+                    }else if(min<60){
+                        timea=min+"分钟前";
+                    }else if(hour<24){
+                        timea=hour+"小时前";
+                    }else if(day<7){
+                        timea=day+"天前";
+                    }else{
+                        timea=new Date(time).toLocaleString().replace(/:\d{1,2}$/,' ').substr(5,12).replace(/\//g,"-");
                     }
-                }
-            ]
-        };
+                    return timea;
 
-        //使用刚指定的配置项和数据显示图表
-        myChart.setOption(option);
+                });
+                $(".recently_learn>ul").html(template("near",data));
+            }
+        })
+       /* $(".near_study>p>.rule").click(function () {
+
+        })*/
+
+
     })
 </script>
 </html>

@@ -15,11 +15,15 @@
     <link rel="stylesheet" href="../../css/index/quest_detail.css"/>
 </head>
 <body style="background-color:#fff; overflow-x: hidden">
+<div id="loading">
+    <img src="../../img/login.gif" alt=""/>
+    <div>请等待，正在加载...</div>
+</div>
 <div class="layer">
     <header id="header" class="mui-bar mui-bar-nav">
         <i class=" mui-icon mui-icon-left-nav mui-pull-left" onclick="back()"></i>
         <h1 class="mui-title">详情</h1>
-        <em onclick="location.href='./report.html'">举报</em>
+        <em >举报</em>
     </header>
     <div class="main">
        <!-- <div class="request_detail">
@@ -198,6 +202,10 @@
 </script>
 <script>
     $(function () {
+        //ajax 发送完毕
+        $(document).ajaxStop(function(){
+            $("#loading").hide();
+        });
         mui.previewImage();
         mui.init();
         mui('body').on('tap','a',function(){document.location.href=this.href;});
@@ -244,6 +252,9 @@
                    });
 
                    $(".main").html(template("detail",data))
+                   $("#header>em").click(function () {
+                      location.href='./report.html?id='+data.data.questionuser.userid;
+                   })
                }
            })
        }

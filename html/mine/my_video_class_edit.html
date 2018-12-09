@@ -250,7 +250,7 @@
             console.log(data);
             if(data.status==200){
                 template.helper("time",function(date){
-                    var time=new Date(date).toLocaleString().replace(/:\d{1,2}$/,' ').substr(0,11).replace(/\//g,"-");
+                    var time=new Date(date).toLocaleString().replace(/:\d{1,2}$/,' ').substr(0,20).replace(/\//g,"-");
                     return time;
                 });
                 $(".put_way").html(template("putWay",data));
@@ -313,7 +313,6 @@
                 falg=true;
             }
         })
-
         var str=[];
         $(".put_way").on("click",".sold_out", function () {
             var active=$(".active");

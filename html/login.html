@@ -45,7 +45,7 @@
             </laber>
             <div class="show-box" />
         </div> <!--// 注意嵌在 label 里面-->
-        <div class="foot_link">
+     <!--   <div class="foot_link">
             <div class="third_login">
                 <span></span>
                 <i>第三方登录</i>
@@ -57,7 +57,7 @@
 
                 <a href=""><img src="../img/sina.png" alt="" id="sina"/></a>
             </div>
-        </div>
+        </div>-->
 
     </div>
 
@@ -187,7 +187,6 @@
         //获取cookie
         var cusername = localStorage.getItem("uName");
         var cpassword = localStorage.getItem("pwd");
-
         if(cusername != "" && cpassword != ""){
             $("#name").val(cusername);
             $("#pwd").val(base64.tranCode.decode(cpassword));
@@ -197,7 +196,6 @@
     if(localStorage.getItem("uName") && localStorage.getItem("pwd")){
         isChecked();
     }
-
     /*点击的登录 调用此函数  */
     $(".login_Button").click(function(){
         login();

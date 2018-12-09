@@ -66,24 +66,24 @@
     <div class="main">
         <h3>小学</h3>
         <div class="content mui-clearfix">
-            <span class="active">一年级</span>
-            <span>二年级</span>
-            <span>三年级</span>
-            <span>四年级</span>
-            <span>五年级</span>
-            <span>六年级</span>
+            <span class="active" data-grade="1">一年级</span>
+            <span data-grade="2">二年级</span>
+            <span data-grade="3">三年级</span>
+            <span data-grade="4">四年级</span>
+            <span data-grade="5">五年级</span>
+            <span data-grade="6">六年级</span>
         </div>
         <h3>中学</h3>
         <div class="content mui-clearfix">
-            <span>初一</span>
-            <span>初二</span>
-            <span>初三</span>
+            <span data-grade="7">初一</span>
+            <span data-grade="8">初二</span>
+            <span data-grade="9">初三</span>
         </div>
         <h3>高中</h3>
         <div class="content mui-clearfix">
-            <span>高一</span>
-            <span>高二</span>
-            <span>高三</span>
+            <span data-grade="10">高一</span>
+            <span data-grade="11">高二</span>
+            <span data-grade="12">高三</span>
         </div>
     </div>
 </div>
@@ -102,7 +102,11 @@
             //console.log($(this).text());
         })
         $(".finish").click(function () {
+            var grade=$("span.active").data("grade");
+            localStorage.setItem("grade_index",grade);
+            localStorage.setItem("index_grade",$("span.active").text());
             console.log($("span.active").text());
+            back();
         })
     })
 </script>

@@ -26,7 +26,7 @@
         <h1 class="mui-title">个人主页</h1>
         <em class="mui-icon mui-icon-more"></em>
     </header>
-    <div class="main">
+    <div class="main" style="display: none">
         <div class="message_info clearfix">
            <!-- <div id="triangle-topright">
 
@@ -167,10 +167,8 @@
 <script src="../../js/template-web.js"></script>
 <script src="../../js/template.js"></script>
 <script type="text/html" id="baseInfo">
-    <div id="triangle-topright" onclick="location.href='./report.html'">
-
-    </div>
-    <span class="report" onclick="location.href='./report.html'">举报</span>
+    <div id="triangle-topright" onclick="location.href='./report.html?id={{data.teacher.userid}}'"></div>
+    <span class="report" onclick="location.href='./report.html?id={{data.teacher.userid}}'">举报</span>
     <img src="{{data.teacher.portrait==null?'../../img/logo.png':data.teacher.portrait}}" alt=""/>
     <div class="info_center teacher_info_center">
         <!--判断男女 -->
@@ -222,11 +220,11 @@
     {{/if}}
 </script>
 <script type="text/html" id="course">
-{{if data.length==0||!data||data==null}}
+{{if data==null||data.length==0||!data}}
 <div class="no_in">对不起，暂时没有主讲课程喔</div>
 {{else}}
 {{each data as value i}}
-<div class="course_list" onclick="location.href='./index_video.html'">
+<div class="course_list" onclick="location.href='./index_video.html?id={{value.course.id}}'">
     <img src="{{value.course==null||value.course.coursePicture==null?'../../img/index_edu.png':value.course.coursePicture}}" onerror="this.src='../../img/index_edu.png'" alt="">
     <div class="course_list_center ">
         <p class="clearfix">
@@ -244,7 +242,7 @@
     {{/if}}
 </script>
 <script id="request" type="text/html">
-    {{if data.length==0||!data||data==null}}
+    {{if data==null||data.length==0||!data}}
     <div class="no_in">对不起，暂时没有课堂问答喔</div>
     {{else}}
 {{each data as value i}}
@@ -317,6 +315,7 @@
         //ajax 发送完毕
         $(document).ajaxStop(function(){
             $("#loading").hide();
+            $(".main").show();
         });
         /*判断 用户是否关注 */
         $(".mui-segmented-control>.mui-control-item").click(function () {
@@ -414,9 +413,32 @@
         type:"post"}, function (data) {
             console.log(data);
             if(data.status==200){
-                template.helper("time",function(date){
-                    var time=new Date(date).toLocaleString().replace(/:\d{1,2}$/,' ').replace(/\//g,"-");
-                    return time;
+
+                template.helper("str",function(str){
+
+                    return str.split(",");
+                })
+                template.helper("time",function(time){
+                    var timestamp=new Date().getTime();//当前时间戳
+                    var kk=timestamp-time;//发表时的时间戳
+                    var timea="";
+                    var sec=parseInt(kk/1000);//秒
+                    var min=parseInt(sec/60);//分
+                    var hour=parseInt(min/60);//时
+                    var day=parseInt(hour/24);//天
+                    if(sec<60){
+                        timea=sec+"秒前";
+                    }else if(min<60){
+                        timea=min+"分钟前";
+                    }else if(hour<24){
+                        timea=hour+"小时前";
+                    }else if(day<7){
+                        timea=day+"天前";
+                    }else{
+                        timea=new Date(time).toLocaleString().replace(/:\d{1,2}$/,' ').substr(5,15).replace(/\//g,"-");
+                    }
+                    return timea;
+
                 });
                 $("#item1>.course_lists").html(template("course",data))
             }
@@ -444,7 +466,7 @@
             console.log(data);
             if(data.status==200){
                 template.helper("time",function(date){
-                    var time=new Date(date).toLocaleString().replace(/:\d{1,2}$/,' ').replace(/\//g,"-");
+                    var time=new Date(date).toLocaleString().replace(/:\d{1,2}$/,' ').substr(5,20).replace(/\//g,"-");
                     return time;
                 });
                 template.helper("str",function(str){

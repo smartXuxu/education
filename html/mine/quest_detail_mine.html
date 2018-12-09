@@ -244,6 +244,12 @@
                     });
 
                     $(".main").html(template("detail",data))
+                }else{
+                    sweetAlert(
+                            "sorry",
+                            data.msg,
+                            "error"
+                    )
                 }
             })
         }

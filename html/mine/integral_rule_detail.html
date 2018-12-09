@@ -41,7 +41,7 @@
             color:#f01414;
         }
         .content>li{
-            height: 0.88rem;
+            min-height: 0.88rem;
             line-height: 0.88rem;
             position: relative;
             border-bottom: 1px solid #eeeeee;
@@ -93,11 +93,12 @@
 <script src="../../js/back.js"></script>
 <script src="../../js/sweetalert2.js"></script>
 <script src="../../js/template-web.js"></script>
+<script src="../../js/template.js"></script>
 <script id="rule" type="text/html">
     {{each data as value i}}
     <li>
         <span>{{value.source}} <em>{{value.subtract==null?'+'+value.increase:'-'+value.subtract}}</em></span>
-        <i>2018-08-05 15:30</i>
+        <i>{{time(value.updateTime)}}</i>
     </li>
     {{/each}}
 </script>
@@ -113,6 +114,32 @@
         myAjax({url:"/user/my/get/Integral/Log",type:"post",data:{userid:userid}}, function (data) {
             console.log(data);
             if(data.status==200){
+                template.helper("str",function(str){
+
+                    return str.split(",");
+                })
+                template.helper("time",function(time){
+                    var timestamp=new Date().getTime();//当前时间戳
+                    var kk=timestamp-time;//发表时的时间戳
+                    var timea="";
+                    var sec=parseInt(kk/1000);//秒
+                    var min=parseInt(sec/60);//分
+                    var hour=parseInt(min/60);//时
+                    var day=parseInt(hour/24);//天
+                    if(sec<60){
+                        timea=sec+"秒前";
+                    }else if(min<60){
+                        timea=min+"分钟前";
+                    }else if(hour<24){
+                        timea=hour+"小时前";
+                    }else if(day<7){
+                        timea=day+"天前";
+                    }else{
+                        timea=new Date(time).toLocaleString().replace(/:\d{1,2}$/,' ').replace(/\//g,"-");
+                    }
+                    return timea;
+
+                });
                 $(".content").html(template("rule",data));
             }
         })

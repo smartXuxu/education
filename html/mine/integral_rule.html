@@ -65,7 +65,7 @@
     <div class="main">
             <div class="my_integral">
                 <span>当前积分：<em>50</em></span>
-                <button onclick="location.href='./integral_rule_detail.html'">我的积分明细</button>
+                <button >我的积分明细</button>
             </div>
         <div class="content">
             <h3>什么是积分？</h3>
@@ -100,6 +100,9 @@
     $(function () {
         var score=location.href.split("=")[1];
         $(".my_integral>span>em").text(score);
+        $(".my_integral>button").click(function () {
+         location.href='./integral_rule_detail.html?score='+score;
+        })
     })
 </script>
 </html>

@@ -16,18 +16,22 @@
     <link rel="stylesheet" href="../../css/index/index_video.css"/>
 </head>
 <body style="background-color:#fff;overflow-x: hidden">
+<div id="loading">
+    <img src="../../img/login.gif" alt=""/>
+    <div>请等待，正在加载...</div>
+</div>
 <div class="layer">
     <div class="video_header">
         <i onclick="back()" class="mui-icon mui-icon-back"></i>
         <div class="video_play">
-            <video  controls='controls' width='100%'  name='media' src="../../img/1.mp4">
+            <video  controls='controls' width='100%' controlsList="nodownload"  name='media' src="../../img/1.mp4">
                <!-- <source src="../../img/1.mp4" type='video/mp4'/>
                 <source src="../../img/1.mp4" type='video/ogg'/>
                 <source src="../../img/1.mp4" type='video/webm'/>-->
             </video>
         </div>
     </div>
-    <div class="main">
+    <div class="main" style="display: none;">
         <div id="slider" class="mui-slider index_video ">
 
             <div id="segmentedControl" class="mui-segmented-control">
@@ -207,13 +211,12 @@
                         &lt;!&ndash;查看更多&ndash;&gt;
                         <div class="see_more" onclick="location.href='comment_lists.html'">更多>></div>-->
                     </div>
-
-
                     <div class="recomment_course">
                         <h4>推荐课程</h4>
                         <div class="excent_lesson">
                             <ul>
-                                <li>
+
+                               <!-- <li>
                                     <a href="./index_video.html">
                                         <img src="../../img/index_edu.png" alt="">
                                         <div class="ex_right">
@@ -246,24 +249,7 @@
                                             </div>
                                         </div>
                                     </a>
-                                </li>
-                                <li>
-                                    <a href="./index_video.html">
-                                        <img src="../../img/index_edu.png" alt="">
-                                        <div class="ex_right">
-                                            <div class="ex_top clearfix">
-                                                <span>主讲：傅娟</span>&nbsp;&nbsp;&nbsp;&nbsp;
-                                                <em class="f_right"><del>11023</del>人学习</em>
-                                            </div>
-                                            <div class="ex_center">
-                                                2018-07-15  更新第10课时更新第10课时
-                                            </div>
-                                            <div class="ex_footer">
-                                                华南师范大学附属中学师范大学附属中学
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
+                                </li>-->
                             </ul>
 
                         </div>
@@ -343,7 +329,7 @@
 <script src="../../js/template.js"></script>
 <script id="dialog" type="text/html">
         {{each data.UpperShelfList as value i}}
-        <li data-href="{{value.fileLink}}" data-id="{{value.courseId}}">
+        <li data-href="{{value.fileLink}}" data-id="{{value.id}}">
             <a href="javascript:;" class="clearfix" >
                 <div class="f_left">
                     <em class="iconfont icon-bofang"></em>
@@ -351,7 +337,7 @@
                 </div>
                 <span class="f_right">
                     <!--判断是否下载-->
-                    <em>0{{multiply(value.fileSize)}}</em>
+                    <em>0{{multiply(value.fileDuration)}}</em>
                 </span>
             </a>
         </li>
@@ -535,6 +521,32 @@
 
      </div>-->
 </script>
+<script id="recommend" type="text/html">
+{{if data==null||data.length==0}}
+<div class="no_in">对不起，暂时没有匹配您的课程</div>
+{{else}}
+{{each data as value i}}
+    <li>
+        <a href="./index_video.html?id={{value.course.id}}">
+            <img src="{{value.course.coursePicture==null?'../../img/index_edu.png':value.course.coursePicture}}" alt="">
+            <div class="ex_right">
+                <div class="ex_top clearfix">
+                    <span>主讲：{{value.speaker==null?"猴姆教学":value.speaker}}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <em class="f_right"><del>{{value.StudyCourseNum}}</del>人学习</em>
+                </div>
+                <div class="ex_center">
+                    {{time(value.updateTime)}}  更新第{{value.updateNum}}课时
+                </div>
+                <div class="ex_footer">
+                    {{value.course.schoolName}}
+                </div>
+            </div>
+        </a>
+    </li>
+{{/each}}
+    {{/if}}
+</script>
+
 <script>
     document.addEventListener('plusready', function() {
         var webview = plus.webview.currentWebview();
@@ -552,17 +564,21 @@
         });
     });
     $(function () {
+        $(document).ajaxStop(function(){
+            $("#loading").hide();
+            $(".main").show();
+        });
         $(".mui-segmented-control>.mui-control-item").click(function () {
             $(this).addClass("active");
             $(this).siblings().removeClass("active");
             var index = $(this).index();
             $('.mui-control-content').eq(index).addClass('active');
             $('.mui-control-content').eq(index).siblings().removeClass('active');
-
         })
         var courseid=location.href.split("=")[1];
         var userId=localStorage.getItem("this_userid");
         //目录
+        var periodid;
         myAjax({url:"/course/related/get/course/Period/List",
             type:"post",
             data:{courseid:courseid}}, function (data) {
@@ -576,37 +592,29 @@
                         return  seconds+"秒" ;
                     }
                     if(hours==00){
-                        return  minutes + " 分" + seconds ;
+                        return  minutes + " 分" + seconds+"秒" ;
                     }
                     return + hours + " 时 " + minutes + " 分 " + seconds+"秒" ;
-
                 })
                 $("#item1>ul").html(template("dialog",data))
                 $(".video_play>video").attr("src",data.data.UpperShelfList[0].fileLink);
-                $(".video_play>video").attr("data-id",data.data.UpperShelfList[0].courseId);
+                $(".video_play>video").attr("data-id",data.data.UpperShelfList[0].id);
+                periodid=data.data.UpperShelfList[0].id;
             }
-        })
-        //播放视频
-        $("#item1").on("click",".item1>li", function () {
-            //console.log(123);
-            var href=$(this).data("href");
-            //把这个的自定义id 换成 课时的id
-            // 更换 播放地址的时候还要 发送一个记录时间的ajax
-            var id=$(this).data("id");
-            $(".video_play>video").attr("src",href);
-            $(".video_play>video").attr("data-id",id);
         })
         //课程的基本信息
         var teacherId;
+        var subject;
         myAjax({url:"/course/related/get/course/BaseInfo",data:{courseid:courseid},type:"post"}, function (data) {
-            console.log(data);
+           console.log(data);
             if(data.status==200){
+                subject=data.data.subject;
                $("#item1>h3").text(data.data.grade+data.data.subject+data.data.semester);
                 $("#item2>.detail").html(template("detailTop",data))
                teacherId=data.data.teacherId;
                 //获取教师的评分
                 myAjax({url:"/teacher/related/get/Teacher/Evaluate/Score",data:{teacherid:teacherId},type:"post"}, function (data) {
-                    console.log(data);
+                   // console.log(data);
                     template.helper("spl", function (spl) {
                         return parseInt(spl);
                     })
@@ -625,7 +633,7 @@
                 myAjax({url:"/teacher/related/get/Teacher/Evaluate/List",
                     data:{teacherid:teacherId,page:1,size:1},
                     type:"post"}, function (data) {
-                    console.log(data);
+                   // console.log(data);
                     if(data.status==200){
                         template.helper("time",function(date){
                             var time=new Date(date).toLocaleString().replace(/:\d{1,2}$/,' ').replace(/\//g,"-");
@@ -639,17 +647,95 @@
                 })
             }
         })
+
+        //播放视频
+        $("#item1").on("click",".item1>li", function () {
+            /*更换的时候发送的ajax应该是video视频上面的id */
+            var obj={};
+            obj.userid=userId;
+            obj.times=time;
+            obj.subject=subject;
+            obj.periodid=$("video").data("id");
+            myAjax({url:"/core/add/LearnTime/Record",data:obj,type:"post"}, function (data) {
+                console.log(data);
+            })
+            time=0;
+            //console.log(123);
+            var href=$(this).data("href");
+            //把这个的自定义id 换成 课时的id
+            // 更换 播放地址的时候还要 发送一个记录时间的ajax
+            periodid=$(this).data("id");
+            $(".video_play>video").attr("src",href);
+            $(".video_play>video").attr("data-id",periodid);
+
+        })
+        //用户离开当前页面
+        window.onbeforeunload = function(){
+            /*  sweetAlert(
+             "很遗憾",
+             "你要结束本课程的学习了吗",
+             "error"
+             );*/
+            var obj={};
+            obj.userid=userId;
+            obj.times=time;
+            obj.subject=subject;
+            obj.periodid=periodid;
+            myAjax({url:"/core/add/LearnTime/Record",data:obj,type:"post"}, function (data) {
+                console.log(data);
+            })
+            console.log(time);
+        }
+
+
         //、、获取视频评论
         myAjax({url:"/course/related/get/Course/CommentsList",
             data:{courseid:courseid,size:4,page:1},
             type:"post"}, function (data) {
-            console.log(data);
+           // console.log(data);
             if(data.status==200){
                 template.helper("time",function(date){
                     var time=new Date(date).toLocaleString().replace(/:\d{1,2}$/,' ').replace(/\//g,"-");
                     return time;
                 });
                 $("#item3").html(template("video_eva",data));
+            }
+        })
+        //课程 推荐
+        myAjax({url:"/content/manage/get/Appoint/Content",
+            data:{classify:6,
+                page:1,
+                size:4
+        },type:"post"}, function (data) {
+           // console.log(data);
+            if(data.status==200){
+                template.helper("str",function(str){
+
+                    return str.split(",");
+                })
+                template.helper("time",function(time){
+                    var timestamp=new Date().getTime();//当前时间戳
+                    var kk=timestamp-time;//发表时的时间戳
+                    var timea="";
+                    var sec=parseInt(kk/1000);//秒
+                    var min=parseInt(sec/60);//分
+                    var hour=parseInt(min/60);//时
+                    var day=parseInt(hour/24);//天
+                    if(sec<60){
+                        timea=sec+"秒前";
+                    }else if(min<60){
+                        timea=min+"分钟前";
+                    }else if(hour<24){
+                        timea=hour+"小时前";
+                    }else if(day<7){
+                        timea=day+"天前";
+                    }else{
+                        timea=new Date(time).toLocaleString().replace(/:\d{1,2}$/,' ').replace(/\//g,"-");
+                    }
+                    return timea;
+
+                });
+                $(".recomment_course>.excent_lesson>ul").html(template("recommend",data))
             }
         })
     //发表评论 跳转
@@ -663,7 +749,7 @@
                size:5
            },
            type:"post"},function(data){
-           console.log(data);
+           //console.log(data);
            if(data.status==200){
                $("#item4").html(template("question",data));
            }
@@ -686,7 +772,7 @@
         myAjax({url:"/course/related/get/Course/LoveAndCollectInfo",
                     data:{courseid:courseid,
                         userid:userId},type:"post"}, function (data) {
-                    console.log(data);
+                    //console.log(data);
                     if(data.status==200){
                         $("#fix_share").html(template("fix",data));
                     }
@@ -702,7 +788,7 @@
             myAjax({url:"/dynamic/update/Love/Course",
                 data:{userid:userId,
                     courseid:id},type:"post"}, function (data) {
-                console.log(data);
+                //console.log(data);
                 if(data.status==200){
                     if(data.data.love.是否点赞=="是"){
                         $(e).children("em").css("color","#f01414");
@@ -723,7 +809,7 @@
             myAjax({url:"/dynamic/update/collect/Course",
                 data:{userid:userId,
                     courseid:id},type:"post"}, function (data) {
-                console.log(data);
+                //console.log(data);
                 if(data.status==200){
                     if(data.data.collection.是否收藏=="是"){
                        $(e).children("em").css("color","#f01414");
@@ -745,17 +831,8 @@
             console.log(time);
         }, false);
         vid.addEventListener('timeupdate', function () {
-           time=vid.currentTime;
+           time=parseInt(vid.currentTime*1000);
         });
-        //用户离开当前页面
-            window.onbeforeunload = function(){
-                sweetAlert(
-                        "很遗憾",
-                        "你要结束本课程的学习了吗",
-                        "error"
-                );
-                console.log(time);
-            }
 
     })
 </script>

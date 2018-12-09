@@ -244,8 +244,20 @@ function html5Reader(file,ele){
                             console.log(data);
                                if(data.status==200){
                                  $(".submit").text("已提交，等待审核");
+                               }else{
+                                   sweetAlert(
+                                           "sorry",
+                                           data.msg,
+                                           "error"
+                                   )
                                }
                             })
+                       }else{
+                           sweetAlert(
+                                   "sorry",
+                                   data.msg,
+                                   "error"
+                           )
                        }
                    })
                }

@@ -42,13 +42,13 @@
         <h1 class="mui-title">消息通知</h1>
     </header>
     <div class="main">
-        <div class="tit">
+       <!-- <div class="tit">
            123
         </div>
         <h2>2323</h2>
         <p>
             fsdafdsafdsaf
-        </p>
+        </p>-->
 
     </div>
 </div>
@@ -62,44 +62,46 @@
 <script src="../../js/template.js"></script>
 <script id="detail" type="text/html">
     <div class="tit">
-        {{time1(time)}}
+        {{time(data.messages.createTime)}}发布者：{{data.nickname}}
     </div>
-    <h2>{{title}}</h2>
+    <h2>{{data.messages.title}}</h2>
     <p>
-        {{body}}
+        {{data.messages.content}}
     </p>
 </script>
 <script>
     $(function () {
         var noticId=location.href.split("=")[1];
         console.log(noticId);
-        //render();
+        //标记消息为已读
+        myAjax({url:"/core/update/message/status",
+            data:{messageid:noticId},
+            type:"post"}, function (data) {
+            console.log(data);
+        })
+       render();
         function render(){
             $.ajax({
 //处理session每次不唯一问题
                 xhrFields: {
                     withCredentials: true
                 },
-
-                //headers:{
-                //    'Content-Type':'application/json',
-                //},
                 async:false,
                 type: "post",
-                url: baseUrl+"/notice/findOne",
-                //url: "http://192.168.1.126:8080/notice/findOne",
+                url: baseUrl+"/core/get/message/details",
                 data:{
-                    noticeId:noticId
+                    messageid:noticId
                 },
                 dataType: 'json',
                 success:function(data) {
-                    template.helper("time1",function(date){
-                        var time1=new Date(date).toLocaleString().replace(/:\d{1,2}$/,' ').replace(/\//g,"-");
-                        return time1;
-                        /* return new Date(parseInt(date) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ');*/
-                    });
                     console.log(data);
-                    $(".main").html(template("detail",data));
+                    if(data.status==200){
+                        template.helper("time",function(date){
+                            var time=new Date(date).toLocaleString().replace(/:\d{1,2}$/,' ').replace(/\//g,"-");
+                            return time;
+                             });
+                      $(".main").html(template("detail",data));
+                    }
                 }
             })
         }

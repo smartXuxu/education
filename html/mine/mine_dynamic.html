@@ -111,7 +111,6 @@
                     </div>
                 </div>
             </div>-->
-
         </div>
     </div>
 </div>
@@ -137,7 +136,7 @@
                 {{if value.user.portrait==null}}
                 <img src="../../img/logo.png" alt=""/>
                 {{else}}
-                <img src="../../img/focus-img1.png" alt=""/>
+                <img src="{{value.user.portrait}}" alt=""/>
                 {{/if}}
                 <div class="list_top_center clearfix">
                     <em>{{value.user.nickname==null?value.user.realName==null?"猴姆教学":value.user.realName:value.user.nickname}} <!--<i class="f_right" onclick="attention('{{value.user.userid}}',this)" >已关注</i>--></em>
