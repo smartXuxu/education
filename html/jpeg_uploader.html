@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+
+    <title>上传图片</title>
+    <link rel="stylesheet" href="../css/base.css"/>
+    <style type="text/css">
+     .auth,.again{
+         position: relative;
+     }
+
+        #preview,#preview1{
+            width: 4rem;
+            height: 2.8rem;
+            margin: 0 auto;
+            margin-top: 0.2rem;
+            overflow: hidden;
+            position: relative;
+        }
+        #imghead,#imghead1{
+            position: absolute;
+            left: 0%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            height: 2.8rem;
+        }
+        #just,#again{
+            position: absolute;
+            left: 24%;
+            width: 4rem;
+            height: 2.8rem;
+            top: 3%;
+            opacity: 0;
+            background-color: pink;
+        }
+        .submit{
+            height: 1rem;
+            width: 50%;
+            display: block;
+            background-color: #f01414;
+            color:#fff;
+            margin:0 auto;
+            font-size: 0.3rem;
+            text-align: center;
+        }
+       /* #preview,#preview1{width:260px;height:190px;border:1px solid #000;overflow:hidden;}*/
+        /*#imghead,#imghead1 {filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=image);}
+*/
+    </style>
+</head>
+<body>
+<div class="layer">
+    <div class="auth">
+        <div id="preview">
+            <img id="imghead" width=100% height=auto border=0 src='../img/against.png'>
+        </div>
+        <input type="file" id="just" onchange="previewImage(this)" />
+    </div>
+    <div class="again">
+        <div id="preview1">
+            <img id="imghead1" width=100% height=auto border=0 src='../img/just.png'>
+        </div>
+        <input type="file" id="again" onchange="previewImage1(this)" />
+    </div>
+    <button class="submit">提交</button>
+</div>
+</body>
+<script src="../js/base.js"></script>
+<script src="../js/x_rem.js"></script>
+<script src="../js/jquery.min.js"></script>
+<script type="text/javascript">
+    //图片上传预览    IE是用了滤镜。
+    function previewImage(file)
+    {
+        var MAXWIDTH  = 260;
+        var MAXHEIGHT = 180;
+        var div = document.getElementById('preview');
+        if (file.files && file.files[0])
+        {
+            div.innerHTML ='<img id=imghead>';
+            var img = document.getElementById('imghead');
+            img.onload = function(){
+                var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+                img.width  =  rect.width;
+                img.height =  rect.height;
+//                 img.style.marginLeft = rect.left+'px';
+                img.style.marginTop = rect.top+'px';
+            }
+            var reader = new FileReader();
+            reader.onload = function(evt){img.src = evt.target.result;}
+            reader.readAsDataURL(file.files[0]);
+        }
+        else //兼容IE
+        {
+            var sFilter='filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src="';
+            file.select();
+            var src = document.selection.createRange().text;
+            div.innerHTML = '<img id=imghead>';
+            var img = document.getElementById('imghead');
+            img.filters.item('DXImageTransform.Microsoft.AlphaImageLoader').src = src;
+            var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+            status =('rect:'+rect.top+','+rect.left+','+rect.width+','+rect.height);
+            div.innerHTML = "<div id=divhead style='width:"+rect.width+"px;height:"+rect.height+"px;margin-top:"+rect.top+"px;"+sFilter+src+"\"'></div>";
+        }
+    }
+    function previewImage1(file)
+    {
+        var MAXWIDTH  = 260;
+        var MAXHEIGHT = 180;
+        var div = document.getElementById('preview1');
+        if (file.files && file.files[0])
+        {
+            div.innerHTML ='<img id=imghead1>';
+            var img = document.getElementById('imghead1');
+            img.onload = function(){
+                var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+                img.width  =  rect.width;
+                img.height =  rect.height;
+//                 img.style.marginLeft = rect.left+'px';
+                img.style.marginTop = rect.top+'px';
+            }
+            var reader = new FileReader();
+            reader.onload = function(evt){img.src = evt.target.result;}
+            reader.readAsDataURL(file.files[0]);
+        }
+        else //兼容IE
+        {
+            var sFilter='filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src="';
+            file.select();
+            var src = document.selection.createRange().text;
+            div.innerHTML = '<img id=imghead1>';
+            var img = document.getElementById('imghead1');
+            img.filters.item('DXImageTransform.Microsoft.AlphaImageLoader').src = src;
+            var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+            status =('rect:'+rect.top+','+rect.left+','+rect.width+','+rect.height);
+            div.innerHTML = "<div id=divhead1 style='width:"+rect.width+"px;height:"+rect.height+"px;margin-top:"+rect.top+"px;"+sFilter+src+"\"'></div>";
+        }
+    }
+    function clacImgZoomParam( maxWidth, maxHeight, width, height ){
+        var param = {top:0, left:0, width:width, height:height};
+        if( width>maxWidth || height>maxHeight )
+        {
+            rateWidth = width / maxWidth;
+            rateHeight = height / maxHeight;
+
+            if( rateWidth > rateHeight )
+            {
+                param.width =  maxWidth;
+                param.height = Math.round(height / rateWidth);
+            }else
+            {
+                param.width = Math.round(width / rateHeight);
+                param.height = maxHeight;
+            }
+        }
+        param.left = Math.round((maxWidth - param.width) / 2);
+        param.top = Math.round((maxHeight - param.height) / 2);
+        return param;
+    }
+    $(".submit").click(function () {
+        var imghead1=$("#imghead1").attr("src");
+        var imghead=$("#imghead").attr("src");
+        console.log(imghead);
+        console.log(imghead1);
+        myAjax({url:"/pic/base64/upload",type:"post",data:{base64:imghead}}, function (data) {
+            console.log(data);
+            if(data.status==200){
+                myAjax({url:"/pic/base64/upload",type:"post",data:{base64:imghead1}}, function (data) {
+                    console.log(data);
+                })
+
+            }
+        })
+    })
+</script>
+</html>

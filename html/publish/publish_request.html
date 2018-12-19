@@ -20,10 +20,16 @@
         .say>.style{
             border-bottom: 1px solid #eeeeee;
         }
-
+        #loading{
+            display: none;
+        }
     </style>
 </head>
 <body style="background-color:#fff;">
+<div id="loading">
+    <img src="../../img/login.gif" alt=""/>
+    <div>请等待，正在发送...</div>
+</div>
 <div class="layer">
     <div id="mask"></div>
     <div id="role_share" class="clearfix">
@@ -75,7 +81,7 @@
             <em class="mui-icon mui-icon-help rule"></em>
         </div>
         <div class="origin">
-            <input type="text" placeholder="请选择问题来源（非必填）"/>
+            <input type="text" placeholder="请选择问题来源（必填）"/>
         </div>
 
         <div id="choose_share">
@@ -181,25 +187,28 @@
     //图片上传
     var obj={};
     $(".confirm").click(function(){
+       $("#loading").show();
        var title=$(".say>.style").val().trim();
         if(title==""){
+            $("#loading").hide();
             sweetAlert(
                     "sorry",
                     "标题不能为空哦",
                     "error"
             )
             return false;
-
         }else{
             obj.title=title;
         }
        obj.userid=localStorage.getItem("this_userid");
         if($(".origin>input").val().trim()==""){
+            $("#loading").hide();
             sweetAlert(
                     "sorry",
                     "请您选择问题来源",
                     "error"
             )
+
             return false;
         }else{
             obj.courseid=courseId;
@@ -208,21 +217,26 @@
         var reg=/^\d+$/;
         console.log(num);
         if(!reg.test(num)){
+            $("#loading").hide();
             sweetAlert(
                     "sorry",
                     "请您输入非负整数(可以为0)",
                     "error"
             )
+
+            return false;
         }else{
           obj.reward=num;
         }
         var body=$("textarea").val().trim();
         if(body==""){
+            $("#loading").hide();
             sweetAlert(
                     "sorry",
                     "问题描述不能为空哦",
                     "error"
             )
+
             return false;
         }else{
             obj.body=body;
@@ -232,10 +246,12 @@
        // console.log(base64s);
         myAjax({url:"/pic/multiple/base64/upload",type:"post",data:{"base64s":base64s},async:false}, function (data) {
             console.log(data);
+            $("#loading").show();
             if(data.status==200){
                obj.picture=data.data;
                 myAjax({url:"/Question/and/Answer/add/Question",data:obj,type:"post"}, function (data) {
                     console.log(data);
+                    $("#loading").hide();
                     if(data.status==200){
                         sweetAlert(
                                 "恭喜你",
@@ -246,6 +262,7 @@
                                     $("textarea").val("");
                                 })
                     }else{
+                        $("#loading").hide();
                         sweetAlert(
                                 "sorry",
                                 data.msg,
@@ -254,6 +271,13 @@
                         return false;
                     }
                 })
+            }else{
+                $("#loading").hide();
+                sweetAlert(
+                        "sorry",
+                        data.msg,
+                        "error"
+                )
             }
         })
        /* var title= $(".style").val();
@@ -329,7 +353,7 @@
         var imgArr = [];
         //遍历获取到得图片文件
         for (var i = 0; i < fileList.length; i++) {
-            //判断上传的图片大小
+           /* //判断上传的图片大小
             if(file.files && file.files[i]){
                 var fileData = file.files[i];
                 var size = fileData.size;   //注意，这里读到的是字节数
@@ -342,7 +366,7 @@
                     alert("大小超过2 M，请重新上传");
                     return false;
                 }
-            }
+            }*/
             //结束
             var imgUrl = window.URL.createObjectURL(file.files[i]);
             imgArr.push(imgUrl);

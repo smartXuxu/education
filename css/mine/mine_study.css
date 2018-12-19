@@ -2,41 +2,41 @@
   padding-top: 1.6rem;
   padding-bottom: 0;
 }
-.main > .near_study {
+.main .study > .near_study {
   width: 100%;
   border-bottom: 0.2rem solid #eeeeee;
 }
-.main > .near_study > p {
+.main .study > .near_study > p {
   margin-top: 0.3rem;
   text-align: center;
   font-size: 0.24rem;
 }
-.main > .near_study > p > em {
+.main .study > .near_study > p > em {
   color: #f01414;
   font-size: 0.6rem;
   vertical-align: middle;
 }
-.main > .near_study ul {
+.main .study > .near_study ul {
   width: 100%;
   margin-top: 0.6rem;
 }
-.main > .near_study ul li {
+.main .study > .near_study ul li {
   float: left;
   width: 25%;
   position: relative;
   text-align: center;
 }
-.main > .near_study ul li > p {
+.main .study > .near_study ul li > p {
   font-size: 0.24rem;
   color: #333;
 }
-.main > .near_study ul li > em {
+.main .study > .near_study ul li > em {
   font-size: 0.24rem;
 }
-.main > .near_study ul li > em i {
+.main .study > .near_study ul li > em i {
   font-size: 0.3rem;
 }
-.main > .near_study ul li:after {
+.main .study > .near_study ul li:after {
   position: absolute;
   content: "";
   height: 0.4rem;
@@ -47,21 +47,21 @@
   display: block;
   right: 5%;
 }
-.main > .near_study ul li:last-of-type:after {
+.main .study > .near_study ul li:last-of-type:after {
   width: 0;
   height: 0;
 }
-.main > .learn {
+.main .study > .learn {
   padding: 0.3rem;
 }
-.main > .learn > h3 {
+.main .study > .learn > h3 {
   font-size: 0.3rem;
 }
-.main > .learn > h3 > i {
+.main .study > .learn > h3 > i {
   font-size: 0.32rem;
   color: #f01414;
 }
-.main > .learn > span {
+.main .study > .learn > span {
   width: 2.2rem;
   height: 0.4rem;
   line-height: 0.4rem;
@@ -132,16 +132,16 @@
   text-align: center;
 }
 .main > .recently_learn > ul > li a .ex_right > .ex_footer ul li > em {
-  font-size: 0.38rem;
+  font-size: 0.3rem;
 }
 .main > .recently_learn > ul > li a .ex_right > .ex_footer ul li:first-of-type > em {
-  font-size: 0.42rem;
+  font-size: 0.32rem;
 }
 .main > .recently_learn > ul > li a .ex_right > .ex_footer ul li:last-of-type {
   margin-top: 0.05rem;
 }
 .main > .recently_learn > ul > li a .ex_right > .ex_footer ul li:last-of-type > em {
-  font-size: 0.4rem;
+  font-size: 0.3rem;
 }
 /*������*/
 .loader-container {

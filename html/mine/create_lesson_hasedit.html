@@ -144,18 +144,26 @@
             $(".schoolName").text(data.data);
         }
     })
-
     var courseid=location.href.split("=")[1];
     myAjax({url:"/course/related/get/course/BaseInfo",data:{courseid:courseid},type:"post"}, function (data) {
         console.log(data);
         if(data.status==200){
+
             template.helper("time",function(date){
                 var time=new Date(date).toLocaleString().replace(/:\d{1,2}$/,' ').replace(/\//g,"-");
                 return time;
             });
             /*模板引入*/
-            $(".lesson_name").html(template("lesson_name",data))
-            $(".content").html(template("content",data));
+            if(sessionStorage.getItem("teach_grade")||sessionStorage.getItem("teach_subject")){
+                $(".lesson_name").html(template("lesson_name",data));
+                $(".content").html(template("content",data));
+                $(".grade_teach>em").text(sessionStorage.getItem("teach_grade"))
+                $(".subject_teach>em").text(sessionStorage.getItem("teach_subject"))
+            }else{
+                $(".lesson_name").html(template("lesson_name",data))
+                $(".content").html(template("content",data));
+
+            }
           $(".main > .lesson_name .cover_box").css("background-image","url(+'data.data.coursePicture'+)");
             /* 单个上传课程封面图片*/
             document.querySelector("#against").onchange=function () {
@@ -165,12 +173,49 @@
         }
     })
 
+    $(".layer").on("click",".year_teach", function () {
+        $("#mask").show();
+        $("#teach_year").show();
+    })
+    $(".layer").on("click",".term", function () {
+        $("#mask").show();
+        $("#term").show();
+    })
 
+    $(".layer").on("click","#teach_year li", function () {
+        $(this).children("em").text("√");
+        $(this).siblings().children("em").text("");
+        console.log($(this).children("i").text());
+        $(".year_teach>em").text($(this).children("i").text());
+        $("#mask").hide();
+        $("#teach_year").hide();
+    })
+    $(".layer").on("click","#term li", function () {
+        $(this).children("em").text("√");
+        $(this).siblings().children("em").text("");
+        console.log($(this).children("i").text());
+        $(".term>em").text($(this).children("i").text());
+        $("#mask").hide();
+        $("#term").hide();
+    })
     function html5Reader(file,ele){
         //var file = file.files[0];
         var reader = new FileReader();
+        //、判断上传的文件大小
+        var size = file[0].size;
+        //console.log(size);//注意，这里读到的是字节数
+        var isAllow = false;
+        if (!size) isAllow = false;
+        var maxSize = 2048;
+        maxSize = maxSize * 1024;   //转化为字节
+        isAllow = size <= maxSize;
+        if (!isAllow) {
+            alert("大小超过2 M，请重新上传");
+            return false;
+        }
         // reader.readAsDataURL(file);
         reader.readAsDataURL(file[0]);
+
         reader.onload = function(e){
             var pic = document.querySelector(ele);
             // console.log(reader.result);
@@ -181,36 +226,25 @@
         /*课程详情 可展示 可修改
          * my_video_class_edit.html
          * educational_administration.html 课程编辑*/
-        $(".year_teach").click(function () {
+       /* $(".year_teach").click(function () {
             $("#mask").show();
             $("#teach_year").show();
 
-        })
-        $(".term").click(function () {
-            $("#mask").show();
-            $("#term").show();
-        });
-        $("#teach_year li").click(function () {
-            $(this).children("em").text("√");
-            $(this).siblings().children("em").text("");
-            console.log($(this).children("i").text());
-            $(".year_teach>em").text($(this).children("i").text());
-            $("#mask").hide();
-            $("#teach_year").hide();
-        });
-        $("#term li").click(function () {
+        })*/
+
+      /*  $("#term li").click(function () {
             $(this).children("em").text("√");
             $(this).siblings().children("em").text("");
             console.log($(this).children("i").text());
             $(".term>em").text($(this).children("i").text());
             $("#mask").hide();
             $("#term").hide();
-        })
-        let teach_grade=localStorage.getItem("teach_grade");
+        })*/
+        let teach_grade=sessionStorage.getItem("teach_grade");
         if(teach_grade){
             $(".grade_teach>em").text(teach_grade);
         }
-        let teach_subject=localStorage.getItem("teach_subject");
+        let teach_subject=sessionStorage.getItem("teach_subject");
         if(teach_subject){
             $(".subject_teach>em").text(teach_subject);
         }
@@ -282,8 +316,8 @@
                             if(data.status==200){
                                 $("#loading").hide();
                                 // teach_subject teach_grade
-                                localStorage.removeItem("teach_grade");
-                                localStorage.removeItem("teach_subject");
+                                sessionStorage.removeItem("teach_grade");
+                                sessionStorage.removeItem("teach_subject");
                                 sweetAlert(
                                         "恭喜您",
                                         "课程修改成功了",
@@ -292,12 +326,16 @@
                                             back()
                                         })
                                 //back();
+
                             }else{
                                 sweetAlert(
                                         "sorry",
                                         data.msg,
                                         "error"
                                 )
+                                sessionStorage.removeItem("teach_grade");
+                                sessionStorage.removeItem("teach_subject");
+
                             }
                         }
                     })

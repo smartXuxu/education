@@ -75,31 +75,79 @@
 <script src="../../js/sweetalert2.js"></script>
 <script>
     $(function () {
+        var flag=true;
+        var userid=localStorage.getItem("this_userid");
+
         $(".getCode").click(function () {
-            getCode("1527196854@qq.com");
+            if(flag){
+                var str=$(".email>input").val().trim();
+                getCode(str);
+                function getCode(str){
+                    // 先验证 用户输入的邮箱 不正确 阻断 返回
+                    var re = /^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/;
+                    if(!re.test(str)){
+                        sweetAlert(
+                                "sorry",
+                                "对不起，请您输入正确的邮箱",
+                                "error"
+                        ).then(function () {
+                                    $("input").val("");
+                                })
+                        return false;
+                    }else{
+                        myAjax({url:"/sundry/add/Email/authcode",data:{userid:userid,email:str},type:"post"}, function (data) {
+                            console.log(data);
+                            if(data.code==200){
+                                sweetAlert(
+                                        "验证码已发送，请您查收输入",
+                                        "success"
+                                )
+                            }
+                        })
+
+                    }
+                }
+                flag=false;
+                //倒计时效果
+                var time=300;
+                $(this).text(time+ "S");
+                var timer= setInterval(function(){
+                    time--;
+                    $(".getCode").text(time+ "S");
+                    if(time<0){
+                        clearInterval(timer);
+                        $(".getCode").text("重新发送");
+                        $(".email>input").val("");
+                        time=300;
+                        flag=true;
+                    }
+                },1000)
+            }
         })
-
-        function getCode(str){
-            // 先验证 用户输入的邮箱 不正确 阻断 返回
-            var re = /^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/;
-            if(!re.test(str)){
-
+        $(".finish").click(function () {
+            var code=$(".code>input").val().trim();
+            if(code.length==0){
                 sweetAlert(
                         "sorry",
-                        "对不起，请您输入正确的邮箱",
+                        "请您填写邮箱验证码",
                         "error"
-                ).then(function () {
-                            $("input").val("");
-                        })
-                return false;
-            }else{
-                sweetAlert(
-                        "恭喜您",
-                        "成功验证",
-                        "success"
                 )
+            }else{
+                myAjax({url:"/sundry/update/Email/Binding",data:{userid:userid,code:code,email:$(".email>input").val().trim()},type:"post"}, function (data) {
+                    console.log(data);
+                    if(data.status==200){
+                        $(".finish").text("已绑定")
+                    }else{
+                        sweetAlert(
+                                "sorry",
+                                data.msg,
+                                "error"
+                        )
+                    }
+                })
             }
-        }
+        })
+
         /*function checkEmail(str){
             var re = /^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/
             if(re.test(str)){

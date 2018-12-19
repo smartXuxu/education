@@ -44,9 +44,17 @@
             display: none;
 
         }
+        #loading{
+            display: none;
+        }
+
     </style>
 </head>
 <body style="background-color:#eee;">
+<div id="loading">
+    <img src="../../img/login.gif" alt=""/>
+    <div>请等待，正在发送...</div>
+</div>
 <div class="layer">
     <header id="header" class="mui-bar mui-bar-nav">
         <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
@@ -111,10 +119,12 @@
     })*/
     var obj={};
     $(".finish").click(function(){
+        $("#loading").show();
         var base64s=images.join("。").replace(/"/g,"");
         console.log(base64s);
         myAjax({url:"/pic/multiple/base64/upload",type:"post",data:{"base64s":base64s},async:false}, function (data) {
             console.log(data);
+            $("#loading").show();
             if(data.status==200){
                 var picture=data.data;
                 //拿到 图片上传的地址
@@ -147,6 +157,7 @@
                         },
                         success:function(data){
                             console.log(data);
+                            $("#loading").hide();
                             if(data.status==200){
                                 //$("#loading").hide();
                                 //alert("发表成功");
@@ -159,6 +170,13 @@
                                             location.href='../find/find_dynamic.html'
                                         })
 
+                            }else{
+                                $("#loading").hide();
+                                sweetAlert(
+                                        "sorry",
+                                        data.msg,
+                                        "error"
+                                )
                             }
                         },
                         error:function(data){
@@ -174,7 +192,12 @@
                     )
                 }
             }else{
-
+                $("#loading").hide();
+                sweetAlert(
+                        "sorry",
+                        data.msg,
+                          "error"
+                )
             }
         })
 
@@ -194,7 +217,7 @@
         var imgArr = [];
         //遍历获取到得图片文件
         for (var i = 0; i < fileList.length; i++) {
-            //判断上传的图片大小
+           /* //判断上传的图片大小
             if(file.files && file.files[i]){
                 var fileData = file.files[i];
                 var size = fileData.size;   //注意，这里读到的是字节数
@@ -207,7 +230,7 @@
                     alert("大小超过2 M，请重新上传");
                     return false;
                 }
-            }
+            }*/
             //结束
             var imgUrl = window.URL.createObjectURL(file.files[i]);
             imgArr.push(imgUrl);

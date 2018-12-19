@@ -43,6 +43,8 @@
 }
 .main .swiper #swiper .swiper-slide img {
   width: 100%;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
   border-radius: 5px;
 }
 .main .swiper-pagination-bullet-active {
@@ -82,6 +84,9 @@
   height: 2rem;
   overflow: hidden;
   position: relative;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
   background-color: rgba(0, 0, 0, 0);
 }
 .main .famous ul li .box img {
@@ -140,6 +145,7 @@
 }
 .main .famous .lists .list .img_box img {
   width: 100%;
+  border-radius: 5px;
   vertical-align: middle;
 }
 .main .famous .lists .list .right {
@@ -245,12 +251,19 @@
 .main .hot_lesson ul > li > a > img {
   display: block;
   width: 100%;
+  height: 2rem;
+  overflow: hidden;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
 }
 .main .hot_lesson ul > li > a em,
 .main .hot_lesson ul > li > a span {
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 1;
+  height: 0.4rem;
+  line-height: 0.4rem;
   -webkit-box-orient: vertical;
   word-break: break-all;
   display: block;
@@ -301,6 +314,7 @@
   width: 2.9rem;
   height: 1.8rem;
   overflow: hidden;
+  border-radius: 5px;
   vertical-align: middle;
 }
 .main .excent_lesson ul > li a > .ex_right {

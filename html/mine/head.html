@@ -154,7 +154,7 @@
     function selectImg(file) {
         if (!file.files || !file.files[0]){
             return true;
-        }else{
+        }/*else{
             var fileData = file.files[0];
             var size = fileData.size;   //注意，这里读到的是字节数
             var isAllow = false;
@@ -166,7 +166,7 @@
                 alert("图片超过2 M，请重新上传");
                 return false;
             }
-        }
+        }*/
         var reader = new FileReader();
         reader.onload = function (evt) {
 
@@ -259,7 +259,7 @@
                 if(data.status==200){
                     localStorage.setItem("userPic",data.data)
                     sweetAlert(
-                            "恭喜您",
+                            "更换头像第一步完成，注意（暂未保存）",
                             "请在个人中心中继续编辑资料",
                             "success"
                     ).then(function () {

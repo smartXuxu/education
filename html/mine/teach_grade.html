@@ -157,7 +157,7 @@
         })
         $(".finish").click(function () {
             console.log($("span.active").text());
-            localStorage.setItem("teach_grade",$("span.active").text());
+            sessionStorage.setItem("teach_grade",$("span.active").text());
             back();
         })
     })

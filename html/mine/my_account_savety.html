@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../../css/mui.min.css"/>
     <link rel="stylesheet" href="../../css/base.css"/>
     <link rel="stylesheet" href="../../css/header.css"/>
+    <link rel="stylesheet" href="../../css/sweetalert2.css"/>
     <style>
         html{
             background-color: #f4f4f4;
@@ -70,19 +71,20 @@
         <li>
             <a href="javascript:;">在线状态 <i>√</i></a>
         </li>
-       <!-- <li>
-            <a href="./link_email.html">绑定邮箱 &lt;!&ndash;<em>未绑定</em>&ndash;&gt;<i class="mui-icon mui-icon-arrowright"></i></a>
-        </li>-->
+        <li class="email">
+            <!--填充-->
+           <!-- <a href="./link_email.html">绑定邮箱 <em>未绑定</em><i class="mui-icon mui-icon-arrowright"></i></a>
+       --> </li>
         <li>
             <a href="./change_password_login.html">修改登录密码 <i class="mui-icon mui-icon-arrowright"></i></a>
         </li>
         <li>
             <a href="./person_authentication.html">实名认证 <!--<em>未认证</em>--><i class="mui-icon mui-icon-arrowright"></i></a>
         </li>
-        <li>
+        <li class="teacher">
             <a href="./teacher_authentication.html">教师认证 <!--<em>未认证</em>--><i class="mui-icon mui-icon-arrowright"></i></a>
         </li>
-        <li>
+        <li class="student">
             <a href="./student_authentication.html">学生认证 <!-- <em>未认证</em>--><i class="mui-icon mui-icon-arrowright"></i></a>
         </li>
     </ul>
@@ -91,8 +93,52 @@
 <script src="../../js/x_rem.js"></script>
 <script src="../../js/back.js"></script>
 <script src="../../js/jquery.min.js"></script>
+<script src="../../js/base.js"></script>
+<script src="../../js/sweetalert2.js"></script>
 <script>
+        $(function () {
+            /*判断邮箱是否登录*/
+            var userid=localStorage.getItem("this_userid");
+            myAjax({url:"/sundry/get/EmailBind/Status",type:"post",data:{userid:userid}}, function (data) {
+                console.log(data);
+                if(data.status==200){
+                    if(data.data.status==false){
+                        $(".email").html(`<a href="./link_email.html">绑定邮箱
+                        <em>未绑定</em><i class="mui-icon mui-icon-arrowright"></i></a>`)
+                    }else{
+                        $(".email").html(`<a href="javscript:;">绑定邮箱
+                        <em>已绑定</em><i class="mui-icon mui-icon-arrowright"></i></a>`)
+                    }
+                }
+            })
+            //判断 身份状态
+            /*
+            *   {{if data.user.identityAuthentication==4}}
+             教师
+             {{else if data.user.identityAuthentication==3}}
+             学生
+             {{else if data.user.identityAuthentication==2}}
+             教师认证中
+             {{else }}
+             游客
 
+             {{/if}}*/
+            myAjax({url:"/user/my/get/Base/Info",data:{userid:userid},type:"post"}, function (data) {
+                console.log(data);
+                if(data.status==200){
+                   if(data.data.user.identityAuthentication==4){
+                       $(".teacher").html(`<a href="./teacher_authentication.html">教师认证
+                       <em>已认证</em><i class="mui-icon mui-icon-arrowright"></i></a>`)
+                   }else if(data.data.user.identityAuthentication==2){
+                       $(".teacher").html(`<a href="./teacher_authentication.html">教师认证
+                       <em>认证中</em><i class="mui-icon mui-icon-arrowright"></i></a>`)
+                   }else if(data.data.user.identityAuthentication==3){
+                       $(".student").html(`<a href="./student_authentication.html">学生认证
+                        <em>已认证</em><i class="mui-icon mui-icon-arrowright"></i></a>`)
+                   }
+                }
+            })
+        })
 </script>
 </body>
 </html>

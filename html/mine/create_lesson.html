@@ -155,11 +155,11 @@
             $("#mask").hide();
             $("#term").hide();
         })
-        let teach_grade=localStorage.getItem("teach_grade");
+        let teach_grade=sessionStorage.getItem("teach_grade");
         if(teach_grade){
             $(".grade_teach>em").text(teach_grade);
         }
-        let teach_subject=localStorage.getItem("teach_subject");
+        let teach_subject=sessionStorage.getItem("teach_subject");
         if(teach_subject){
             $(".subject_teach>em").text(teach_subject);
         }
@@ -228,8 +228,8 @@
                             if(data.status==200){
                                 $("#loading").hide();
                                 // teach_subject teach_grade
-                                localStorage.removeItem("teach_grade");
-                                localStorage.removeItem("teach_subject");
+                                sessionStorage.removeItem("teach_grade");
+                                sessionStorage.removeItem("teach_subject");
                                 sweetAlert(
                                         "恭喜您",
                                         "课程创建成功了",

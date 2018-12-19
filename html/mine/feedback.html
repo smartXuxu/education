@@ -99,11 +99,11 @@
                           怎么获得上传视频权限？
                       </a>
                   </li>
-                   <li>
+                 <!--  <li>
                       <a href="question_detail.html">
                           怎么获得上传视频权限？
                       </a>
-                  </li>
+                  </li>-->
                </ul>
 
             </div>
@@ -122,7 +122,6 @@
         var obj={};
        obj.userid=localStorage.getItem("this_userid");
         $(".submit").click(function () {
-
             getVals();
             obj.content=$("textarea").val().trim();
             obj.contact=$(".phone").val().trim();
@@ -138,6 +137,11 @@
                        console.log(data);
                        if(data.status==200){
                            $(".submit").text("已提交");
+                           sweetAlert(
+                                   "恭喜您",
+                                   "您的意见反馈已经收到，给您带来不便，我们深感歉意！我们会根据您提出的问题不断完善，再次感谢您的大力支持，么么哒～如果您还有更多好建议，可以及时关注我们的官方微信公众号【跟着猴姆上名校】在公众号后台给我们留言，只为服务更优秀的你！！",
+                                   "success"
+                           )
                        }
                    })
                 }
@@ -167,7 +171,6 @@
         }
 
     })
-
     /*上传图片
      * */
     function imgChange(obj1, obj2) {
@@ -183,7 +186,7 @@
         //遍历获取到得图片文件
         for (var i = 0; i < fileList.length; i++) {
             //判断上传的图片大小
-            if(file.files && file.files[i]){
+           /* if(file.files && file.files[i]){
                 var fileData = file.files[i];
                 var size = fileData.size;   //注意，这里读到的是字节数
                 var isAllow = false;
@@ -195,7 +198,7 @@
                     alert("大小超过2 M，请重新上传");
                     return false;
                 }
-            }
+            }*/
             //结束
             var imgUrl = window.URL.createObjectURL(file.files[i]);
             imgArr.push(imgUrl);

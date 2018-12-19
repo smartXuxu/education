@@ -89,6 +89,9 @@ header .mui-title,header .mui-pull-left{
     position: absolute;
     top: -30%;
 }
+.header>.h_left>i>del{
+    display: block;
+}
 .header>.h_left>i>img{
     width: 100%;
     height: 0.4rem;
@@ -98,6 +101,7 @@ header .mui-title,header .mui-pull-left{
     font-size: 0.28rem;
 }
 .header del{
+
     font-size: 0.2rem;
 }
 .header>em{

@@ -33,6 +33,12 @@
             text-indent: 2em;
             line-height: 0.4rem;
         }
+        img{
+            position: relative;
+            margin-top: 0.5rem;
+            left: 10%;
+            width: 80%;
+        }
     </style>
 </head>
 <body style="background-color:#fff;">
@@ -49,7 +55,6 @@
         <p>
             fsdafdsafdsaf
         </p>-->
-
     </div>
 </div>
 
@@ -68,6 +73,9 @@
     <p>
         {{data.messages.content}}
     </p>
+    {{if data.messages.classify==0}}
+    <img src="../../img/WeChat_code.png" alt=""/>
+    {{/if}}
 </script>
 <script>
     $(function () {

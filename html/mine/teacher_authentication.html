@@ -101,9 +101,16 @@
             vertical-align: middle;
             line-height: 1rem;
         }
+        #loading{
+            display: none;
+        }
     </style>
 </head>
 <body>
+<div id="loading">
+    <img src="../../img/login.gif" alt=""/>
+    <div>请等待，正在发送...</div>
+</div>
 <div class="layer">
     <header id="header" class="mui-bar mui-bar-nav">
         <i class="mui-icon mui-icon-left-nav mui-pull-left" onclick="back()"></i>
@@ -177,6 +184,18 @@
     function html5Reader(file,ele){
         //var file = file.files[0];
         var reader = new FileReader();
+       /* //、判断上传的文件大小
+        var size = file[0].size;
+        //console.log(size);//注意，这里读到的是字节数
+        var isAllow = false;
+        if (!size) isAllow = false;
+        var maxSize = 2048;
+        maxSize = maxSize * 1024;   //转化为字节
+        isAllow = size <= maxSize;
+        if (!isAllow) {
+            alert("大小超过2 M，请重新上传");
+            return false;
+        }*/
         // reader.readAsDataURL(file);
         reader.readAsDataURL(file[0]);
         reader.onload = function(e){
@@ -187,11 +206,11 @@
     }
     $(function () {
         /* 选择 任教年级 学校等信息*/
-        var teach_grade=localStorage.getItem("teach_grade");
+        var teach_grade=sessionStorage.getItem("teach_grade");
         if(teach_grade){
             $(".teach_grade>span").text(teach_grade)
         }
-        var teach_subject=localStorage.getItem("teach_subject");
+        var teach_subject=sessionStorage.getItem("teach_subject");
         if(teach_grade){
             $(".teach_subject>span").text(teach_subject)
         }
@@ -202,13 +221,16 @@
         }
 
         $(".submit").click(function () {
+            $("#loading").show();
             //判断一下  如果没有选择 学校什么的 就不让发送请求
             if($(".teach_school span").text().length==0&&$(".teach_grade span").text().length==0&&$(".teach_subject span").text().length==0){
+                $("#loading").hide();
               sweetAlert(
                       "sorry",
                       "请您完善信息",
                       "error"
               )
+
                 return false;
             }
             // 教师资格证照片
@@ -217,6 +239,13 @@
             if(teacherCertificate.replace(/\"/g,"").match("img/against.png")){
                 //if(base64IdCardBack.replace(/\"/g,"") =="http://localhost:63342/MU/img/against.png"){
                 teacherCertificate="";
+                $("#loading").hide();
+                sweetAlert(
+                       "sorry",
+                        "请您上传认证图片",
+                        "error"
+
+                )
             }else{
                 teacherCertificate=teacherCertificate.replace(/"/g,"");
             }
@@ -226,11 +255,20 @@
             if(teacherProof.replace(/\"/g,"").match("img/created_lesson_03.png")){
                 //if(base64IdCardBack.replace(/\"/g,"") =="http://localhost:63342/MU/img/against.png"){
                 teacherProof="";
+                $("#loading").hide();
+                sweetAlert(
+                        "sorry",
+                        "请您上传认证图片",
+                        "error"
+
+                )
             }else{
                 teacherProof=teacherProof.replace(/"/g,"");
             }
+            var identityAuthentication=localStorage.getItem("identityAuthentication");
             myAjax({url:"/pic/base64/upload",data:{base64:teacherCertificate},type:"post"}, function (data) {
                 console.log(data);
+                $("#loading").show();
                 if(data.status==200){
                     teacherCertificate=data.data
                     myAjax({url:"/pic/base64/upload",data:{base64:teacherProof},type:"post"}, function (data) {
@@ -245,7 +283,7 @@
                             var teachingSubjects=$(".teach_subject span").text();
                             var obj={
                                 "userid":userid,
-                                "identityAuthentication":4,
+                                "identityAuthentication":identityAuthentication,
                                 schoolId:schoolId,
                                 teachingSubjects:teachingSubjects,
                                 grade:grade,
@@ -256,6 +294,7 @@
                             // 教师身份认证
                              myAjax({url:"/authentication/updateTo/teacher",data:obj,type:"post"}, function (data) {
                                  console.log(data);
+                                 $("#loading").hide();
                                  if(data.status==200){
                                      $(".submit").text("已提交，等待审核");
                                      localStorage.removeItem("schoolName");
@@ -276,6 +315,13 @@
                              })
                         }
                     })
+                }else{
+                    $("#loading").hide();
+                    sweetAlert(
+                            "sorry",
+                            data.msg,
+                            "error"
+                    )
                 }
             })
 

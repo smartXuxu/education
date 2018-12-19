@@ -25,8 +25,7 @@
         <div class="head clearfix" onclick="location.href='./head.html'">
             <span class="f_left">头像</span>
             <i class="mui-icon mui-icon-arrowright f_right"></i>
-           <!-- <img src="../../img/focus-img1.png" class="f_right" alt="" />
--->
+            <img src="../../img/logo.png" class="f_right" alt="" />
         </div>
         <div class="nickname clearfix">
             <span class="f_left">昵称</span>
@@ -46,11 +45,15 @@
             <input id='sign_up'  data-options='{"type":"date"}' class="btn mui-btn mui-btn-block f_right" placeholder="请选择您的生日"/>
             <div id='result' class="ui-alert"></div>
         </div>
-        <div class="address clearfix">
+       <!-- <div class="address clearfix">
             <span class="f_left">地址</span>
             <i class="mui-icon mui-icon-arrowright f_right"></i>
             <input type="text" placeholder="请输入您的地址" class="f_right" />
-
+        </div>-->
+        <div class="area">
+            <span class="f_left">所在地区</span>
+            <i class="mui-icon mui-icon-arrowright f_right"></i>
+            <div id="city" class="address f_right">请选择</div>
         </div>
       <!--  <div class="idCard clearfix">
             <span class="f_left">身份</span>
@@ -80,6 +83,10 @@
 <script src="../../js/mui.picker.min.js"></script>
 <script src="../../js/x_rem.js"></script>
 <script src="../../js/jquery.min.js"></script>
+<script src="../../js/address/common.js"></script>
+<script src="../../js/address/popt.js"></script>
+<script src="../../js/address/cityjson.js"></script>
+<script src="../../js/address/cityset.js"></script>
 <script src="../../js/base.js"></script>
 <script src="../../js/back.js"></script>
 <script src="../../js/sweetalert2.js"></script>
@@ -134,9 +141,29 @@
             console.log(payMethod);
         });
         var token=localStorage.getItem("token");
-        myAjax({url:`/user/token/${token}`,type:'post',async:false}, function (data) {
-            console.log(data);
-        })
+        var  head="";
+        if(localStorage.getItem("userPic")){
+            $(".head>img").attr("src",localStorage.getItem("userPic"))
+        }else{
+            myAjax({url:`/user/token/${token}`,type:'post',async:false}, function (data) {
+                console.log(data);
+                if(data.status==200){
+
+                    if(head!==null||head!==""){
+                        head =data.data.portrait;
+                        $(".head>img").attr("src",data.data.portrait)
+                    }
+
+                }
+            })
+        }
+
+
+        /*地区选择*/
+        $("#city").click(function (e) {
+            SelCity(this,e);
+            /* console.log(this);*/
+        });
        /* var userId=localStorage.getItem("this_userId")
         myAjax({url:"/app/my/to/other/info",type:'post',data:{userId:userId}}, function (data) {
             console.log(data);
@@ -145,8 +172,10 @@
         $(".save").click(function () {
             obj.userid=localStorage.getItem("this_userid");
             obj.token=localStorage.getItem("token");
-            var  portrait=localStorage.getItem("userPic");
-            if(!portrait){
+            obj.identityAuthentication=localStorage.getItem("identityAuthentication");
+             var portrait=localStorage.getItem("userPic");
+            console.log(head);
+            if(!portrait&&head==''){
                 sweetAlert(
                         "sorry",
                         "请您上传您的个人头像",
@@ -154,7 +183,11 @@
                 )
                 return false
             }else{
-               obj.portrait=portrait;
+                if(!portrait){
+                    obj.portrait=head;
+                }else{
+                    obj.portrait=portrait;
+                }
             }
             var nickname=$(".nickname>input").val().trim();
             if(nickname.length==0){
@@ -174,7 +207,14 @@
                 obj.gender="女"
             }
             //地址
-            obj.address=$(".address>input").val().trim();
+            var address=$("#city").text().trim();
+            if(address=="请选择"){
+                address="";
+            }else{
+                address=address.replace(/-/g,"");
+                obj.address=address;
+            }
+
             //生日
             var birthday=$("#sign_up").val().trim()
             if(birthday==""){
@@ -186,7 +226,8 @@
             }else{
                 obj.date=new Date(birthday).getTime();
             }
-            myAjax({url:"/user/modify/personal",data:obj,type:"post"}, function (data) {
+            console.log(obj);
+              myAjax({url:"/user/modify/personal",data:obj,type:"post"}, function (data) {
                 console.log(data);
                 if(data.status==200){
                    //localStorage.removeItem("userPic");
@@ -204,7 +245,6 @@
                     )
                 }
             })
-
         })
 
     })

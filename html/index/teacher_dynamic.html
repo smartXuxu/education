@@ -220,13 +220,8 @@
                         <i>{{value.publisher}}</i>&nbsp;:&nbsp;&nbsp;
                         {{value.body}}
                     </p>
-                    {{/if}}
-                    {{if value.replyTo==null}}
-                    <p>
-                        <i>{{value.reply}}</i> :&nbsp;&nbsp; {{value.body}}
-                    </p>
                     {{else}}
-                    <p>
+                    <p  class="son">
                         <i>{{value.reply}}</i>&nbsp;&nbsp;回复
                         <s>{{value.replyTo}}</s>&nbsp;&nbsp;:&nbsp;&nbsp;{{value.body}}
                     </p>
@@ -234,7 +229,6 @@
                     <!--回复的是个人 回复的动态-->
                     <!--回复的个人-->
                     {{/each}}
-
                     <div class="more" onclick="location.href='../index/see_more_comment.html?dynamicid={{value.dynamic.id}}'">查看更多回复>></div>
                 </div>
                 {{/if}}

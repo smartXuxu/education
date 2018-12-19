@@ -90,9 +90,16 @@
             font-size: 0.32rem;
             text-align: center;
         }
+        #loading{
+            display: none;
+        }
     </style>
 </head>
 <body>
+<div id="loading">
+    <img src="../../img/login.gif" alt=""/>
+    <div>请等待，正在发送...</div>
+</div>
 <div class="layer">
     <header id="header" class="mui-bar mui-bar-nav">
         <i class="mui-icon mui-icon-left-nav mui-pull-left" onclick="back()"></i>
@@ -105,7 +112,7 @@
             </div>
             <div class="idCard">
                 <em>身份证号：</em>
-                <input type="text" placeholder="请填写您的身份证号" id="Idcard"/>
+                <input type="text"  placeholder="请填写您的身份证号" id="Idcard"/>
             </div>
         <div class="Id_photo clearfix">
             <h2 >上传身份证：</h2>
@@ -156,41 +163,58 @@ document.querySelector("#just").onchange=function () {
 }
 
 function html5Reader(file,ele){
-    //var file = file.files[0];
+  /* var file1 = file[0].size;
+    console.log(file1);*/
     var reader = new FileReader();
-    // reader.readAsDataURL(file);
+    // reader.readAsDataURL(file); //判断上传的图片大小
+    /*var fileData = file[0].size;*/
+
+   /* var size = file[0].size;
+    //console.log(size);//注意，这里读到的是字节数
+    var isAllow = false;
+    if (!size) isAllow = false;
+    var maxSize = 2048;
+    maxSize = maxSize * 1024;   //转化为字节
+    isAllow = size <= maxSize;
+    if (!isAllow) {
+        alert("大小超过2 M，请重新上传");
+        return false;
+    }*/
     reader.readAsDataURL(file[0]);
-    reader.onload = function(e){
-        var pic = document.querySelector(ele);
-       // console.log(reader.result);
-        pic.style.backgroundImage="url("+reader.result+")";
-    }
+        reader.onload = function (e) {
+            var pic = document.querySelector(ele);
+            // console.log(reader.result);
+            pic.style.backgroundImage = "url(" + reader.result + ")";
+        }
 }
     $(function () {
         var obj={};
        $(".submit").click(function () {
+           $("#loading").show();
            obj.userid=localStorage.getItem("this_userid");
            //真实姓名
            var realName=$(".realName>input").val().trim();
            //未认证
           obj.realnameAuthentication=1;
            if(realName.length==0){
+               $("#loading").hide();
                sweetAlert(
                        "sorry",
                        "姓名不能为空哦",
                        "error"
                )
+
                return false;
            }else{
                obj.realName=realName;
            }
            var idCardNumber=$("#Idcard").val().trim();
-
            //验证 身份证号
            // 身份证号码为15位或者18位，15位时全为数字，18位前17位为数字，最后一位是校验位，可能为数字或字符X
                var reg = /(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
                if(reg.test(idCardNumber) === false)
                {
+                   $("#loading").hide();
                    sweetAlert(
                            "sorry",
                            "您的身份证输入不合法",
@@ -199,16 +223,17 @@ function html5Reader(file,ele){
                                $("#Idcard").val("");
                                return false;
                            })
+
                    return false;
                }else{
                    obj.idNumber=idCardNumber;
                }
-
            var idCardFront=$(".against_box").css('backgroundImage').replace('url(','').replace(')','');
            //console.log(base64IdCardBack);
            if(idCardFront.replace(/\"/g,"").match("img/against.png")){
                //if(base64IdCardBack.replace(/\"/g,"") =="http://localhost:63342/MU/img/against.png"){
                idCardFront="";
+               $("#loading").hide();
                sweetAlert(
                        "sorry",
                        "请您上传身份证正面照",
@@ -217,12 +242,25 @@ function html5Reader(file,ele){
                return false;
            }else{
                idCardFront=idCardFront.replace(/"/g,"");
-           }
+          }
+           //将图片Base64 转成文件
+           /*  dataURLtoFile(file,"123a");
+
+           function dataURLtoFile(dataurl, filename) {//将base64转换为文件
+               var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
+                       bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+               while(n--){
+                   u8arr[n] = bstr.charCodeAt(n);
+               }
+               console.log(new File([u8arr], filename, {type: mime}));
+               return new File([u8arr], filename, {type:mime});
+           }*/
            var idCardBack=$(".open_box").css('backgroundImage').replace('url(','').replace(')','');
            //console.log(base64IdCardBack);
            if(idCardBack.replace(/\"/g,"").match("img/just.png")){
                //if(base64IdCardBack.replace(/\"/g,"") =="http://localhost:63342/MU/img/against.png"){
                idCardBack="";
+               $("#loading").hide();
                sweetAlert(
                        "sorry",
                        "请您上传身份证反面照",
@@ -234,6 +272,7 @@ function html5Reader(file,ele){
            }
            myAjax({url:"/pic/base64/upload",data:{base64:idCardFront},type:"post"}, function (data) {
                console.log(data);
+               $("#loading").show();
                if (data.status == 200) {
                    obj.idCardFront=data.data;
                    myAjax({url:"/pic/base64/upload",data:{base64:idCardBack},type:"post"}, function (data) {
@@ -242,7 +281,9 @@ function html5Reader(file,ele){
                            obj.idCardBack=data.data;
                            myAjax({url:"/authentication/update/RealName",data:obj,type:"post"}, function (data) {
                             console.log(data);
+                               $("#loading").hide();
                                if(data.status==200){
+
                                  $(".submit").text("已提交，等待审核");
                                }else{
                                    sweetAlert(
@@ -260,6 +301,13 @@ function html5Reader(file,ele){
                            )
                        }
                    })
+               }else{
+                   $("#loading").hide();
+                   sweetAlert(
+                           "sorry",
+                           data.msg,
+                          "error"
+                   )
                }
            })
 

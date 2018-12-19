@@ -223,7 +223,7 @@ address,caption,cite,code,dfn,em,th{
     position: fixed;
     top: 50%;
     left: 50%;
-    z-index:999999;
+    z-index:1;
     transform: translate(-50%,-50%);
 }
 #loading img{
@@ -281,4 +281,8 @@ element {
     z-index: 6;
     display: none;
     background-color: rgba(0, 0, 0, 0.3);
+}
+/*隐藏下载按钮*/
+video::-internal-media-controls-download-button {
+    display: none;
 }

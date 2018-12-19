@@ -279,6 +279,9 @@ header > span > a:last-of-type em {
 .list_content_footer>.comment_box>p{
     font-size: 0.24rem;
 }
+.list_content_footer>.comment_box>.son{
+    padding-left: 0.5rem;
+}
 .list_content_footer>.comment_box>p>i,.list_content_footer>.comment_box>p>s{
     color:#00204c
 }

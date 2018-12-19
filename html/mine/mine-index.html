@@ -106,11 +106,10 @@
             </li>-->
             <li class="mui-table-view-cell edu_gray">
                 <!--截取-->
-                <a class="mui-navigate-right manage" href="javascript:;">
                     <em class="iconfont icon-bijibendiannao"></em>
                     教务管理
                     <i class="iconfont icon-mima"></i>
-                </a>
+
             </li>
             <!--必须是认证成功的老师 才显示-->
             <div class="educational">
@@ -172,7 +171,7 @@
                 {{else if data.user.identityAuthentication==3}}
                     学生
                 {{else if data.user.identityAuthentication==2}}
-                    教师身份认证中
+                    教师认证中
                 {{else }}
                     游客
 
@@ -229,6 +228,14 @@
         });
     }(mui, document));
     $(function () {
+        $(".layer").on("click",".edu_gray", function () {
+            //alert("12");
+            sweetAlert(
+                    "sorry",
+                    "必须是认证通过的教师身份，才能开启教务管理模块，您暂时还不具备此权限",
+                    "error"
+            )
+        })
         mui('body').on('tap','a',function(){document.location.href=this.href;});
         $('#footer').load('../common/footer.html');
         setTimeout(function () {
@@ -245,7 +252,7 @@
             if(data.status==321){
                 sweetAlert(
                         "sorry",
-                        "您的账号信息已过期，请您重新登录",
+                        "您的账号信息在别处登录，请您重新登录",
                         "error"
                 ).then(function () {
                             location.href='../login.html';
@@ -258,8 +265,9 @@
         }else{
             myAjax({url:"/user/my/get/Base/Info",data:{userid:userid},type:"post"}, function (data) {
                 console.log(data);
-                $(".mine_login").html(template("has_login",data));
                 if(data.status==200){
+                    $(".mine_login").html(template("has_login",data));
+                    localStorage.setItem("identityAuthentication",data.data.user.identityAuthentication);
                     if(data.data.user.identityAuthentication==4){
                         $(".edu_gray").hide()
                     }else{
