@@ -156,7 +156,7 @@
   border: 1px solid #f01414;
   color: #f01414;
   border-radius: 5px;
-  padding: 0.05rem 0.2rem;
+  padding: 0.05rem;
   font-size: 0.24rem;
 }
 #consequence > .list_school .right .right_footer {
@@ -171,7 +171,7 @@
   color: #999999;
 }
 #consequence > .list_school .right .right_footer span {
-  padding-left: 0.6rem;
+  padding-left: 0.3rem;
   position: absolute;
   top: 10%;
   overflow: hidden;

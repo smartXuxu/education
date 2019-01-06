@@ -156,7 +156,7 @@
                     var loUser = localStorage.setItem('uName',uName);
 
                     // 获取设置的本地存储的密码的值 base64加密
-                        pwd=base64.tranCode.encode(pwd);
+                        pwd=base64.tranCode.encode($("#pwd").val().trim());
                     var loPass = localStorage.setItem('pwd',pwd);
                         //console.log(data.data);
                         localStorage.setItem("token",data.data);
@@ -241,12 +241,12 @@
     document.getElementById('weChat').addEventListener('tap',function() {
         console.log("微信");
         tyindex=2;
-        authLogin('weixin');
+        authLogin('weChat');
     })
     document.getElementById('sina').addEventListener('tap',function() {
         console.log("微博");
         tyindex=3;
-        authLogin('sinaweibo');
+        authLogin('sina');
     })
     // 登录操作
     function authLogin(type) {
@@ -274,9 +274,9 @@
             var s = auths[i];
             if (s.authResult) {
                 s.logout(function(e) {
-                    console.log("注销登录认证成功！");
+                    mui.toast("注销登录认证成功！");
                 }, function(e) {
-                    console.log("注销登录认证失败！");
+                    mui.toast("注销登录认证失败！");
                 });
             }
         }
@@ -305,13 +305,7 @@
                 }
                 console.log(tyindex);
                 /*已经有第三方的信息了*/
-              /* myAjax("data:datask,type:'post',url:{}",function(data){
-                   if(data.status==200){
-                      //
-                       
-                   }
-               }) */
-                myAjax("data:datask,type:'post',url:{}",function(data){
+                myAjax({data:datask,type:'post',url:'/third/party/login'},function(data){
                     console.log(JSON.stringify(data));
                     if(data.status==200){//已经有第三方信息 登录成功返回token
                         localStorage.setItem('token', JSON.stringify(data.data));
@@ -328,7 +322,7 @@
                                 type:tyindex
                             }
                             localStorage.setItem('grxs', JSON.stringify(information));
-                            window.location.href="binding.html";
+                            window.location.href="./bindAccount.html";
                         }else if(tyindex==2){//微信
                             var information={
                                 nickname:kks.userInfo.nickname,//昵称
@@ -362,7 +356,7 @@
                             console.log(opendids);//opendid
                             console.log(kks.userInfo.headimgurl);//头像
                             localStorage.setItem('grxs', JSON.stringify(information));
-                            window.location.href="binding.html";
+                            window.location.href="./bindAccount.html";
                         }
                     }else{
                         console.log("错误");

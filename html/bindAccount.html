@@ -24,6 +24,44 @@
            margin-top: 0.1rem;
            text-align: right;
        }
+        .wdows{
+            width:100%;
+            height:100%;
+            display: flex;
+            justify-content: center;
+            position:fixed;
+            top:0;
+            left:0;
+            background: rgba(128,128,128,0.8);
+        }
+        .wdows>div{
+            width:75%;
+            background:white;
+            border-radius:0.2rem;
+            position:absolute;
+            top:20%;
+            left:12.5%;
+            padding:0.2rem 0 0.5rem 0;
+        }
+        .conflict{
+            width:100%;
+            padding:0.2rem 0.3rem 0.5rem 0.3rem;
+            /*background:gainsboro;*/
+            margin-bottom:0.5rem;
+            font:500 0.76rem AdobeHeitiStd-Regular;
+            border-bottom:1px solid #eeeeee;
+        }
+        .choose{
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+
+        }
+        .choose>div{
+            width:30%;
+            border:1px solid #eeeeee;
+            border-radius:5px;
+        }
     </style>
 </head>
 <body>
@@ -39,6 +77,15 @@
 
         <div class="pwd_user clearfix" onclick="location.href='./register.html'">
            立即注册
+        </div>
+        <div class="wdows" >
+            <div>
+                <div class="conflict"></div>
+                <div class="choose">
+                    <div>是</div>
+                    <div>否</div>
+                </div>
+            </div>
         </div>
 
     </div>
@@ -58,7 +105,7 @@
     /* if(localStorage.getItem("uName")&&localStorage.getItem("pwd")){
      location.href="./focus.html";
      }*/
-
+  $(".wdows").hide();
     //点击小眼睛 改变input的状态
     var flag=true;
     $(".eye").click(function(){
@@ -74,59 +121,97 @@
     });
 
     function login() {
-        var uName = $("#name").val();
-        var pwd = $("#pwd").val();
-        var obj = {};
+        var uName = $("#name").val().trim();
+        var pwd = $("#pwd").val().trim();
+
         if (isNotBlank(uName)) {
             if (!checkTelNum(uName)) {
                 alert('手机号格式不正确，请您重新输入');
                 $("input").val("");
                 return false;
             }
-            else {
-                obj.phone= uName;
-            }
-        }
-        else {
+        } else {
             alert('手机号/用户名不能为空');
             $("input").val("");
             return false;
         }
-        if (isNotBlank(pwd)) {
-            obj.password = pwd;
-        } else {
+        if (!isNotBlank(pwd)) {
             alert('密码不能为空');
             $("#pwd").val("");
             return false;
         }
         //console.log(JSON.stringify(obj));
         //还需要验证数据库里面有没有这个手机号的记录需要发送ajax
+        pwd=hex_md5(pwd);
+        var grxs = JSON.parse(localStorage.getItem('grxs'));
+        console.log(grxs);
+        var datask={
+            openID:grxs.openid,//openid
+            niceName:grxs.openid,//昵称
+            portrait:grxs.portrait,//头像
+            gender:grxs.gender,//性别
+            phone:uName,
+            password:pwd,
+            type:grxs.type
+        }
         $.ajax({
             xhrFields: {
                 withCredentials: true
             },
             type: "post",
             async: false,
-            url: baseUrl+"/user/login",
-            data: obj,
+            url: baseUrl+"third/party/account/binding",
+            data: datask,
             dataType: 'json',
             success: function (data) {
                 console.log(data);
-                if (data.status == "200") {
+                if (data.status == "200") {//保存密码 跳转到首页
                     /* localStorage.setItem('userId',data.userId);
                      localStorage.setItem('user', data.code);*/
                     //用户登录成功之后 存储用户输入的值
+                    localStorage.setItem('token', JSON.stringify(data.data));
                     if($('#check').is(':checked')){
                         // 获取设置的本地存储的用户名的值
                         var loUser = localStorage.setItem('uName',uName);
                         // 获取设置的本地存储的密码的值 base64加密
-                        pwd=base64.tranCode.encode(pwd);
+                        pwd=base64.tranCode.encode($("#pwd").val().trim());
                         var loPass = localStorage.setItem('pwd',pwd);
                         //console.log(data.data);
                         localStorage.setItem("token",data.data);
                         window.location.href = "./index/index.html";
                     };
-                }else{
+                }else if(data.status==300){//账号没注册或输入错误
+                    alert("300:"+data.msg);
+                }else if(data.status==400){
+                //已经绑定过同类型的第三方账号不能继续绑定
+                    $(".conflict").html(data.msg);
+                    $(".wdows").fadeIn(300,function(){
+                        $(".choose>div:eq(0)").click(function(){
+                            myAjax({url:"third/party/update/binding/account",data:datask,type:"post"},function(data){
+                                console.log(data);
+                                console.log(JSON.stringify(data));
+                                if(data.status==200){
+                                    localStorage.setItem('token', JSON.stringify(data.data));
+                                    window.location.href="./index/index.html";
+
+                                }else{
+                                    sweetAlert(
+                                            "sorry",
+                                            data.msg,
+                                            "error"
+                                    )
+                                }
+
+                            },function(err){
+                                console.log(err);
+                            })
+                        })
+                        $(".choose>div:eq(1)").click(function(){
+                            $(".wdows").hide();
+                        })
+                    });
+                }
+                else{
                     sweetAlert(
                             '登录失败',
                             data.msg,

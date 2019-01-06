@@ -130,16 +130,16 @@
 {{if data.searchTeacher!==null||data.searchTeacher.length!==0}}
 {{each data.searchTeacher as teacher i}}
 <p> 返回的教师有：</p>
-<div class="list_teacher" onclick="location.href='../index/teacher_index.html'">
-    <img src="../../img/focus-img1.png" alt="">
+<div class="list_teacher" onclick="location.href='../index/teacher_index.html?id={{teacher.teacher.userid}}'">
+    <img src="{{teacher.teacher.portrait==null?'../../img/logo.png':teacher.teacher.portrait}}" alt="">
     <div class="list_center">
         <div class="list_center_top clearfix">
-            <span>{{teacher.teacher.nickname}} </span><i class="f_right">1.2km</i>
+            <span>{{teacher.teacher.nickname}} </span><!--<i class="f_right">1.2km</i>-->
         </div>
         <div class="list_center_center clearfix">
-            <em>数学</em>
-            <em>初二</em>
-            <s class="f_right">在线</s>
+            <em>{{teacher.teacher.teachingSubjects}}</em>
+            <em>{{teacher.teacher.grade}}</em>
+            <!--<s class="f_right">在线</s>-->
         </div>
         <div class="list_bottom">
             {{teacher.teacher.address}}
@@ -154,15 +154,16 @@
 <p>返回的学校有：</p>
 <div class="list_school" onclick="location.href='./edu_index.html?schoolID={{school.school.schoolId}}'">
     <div class="img_box">
-        <img src="../../img/index_school.png" alt="">
+        <img src="{{school.school.portrait==null?'../../img/index_school.png':school.school.portrait}}" alt="">
     </div>
     <div class="right">
-        <em class="clearfix">{{school.school.name}} <del>1.2km</del></em>
+        <em class="clearfix">{{school.school.name}} </em>
 
         <div class="right_center">
             <em></em> {{school.teacherNum}}<!--这是什么？-->
-            &nbsp;&nbsp;&nbsp;&nbsp;<del>高中</del>
-            &nbsp;&nbsp;&nbsp;&nbsp;<del>初中</del>
+            {{each str(school.school.containClasses) as value i}}
+            &nbsp;&nbsp;<del>{{value}}</del>
+         {{/each}}
         </div>
         <div class="right_footer">
             <i class="iconfont icon-zuobiao"></i>
@@ -180,8 +181,8 @@
 {{each data.searchCourse as course i}}
 <p>返回的课程有：</p>
 <div class="list_course">
-    <a href="./index_video.html">
-        <img src="../../img/index_edu.png" alt="">
+    <a href="./index_video.html?id={{course.course.id}}">
+        <img src="{{course.course.coursePicture==null?'../../img/index_edu.png':course.course.coursePicture}}" alt="">
         <div class="ex_right">
             <div class="ex_top clearfix">
                 <span>主讲：{{course.speaker}}</span>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -209,9 +210,9 @@
             console.log(data);
             //data=data.slice(0,10);
             $(".search_lately_content").html(template('hotSearch',{data:data.data.slice(0,5)}))
-            $(".search_lately_content>span").click(function () {
+            $(".main").on("click",".search_lately_content>span", function () {
                 $("#search").val($(this).text());
-            });
+            })
         })
 
         /* 点击搜索按钮，发送请求*/
@@ -223,7 +224,7 @@
         /*渲染*/
         $('.search-history-list').html(template('historyTpl',{list:historyList}));
         $('#search').val('');
-        $(".searchList").click(function (){
+        $(".main").on("click",".searchList", function () {
             var text= $(this).text();
             console.log(text);
             $("#search").val(text);
@@ -257,6 +258,9 @@
                             )
                             return false;
                         }
+                        template.helper("str", function (str) {
+                            return str.split(",")
+                        })
                         template.helper("time",function(date){
                             var time=new Date(date).toLocaleString().replace(/:\d{1,2}$/,' ').substr(5,11).replace("/","-");
                             return time;

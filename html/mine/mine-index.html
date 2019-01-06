@@ -249,10 +249,18 @@
             if(data.status==200){
                 localStorage.setItem("this_userid",data.data.userid);
             }
-            if(data.status==321){
+            else if(data.status==321){
                 sweetAlert(
                         "sorry",
-                        "您的账号信息在别处登录，请您重新登录",
+                       "您的账号登录信息已经过期，请您重新登录",
+                        "error"
+                ).then(function () {
+                            location.href='../login.html';
+                        })
+            }else{
+                sweetAlert(
+                        "sorry",
+                        data.msg,
                         "error"
                 ).then(function () {
                             location.href='../login.html';
